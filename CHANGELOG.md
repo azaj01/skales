@@ -6,6 +6,48 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.5.2 - Flow and Security
+
+Flow gets real controls for long projects and long-thinking models, a security hole on the local command interface is closed, and the app finally reports its own version correctly.
+
+### Fixed
+
+- **A closed door that was standing open.** The local command interface accepted requests without a valid access token, so anything on the same network could reach it. It now requires the token, the way it always should have.
+- **Reasoning models that thought forever now get stopped.** Some models spend their entire reply budget on internal reasoning and never write an answer. A live watchdog now ends a run that has clearly thought past its whole budget, instead of leaving you staring at a spinner for twenty minutes.
+- **Flow's Stop button actually stops.** After a page reload it used to lose track of the run and only pretend to stop while the work kept going. Stop now reaches the real run every time, and reopening a project reconnects to it.
+- **A crashing preview no longer takes the whole project down.** A render error is caught in place and recovers, instead of blanking the page and orphaning the run.
+- **The app reports the right version.** System properties and the About box were frozen at an old number regardless of the installed release; they now match.
+- **DevKit can be enabled on an installed app.** The developer command interface only worked from a source checkout; it now reads its config from the data directory (`~/.skales-data/devkit/`), so the CLI works on a normal install. Requires the matching DevKit CLI v0.3.0.
+
+### Added
+
+- **New chapter in Flow.** After many rounds of changes a project can continue in a fresh, lighter session that keeps the files and a short summary but drops the long transcript, so it stays fast and costs less. Offered on its own once a project gets heavy; your brand kit, template and model choices come along.
+- **Change the model and reasoning effort mid-project.** Both were only settable when starting a project; now they sit in the project's model menu and apply from the next step.
+- **A way out when a model stalls.** If a model finishes twice with nothing but reasoning and no answer, the panel offers to switch to a different model instead of leaving you stuck.
+- **Option chips scroll on narrow screens.** The mode and parameter rows slide sideways instead of stacking into several lines.
+
+## v12.5.1 - Hotfix
+
+Connected MCP servers are visible to the AI again, background tasks stop running in circles, slow models get the time they need, and the Tasks page becomes something you can actually keep tidy.
+
+### Fixed
+
+- **The AI can see your connected MCP servers again.** Their tools are fetched on demand to keep messages lean, but the AI was being told they were already active, so it concluded it could only see the built-in tools. It now knows how to pull in each server's tools and does so on its own in chat, Flow and scheduled runs.
+- **Slow models no longer lose a whole task partway through.** A single model reply was cut off after a fixed short limit, and because that counts as an error the task failed with no resume - painful for local and reasoning models that legitimately take longer to answer. The reply now has the full task time to finish.
+- **Background and scheduled tasks now see the full results of their file reads and searches.** Until now they received only a bare count or metadata, so a task that needed to look something up could repeat the same search endlessly, burning through its time limit run after run without ever finishing. The same blind spot affected agent teams and the Buddy after a tool approval. All of them now see exactly what chat sees.
+- **Deleting an old reminder on the Tasks page works now.** Rows that came from the Planner were silently ignored by the delete button, so one-time reminders could never be removed from the list.
+- **Flow shows what the model is actually doing.** A reasoning model can think for minutes before the first visible word, and Flow showed only a bare "deciding" spinner the whole time. The status row now shows that the model is reasoning, a live glimpse of its train of thought, and the elapsed time. The Stop button remains available throughout.
+- **An answer no longer comes back empty after a long reasoning phase.** Models with extended reasoning could spend the entire reply budget on thinking and finish with no visible answer. That case is now caught and retried once with a much larger reply budget and a nudge to answer directly.
+- **Flow menus stay inside the frame.** The model and template dropdowns could open partly outside the visible area near a screen edge. On narrow screens they now open as a bottom sheet that is always fully visible.
+
+### Added
+
+- **The Tasks page can be searched, filtered and cleaned.** A search box, status filters with counts (All, Active, Done, Failed, Stopped), newest-first ordering, and a one-click "Clear finished" that removes every completed, failed and stopped task - running and pending ones always stay.
+
+### Changed
+
+- **The task time limit can now be set up to 60 minutes** in Settings, for long-running local models that need room to work.
+
 ## v12.5.0 - Skills
 
 Skales learns skills: a built-in library it can reach for on its own, style packs that give Studio a committed aesthetic, ready-made agent teams - and an agent that keeps working instead of stopping halfway.
