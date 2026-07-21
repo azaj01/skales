@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.5.3 - Flow Hotfix
+
+The 12.5.2 reasoning watchdog cut healthy long-thinking runs: models that built a motion graphic fine one day earlier spent half an hour in cut-and-retry ladders the next. The guard is now behavioural, the stall card actually does what it offers, custom widgets are usable again in every theme, and custom agents see your connected MCP servers again.
+
+### Fixed
+
+- **A custom agent sees your MCP servers again.** The chat agents you build yourself run on their own prompt, which left out everything about the environment they work in: the connected MCP servers were never mentioned to them, and the tools were waiting behind a load step the agent was never told about. Asked about a connected server, such an agent answered that none were set up. Custom agents now get the same truthful MCP status as the default assistant - which servers are connected, and the exact step to pull their tools in - plus the index of every other tool group they can load.
+- **An image with text gets a real answer.** Sending a picture along with a question could end in a silently empty reply: a reasoning model that spent the whole turn thinking produced no visible text, and the image turn had none of the safeguards normal chat turns have, so nothing appeared and no error was shown. In older versions the same gap showed up as a reply cut off mid-sentence. An image turn now retries once asking for the answer directly, stitches a cut-off reply back together with one continuation, and when a model truly never answers it says so honestly instead of staying silent.
+- **New vision models are recognized without waiting for an update.** Skales asks your Ollama daemon what each model can actually do instead of matching names against a built-in list, so a model that just came out is treated as vision-capable the moment it appears. Kimi K2.6 and K2.7 stop being flagged as text-only, and the name list stays only as a fallback for older daemons.
+- **The image-description row fits its content.** The collapsed "Vision" row under an attached image stretched across the full bubble width, which next to a narrow image looked like a broken layout. It now hugs its label and only widens when opened.
+- **Custom widgets scroll again.** A widget taller than the window could not be scrolled at all: it grew past its pane while the pane itself refused to scroll, so everything below the fold was simply unreachable. Clicking or typing also made the page slide down under the pointer, because the widget's own click handling was being mistaken for new content.
+- **Custom widgets follow your theme.** They were painted in fixed dark colours, so on a light theme the text was unreadable. They now inherit the theme's own colours and switch along with it, without losing what you had entered.
+
+- **Long-thinking models can think again.** The previous release stopped a reasoning stream once it crossed a fixed share of the reply budget, which killed exactly the deep runs it was meant to protect, and then retried the doomed step with the very same budget. The stream is now stopped only when the model is provably stuck repeating its own trace, or exceeds the physical context window; whether a budget is exhausted stays the provider's call. The pointless same-budget retry is gone, and the request no longer asks for a reasoning bound the failing models were measured to ignore.
+- **The stall card's buttons work.** "Keep going" was re-raised by the next status poll within a second, and Stop had to win a race against that same poll, which could take a dozen clicks. Dismissing the card now sticks for the rest of the run, and Stop takes effect immediately while the server abort settles in the background.
+
+- **Motion scenes no longer bleed through each other.** Scene transitions layer the incoming scene over the outgoing one, and a transparent scene showed both at once (old text under new text). Scenes are opaque by default now, and Flow renders frames from inside the transitions after every motion turn and checks them - plus a code-level check for exactly this class of conflict - firing a correction automatically when something is off.
+- **Your model choice in Flow is the one that runs.** If a model was set under Settings > Chat & Code > Code model, it silently overrode the model picked in Flow: the project kept showing your choice while the run used another model, and switching models to escape a stalled run changed nothing. Flow's own pick now wins in Flow.
+- **Options that promised something they did not do.** The reasoning-effort dial is hidden on models that have no such control instead of being offered and ignored. Switching mode clears a pinned image or video provider that does not exist in the new mode. A pinned skill that you switch off in settings stops riding along. Pinned-skill and style-pack chips show real names instead of raw slugs.
+- **A short motion brief stays short.** Asking for 3 or 5 seconds used to arrive at the model alongside two other duration ranges from the built-in guidance, and the model spent the turn reconciling them. Your duration now overrides everything else and shapes the scene plan.
+- **Image and video projects see your attachments.** Those modes skipped part of the briefing: an attached reference image was never mentioned to the model, and they had neither the fact-checking rules nor the scratchpad the other modes get.
+- **Flow's option rows scroll instead of wrapping.** The mode chips, the composer options and the project toolbar stay on one line and slide sideways at every window size. Dropdown menus can no longer leave the window: they clamp to the frame, flip upward when there is no room below, and the reasoning-effort row in the model menus is always visible instead of hiding behind the model list's scroll.
+
+### Added
+
+- **Changing the model mid-run resumes the work.** Picking a different model while a run is working closes that run, moves the project to the new model and continues the work in place, without restating the brief. This is what the stall card's "Change model" now does, and the project's model menu behaves the same way.
+- **PDF export for decks and documents.** Both modes have advertised it since Flow shipped without an actual export anywhere in the app. The preview bar now has it: a deck exports one full-bleed landscape page per slide, a document exports through its own print layout.
+- **A scratchpad in every Flow project.** The agent keeps a small working-memory file - plan, decisions, open items - current while it works, and a panel in the project shows it live. It carries over into new chapters, so long projects keep their thread.
+
 ## v12.5.2 - Flow and Security
 
 Flow gets real controls for long projects and long-thinking models, a security hole on the local command interface is closed, and the app finally reports its own version correctly.
