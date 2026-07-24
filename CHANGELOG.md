@@ -6,6 +6,468 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.5.5 - Nothing You Made Is Gone
+
+A turn used to be a one-way door. Regenerating an answer deleted the one you
+had; a Flow turn rewrote the deck you liked and the previous version was gone
+from the disk. Both keep their history now, and both let you walk back into it.
+Around that: Stop actually stops, an uncapped task runs uncapped, an isolated
+agent stops writing into your memory, and GLM and Qwen become providers you can
+simply pick.
+
+### Added
+
+- **A crash screen now tells you what crashed.** When a page stopped drawing,
+  all you got was a line like "Minified React error #482" and a link to look it
+  up. The detail that actually identifies the fault was being collected and
+  written straight to the browser console, which is no help at all on the phone
+  where these crashes tend to happen. Both crash screens now show that detail on
+  the page: a ready-made report with the error, the page, and where in the app
+  it broke, in a box you can select, plus a copy button. If copying is blocked -
+  which it is on a plain connection to your desktop - the button says to select
+  the text instead of pretending it worked.
+- **Flow projects can be put away or thrown out.** The project grid only ever
+  grew: a run that went the wrong way, a project started by accident and a
+  throwaway test all stayed in it for good, because nothing in Flow could remove
+  one. Each card now has two actions. Archiving is reversible and changes
+  nothing else - the project keeps its files, its versions and its chat, and
+  only leaves the grid, with a switch in the toolbar to look through what you
+  put away. Deleting is the one that removes work, so it does not simply erase:
+  the project folder moves to a trash folder next to your projects and can be
+  recovered by hand. What deleting really ends is the conversation, and the
+  confirmation says so instead of asking whether you are sure.
+- **Motion can be made in a technique, not just in a palette.** Asking for
+  papercut, pixel art or particles used to get you a normal animation with those
+  words in the copy: the composition could only move boxes and text around, so
+  that is what came back. Motion now has a Style setting of its own next to the
+  model and the template, with fourteen techniques - papercut, pixel, particles,
+  whiteboard, kinetic type, motion graphics, sketch, ASCII, isometric,
+  blueprint, neon, comic, origami and silhouette - and three effects that stack
+  on any of them: stop motion, glitch and film grain. Each technique brings the
+  drawing it needs rather than imitating it, so pixel art is really drawn on a
+  pixel grid and particles really are a particle system. It is a separate choice
+  from a style pack, which decides the colours and the type: pick both and you
+  get your palette, made that way.
+- **A rendered video is checked before you are told it is ready.** Flow could
+  already look over a finished design, but for Motion it looked at the
+  composition, never at the video that came out of it. So the faults that only
+  exist in the file went out unseen: a clip that freezes on one frame halfway
+  through, a stretch that comes out black, a video that never moves at all
+  because the animation runs on the clock instead of on the frame being drawn.
+  Every finished render is now read back frame by frame, and anything found goes
+  straight back into the project as a correction, with the exact seconds it
+  happens at. The checks that need no vision model run on every machine; where a
+  vision model is set up, the frames that actually differ from one another are
+  looked at as well, so a broken transition or clipped text is caught in the
+  file rather than in the preview.
+- **A Flow project keeps every version of its artifact.** Each turn's result is
+  archived before the next one can overwrite it, up to the last twelve, and the
+  history opens from the preview toolbar as real renders of each version rather
+  than a list of dates. From a version you can go back to it, download it as a
+  ZIP without disturbing what you have now, or branch it into a project of its
+  own and try the other direction. Coming back is not a one-way door either: the
+  state a rollback replaces is kept as a version too, and the chat is told what
+  happened so the next turn works from the files that are actually there.
+- **Flow can just do what you said.** Every mode hands the run a starting file,
+  a catalogue of layouts and a checklist. That is what makes a one-line brief
+  come out finished, and it is in the way when you already know exactly what you
+  want. A "Free" switch next to the brief turns all of it off: your brief is the
+  whole specification, and nothing else is added. What you chose yourself stays
+  on - your files, your template, your Brand Kit, your style pack. Motion keeps
+  its starting file, because that one is the format the video is rendered from,
+  not a suggestion.
+- **A video can be as long as you asked for.** The length was a row of fixed
+  buttons, one of them always picked, and that pick beat anything the brief
+  said - so asking for 45 seconds quietly got you 5. "Follow instructions" is
+  now one of the choices, and with it the length comes from your brief alone.
+- **A Flow project can be handed to someone else.** Every export so far turns
+  the artifact into something else and loses whatever that format cannot carry.
+  The export menu now also offers the project itself: every file as it stands,
+  in one ZIP, in any mode. It downloads rather than landing in the project, and
+  it carries your work and nothing else - not the version history, not the
+  backups, not the deployment settings, and none of the app's own bookkeeping.
+- **Auto: the brief picks the output type.** A pitch deck for a coffee brand
+  already says deck, and already says which structure, so translating that into
+  a chip and a template before you have described anything is the same work
+  twice. The Auto chip reads the brief and picks both, shows what it chose so
+  you can correct it, and starts the run normally from there. If the helper
+  model is unavailable it falls back to a keyword guess rather than to a Start
+  that does nothing.
+- **Ask first: a few questions before anything is built.** Flow could already
+  ask mid-run; this asks while it still costs nothing, as a card of clickable
+  choices, and folds your answers into the brief instead of turning them into a
+  second turn. Anything you leave on "decide for me" is left out entirely, and a
+  brief that is already specific gets no questions at all.
+- **Undo and redo in the Flow editor.** The file editor is a plain text box, so
+  the only undo it had was the browser's, which breaks the moment the text is
+  set by anything but a keystroke. It has its own now, reachable from the
+  toolbar and from the usual shortcuts: typing groups into words rather than
+  characters, a line break always ends a step, and the cursor comes back to
+  where the edit was instead of jumping to the end of the file. Taking a version
+  the app put there over yours is undoable too.
+- **Asking again keeps the answer you already had.** Regenerate an answer, or
+  reword the question, and the previous turn is kept as a version instead of
+  being deleted. Arrows and a counter at the answer step through them; switching
+  restores the whole turn it belonged to, including its tool results, and
+  survives a reload.
+- **A deck leaves Flow as PowerPoint, a document as Word, a course as SCORM.**
+  All three had exactly one way out until now: PDF. PowerPoint is built from the
+  laid-out slides, so the text boxes are real ones the client can retype, with
+  the pictures, the speaker notes and the slide colours; an artifact with nothing
+  extractable in it exports as exact slide images instead, and says so. Word
+  keeps headings, lists, tables and pictures editable. A course packages the
+  project for Moodle and other LMS, with a runtime that reports the lesson
+  complete inside the LMS and does nothing at all outside it, so the same file
+  still previews here.
+- **GLM and Qwen are providers you can pick.** DeepSeek was the only
+  China-frontier provider you could just choose; these two were reachable through
+  nothing but OpenRouter or a custom endpoint you had to wire yourself. Both are
+  registered the whole way through: the provider card and its model list, the
+  context and output limits, the live model refresh, the group-chat and
+  custom-skill pickers, onboarding, and what Skales says about itself.
+  Descriptions in all twelve languages.
+- **Gemini 3.6 Flash and Flash Lite** are in the model lists, and are the
+  default.
+- **GitHub as an MCP server without Node.** It can now be added over its official
+  remote endpoint with a sign-in, so it needs no npx and no access token at all.
+  The local server stays, and both entries say which is which.
+- **You hear about it when an agent schedules itself.** An isolated agent can
+  give itself standing work that from then on wakes on its own, unattended. The
+  only way to find out was to open the Schedule page. It is a notification type
+  of its own now, so it reaches WhatsApp, Telegram and the phone with your quiet
+  hours and channel choices applied, and it can be switched off like any other.
+  You scheduling something in your own chat is not news to you, so that stays
+  silent.
+- **An isolated agent gets a memory of its own.** Each agent now has its own
+  store, and its lessons go to its own file. Normal chat, custom agents and
+  scheduled runs keep the owner's memory unchanged.
+- **Look at an image by URL.** Image analysis takes an http(s) address now,
+  instead of the download-then-look detour that put every picture the agent only
+  wanted to see on the disk.
+- **The no-time-limit setting is reachable.** A checkbox next to the slider, and
+  the message at the end says what actually stopped the run.
+
+### Added
+- **Right-click a chat message for what you can do with it.** Chat bubbles had
+  a small row of buttons that only showed on hover; a right-click did nothing.
+  Now it opens a menu: Copy, Quote in reply (drops the text into the composer as
+  a quote, ready to answer), Save to document, Read aloud, New session from
+  here, Delete - plus Regenerate on an answer and Edit and resend on your own
+  message. Deleting asks once before it happens, and right-clicking a passage
+  you have selected leaves your normal copy alone. The menu it uses is one
+  shared component, so the same behaviour is coming to the other lists.
+- **Right-click a chat in your history for everything you can do with it.** The
+  same menu now opens on a saved chat, in the History page and in the session
+  list in the chat header. It offers Open, Pin, Rename, Archive, Download and
+  Delete. The header list used to offer only a delete button on hover; now it
+  has the full set, renames a chat in place, and deleting takes two clicks
+  instead of a dialog. In all twelve languages.
+- **Right-click a task or a schedule for its actions.** A task card now opens a
+  menu with what fits its state - Run while it is waiting, Stop while it runs,
+  Copy the title, Copy the result once it is done, and Delete. A schedule row
+  opens Run Now, View Logs, Copy, Edit, Pause or Activate, and Delete. Both use
+  the same menu as the rest of the app, delete takes two clicks instead of a
+  dialog, and a system entry keeps only the actions it is allowed. In all twelve
+  languages.
+- **The image menu now works when you open Skales in a browser too.** Right-
+  clicking a generated image, a Flow image or an image in a preview used to give
+  the app's menu only in the desktop window; from the phone companion or a
+  browser tab you got the browser's plain menu with no "Open in Studio". Now the
+  same Save image, Copy image and Open in Studio menu appears in a browser as
+  well, including for images inside a live preview. In all twelve languages.
+- **Right-click an image or a link and get the menu you expect.** Images and
+  links had no menu of their own anywhere in the app - not in chat, not in Flow,
+  not in a preview, not in the built-in browser. Right-clicking an image now
+  offers Save Image As, Copy Image and Open in Studio (which drops it straight
+  into the image generator as a reference); right-clicking a link offers Copy
+  Link and Open in Browser. Saving keeps the original file when it can, so a
+  JPEG stays a JPEG, and falls back to a copy of what is on screen when it
+  cannot, telling you by the name it suggests. It works the same in every window
+  and in the in-app browser, in all twelve languages.
+- **Right-click a link in a chat answer for more than copy.** A link in a
+  reply now opens a menu with Copy link, Open in browser, Open in the built-in
+  Browser, and Summarize - which starts a fresh chat that fetches the page and
+  sums it up for you. The full menu shows in the desktop app and just as well
+  when you open Skales from your phone or the web, in all twelve languages.
+- **Right-click an API key field for what you want to do with it.** A key or
+  secret in Settings stays a row of dots, and the only way to remove one was a
+  small icon that appeared inside the field. Right-clicking a key field now
+  offers Copy value - the real key goes to the clipboard while the field stays
+  masked - Reveal or Hide, and Remove, which asks once before it clears. It
+  works on every key in Settings, from the provider keys to the image, video and
+  search service keys, in the desktop app and over the web, in all twelve
+  languages.
+
+### Fixed
+- **A stuck reasoning model gets the bigger reply budget when a bigger one
+  exists.** When a model spends its whole reply budget thinking and produces
+  nothing, Skales retries it with more room. That retry was only offered when the
+  turn had been running at the model's own limit, so a turn that had been capped
+  lower - a background run, a Playground call with a set limit - was denied the
+  extra room and re-ran on the same starving budget, then gave up. The retry now
+  measures against what the turn actually used, so it gets the larger budget
+  whenever there is one to give.
+- **Things that are supposed to exist once now exist once.** Inside the app, a
+  page you open and an action you trigger were each running their own copy of
+  the same machinery, and the parts that only work as a single copy quietly
+  came in pairs. The effects were spread across the app and all had the same
+  root: the autopilot's hourly call limit could be counted twice, so it allowed
+  roughly double the number of calls you set, and raising the limit in Settings
+  only reached one of the two counters; switching autopilot off could leave a
+  second heartbeat still ticking; a connected tool server could be started
+  twice and stopping it left one running; the browser Skales controls could be
+  reported as closed while it was open; the desktop could announce itself twice
+  on the local network; a log file could be rotated by both copies at once and
+  lose the lines the other had just written; a calendar settings change only
+  took effect on one side; and two files being saved in the same instant could
+  share one temporary name, which is a way to lose what was just written. All of
+  it now lives in one place per app, as it was always meant to.
+- **A project's deploy password stopped travelling with the project.** The
+  settings a project keeps for publishing to your own server - host, user and
+  password - are stored in a file inside the project folder. That file was left
+  out of the project download, and nowhere else: it was listed among your
+  project files where it could be opened and edited, it came back over the
+  preview address to anyone who could reach your desktop, every saved version
+  kept a copy of it, and it went out again inside a course package and a version
+  download you hand to someone else. Publishing even uploaded it to the very
+  server it describes. Now one list decides everywhere, and the files Skales
+  keeps for itself - the project record, the deploy settings, the saved versions
+  and the caches - stay out of every list, every download and every page you can
+  open. Your work is untouched, and so are the versions you already have: they
+  simply stop carrying the password with them.
+- **Turning the effort dial down actually turns it down.** On a model without
+  its own reasoning setting, picking Low or Medium for a chat still sent the
+  full deep-reasoning instructions whenever the global toggle was on, so the
+  answer was as slow and as expensive as before. The dial is the newer, more
+  specific instruction and now decides: High and Extra high add the deep pass,
+  Low and Medium leave it out. With the dial untouched, nothing changes.
+- **A third of every request stopped being sent twice.** The instructions that
+  frame a turn (the Flow brief, Code mode, a goal's plan, the live working
+  state) were being placed at the top of the request AND appended at the
+  bottom, so the model read the same pages twice and you paid for both. On a
+  measured Flow deck turn the request fell from 86.3 KB to 56.6 KB, a third
+  less, on that turn and every one after it. Nothing was removed: the second
+  copy was the only thing dropped.
+- **Your own instructions to Skales apply again.** The duplicate had taken the
+  place where the personality and the system prompt you write in Settings
+  belong, so on any turn that carried a frame, which is every Flow turn, every
+  Code turn, and every step of a chat after the first, Skales ran without them.
+  They are back where they belong, in front of everything else.
+- **A picture sent over WhatsApp is answered, even when the picture does not
+  arrive.** WhatsApp hands a photo over in two steps, and the reply was being
+  written before the second one finished, so on a slower computer the file was
+  never there. Sent on its own, the message vanished without a word; sent with a
+  caption, only the caption came through and nothing said a picture had been
+  missed. The file is now waited for and asked for again a few times, and if it
+  truly does not arrive you get an answer saying so instead of silence, with the
+  reason in the WhatsApp log. The same goes for anything this channel does not
+  read yet, like a video: it is named rather than quietly ignored. Telegram had
+  the same quiet corner and now says it too.
+- **A note about an image no longer disappears behind its caption.** When the
+  picture arrived but could not be read (no vision provider, a provider error,
+  or image reading switched off for WhatsApp), the explanation replaced your
+  message instead of joining it, so a photo with a caption looked like an
+  ordinary text message and the reply never mentioned the picture. Both are kept
+  now.
+- **WhatsApp keeps working after an app update.** The record of which WhatsApp
+  Web build your session runs against was stored next to the app itself, where
+  macOS does not allow writing at all and where a Windows update deletes it. It
+  now lives with your data, and an existing one is carried over, so a connection
+  that works today keeps working after the next update.
+- **A slide is centred on any screen, not only on a 1920x1080 one.** A deck is
+  laid out at a fixed size and scaled down to whatever window it is shown in,
+  but the scaled slide was being pushed towards the bottom right instead of
+  sitting in the middle, so part of every slide was cut off in the preview and
+  in any window smaller than full HD. It is anchored to the centre now, at any
+  size. Exports were never affected and are unchanged.
+- **The media settings you picked are actually used.** Aspect ratio, quality and
+  a preferred model reached the model only as a sentence asking it to honour
+  them, so a project set to 9:16 kept coming back square with nothing saying the
+  setting had been dropped. They are now written into the generation call
+  itself, and they win over what the model typed. Only values the tool can
+  actually take are written: the rest is named in the result, so the reply says
+  the picture is 4K only when it is. A model you name mid-project still wins over
+  the preference you set on the landing.
+- **A message can no longer be lost when two parts of the app write the same
+  chat at once.** The lock that serializes chat writes lived per copy of a
+  module, and the app loads that module more than once, so two writers could
+  each hold their own lock, write the same temporary file, and leave the loser
+  with nothing to rename and its messages gone. Seen live: a tool result
+  vanished from a Flow turn, leaving the model to answer about work it could no
+  longer see. The lock is now shared, and each write uses a temporary file of its
+  own, so even a writer the lock cannot reach costs at worst an overwrite instead
+  of a lost message.
+- **A turn no longer loses the file you have open in the editor.** Nothing
+  re-read that file after a turn wrote it, so the editor kept showing the
+  version from before and the next Save quietly put it back over the new work.
+  The editor now follows the file: with nothing unsaved it simply shows the new
+  content, and with unsaved changes it says the file was rewritten and lets you
+  keep yours or take the new one, instead of one of the two disappearing.
+- **Leaving a file in the editor and coming back keeps your unsaved changes.**
+  Switching to the preview and opening the file again re-read it from disk and
+  threw the edits away without a word.
+- **The version history is reachable while you are editing a file.** The editor
+  takes the place of the preview, and with it the only way into the history.
+- **Present a deck, not just show it.** A deck opens in a Presenter view of its
+  own now: the current slide, the one coming next, the speaker notes for what
+  you are on, an elapsed timer and the clock. The audience gets its own window
+  with nothing but the deck, and the two move together, from the buttons or the
+  arrow keys. Decks are also written with speaker notes from now on - what you
+  say over a slide, not a repeat of what is on it - and those same notes travel
+  into PowerPoint and into a new PDF handout that puts each slide next to its
+  notes. A deck that has no notes says so instead of handing you empty pages.
+- **Build a Brand Kit from a website.** Paste an address into the Brand Kit
+  settings or into the New kit dialog in Flow, and the kit fills itself from the
+  page: the palette, the heading and body typefaces, the logo, the name, the
+  tagline and a short description, with the site kept as a reference link.
+  Colors and fonts are read out of the page and its stylesheets, so what lands
+  in the kit is what the site actually uses, not a close-looking guess - the
+  page says which color is its surface and which is its body text, and the roles
+  follow that rather than whichever color happens to appear most. Nothing is
+  saved by reading a site: the fields are filled and you still press save, so a
+  bad read costs a glance.
+- **Using the logo can be decided mid-project.** Which Brand Kit a Flow project
+  designs with switches from the toolbar at any time, but the "use logo and
+  brand assets" half of that same choice could only be answered on the landing,
+  before the project existed. A project started without the logo could never be
+  given it, and one that was meant to stop demanding a logo file had to be
+  started over. The toggle now sits under the kit in the toolbar menu, applies
+  from the next turn, and stays where you left it when you switch kits or turn
+  the kit off and on again.
+- **The wireframe and phone modes are reviewed as themselves.** Both start from
+  the same file as the web prototype, and were reviewing themselves against its
+  checklist too. So a phone mockup was told to make sure its layout collapses to
+  one column on a narrow window, which means nothing for a strip of fixed phone
+  screens and invites the run to break the strip, and neither mode was ever
+  asked whether it had done the one thing that mode exists for. Each has its own
+  review now: the phone mode confirms it built phone screens rather than a
+  website, with buttons in thumb reach and the labels the product would ship;
+  the wireframe confirms it stayed grey, kept its image boxes crossed out and
+  annotated, and used the real navigation. Both also say where a picture comes
+  from, which neither did before: the phone mode may find and place real images
+  like every other mode, and the wireframe deliberately fetches nothing and
+  keeps labelled boxes, instead of each run deciding that for itself.
+
+
+- **Stop now ends the session.** Stop reported success whether or not it stopped
+  anything, so with a stale run the panel said stopped while the run kept
+  generating, and reopening found it still live. A stop now answers honestly and
+  sweeps the session: the run you are looking at first, then every other live run
+  on it. Chat does the same sweep.
+- **A stopped run stops looking like a failed provider.** The fallback chain read
+  a stop as a dead provider: it walked the rest of the chain and put the primary
+  on cooldown, so pressing Stop quietly moved the next turn to another provider
+  and the run ended in "all providers failed". A stopped run now ends the chain
+  and says it was stopped.
+- **No time limit now means no time limit.** The task timeout has documented 0 as
+  run-to-completion for a while, but the code took the zero literally: the
+  deadline fired on the next tick and the task died before its first step. An
+  uncapped run is now judged on whether it is still doing something, and ends
+  only after fifteen quiet minutes.
+- **A resumed workday remembers what it already tried.** The task loop had no
+  repeat guard, so a stuck model reissued the same call with the same arguments
+  until the clock ran out, and the checkpoint carried that stuck state into the
+  next resume while every counter restarted at zero. The guard now rides along in
+  the checkpoint, so "already tried" means across the whole chain. A chain that
+  adds nothing new ends itself; one that is actually advancing resumes for as
+  long as it advances.
+- **A chain of runs stops saying it is done seven times.** Each round announced
+  itself as finished. A run that queued its own continuation now holds its
+  notification and its report until the chain really ends.
+- **Continuing a task by hand keeps the agent it belongs to.** Typing "continue
+  the task" carried the work on in your chat as the default agent, no matter
+  which agent the task was bound to, with that agent's identity and data replaced
+  by yours. It is now queued as a continuation under that agent, and the chat
+  says so. An unbound task continues in chat exactly as before.
+- **Saving a chat stops blocking on every message.** Each message read the whole
+  session file back, stringified it and wrote it, all synchronously, on paths
+  that are mostly remote-facing. Creating a session also wrote its own file
+  outside the shared writer, so a new chat skipped the auto title, the base64
+  stripping and the message cap.
+- **Skales asks its questions again.** It could ask you a question through a form
+  card since v11.3, and mostly did not: only one way of writing the call was
+  accepted, so a model that phrased it slightly differently produced nothing, and
+  a failed tool goes to the model, not to you. It retried until the turn ran out
+  and the session ended empty. All those shapes are read now, and a question that
+  still cannot be shown says so on screen instead of vanishing.
+- **Test Connection tests what you typed.** It only ever tested the saved
+  provider, so pasting a key and pressing Test failed while the long way round
+  worked.
+- **Fetch models and the key remove button exist on every provider card.** Both
+  were built into a block only five providers render, so Fetch existed on
+  OpenRouter and nowhere else. The remove button also moved into the key field as
+  an icon, so the card stops jumping when a key is saved.
+- **MCP servers can find the tools you installed.** A double-clicked app is
+  started without a login shell, so nothing installed with Homebrew, nvm, fnm or
+  into a local bin folder was visible, and every npx-based MCP server died with
+  "spawn npx ENOENT" while the same command worked in Terminal. The usual install
+  locations are now on the path a server is started with, anything you set
+  yourself still wins, and a command that cannot be found is reported by name
+  with the two ways out.
+- **A skill loads when you name it, not when a word contains its name.** A skill
+  was pulled in on a substring, so one called "teach" matched "can you teach me
+  about anything at all" and pushed ten kilobytes of unrelated instructions into
+  the prompt. Naming a skill still loads it, including the slash form; a name
+  buried inside another word does not.
+- **A stranger cannot stop your turn in a Telegram group.** Everyone writes to
+  the same chat, and the stop machinery only knew the chat: someone else typing
+  "stop" killed your running turn, and someone else's chatter counted toward the
+  follow-up threshold. Both now follow the sender. One-to-one chats and WhatsApp
+  were never affected.
+- **Importing a skill brings its files.** The GitHub import asked whether a skill
+  had scripts and references, recorded the answer, and then downloaded neither,
+  so a skill claimed to ship with its scripts while any instruction pointing at
+  its own files failed. Both folders are fetched now, and the flags describe what
+  actually landed on disk.
+- **Long-term memory asks where a fact came from.** Memory harvesting mined
+  assistant turns without asking about origin, so a summary of a stranger's email
+  or a fetched page was a candidate like any other, and a sentence planted inside
+  that content could walk into memory through the summary. A turn that pulled in
+  content written outside the conversation is no longer mined. Your own files,
+  your own machine and your own messages are unaffected. The cost is real and
+  stated: a fact you mention while discussing fetched research in that same turn
+  is lost with it.
+- **An error from a phone-initiated turn opens the right conversation.** It
+  carried no session, so tapping the notification opened the chat landing instead
+  of the conversation it belonged to.
+- **A finished answer is not argued with.** Any sentence anywhere that looked
+  like an announced next step re-prompted a completed answer up to three times,
+  including recaps of work already done and offers handed back to you. The check
+  now reads the closing stretch of the answer and no longer mistakes an offer for
+  a promise.
+- **The activity log stops losing lines.** Its rotation state was kept per copy of
+  a module rather than shared, so two parts of the app could rotate at once and
+  the loser's lines were lost.
+- **A scheduled job keeps its shape and its agent.** The cron API wrote its own
+  envelope into the job file, so an update persisted the word "update" as a
+  field. A job can also be bound to an agent when it is created, rather than
+  needing a second call, and a run started over the API is filed as the manual
+  run it is.
+- **Good files stop being called broken.** The download validator was rejecting
+  real files: a favicon served as PNG bytes, a one-pixel GIF under the size
+  floor, an SVG with a licence comment in front of it, a ZIP with a stub before
+  its first entry, and a QuickTime file that opens on a different box. The
+  bot-wall case it was built for is still caught.
+- **Reveal in the file manager stays a reveal, not a launch.** The action that
+  shows a folder or file in Finder or Explorer handed the path to the system
+  opener as-is, and the opener treats some paths as "run me" rather than "show
+  me": an app bundle, a script, a desktop launcher would start instead of being
+  revealed. A file is now handed to the opener in reveal mode, so it is always
+  shown in the file manager and its own handler is never invoked; a folder still
+  opens as before. The same endpoint also turned away a request coming from
+  another site in your browser - a page you happen to be visiting could reach
+  the local app and ask it to open something. It now accepts the request only
+  from Skales itself.
+- **Uploading a skill no longer runs it.** To show a skill's name and
+  description in the list, the app used to execute the uploaded file, with full
+  access to the machine, the moment it arrived - before you had looked at it,
+  and whether or not you ever pressed anything. A file that did its damage and
+  then failed was simply filed as broken, so there was nothing to notice. Those
+  few lines of information are now read out of the file as text, without running
+  any of it, and every skill in an uploaded archive is treated the same way. A
+  skill runs when you run it, and not before. Uploading also stopped accepting
+  requests from other sites in your browser.
+
 ## v12.5.4 - Pictures and Providers
 
 Sending a picture is a normal chat turn now. It was not: it ran on a path of its own, outside everything the app does to keep an answer alive, and the previous release patched that path instead of removing it. The path is gone, and the same class of loss is fixed everywhere else it hid - in Buddy, in the AI Pointer overlay, and in the model recognition that quietly shrank a new model's context window to an eighth of its real size. Moving that turn onto the normal path also broke a promise nobody could see from the outside: an incognito chat with a picture in it was being written to disk. An incognito chat now runs on a conversation that has no file at all. Moonshot AI (Kimi) joins as a provider.

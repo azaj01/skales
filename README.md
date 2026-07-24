@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/tag/v12.5.4"><img src="https://img.shields.io/badge/version-12.5.4-10b981?style=flat-square" alt="Version 12.5.4" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/tag/v12.5.5"><img src="https://img.shields.io/badge/version-12.5.5-10b981?style=flat-square" alt="Version 12.5.5" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -363,6 +363,7 @@ Like Spotify Wrapped for your AI. Auto-generates every Monday. Activities, top t
   <a href="https://github.com/Derrick-xn"><img src="https://github.com/Derrick-xn.png" width="56" height="56" alt="Derrick-xn" style="border-radius:50%" /></a>
   <a href="https://github.com/jarbcs1-prog"><img src="https://github.com/jarbcs1-prog.png" width="56" height="56" alt="jarbcs1-prog" style="border-radius:50%" /></a>
   <a href="https://github.com/LLen"><img src="https://github.com/LLen.png" width="56" height="56" alt="LLen" style="border-radius:50%" /></a>
+  <a href="https://github.com/sebastiondev"><img src="https://github.com/sebastiondev.png" width="56" height="56" alt="sebastiondev" style="border-radius:50%" /></a>
 </p>
 
 [Discussions](https://github.com/skalesapp/skales/discussions) · [Bug Reports](https://github.com/skalesapp/skales/issues)
