@@ -34,18 +34,39 @@ The private AI that lives on your computer and does real work, not just chat.
 
 </div>
 
-## 📋 Table of Contents
+## In 30 seconds
+
+**What it is** — an AI agent that runs on your own computer, with access to your files, browser, calendar and email, and does multi-step work on its own.
+
+**What makes it different** — it installs like any normal app (no Docker, no terminal, ~30 seconds), it runs on your machine instead of someone's cloud, and it is built to be usable by people who are not developers.
+
+**What it costs** — nothing to start. Skales IQ is a free built-in trial that needs no API key. After that, bring your own key from 15+ providers, or run fully offline with Ollama and pay nobody.
+
+**Three things people use it for most**
+
+- 🎯 **Hand it a goal and close the lid.** `/goal build me a trading bot` runs in the background across many steps and picks up where it left off.
+- 💻 **Point it at a folder and let it code.** `/code` works like Claude Code, inside the chat, with inline diffs and one-click undo.
+- 📱 **Reach it from your phone.** Pair via QR and your phone drives this desktop's full tool set — or run the phone standalone.
+
+**[⬇ Download](https://skales.app)** · **[📖 Docs](https://docs.skales.app)** · **[🎬 Demo](https://www.youtube.com/watch?v=k83NlptVmfc)**
+
+<details>
+<summary><b>📋 Full feature index</b> (click to expand — there is a lot)</summary>
+
+<br>
 
 - [Demo](#demo)
 - [⚡ Why Skales?](#-why-skales)
 - [🚀 What Skales Can Do](#-what-skales-can-do)
   - [🎯 Background Goals](#-background-goals)
+  - [💻 Code Mode (`/code`)](#-code-mode-code)
   - [✨ Skales IQ + Skales Stack](#-skales-iq--skales-stack)
   - [📐 Workflows](#-workflows)
   - [🧩 Agent Skills](#-agent-skills-open-standard)
   - [🛠️ Skales Codework](#️-skales-codework)
   - [🏢 Organization](#-organization)
   - [👥 Teams](#-teams)
+  - [🐝 Agent Swarm (`/swarm`)](#-agent-swarm-swarm)
   - [📱 Skales Mobile](#-skales-mobile)
   - [🗣️ Voice: Talk to Skales](#️-voice-talk-to-skales)
   - [🌐 Inline HTML Preview](#-inline-html-preview)
@@ -70,6 +91,8 @@ The private AI that lives on your computer and does real work, not just chat.
 - [📜 License](#-license)
 - [🆓 Try Skales Free](#-try-skales-with-one-of-these-free-tier-apis)
 
+</details>
+
 ---
 
 <div align="center">
@@ -77,7 +100,7 @@ The private AI that lives on your computer and does real work, not just chat.
 ## Demo
 
   <p align="center">
-        <a href="[https://skales.app](https://www.youtube.com/watch?v=k83NlptVmfc)">
+        <a href="https://www.youtube.com/watch?v=k83NlptVmfc">
     <img src="https://skales.app/readme.gif" alt="Skales - Local AI Desktop Agent" width="100%" />
         </a>
 </p>
@@ -125,16 +148,59 @@ Skales is an AI agent that lives on your desktop. Not in a browser tab, not behi
 ## 🚀 What Skales Can Do
 
 ### 🎯 Background Goals
-Type `/goal` and what you want, like `/goal build me a trading bot`, and Skales takes it on as ongoing work instead of a single reply. It plans the steps and runs the whole task autonomously, in the background with the chat closed, picking back up where it left off after you reopen the app. It stops only when the task is done, when it genuinely needs your decision, or before a consequential action like sending an email, where it asks once (with a one-tap always-allow); it does not pause every few steps to ask you to continue. A long chat that grows into a real multi-step task is carried on as a goal on its own, and a goal that parked at its limit resumes itself while you are idle. Run more than one at a time, set one on a repeating schedule, or let Skales recognize a goal from how you ask. The step limit under Settings is a safety ceiling against a runaway task (0 means run to completion), not a check-in. Every finished goal folds what it learned back into Memory, so the next one starts ahead.
+
+Type `/goal` and what you want — `/goal build me a trading bot` — and Skales takes it on as ongoing work instead of a single reply. It plans the steps and runs the whole task on its own, in the background, with the chat closed.
+
+- **It does not ask you to continue.** It stops when the task is done, when it genuinely needs your decision, or before a consequential action like sending an email — where it asks once, with a one-tap always-allow.
+- **It survives you closing the app.** Reopen and it picks up where it left off. A goal that parked at its limit resumes itself while you are idle.
+- **It starts on its own when it should.** A long chat that grows into a real multi-step task is carried on as a goal, and Skales can recognize a goal from how you ask.
+- **Run several at once,** or put one on a repeating schedule.
+- **The step limit in Settings is a safety ceiling** against a runaway task (`0` = run to completion), not a check-in.
+- **Every finished goal folds what it learned back into Memory,** so the next one starts ahead.
 
 ### 💻 Code Mode (`/code`)
-Point any chat at a folder on your computer and it works there like Claude Code, without leaving the conversation. A Chat / Code / Edits / Plan / Auto switch under the composer, on the **New Chat screen** (pick a folder and mode before your first message), or the `/code` command (`/code <task>` to start in one line) binds the folder: **Plan** investigates and proposes, read-only; **Code** asks before each edit; **Edits** approves your file edits as it goes but still asks first before a shell command, a git push or a deploy; **Auto** runs the whole task on its own after a one-time consent. It patches files with `edit_file` instead of rewriting them, runs your build, installs and tests (`test_run`), and commits and pushes with your own git identity (`git_commit` / `git_push`, no added attribution). It **renders git diffs inline** in the chat as colored changes (green added, red removed) instead of plain text, and the model gets a **repo map** of the bound folder (which files exist and what each exports and imports) so it heads straight to the right file in a larger codebase. Shell commands get real time to finish (configurable up to 10 minutes), so installs, builds and deploys complete; it can deploy the folder with `deploy_project` (Firebase/Vercel/Netlify/npm) and ask you structured questions with a slide-up form when it needs a decision. A dedicated **Chat & Code** settings tab lets you give code work its own model (run a strong cloud model for code while chat stays on your default) and turn on deep reasoning (xhigh). If the folder is outside what Skales may touch, it asks first and widens access only the way you choose. Each chat keeps its own folder, so a normal chat is unchanged. Every file change carries a **one-click Undo** (per file, or "Undo all" for a whole turn), edits **still land when the model's quoted text is slightly off** (whitespace and indentation tolerant), each change shows an **added/removed count** at a glance, typing **`@`** suggests the files in your bound folder so you can point at the exact one, and in **Plan** mode Skales asks a couple of quick clarifying questions before laying out the plan, then a **Build this plan** button carries it straight into Code.
+
+Point any chat at a folder on your computer and it works there like Claude Code, without leaving the conversation. Each chat keeps its own folder, so a normal chat is unchanged.
+
+**Four modes, one switch** (under the composer, on the New Chat screen, or via `/code <task>`):
+
+| Mode | What it may do |
+|---|---|
+| **Plan** | Investigates and proposes. Read-only. Asks a couple of clarifying questions first, then a **Build this plan** button carries it into Code. |
+| **Code** | Asks before each edit. |
+| **Edits** | Approves file edits as it goes — but still asks before a shell command, a git push, or a deploy. |
+| **Auto** | Runs the whole task on its own after a one-time consent. |
+
+**What it actually does**
+
+- Patches files with `edit_file` instead of rewriting them, and edits **still land when the model's quoted text is slightly off** (whitespace and indentation tolerant).
+- Renders **git diffs inline** as colored changes, with an added/removed count per file.
+- Gets a **repo map** of the bound folder — which files exist, what each exports and imports — so it heads straight to the right file in a large codebase.
+- Runs your build, installs, and tests (`test_run`); commits and pushes with **your own git identity** (`git_commit` / `git_push`, no added attribution).
+- Shell commands get real time to finish (configurable up to 10 minutes), so installs, builds and deploys complete.
+- Deploys the folder with `deploy_project` (Firebase / Vercel / Netlify / npm).
+- Asks you structured questions with a slide-up form when it needs a decision.
+- Typing **`@`** suggests the files in your bound folder so you can point at the exact one.
+- Every file change carries a **one-click Undo** — per file, or "Undo all" for a whole turn.
+- If the folder is outside what Skales may touch, it asks first and widens access only the way you choose.
+
+A dedicated **Chat & Code** settings tab gives code work its own model (a strong cloud model for code while chat stays on your default) and deep reasoning (xhigh).
 
 ### ✨ Skales IQ + Skales Stack
 **Skales IQ** is a free, built-in trial model: start chatting the moment you open Skales, no API key of your own, with tool use and vision included. When the trial runs out, add your own key (15+ providers) or switch to a local model and keep going for free. **Skales Stack** is an optional toggle that answers a few trivially-deterministic things (the live time, plain arithmetic) instantly on your machine without spending a model call, and shows which local capabilities (media, browser, search) are ready.
 
 ### 📐 Workflows
-Workflows are the hand-drawn half of the goal system. A typed `/goal` lets Skales plan the steps for you; a Workflow lets you draw the steps yourself once, give them a trigger word like `/goal-ship`, and run that plan again whenever you need it. Think of it as a visual compiler onto the same plan format a typed `/goal` produces: you lay out steps, success criteria, and named inputs on a canvas, and Skales compiles them into the brief the planner already runs. One playbook store, four producers: the agent crystallizes finished goals into reusable plans, you draw the rest on a canvas, you **teach a workflow by showing it once**, walk Skales through a task in a normal chat, then turn that chat into a workflow and Skales distills the repeatable steps, trigger and success criteria for you, or you **record a real desktop task**: on the Workflow page hit Teach by recording, do it once on your screen (F10 stops, F9 pauses so you can skip a password), and Skales replays your exact clicks and typing when you run its `/goal`, with browser flows recorded in Playbooks instead. A learned workflow runs cold from then on through the normal goal path, falling back to vision when a button has moved. Workflows are opt-in, so you turn them on under Add-Ons, and a hint in Settings > Goal points you there. Running a saved workflow opens a fresh chat with its trigger prefilled and editable, so you can adjust the request before it starts.
+
+Workflows are the hand-drawn half of the goal system. A typed `/goal` lets Skales plan the steps for you; a Workflow lets you draw the steps yourself **once**, give them a trigger word like `/goal-ship`, and run that plan whenever you need it. Think of it as a visual compiler onto the same plan format a typed `/goal` produces.
+
+**One playbook store, four ways to fill it**
+
+1. **The agent writes one** — it crystallizes finished goals into reusable plans.
+2. **You draw one** — steps, success criteria and named inputs on a canvas.
+3. **You show it once** — walk Skales through a task in a normal chat, then turn that chat into a workflow; it distills the repeatable steps, trigger and success criteria for you.
+4. **You record it on screen** — Workflow page → *Teach by recording*, do it once (F10 stops, F9 pauses so you can skip a password). Skales replays your exact clicks and typing when the `/goal` runs, falling back to vision when a button has moved. Browser flows are recorded in Playbooks instead.
+
+Workflows are opt-in (Add-Ons; a hint in Settings → Goal points you there). Running a saved workflow opens a fresh chat with its trigger prefilled and editable, so you can adjust the request before it starts.
 
 ### 🧩 Agent Skills (Open Standard)
 Import skills from the Agent Skills format used by Claude Code, Codex, GitHub Copilot, and Cursor. Paste a GitHub URL, select a local folder, or paste SKILL.md content. Imported skills work across Chat, Codework, Browser, and Lio AI. Browse [1000+ community skills](https://github.com/VoltAgent/awesome-agent-skills).
@@ -187,9 +253,26 @@ Describe what you want and Lio builds it. Multi-AI architecting: One AI designs,
 <p align="center">
   <img src="https://skales.app/ss_0.gif" alt="Skales Studio - Design, Image, Video, Audio, Music" width="100%" />
 </p>
-**Flow is the front door to Studio: design by conversation.** Open Studio, describe what you want, and the Skales agent designs it as real files, with a live preview and the files and code sitting next to the chat. Eight modes cover the ground: slide decks, interactive prototypes, wireframes, mobile app mockups, print documents, generated images, generated videos, and motion graphics that render to a real MP4, each carrying its own design discipline so the first result already looks deliberate instead of improvised. On desktop Flow opens in its own window so you keep working while a design generates; in the browser it stays an in-app overlay. The composer attaches up to ten files (PDFs become content the agent reads, not decoration), references an earlier Flow project, and picks a Brand Kit, a template, and the model and reasoning effort per project. Brand Kits bind the palette, typography and explicit bans (fonts and directions that must never appear); templates shape the output, not just the prompt; images and videos generate through your choice of engine (connected MCP media servers, cloud providers, local engines, or the built-in Skales Visuals). Ask for a change after an image lands and it is treated as an edit of that file; type "@" to activate a skill or steer a turn to an MCP server; every artifact mirrors into the Gallery and any image can be sent to Discover. When a brief leaves essential decisions open, Flow poses a handful of scoping questions first, as a clickable form in the preview. Flow is a beta.
 
-Under Flow, Studio keeps its direct tools too: create designs, images, video, voice, and music from one place, organized into four areas: **Design**, **Media** (images and video), **Audio** (voice and music), and a **Gallery** of everything you have made. Start a fresh design with one button, from a prompt or a web address, pick a template (Landing Page, Dashboard, Mobile Screen, Pricing, Hero, Login, Settings), and get production-ready HTML + CSS + Tailwind back. Live preview iframe, palette/font extraction, fullscreen mode, refine drawer, recent designs persist between sessions, and clicking any Gallery result opens it full size. Image generation via built-in Skales Visuals, Replicate, HuggingFace (Inference Providers Router, SDXL/FLUX), DALL-E, ComfyUI (local), local Stable Diffusion, fal.ai. Video via Google Veo, Kling, Runway, fal.ai LTX-2.3 (text→video and image→video, 5/10s clips, native 9:16). 10 Style Presets, Camera Controls, dynamic model fetching. **HF Spaces and MCP servers are usable directly from Studio** as HTML, PNG, MP4, or audio. New **Type** tab turns a line of text into an animated, looping video (kinetic typography), no AI and no setup: a headline set of **14 Motion presets** driven by a real timeline engine (Cascade, Drop, Pop, Flip 3D, Spin, Wave, Glitch, Neon, Shine, Typewriter and more) with custom easing, per-letter staggers and depth, plus 18 simpler presets, a Loop toggle, and a Transparent background that exports an alpha WebM for overlays. Brand Kit keeps everything on-brand.
+**Flow is the front door to Studio: design by conversation.** Open Studio, describe what you want, and the agent designs it as real files — live preview on one side, the files and code on the other.
+
+**Eight modes**, each carrying its own design discipline so the first result already looks deliberate instead of improvised: slide decks · interactive prototypes · wireframes · mobile app mockups · print documents · generated images · generated videos · motion graphics that render to a real MP4.
+
+- On desktop, Flow opens in **its own window**, so you keep working while a design generates. In the browser it stays an in-app overlay.
+- The composer attaches **up to ten files** (PDFs become content the agent reads, not decoration), references an earlier Flow project, and picks a Brand Kit, a template, and the model and reasoning effort per project.
+- **Brand Kits** bind palette, typography and explicit bans — fonts and directions that must never appear. **Templates shape the output**, not just the prompt.
+- Ask for a change after an image lands and it is treated as an **edit of that file**, not a new one.
+- Type **`@`** to activate a skill or steer a turn to an MCP server.
+- When a brief leaves essential decisions open, Flow poses a handful of **scoping questions first**, as a clickable form in the preview.
+- Every artifact mirrors into the Gallery; any image can be sent to Discover. *Flow is a beta.*
+
+**Under Flow, Studio keeps its direct tools too** — organized into **Design**, **Media** (images and video), **Audio** (voice and music), and a **Gallery** of everything you have made.
+
+- **Design:** start from a prompt or a web address, pick a template (Landing Page, Dashboard, Mobile Screen, Pricing, Hero, Login, Settings) and get production-ready HTML + CSS + Tailwind back. Live preview iframe, palette and font extraction, fullscreen, refine drawer, recent designs persist between sessions.
+- **Images:** built-in Skales Visuals, Replicate, HuggingFace (Inference Providers Router, SDXL/FLUX), DALL·E, ComfyUI (local), local Stable Diffusion, fal.ai.
+- **Video:** Google Veo, Kling, Runway, fal.ai LTX-2.3 (text→video and image→video, 5/10s clips, native 9:16). 10 style presets, camera controls, dynamic model fetching.
+- **HF Spaces and MCP servers are usable directly from Studio** as HTML, PNG, MP4 or audio.
+- **Type tab:** turns a line of text into an animated looping video (kinetic typography) — no AI, no setup. 14 Motion presets on a real timeline engine (Cascade, Drop, Pop, Flip 3D, Spin, Wave, Glitch, Neon, Shine, Typewriter and more) with custom easing, per-letter staggers and depth, plus 18 simpler presets, a Loop toggle, and a Transparent background that exports an alpha WebM for overlays.
 
 ### 🗂️ Templates
 37 pre-built prompt templates across Chat, Codework, Organization, Lio AI, Browser, Planner, and Studio. Click to open the module with the prompt pre-filled. Build your own with the AI-guided Template Maker.
@@ -198,7 +281,7 @@ Under Flow, Studio keeps its direct tools too: create designs, images, video, vo
 Your AI navigates websites, clicks buttons, fills forms, bypasses cookie banners, and extracts content to Markdown. Workspaces to save sessions. Playbooks for repeatable workflows. Session isolation with privacy controls. Semantic element detection via accessibility tree.
 
 ### 🌐 WordPress 2.0
-Connect to any WordPress site with the [Skales Connector Plugin v1.2.0](https://github.com/skalesapp/wordpress). Type "create a landing page for my product" and Skales builds it with Elementor's Flexbox Container format and professional design templates. 96KB Design Skill with 15 Elementor + 10 Gutenberg templates. Manage pages, posts, WooCommerce products, SEO meta, media uploads, and cache clearing through natural language. Web search available in WordPress agent for current content.
+Connect to any WordPress site with the [Skales Connector Plugin v1.3.1](https://github.com/skalesapp/wordpress). Type "create a landing page for my product" and Skales builds it with Elementor's Flexbox Container format and professional design templates. 96KB Design Skill with 15 Elementor + 10 Gutenberg templates. Manage pages, posts, WooCommerce products, SEO meta, media uploads, and cache clearing through natural language. Web search available in WordPress agent for current content.
 
 ### AIPointer ⦿
 <p align="left">
@@ -335,7 +418,7 @@ Like Spotify Wrapped for your AI. Auto-generates every Monday. Activities, top t
 
 ## 🤝 Community
 
-12 Languages: EN, DE, ES, FR, IT, PT, KO, ZH, JA, VI, HR, TR.
+12 Languages: EN, DE, ES, FR, RU, PT, KO, ZH, JA, VI, HR, TR.
 
 **Maintainer:** Mario Simic (solo founder, Vienna, Austria).
 
