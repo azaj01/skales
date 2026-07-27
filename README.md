@@ -50,6 +50,15 @@ The private AI that lives on your computer and does real work, not just chat.
 
 **[⬇ Download](https://skales.app)** · **[📖 Docs](https://docs.skales.app)** · **[🎬 Demo](https://www.youtube.com/watch?v=k83NlptVmfc)**
 
+> **About this repository.** This is where Skales is *distributed*: releases,
+> the changelog, install guides and the issue tracker. Skales itself is closed
+> source under BSL 1.1, and the product is the signed application you download
+> from [skales.app](https://skales.app). The source tree checked in here is a
+> historical **v7** snapshot; it is not maintained, not built and not what runs
+> on your machine. Reporting a security issue? Please read
+> [SECURITY.md](SECURITY.md) first. It says what is in scope, and it will save
+> you a lot of time.
+
 <details>
 <summary><b>📋 Full feature index</b> (click to expand — there is a lot)</summary>
 
