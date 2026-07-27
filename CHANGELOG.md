@@ -6,6 +6,197 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.5.6 - An Answer You Can Actually Give
+
+Being asked a question is no use if the form has nowhere to put your answer.
+Skales could ask you four things and accept none of them, and the setup screen
+for browsing the web reported itself ready on the same page that said it was
+not. Both were the same kind of fault: something reported a state instead of
+checking it.
+
+### Added
+
+- **Skales can speak on your phone in a voice from this Mac.** This computer has
+  dozens of voices installed, the premium ones included, and they cost nothing
+  and never leave your own two devices. The paired app (2.5.6 and newer) offers
+  them under Voice: pick one from the list this machine reports and it speaks
+  for the phone over the pairing connection. Nothing is played on this
+  computer's speakers - the phone asked for the audio, not for the room to hear
+  it - and if this machine goes away mid-sentence the phone falls back to its
+  own voice rather than going quiet. The same is available locally at
+  /api/tts/say. A computer that is not a Mac says so instead of reporting an
+  empty list of voices.
+
+- **The Organization scene shows you who is stuck.** The office under a running
+  team was decoration: wood-grained desks, a steaming mug, a bouncing ball you
+  could kick. With six agents working, none of it told you which one had stalled
+  without reading six labels. It has been redrawn around that one job. Colour
+  now means state and nothing else - the furniture is near-monochrome and a pool
+  of light on the floor under each desk carries the agent's status, readable
+  across the whole panel before a single word is. The monitor is the status lamp,
+  breathing while there is work and dim while there is not; the ring around an
+  agent grows when the state changes instead of blinking, so a glance mid-change
+  still reads correctly; and the chip under each desk shows the tool actually
+  running rather than the word "Working". The mug, the bookshelf, the clock and
+  the kickable ball are gone with it.
+
+- **Instructions you write once, followed everywhere.** Telling Skales how you
+  want it to work - answer in German, keep it short, never open with a
+  compliment - lasted exactly one conversation, and the next chat started
+  ignorant again. Code mode could read a project's own CLAUDE.md, but only with
+  a folder bound, and that file is about a project rather than about you.
+  Settings, under Chat & Code, now has a box for standing instructions. What you
+  put in it travels with every conversation, with tasks and schedules that run
+  while you are away, and with custom agents you built yourself. Two places
+  leave it out deliberately: an isolated agent, which carries nothing of yours
+  by design, and the internal calls Skales makes to itself, whose answers are
+  read by the app rather than by you. A project's own CLAUDE.md is the more
+  specific instruction and still wins for that project.
+  The box is not the only way in. It is backed by a plain SKALES.md file in your
+  data dir, the path is printed under the box, and editing it in a text editor
+  is the same edit: the box re-reads the file whenever you come back to the
+  window. If it changed on disk while you had unsaved text here, it says so and
+  refuses to save over it, so the two ways of editing cannot quietly eat each
+  other's work.
+
+- **Right-click a key field and paste into it.** A password field in Settings
+  gets its own menu - copy the value while it stays masked, reveal it, remove it
+  - and the app suppresses the ordinary Cut/Paste one so the two do not draw on
+  top of each other. Between the two, nothing offered to put a key *in*: the
+  menu opened, showed three things you could do to a key you already had, and
+  none of them helped when the key was sitting on your clipboard. Paste is in
+  that menu now. It respects a selection, so pasting over a highlighted key
+  replaces it, and the keyboard shortcut keeps working as it always did.
+
+### Fixed
+
+- **A page you visit cannot reach the Skales API on your own machine.** The
+  local server is reachable from any page open in your browser, and that was
+  being closed one route at a time: the same-origin check sat on 2 of 225
+  routes. There is one shared check now, in front of every /api request, and it
+  refuses exactly one thing - a caller that CLAIMS an origin which is neither
+  this server nor your own machine, which is the shape a page on another site
+  makes when it fetches your local port. Everything that is not a browser is
+  untouched: the messaging bots, the relay, the CLI, the phone over your LAN and
+  the app talking to itself all keep working, and each of them has a test. The
+  image context menu had the same hole in miniature and no longer opens a menu
+  for a message no frame on the page sent.
+- **Discover stops passing its own template off as your model's work.**
+  Composing a post gave the model 45 seconds, then quietly substituted a local
+  phrase bank and returned it with no mark on it. With auto-post on, that
+  template was published under your name as if your agent had written it. The
+  ceiling is 180 seconds now - measured: at 45 seconds ten live models were
+  being called dead, and at 180 seconds seven of them answered - the composer no
+  longer gives up before the server does, a fallback draft says that it is one,
+  and auto-post holds for it. Cloud versus local was also decided by a list of
+  five provider names, so every provider added since counted as running on your
+  own computer; the endpoint decides now.
+- **The in-app guide is the guide the assistant reads.** The served copy of the
+  guide, which is what fetch_skales_docs answers from, was five releases behind
+  the source one while both showed the current version in their header. They are
+  copied on every version stamp now, and the guide covers 12.5.1 through 12.5.6.
+- **Muting notifications is now actually silent.** The switch promises no pings
+  on any channel while everything still lands on the Notifications page, and
+  those two halves were the leak. A notification is written to that page first
+  and only then silenced, and the toast that pops up in the corner was being
+  built from the page's own records - so muting stopped the browser
+  notification and the messengers, and a toast and a sound came through anyway.
+  In practice that meant a Briefing nudge and a Discover mention still
+  interrupted you. The toast is a channel like the others now and falls silent
+  with them. One exception stays, the same one the other channels make: a
+  request that is waiting on your answer still reaches you, because silencing
+  that would leave work stalled with nothing to show for it. What was silenced
+  is not saved up either - unmuting does not empty the quiet period onto your
+  screen; it is all on the Notifications page, where it always was.
+- **A mention in the Discover feed stopped outranking your own settings.** It
+  was filed at the urgency reserved for things that block work until you
+  answer, which let it through Mute, through quiet hours, and past the limit
+  you can set on how often Discover may ping - while still using up that
+  limit's daily slot, so a mention could silence the normal feed ping. It is
+  filed as ordinary now and obeys all three.
+
+- **A question with choices no longer stops at the choices.** When Skales asked
+  you something and offered buttons to answer it, the buttons were all there
+  was. A question like "What is your name and what do you do?" came with four
+  roles to pick from and no way to type a name, so the one answer being asked
+  for could not be given - the card sat there, nothing moved, and the run looked
+  like it had died. Every set of choices now ends with one you can write into
+  yourself. The rest of the card caught up too: the short label a question
+  carries is shown, and the line of explanation that comes with each choice -
+  the part that tells you what picking it actually means - is shown under it
+  instead of being dropped on the way to the screen. Questions asked before this
+  release still open and still work.
+- **Browser Control says whether it can browse, not whether it once could.**
+  The setup screen read a note written the last time an install had gone well,
+  and nothing ever revised it. So the panel could sit there marked ready while
+  the same panel, a few lines further down, refused to open a window and said
+  the browser was missing - and it was: the app had moved on to a newer browser
+  build that had never been fetched. The screen now asks the question it was
+  claiming to answer, every time you open it: would opening a page work right
+  now, with the browser you have chosen. If it would not, it says which part is
+  missing and offers the button that fixes it, instead of hiding that button
+  because it believed everything was fine.
+- **A failure to launch is no longer reported as a failure to install.** Any
+  problem that so much as mentioned the browser engine was rewritten into "not
+  installed", including the engine's own complaint that it could not find the
+  browser it wanted. The advice attached to it sent you to the screen you were
+  already looking at, to press a button that screen was hiding. Each of those is
+  now named for what it is, and the advice names something you can do - fetch
+  the browser, or switch to the one already on your machine.
+- **Install Chromium can install Chromium.** The button had two ways to do
+  nothing. With "Use full Chromium" turned on it took a shortcut meant for
+  people using their own Chrome, reported success and downloaded nothing. And in
+  the packaged app the downloader itself had not been shipped: the build keeps
+  the parts of a library it can see being used, and the piece that fetches a
+  browser is started in a way that keeps it out of sight, so the one build that
+  needs the button most was the one where it failed. Both are fixed, and the
+  button now confirms the result against a real launch rather than against its
+  own exit code.
+- **A privacy note stopped introducing itself twice.** The desktop screenshot
+  notice began "Privacy: Privacy:", because the screen put a heading in front of
+  a sentence that already carried its own - in whichever language you read it
+  in. The heading the translation uses is now the only one shown.
+
+- **The Nvidia model list is the models that answer.** Every entry was called
+  once and checked: of the 118 the catalogue lists, 44 reply to an actual
+  message. Three of the six that shipped had been retired - including the one
+  labelled "(Best)", which is the first thing a new user reaches for, so their
+  first message failed and read like the provider was down. The list is now the
+  verified ones, fastest first, and two things it taught are carried with it: a
+  model that appears in a catalogue is not the same as a model you can call, and
+  a slow first token is not a dead model.
+- **A retired model is reported as a model problem, not a setup problem.** Nvidia
+  answers a request for a withdrawn model with the words "404 page not found" -
+  no code, no JSON - and that was surfaced as though the connection or the key
+  were wrong, sending you to check settings that were fine.
+- **The curated model picks are the ones you actually see.** The list was filed
+  under one name for the provider and looked up under another, so the app
+  decided there was no curation and showed the first few hardcoded entries
+  instead. Refreshing against 118 live models changed nothing on screen.
+- **An empty "Allowed tools" field means every tool, not none.** Leaving the box
+  blank on a custom agent saved an empty list, and an empty list is a complete
+  answer: this agent may use nothing. So the one thing you do when you don't
+  know the tool names gave the agent no tools at all, and it failed by politely
+  explaining it had no capabilities. Blank now means what a person means by it.
+  The field also stopped requiring you to know the answer in advance: it filters
+  all 184 tools by name and description, shows what you picked as chips, and
+  says so when a name matches nothing.
+- **An isolated agent cannot reach the two tools that were a shell in disguise.**
+  Running commands is denied to an isolated agent on purpose. Two other tools
+  each took an optional command and passed it straight through without a list of
+  what is allowed, which made either of them a full shell by another name. They
+  are denied now and gone from that agent's catalogue. No isolated agent could
+  reach them in practice, because both need a bound code folder - an accident of
+  plumbing rather than a decision, and it would have stopped being true the
+  moment one got a folder.
+- **Video rendering works on Linux.** Every Linux build shipped a copy of the
+  video encoder built for macOS, and it was the first one the app found, so
+  rendering a Studio video or a Flow motion died at the moment it started the
+  encoder. The app now refuses a binary that cannot run on the machine it is
+  on - on any platform, not just macOS - and looks in the place the correct
+  Linux build actually ships, falling back to one installed on the system and,
+  failing that, saying plainly that it found none.
+
 ## v12.5.5 - Nothing You Made Is Gone
 
 A turn used to be a one-way door. Regenerating an answer deleted the one you
