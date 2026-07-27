@@ -67,7 +67,6 @@ The private AI that lives on your computer and does real work, not just chat.
 - [📦 Installation](#-installation)
 - [🏗️ Architecture](#️-architecture)
 - [🤝 Community](#-community)
-- [⭐ Star History](#-star-history)
 - [📜 License](#-license)
 - [🆓 Try Skales Free](#-try-skales-with-one-of-these-free-tier-apis)
 
@@ -367,16 +366,6 @@ Like Spotify Wrapped for your AI. Auto-generates every Monday. Activities, top t
 </p>
 
 [Discussions](https://github.com/skalesapp/skales/discussions) · [Bug Reports](https://github.com/skalesapp/skales/issues)
-
----
-
-## ⭐ Star History
-
-<p align="center">
-  <a href="https://star-history.com/#skalesapp/skales&Date">
-    <img src="https://api.star-history.com/svg?repos=skalesapp/skales&type=Date" alt="Star History" width="70%" />
-  </a>
-</p>
 
 ---
 
