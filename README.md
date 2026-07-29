@@ -45,7 +45,7 @@ The private AI that lives on your computer and does real work, not just chat.
 **Three things people use it for most**
 
 - 🎯 **Hand it a goal and close the lid.** `/goal build me a trading bot` runs in the background across many steps and picks up where it left off.
-- 💻 **Point it at a folder and let it code.** `/code` works like Claude Code, inside the chat, with inline diffs and one-click undo.
+- 💻 **Point it at a folder and let it code.** `/code` binds a folder to any chat, with inline diffs and one-click undo.
 - 📱 **Reach it from your phone.** Pair via QR and your phone drives this desktop's full tool set — or run the phone standalone.
 
 **[⬇ Download](https://skales.app)** · **[📖 Docs](https://docs.skales.app)** · **[🎬 Demo](https://www.youtube.com/watch?v=k83NlptVmfc)**
@@ -171,11 +171,11 @@ Type `/goal` and what you want — `/goal build me a trading bot` — and Skales
 - **Every finished goal folds what it learned back into Memory,** so the next one starts ahead.
 
 ### 🖥️ Skales Code - a coding window of its own
-Click **Code** in the sidebar and Skales opens a separate window built for working on a repository, in the shape of Claude Code rather than a chat: a full-width session log instead of bubbles, with every step on its own line - `Read`, `Grep`, `Edit`, `Bash`, the file or command beside it, and how many lines it added and removed. An edit shows its diff inline, red and green with real line numbers; a command shows its output in a terminal block; the checklist it works through updates in place. Point it at a folder, clone a repo by URL or SSH, and pick how it works: **Ask** reads and answers without touching anything, **Code** makes the change, **Plan** proposes first, **Auto** runs through. A review panel beside the transcript shows each changed file three ways (preview, diff, raw) with Keep / Revert, a commit box, and **Create PR** (pushes the branch and opens the pull request via the GitHub CLI). `@` mentions the repository's own files, `/` opens the short command list, files and screenshots ride along as chips, and messages typed while it works are queued and picked up at the next step. Parallel sub-agents show in a rail with live token and tool-call counts and a Stop all. It runs a lean coding prompt (about 70% smaller than the chat identity, measured), reads the project's own `CLAUDE.md`/`AGENTS.md`, plus a global AGENTS.md you set once and a per-session override - and it cannot read or write what Skales remembers about you. It is an add-on: switch it off and the sidebar entry is gone.
+Click **Code** in the sidebar and Skales opens a separate window built for working on a repository, built for that job rather than for a conversation: a full-width session log instead of bubbles, with every step on its own line - `Read`, `Grep`, `Edit`, `Bash`, the file or command beside it, and how many lines it added and removed. An edit shows its diff inline, red and green with real line numbers; a command shows its output in a terminal block; the checklist it works through updates in place. Point it at a folder, clone a repo by URL or SSH, and pick how it works: **Ask** reads and answers without touching anything, **Code** makes the change, **Plan** proposes first, **Auto** runs through. A review panel beside the transcript shows each changed file three ways (preview, diff, raw) with Keep / Revert, a commit box, and **Create PR** (pushes the branch and opens the pull request via the GitHub CLI). `@` mentions the repository's own files, `/` opens the short command list, files and screenshots ride along as chips, and messages typed while it works are queued and picked up at the next step. Parallel sub-agents show in a rail with live token and tool-call counts and a Stop all. It runs a lean coding prompt (about 70% smaller than the chat identity, measured), reads the project's own `CLAUDE.md`/`AGENTS.md`, plus a global AGENTS.md you set once and a per-session override - and it cannot read or write what Skales remembers about you. It is an add-on: switch it off and the sidebar entry is gone.
 
 ### 💻 Code Mode (`/code`)
 
-Point any chat at a folder on your computer and it works there like Claude Code, without leaving the conversation. Each chat keeps its own folder, so a normal chat is unchanged.
+Point any chat at a folder on your computer and it works there, without leaving the conversation. Each chat keeps its own folder, so a normal chat is unchanged.
 
 **Four modes, one switch** (under the composer, on the New Chat screen, or via `/code <task>`):
 
@@ -221,7 +221,7 @@ Workflows are opt-in (Add-Ons; a hint in Settings → Goal points you there). Ru
 Import skills from the Agent Skills format used by Claude Code, Codex, GitHub Copilot, and Cursor. Paste a GitHub URL, select a local folder, or paste SKILL.md content. Imported skills work across Chat, Codework, Browser, and Lio AI. Browse [1000+ community skills](https://github.com/VoltAgent/awesome-agent-skills).
 
 ### 🛠️ Skales Codework
-Open it from chat by typing `/codework` (it is no longer a sidebar item). Select any project folder. Describe the task. Pick your model. Watch the agent read your files, plan an approach, write code, run tests, and show you live diffs in a 3-panel GUI. Session history, follow-up conversations, undo support. Like Cursor or Claude Code, but built into your desktop agent. For everyday coding inside a normal conversation, use the chat Code mode (`/code`).
+Open it from chat by typing `/codework` (it is no longer a sidebar item). Select any project folder. Describe the task. Pick your model. Watch the agent read your files, plan an approach, write code, run tests, and show you live diffs in a 3-panel GUI. Session history, follow-up conversations, undo support. Like Cursor or A project-scoped coding pipeline built into your desktop agent. For everyday coding inside a normal conversation, use the chat Code mode (`/code`).
 
 ### 🏢 Organization
 Build an AI company. Create departments, assign specialized agents, set team leaders, and delegate complex tasks. The CEO agent auto-routes work to the right team. Export and import Company Packs to share your org setup. Advisor Strategy: use a powerful model for planning and a fast model for execution.

@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## v12.5.7 - Code Gets Its Own Window
 
 Code stops being a page inside Skales and becomes a program of its own: a
-window built for working on a repository, in the shape of Claude Code rather
-than in the shape of a chat. Point it at a folder, watch it read, plan and
+window built for working on a repository, built for that job rather than for
+a conversation. Point it at a folder, watch it read, plan and
 ship the diff, review every change beside the transcript, and tell it - once,
 globally, or per session - how you like to work. It runs the same engine as
 everything else and none of the identity: a coding agent, and nothing else.
@@ -2518,7 +2518,7 @@ Your buddy does more than ever. The Desktop Buddy is Skales' most-used feature, 
 
 - **Every notification has a home (and is hard to miss).** Proactive updates - a finished task, a scheduled run's result, a reminder, a Friend Mode check-in - used to go only to the desktop buddy bubble or Telegram. With the buddy off and no Telegram connected, they vanished. Now every one is recorded to your Notifications page (with the unread dot on the Bell), pops a toast the moment it happens, and plays a sound. Important ones (a completed task) stay on screen until you dismiss them instead of fading after a few seconds.
 
-- **A live Plan you can watch.** When the assistant works through a multi-step task it shows a pinned checklist at the top of the chat that ticks off in real time, the way Claude Code tracks its to-dos. It works in any chat, not only Code mode: give it a task with steps and the plan appears. Collapse it if it is in the way, close it with the X, and it tidies itself away once the plan is done.
+- **A live Plan you can watch.** When the assistant works through a multi-step task it shows a pinned checklist at the top of the chat that ticks off in real time. It works in any chat, not only Code mode: give it a task with steps and the plan appears. Collapse it if it is in the way, close it with the X, and it tidies itself away once the plan is done.
 
 - **Skales acts for you when a contact messages it (WhatsApp).** Let family or a colleague message your Skales on WhatsApp. Instead of answering them itself, Skales pings you with their request. Reply with what to do ("make the appointment", "tell her yes") and Skales carries it out with your tools and then answers them for you, like a real assistant. On the road, owner commands help you steer: /help shows what you can do, /pending lists the requests waiting for your OK. The first time you set yourself as owner, Skales sends you a short welcome with these commands.
 
