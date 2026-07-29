@@ -78,3 +78,84 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+---
+
+## Bundled typefaces - Inter, Space Grotesk, DM Sans, JetBrains Mono
+
+Skales bundles four typefaces in `apps/web/public/fonts/`, each used under the
+**SIL Open Font License 1.1**. They are shipped with the app rather than fetched
+at runtime so a packaged, offline install renders the real type instead of a
+system fallback, and so no page load reaches a font CDN.
+
+- **Inter** (https://github.com/rsms/inter), Copyright (c) 2016 The Inter Project Authors
+- **Space Grotesk** (https://github.com/floriankarsten/space-grotesk), Copyright (c) 2020 Florian Karsten
+- **DM Sans** (https://github.com/googlefonts/dm-fonts), Copyright (c) 2014-2024 Colophon Foundry, Jonny Pinhorn, Indian Type Foundry
+- **JetBrains Mono** (https://github.com/JetBrains/JetBrainsMono), Copyright (c) 2020 The JetBrains Mono Project Authors
+
+The subset files are the ones Google Fonts serves, unmodified; only the file
+names differ. The OFL permits bundling and redistribution with the application;
+none of the fonts is sold on its own, and no Reserved Font Name is used for a
+modified version.
+
+```
+SIL OPEN FONT LICENSE Version 1.1
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide development
+of collaborative font projects, to support the font creation efforts of academic
+and linguistic communities, and to provide a free and open framework in which
+fonts may be shared and improved in partnership with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and redistributed
+freely as long as they are not sold by themselves. The fonts, including any
+derivative works, can be bundled, embedded, redistributed and/or sold with any
+software provided that any reserved names are not used by derivative works. The
+fonts and derivatives, however, cannot be released under any other type of
+license. The requirement for fonts to remain under this license does not apply to
+any document created using the fonts or their derivatives.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+the Font Software, to use, study, copy, merge, embed, modify, redistribute, and
+sell modified and unmodified copies of the Font Software, subject to the
+following conditions:
+
+1) Neither the Font Software nor any of its individual components, in Original or
+Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy contains the
+above copyright notice and this license. These can be included either as
+stand-alone text files, human-readable headers or in the appropriate
+machine-readable metadata fields within text or binary files as long as those
+fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font Name(s)
+unless explicit written permission is granted by the corresponding Copyright
+Holder. This restriction only applies to the primary font name as presented to
+the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font Software
+shall not be used to promote, endorse or advertise any Modified Version, except
+to acknowledge the contribution(s) of the Copyright Holder(s) and the Author(s)
+or with their explicit written permission.
+
+5) The Font Software, modified or unmodified, in part or in whole, must be
+distributed entirely under this license, and must not be distributed under any
+other license. The requirement for fonts to remain under this license does not
+apply to any document created using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF COPYRIGHT, PATENT, TRADEMARK, OR
+OTHER RIGHT. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL,
+OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER
+DEALINGS IN THE FONT SOFTWARE.
+```

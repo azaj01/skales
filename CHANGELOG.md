@@ -6,6 +6,680 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.5.7 - Code Gets Its Own Window
+
+Code stops being a page inside Skales and becomes a program of its own: a
+window built for working on a repository, in the shape of Claude Code rather
+than in the shape of a chat. Point it at a folder, watch it read, plan and
+ship the diff, review every change beside the transcript, and tell it - once,
+globally, or per session - how you like to work. It runs the same engine as
+everything else and none of the identity: a coding agent, and nothing else.
+
+### Added
+
+- **Skales Code has a terminal, and it is yours.** A real one, under the box you
+  type in and dragged to whatever height you want: your login shell, in the
+  session's folder, with your profile. Not a command field, so vim, top, an
+  interactive prompt, colours, arrow keys and Ctrl-C all behave the way they do
+  in a terminal. Several tabs if you want them, a switch in the title bar, and
+  /terminal. It is yours in the sense that matters: the agent can neither see it
+  nor type into it, so it needs none of the agent's rules, and what the agent
+  runs has its own place further down.
+
+- **A command that never ends can run in the background.** A dev server, a
+  watcher, a long build used to be a choice between a timeout and a blocked
+  session. Now it starts, hands back a handle, and keeps going: its output
+  appears under the step that started it and grows while you watch, and a strip
+  above the status line lists everything that is running with what it is, how
+  long it has been going, and a stop button. Nothing limits how many run and
+  nothing times them out. Stopping really stops it, the whole tree, so a port
+  actually comes free. A session that ends ends its own, and so does closing
+  Skales. Your phone can see the same list and press the same stop.
+
+- **Call any API from Skales.** A tool for talking to a REST API or submitting a
+  form: your method, your headers, your body, the answer back. A form-shaped
+  body is sent as a form, which is the difference between a request that works
+  and one that quietly does nothing. Reading runs, writing asks first. Your own
+  network is reachable, a NAS or a second machine or a service in your tailnet;
+  this computer itself is not, because that is where Skales listens, and a page
+  or a document could otherwise talk it into calling the app. A switch under
+  Security opens that too, and says why it is shut.
+
+- **A template for Code opens Code.** Clicking a coding template used to open Lio
+  AI, and the card said so. It opens Skales Code now, with the prompt already in
+  the box. Five new ones for the work a developer actually brings: find and fix
+  this bug, review my current changes, explain this codebase to me, refactor this
+  safely, find what is untested and test it. Each of them insists on running the
+  thing rather than claiming it.
+
+- **The instructions box shows what belongs in it.** The place where you tell
+  every coding session how you work was an empty field with no example. It now
+  hints at the four things that earn their place there: the language to answer
+  in, your own test command, your commit style, your no-gos. A hint, not a
+  filled-in file: rules nobody wrote should not ride along invisibly.
+
+- **Working in Code shows up in Discover.** The biggest thing in this release had
+  no place in the feed at all. A coding session, a change shipped out of the
+  window and a run with several agents now do, in the same content-free shape
+  the Studio entries have: never a repository, a branch, a path, a commit message
+  or a file count. The feed is public and the work is private.
+
+- **Code is its own program now.** Clicking Code opens a window that looks and
+  behaves like a tool for writing software, not like a chat with a folder
+  attached. Its own title bar, its own type, its own light and dark, and a
+  status line along the bottom that always says what is going on: idle or
+  working, which folder, which branch, and how many lines it has added and
+  removed. Point it at a repository and say what you want changed. You can open
+  a project on this computer or clone one from an address, an ssh address
+  included, and the sessions you had open before are listed underneath with the
+  branch and the size of the change in each. Four ways to work: Ask reads and answers
+  and changes nothing, Code makes the change, Plan writes out what it would do
+  first, Auto gets on with it. Pick the model and how hard it should think right
+  there in the box you type into.
+
+- **A coding session reads like a log, not like a conversation.** The Code
+  window shows the whole session in one column: what you asked, what it
+  answered, and every step in between as its own line. Read, Grep, Edit, Bash,
+  with the file or the command beside it and how many lines it added and
+  removed. An edit shows the change right there, the lines it replaced in red
+  and the new ones in green, with the line numbers from the file. A command
+  shows its output in a terminal block underneath. The checklist it is working
+  through updates in place, with the finished items struck out. It fills in as
+  it happens rather than all at once at the end, and scrolling up to read
+  something earlier no longer drags you back to the bottom every second.
+
+- **Your coding sessions, down the side.** Code has a column you can open from
+  the title bar: a new session at the top, a search that looks at both the name
+  and the repository, and everything you have worked on grouped into today and
+  earlier, with the repository and what changed under each. Right-click one to
+  rename it, put it away, duplicate it, download the whole session as a
+  readable file, or delete it. A duplicate brings the conversation with it, so
+  you can try a second approach without losing the first, and the download
+  includes the diffs, because a record of a coding session without the changes
+  in it is a record of nothing. A new session is named after the first thing
+  you ask it rather than after the folder, which the row already tells you.
+
+- **Review what changed, then ship it, without leaving the window.** Open the
+  review panel from the title bar and the changed files sit beside the
+  transcript. Pick one and you get it three ways: the change itself with line
+  numbers, the file as it now reads, and, for something worth looking at like a
+  markdown file or an image, a real preview. Keep it or put it back, write a
+  commit line, and open a pull request: the branch is pushed and the request is
+  created for you, with GitHub's own words back if it refuses. It needs the
+  GitHub command-line tool signed in, and says so plainly when it is not there
+  instead of just failing. Underneath, everything this session changed with a
+  way to undo any single one of them, and the repository's other checkouts.
+
+- **Point at a file, drop in a screenshot, or just type a command.** In Code,
+  typing @ offers the files of the repository you are in, matched on the whole
+  path so a folder name finds them, and the file goes along with your message
+  so it does not have to go looking. Drop files onto the box, paste a
+  screenshot, or use the paperclip: video, audio, PDFs and archives all attach
+  the way they do in a chat, with the chat's limits and no new ones, and they
+  show as chips above what you are typing, with their size and a thumbnail for
+  a picture. A slash at the
+  start of the line opens the short list of things a coding session can do:
+  switch how it works, open the review panel, commit, open a pull request, stop
+  it, start a new session. A slash anywhere else is just a path, and stays one.
+
+- **When it stops to ask, the question is right there.** A question from Code
+  now appears in the session itself, with its options numbered so you can
+  answer with a keypress, or write something else entirely in the box below.
+  When a tool wants permission, the same: what it wants to run, and Allow once,
+  Deny, or stop asking about that tool for this session. While either is open
+  the header and the bottom line both say it is waiting for you, and the box
+  says so too instead of quietly doing nothing. A question you already answered
+  stays readable but can no longer be clicked, so an old card cannot answer a
+  question the session has long moved past.
+
+- **The status line now counts the context, and a picture you sent shows as a
+  picture.** The bottom line of the Code window shows how much of the model's
+  window the conversation occupies. A message that carried screenshots or files
+  shows their names as small chips instead of raw text, an agent's log can be
+  opened from its card, the review panel says when a very long change was cut
+  short instead of ending silently, and a message typed in the last moment of a
+  run is carried into a fresh run instead of quietly disappearing.
+
+- **Answers read the way they were written.** Text from Code renders properly
+  now, so a filename in code marks, a bulleted list of findings or a snippet
+  comes out looking like what it is, rather than showing you the asterisks.
+
+- **Watch several agents work at once, and see what they cost.** When a coding
+  session splits a job across parallel agents, Code shows them down the right:
+  what each was asked to do, how long it has been going, how many tools it has
+  used, and its answer when it has one. Underneath, what the run has spent, split
+  between the main conversation and the agents, with a total. Stop all is in the
+  header while any of them is running. A figure that was never recorded says so
+  rather than showing a zero that would read as free, and from now on those
+  figures are recorded, including for a run that spent them and then failed.
+
+- **Code is a coding agent, and nothing else.** A session in the Code window no
+  longer carries Skales' personality, its interests, or anything it remembers
+  about you. It is told where it is, what it may change, which shell this
+  machine runs, and how to work, and that is all. Measured on a real request:
+  the instructions it sends dropped from about 13,800 characters to about
+  4,200, which is roughly seventy per cent less on every single turn. It keeps
+  the whole toolset, because a coding agent with fewer tools is a worse one;
+  what it loses is the handful that read or write your memory, refused both in
+  what it is offered and in what it may run.
+
+- **Tell it how you like to work, once.** The gear in the Code window holds
+  instructions that apply to every coding session, here and behind the /code
+  command in chat, plus instructions for just this session when one job needs
+  something different. Alongside them it shows what the project itself asks for
+  in its own CLAUDE.md or AGENTS.md, read-only, because that file belongs to
+  the repository. The more specific one wins. The gear also holds light and
+  dark for this window, and follows the system if you would rather it did.
+
+- **A phone will be able to tell a coding session from a chat.** The session
+  list Skales sends to a paired phone now carries, for a coding session, the
+  folder it is in, how it is working, whether it is running or waiting for you,
+  and how much it has changed. Nothing on the phone uses it yet; it is there so
+  that when it does, it draws the same row this Mac draws instead of a second
+  version of it.
+
+- **It hears you while it is working.** Type while a session is running and the
+  message waits in line instead of being refused; it is picked up at the next
+  step and the count of what is waiting is on screen the whole time. Everything
+  the window can do it does through the same channel a phone will later use, so
+  the same session can be watched and steered from somewhere else without any
+  of it being built twice.
+
+- **Code sessions show up again on a machine you have been using a while.** The
+  list of coding sessions was empty for anyone whose conversation list had been
+  built before Code existed, because the saved list did not know what a bound
+  folder was. It is rebuilt once, and they are all there.
+
+- **Code moved up, and can be put away.** Code now sits in the main part of the
+  sidebar, directly above Studio, where the work you do every day lives. And
+  like Studio it is an add-on: if you do not write code, switch it off under
+  Add-Ons and the entry is gone. It is on to begin with.
+
+- **Code: a place to work in a folder.** A new entry in the sidebar opens Skales
+  on a folder of your choosing, in its own window, so you can keep chatting and
+  using everything else while it works there. It lists the folders you have
+  worked in before, and you pick how it should behave: Code changes files and
+  asks before anything risky, Plan only reads and shows you what it would do,
+  Auto gets on with it. It is the same engine that has been behind the /code
+  command in chat, with a surface of its own. Pick a session and you see the
+  repository it sits in: the branch, how far ahead or behind it is, every
+  changed file, and a box to commit them. A folder that is not a repository
+  says so rather than showing an error, and when git refuses a commit you get
+  git's own words back, not a generic failure. Click any changed file and you
+  see what changed in it, with Keep and Put back: Keep stages it for the next
+  commit, Put back restores the file the way it was and tells you where it took
+  the old version from. A brand new file shows its contents instead of an empty
+  comparison. Alongside it there is a list of every file this session wrote,
+  changed or deleted, each with its own undo, and the ones you already undid
+  stay in the list so the record stays complete. And you can work on two things
+  at once: give a second piece of work a name and Skales checks the repository
+  out again in a folder of its own, on a branch of its own, with its own
+  session, so neither run can overwrite the other. Each session says whether it
+  is working, waiting for an answer from you, or idle. Removing a parallel
+  checkout tells you when there is uncommitted work in it rather than taking it
+  with the folder, and it will never remove the repository itself.
+
+- **Your accent colours stop at the logo.** Custom accents recolour buttons,
+  links, glows and selections; the Skales lettering in the sidebar keeps its own
+  colours in every theme, because that is the brand, not a control.
+
+- **Your own accent colours.** Under Appearance you can now set the three
+  colours the Skales gradient is made of, and everything drawn in the accent
+  follows: buttons, links, the glow, the selected row, the wordmark, the command
+  token in the composer. Skales adjusts the brightness where it has to so the
+  result stays readable on the page you are on, tells you when it did and by how
+  much, and one click puts the original colours back. The window frame of the
+  Flow and Code windows now follows the theme as well, instead of staying dark.
+
+- **A team plan shows who waits for whom.** The team leader has always decided
+  which subtasks can run at once and which have to wait for earlier results, and
+  the run has always followed that - but the plan was printed as a flat list, so
+  five agents working in parallel looked exactly like five agents working in a
+  chain. The plan is now drawn in stages, each stage saying how many run
+  together, and a subtask that waits names what it waits for.
+
+- **Skales says when it shortens a long conversation.** To keep a long chat
+  inside the model's limit, Skales summarises the older part of it. That has
+  always happened quietly, so from the outside it just looked like the assistant
+  starting to forget things. It now says so in the conversation, with what was
+  shortened, and makes clear that nothing was deleted.
+
+- **Sub-agents get a role instead of everything.** When Skales splits a job into
+  parallel sub-agents, each of them was handed the complete tool set: a
+  sub-agent researching competitors could send WhatsApp messages, write to your
+  long-term memory, stop to ask you a question, and start sub-agents of its own
+  without end. Three of those are now impossible for a sub-agent whatever else
+  changes, and a sub-agent that needs a capability it was not given can ask for
+  it mid-job and carry on. The narrower tool sets themselves are off by default
+  for now and can be switched on in settings; while they are off, every request
+  a sub-agent makes is recorded, so the defaults are chosen from what jobs
+  actually needed rather than from a guess.
+
+- **Your own speech server, for reading aloud and for dictation.** There was a
+  field for a custom text-to-speech address, and nothing in Skales ever read it:
+  it was saved, carried along and backed up, and it never produced a sound.
+  Settings now has a Custom voice provider with the four things such an endpoint
+  actually needs, an address, a model, a voice and an optional key, and the same
+  for transcription. Both are used before any cloud service, because a server
+  you set up yourself is the one you meant. An address you had already entered
+  in the old field starts working on its own, and if your endpoint does not
+  answer, Skales says so instead of quietly reading in a different voice from
+  somewhere else.
+
+- **Folders Skales must never touch, whatever else you allow.** Until now the
+  only way to limit file access was to list what Skales *may* reach, which is no
+  help if you run it with Full Access on purpose. There is now a list of folders
+  it must stay out of, and that list is not lifted by Full Access or by
+  Unrestricted mode. It covers the file tools, the shell and scripts, search,
+  and directory listings, so a blocked folder is not just unreadable, it is
+  invisible; it cannot be picked as a project folder either. Shortcuts pointing
+  into a blocked folder are followed before the check, so they are not a way
+  around it. One button blocks Skales' own program folder without you typing a
+  path, which also means it keeps working after you move the app.
+
+- **Every step in a coding session opens.** A line in the Code window is no
+  longer something to read past. Click a Read, a Grep, an Edit or a command and
+  it unfolds: exactly what was sent, and everything that came back, whole,
+  scrollable and with a copy button on each half. The line itself now also says
+  how long the step took, so a slow turn shows you where the time went.
+
+- **A change decides itself where you see it.** The diff under an edit carries
+  its own added and removed counts and its own Keep and Revert, so reviewing no
+  longer means finding the same file again in the panel.
+
+- **Every file is a link.** A path in a tool line, a path an answer mentions in
+  backticks, a file in a diff: click it and it opens in the panel beside the
+  transcript. That includes the Markdown ones.
+
+- **Something to do with a turn.** Under every answer: copy it, have it read out
+  loud, fork a new session from that point, or roll the whole session back to
+  it, files included. Under your own turns: change what you asked and send it
+  again. Your own words now sit on the right, in a block of their own.
+
+- **A page you wrote, running beside the transcript.** Click an HTML file in a
+  coding session and the panel does not show you its source, it shows you the
+  page: its own stylesheet and script load with it, so a widget or a small app
+  works there the way it will work anywhere. Markdown is rendered, images are
+  shown, and everything else is now coloured instead of one grey block.
+
+- **Point at something in a running page.** Turn on the picker, hover the page,
+  click what you mean, and the element goes onto the message you are writing:
+  what to call it in CSS, its own markup, and a picture of just that piece. So
+  "change this one" is a thing you point at rather than describe.
+
+- **Chat or Split, from the title bar.** The panel used to be reachable only
+  when git had noticed a change, which has nothing to do with wanting to look at
+  a file. Now it is a switch, and it is there whenever a session is.
+
+- **Hand a coding session over to Code.** A chat that is bound to a folder and
+  running in a code mode gets one button in its header: it stops what is
+  running, cleanly, and opens that same session in the Code window. Not a link
+  and not a second copy. The same session, in the window built for it, with
+  your chat left exactly where it was.
+
+- **The landing says something different every time.** Twenty-two greetings, in
+  every language, in rotation rather than at random, and the headline flickers
+  for a moment every few seconds. It holds still for anyone who has asked their
+  computer for less motion.
+
+- **Dictate into the box.** A microphone in the composer, running the same
+  speech-to-text everything else in Skales runs. What it hears joins what you
+  already typed instead of replacing it.
+
+- **Which agent runs the session, next to the model.** By default: none. An
+  agent carries a system prompt and a persona, and a coding session should have
+  neither unless you deliberately picked one. If you do pick one, it is that
+  agent's prompt from the next turn.
+
+- **The Skills button says what else is connected.** Which MCP servers are on
+  and how many tools each one brings, and which connectors are set up, instead
+  of leaving you to wonder whether any of it reached this window. A step that
+  went through an MCP server now says which one.
+
+- **A message you send from your phone while it is working joins the queue**
+  instead of starting a second turn on the same session.
+
+- **Two files for your standing rules, not one.** SKALES.md is still how you
+  want to be answered, everywhere. AGENTS.md is new and is about code only: the
+  style, the checks to run, the folders never to touch. One editor in Settings,
+  a switch above it, and both are ordinary files you can open in a text editor.
+  A project's own CLAUDE.md still wins for that project.
+
+- **Look at what you published.** Two new tools alongside the FTP upload that
+  has been there for years: list a directory on your server, and download a file
+  from it. Same saved profiles, all three protocols, and an agent working on its
+  own website can finally read its own files back.
+
+- **Every coding session gets a scratch folder of its own.** Somewhere to put a
+  captured log or a half-finished file that is not part of your repository and
+  should never show up in your diff. It is emptied when you clear the session and
+  deleted when you delete it.
+
+- **`/clear` in Code.** Empties the session and its scratch folder and keeps the
+  repository, because starting again almost never means starting somewhere else.
+
+- **The sidebar has two sides now: Home and Work.** A switch under the provider
+  status, and the menu regroups: Home leads with Chat, History, Discover, Memory
+  and Lio AI and keeps Browser, Group Chat, Spaces and Wrapped together; Work
+  leads with Code, Organization, Autopilot, Teams and Swarm and puts Codework,
+  Browser, Playbooks, Workflow and WordPress under Build. Workspace, your own
+  widgets and System stand in both. Your choice is remembered, and collapsed the
+  switch becomes one button showing the side you are on.
+
+- **Skales asks once how you want to use it.** A single question after the
+  privacy notice, with two equal answers, and all it decides is which half of
+  the menu you see first. Skippable, and changeable any time.
+
+- **Code pulses once, quietly, if you have not opened it yet.** It stops the
+  first time you click it and does not come back in the next release.
+
+- **Hand a design to a coding session.** The paperclip in Code now offers a
+  Studio or Flow project as well as files: pick one and the session gets a
+  snapshot of it, the markup, a list of the files it is made of, and a picture
+  of how it looks. Read-only, so the session can match it and never write into
+  it. So the thing you designed and the thing you are building can finally see
+  each other without an export in between.
+
+- **No emoji in Code, at all.** Where a step or an answer arrives carrying a
+  tick, a cross or a warning sign, the window draws its own icon and keeps the
+  meaning. Everything else is removed, and Code is told not to put emoji in the
+  files it writes either.
+
+- **Code follows Skales, not your Mac.** Light stays light and dark stays dark
+  because of what Skales is set to, and it changes the moment you change it,
+  even with the Code window open beside the main one.
+
+- **Skales Code has a browser, and the project's files beside it.** A page the
+  agent just wrote, a dev server it just started, a file you want to look at:
+  there is a panel for that now, next to the transcript rather than instead of
+  it, with an address bar, back and forward, reload and open-in-your-real-
+  browser. The file column lists what is in the folder and opens it with a
+  click. Its own panel, because "what changed" and "what does it look like" are
+  two questions and the review panel only answers the first.
+
+- **A page printed in the answer can be run where it stands.** When Code writes
+  a whole HTML page and shows it to you, the block carries two tabs: the source,
+  which is still what opens, and the page itself, running. No copying it out to
+  a file to find out whether it looks right.
+
+- **The panels on the right can be dragged wider.** Both of them, from their
+  left edge, with the mouse or with the arrow keys, and each window remembers
+  what you set.
+
+- **New coding sessions start on what you choose.** The gear in Code now holds
+  the defaults: which model a new session opens on, which agent runs it, and
+  which working mode it starts in. Nothing there touches a session that is
+  already open. Beside them, how the window reads - the typeface and the size -
+  which stays on this machine.
+
+- **Code says what it is allowed to do.** The settings panel now states, in
+  words, that a coding session runs on the working mode you pick in it and not
+  on the safety mode in Settings, what each mode asks about, and the five things
+  no mode lifts: the folder is never left, Skales' own files are never
+  writable, commands that cannot be undone are refused, and a coding session can
+  neither read nor write your memory.
+
+- **Skales itself can run a coding session.** The agent list in Code offered
+  every agent on the machine except the one the chat window runs on. It is
+  there now, second in the list, for when you want Skales with its memory on a
+  repository rather than the lean coding identity.
+
+### Changed
+
+- **All eighteen AI providers are on the providers page, not four.** OpenAI,
+  Anthropic, Google, Groq, Mistral, DeepSeek, xAI, Together, Minimax, Moonshot,
+  GLM, Qwen, Cloudflare and Nvidia were folded into a collapsed "More LLMs"
+  section, so the one page that answers what Skales can talk to showed you an
+  aggregator, a local runner, a text field and a router. They are all listed
+  now, in a sensible order, and the "show only active" checkbox above the list
+  is there when you want it short. The cards themselves used to be built twice,
+  in two places that had drifted apart three times in past releases; they are
+  built once now, so a button can no longer exist for half the providers.
+
+- **Lio AI now has an address that matches its name.** The sidebar entry read
+  "Lio AI" while the page it opened lived at /code, so links, bookmarks and the
+  assistant's own answers about where things are all pointed somewhere that
+  said something else. Lio AI is at /lio from now on. An old /code link still
+  takes you there, so nothing you saved stops working.
+
+- **Code asks you, not your safety mode.** The leash is the mode you picked when
+  the session started: Ask and Plan read, Code asks before anything risky, Accept
+  edits applies file changes and still asks for the shell, Auto runs. Set the
+  rest of Skales to Unrestricted and Code still asks, because that is what
+  choosing Code meant. Nothing that is not a question changes: the blocked
+  folders, staying inside the bound folder, the command block and the shell rules
+  were never approvals and are never lifted.
+
+### Fixed
+
+- **A mailbox that refuses your password by design now says which code to get.**
+  QQ never accepts an account password over IMAP, it issues a separate
+  authorisation code, and Skales answered "verify credentials", which sends you
+  to check the one thing that was already right. QQ now gets the sentence that
+  helps, in the words its own settings use, and so do 163 and 126, GMX, Web.de,
+  iCloud, Zoho and Yandex: each names what to get and where. A provider that is
+  not on the list at least learns that this is a thing that happens. And a
+  failure that arrived as one word, "AggregateError", now says what actually
+  went wrong on each address it tried.
+
+- **The mail test button works before you save, and says what it does.** It was
+  dead until the account was stored, which is backwards: testing is what you do
+  before committing settings you are unsure about. It now checks what is in the
+  form, and it says out loud that it only checks the login, sends nothing and
+  changes nothing in your mailbox.
+
+- **Searching a project no longer stops everything else.** Skales runs on one
+  loop and every chat, poll and button shares it. A search across a source tree
+  held it for a quarter of a second in one block and listing a project held it
+  on every session open, so a running conversation stuttered for reasons that
+  had nothing to do with it. Search, listing, reading and the project walk now
+  give the loop back while they wait.
+
+- **You can watch the browser work instead of seeing the pictures afterwards.**
+  A screenshot only travelled with the finished tool result, so a browsing job
+  of a dozen steps left the chat empty for a minute and then dropped every still
+  in at once. The current picture now appears above the composer while the job
+  runs and updates with each step, and it disappears when the run ends rather
+  than sitting there looking live. The screenshots in the conversation are
+  unchanged.
+
+- **Skales can offer to turn a long answer into a goal, and it asks first.**
+  The automatic goal start could only judge a message before it ran, so a short
+  request that turned into fourteen open steps and thirty tool calls was never
+  recognised as the bigger job it became. When a finished turn ends with several
+  open steps, a lot of tool work, or an unfinished checklist, a line above the
+  composer offers to carry it on as a goal. It never starts by itself: one click
+  runs it, one click makes it go away, and doing nothing leaves the chat exactly
+  as it was. When you have switched on the automatic start, a promoted message
+  now says so in the conversation instead of only in a log, and neither half of
+  this runs inside an isolated agent.
+
+- **A team task that stops moving ends, and tells you where it stopped.** If a
+  step never came back, the task stayed on "running" for as long as the app was
+  open, and the log only listed which tools had been called, never what came of
+  them. A step that produces nothing for six minutes is now given up on and
+  marked as stopped, which is its own outcome and reads differently from a step
+  that failed. The log lines carry the result of each tool, and a failed one
+  says what went wrong right there in the timeline. The clock restarts on every
+  answer, so a long task that keeps working is not interrupted.
+
+- **The updater cannot install a version that is no longer the current one.**
+  It checked for updates every four hours and then treated that answer as
+  settled: the download took whatever the last check had named, and the install
+  checked nothing at all beyond the file being there. On release day that meant
+  two machines installed the previous version half an hour after the new one had
+  gone out. Skales now re-reads the release feed before it downloads and again
+  before it installs, and if the download has been overtaken it says so and
+  offers the current one instead of installing the old one. When the feed cannot
+  be reached, an already-downloaded and verified update still installs, and the
+  log says it could not be re-checked rather than pretending it was.
+
+- **A team task keeps its files together instead of on your Desktop.** The
+  agents in an Execution Team were never given a place to work, and their
+  instructions literally told them to save to the Desktop or the home folder,
+  which in unrestricted mode is where the files ended up. Each run now has its
+  own folder under the workspace, the agents are told to write there, and the
+  run says which folder it is before it starts, so you can find the result.
+
+- **Flow keeps its Render button after the first render, and you can start one
+  from the chat.** Once a Motion project had been rendered, the button was gone:
+  the preview had switched to the finished video, and the button only appeared
+  while an HTML composition was on screen. It belongs to the project now, not to
+  whatever file you happen to be looking at, and clicking it puts the
+  composition back in the preview so you see what is being rendered. When it
+  cannot run, it stays visible and greyed out with the reason on it, including
+  on a machine where FFmpeg is not installed, instead of quietly not being
+  there. The same action is now on the file card in the conversation, where the
+  round that produced the composition is.
+
+- **The Execution Team room is visible in a light theme.** The scene was drawn
+  in white on the assumption of a dark room, so in Snowfield, or in any theme
+  set to light, the desks, the people, the monitors and the names were white on
+  white and the panel looked empty while a team was working in it. It is drawn
+  in your theme's colours now and follows a theme switch immediately. The same
+  thing hid your own dot on the Discover network map; it shows up too.
+
+- **"Fetch Available Models" works on providers where it never could.** The
+  button asked the provider directly from the window you were looking at, and a
+  browser refuses that unless the provider explicitly allows it. Most do not, so
+  the request never left your machine and the card reported a failure on a key
+  that was fine. Nvidia NIM was where it was noticed; it was true for a dozen
+  providers. The request now goes out from Skales itself, and when a provider
+  does refuse, the card shows you what the provider said instead of a generic
+  error. The model picker in chat was quietly affected by the same thing: it
+  promised your actual models and fell back to a fixed list without saying so.
+
+- **The Debug Panel works again on all five of its tabs.** Memory, Sessions,
+  Tools and Status all answered with an authorization error, because the panel
+  called the developer API with a token it had guessed rather than the one in
+  your own DevKit config. Only the Adaptive tab worked, and only because it was
+  the one tab that read the app directly. All five read the app directly now, so
+  the panel shows you your machine whether or not the developer API is switched
+  on. The API Playground stops guessing too: it fills the token field from your
+  config, and says so plainly when there is no token to fill it with.
+
+- **Settings no longer shows you the name of a text instead of the text.**
+  Four provider cards printed something like settings.providers.nvidia_nim.desc
+  where their description belongs, and all six theme cards in Appearance showed
+  the word "Appearance" as their description. A few other places did the same
+  thing: the standing instructions panel, the day picker in Planner, the refresh
+  button on the Autopilot board, and four of the twelve voice languages in
+  Studio. All of them now say what they mean, in all twelve languages, and a
+  check now fails the build if a text is referenced that no language actually
+  has, so this cannot come back unnoticed.
+
+- **The desktop buddy now wears the theme you picked, and its bubble can no
+  longer be cut off.** Four things were wrong with that little window at once.
+  It ignored the theme system completely: it carried its own fixed set of
+  colours and reduced every theme you can choose to a single light-or-dark
+  guess, refreshed at most twice a minute, so it never matched the app and
+  lagged behind a theme switch. It now reads the same colours as everything
+  else and follows a change the moment you make it. In a light theme the
+  "Open Chat" link was white text on a white bubble - invisible until you
+  hovered it, which made it whiter; the speech tail stayed dark under a light
+  bubble too. Both follow the theme now. The action button on a notification
+  ("View Tasks", "Open calendar") did nothing at all when clicked; it now opens
+  that page in the main window, and a notification without a page opens the
+  chat rather than nothing. And the window itself was a fixed height that could
+  not grow, with the page hiding anything that did not fit - a long answer was
+  not scrolled, it was cut. The window now grows to fit what it has to say,
+  upward from wherever you parked it, never past the edge of your screen, and
+  goes back to its normal size when the bubble is gone. If a message is longer
+  than the screen can hold, the bubble scrolls instead of hiding the rest.
+
+- **A chat that sends out sub-agents now shows them working while they work.**
+  Handing a job to parallel sub-agents puts a live status card under the message
+  that started it, one chip per agent. That card only turned up after leaving the
+  chat and coming back, or after a reload, so a job that was very much running
+  looked like nothing had happened. The launch signal never reached the open
+  chat: it travels on the same internal channel as the proactive dashboard
+  notes, that channel is read-once, and a single unreadable item made the read
+  throw away the entire batch. The signal was gone before anything could act on
+  it. The channel now hands over exactly what it promises, and one bad message
+  can no longer take the rest down with it, so the card shows up within seconds
+  and its chips move as the agents finish. Two more things that ride the same
+  channel come back with it: the "job finished" notice with its per-agent
+  report, and proactive dashboard messages appearing in chat. And a job sent off
+  in the very first turn of an empty chat, where there is no message yet to hang
+  the card on, now shows it above the input instead of nowhere at all.
+
+- **A click in the built-in browser no longer gives up because the page redrew
+  itself.** Reading a page marks every element so the agent can act on it
+  exactly, but a site that rebuilds itself while it works - most modern ones do,
+  constantly - throws those marks away, and the click then failed on everything,
+  including a site's own logo, while typing carried on working. Skales now also
+  remembers what each element WAS, its role and its label, which survive a
+  redraw, and falls back to finding it that way. If even that misses, the
+  remembered label is handed to the two strategies that were already there and
+  were never reached before, instead of the attempt ending.
+
+- **The browser window that opens by itself now says whose it is.** A visible
+  browsing run opens a real browser window next to Skales, and then it starts
+  clicking and typing on its own. Nothing said where it came from, so closing it
+  was the obvious reaction - which ends the run. Skales now says, once, that the
+  window is its own doing, that it will move by itself, and that it should be
+  left alone until it finishes. The sign-in flow says the same, and now also
+  points at the chat for telling Skales you are done, rather than leaving people
+  hunting for a button in Settings.
+
+- **"Flow finished" opens Flow instead of taking over the window you are in.**
+  Flow runs in a window of its own, but the notification's button navigated the
+  current window, so the main Skales window turned into the Flow workspace.
+  It now opens or brings forward the Flow window, the way the Studio tab
+  already did.
+
+- **A rendered video no longer reports a check that never ran.** Validating an
+  MP4 needs ffprobe, which was looked up on the system path - and an app started
+  from the Dock does not inherit the path from your terminal, so it was
+  regularly not found. The check then fell back to "the file is not empty" and
+  still showed a green Validated, next to a resolution of 0x0, a length of 0.0s
+  and 0 fps. Skales now looks for ffprobe where it looks for ffmpeg, including
+  the places a manual install puts it, and when it genuinely cannot be found the
+  card says the file was only measured by size instead of claiming a verdict.
+
+- **The settings panel in Code stopped loading and started answering.** It sat
+  on "Loading..." forever with nothing loading, because the instructions could
+  not be read at all. They can be read now.
+
+- **Tooltips in Code are no longer cut off.** The ones on the title bar opened
+  upwards, out of the window, and the ones by the box you type in were painted
+  over by the bar beneath them. They are drawn above everything now and nudged
+  back on screen at the edges.
+
+- **Code is quiet.** Every reply used to raise a notification and play the
+  chime, in the coding window, about the coding window. Worse, the button on it
+  navigated that window away to the chat and took the session you were watching
+  with it. Notifications belong to the main window; Code does its work without
+  interrupting you.
+
+- **The agent list in Code shows four and scrolls.** It opened as a column of
+  every agent you have, over the transcript you were choosing it for.
+
+- **A model picked in the Code window is the model that runs.** The Code model
+  in Settings quietly overrode it, so the picker showed one name while the run
+  used another. The setting still applies where it should: to /code in chat, and
+  to a session that has no model of its own.
+
+- **A Discover mention obeys the box that says it should not arrive.** With
+  notifications muted and both Discover types switched off, mentions and replies
+  still filled the dashboard. They were arriving under a name nothing here
+  recognised, so every Discover setting let them past. Three places read that
+  list and all three go through one check now.
+
+- **An emoji in Skales is Skales' emoji.** The agent faces in Code were drawn by
+  the operating system, so the gecko looked like Apple's gecko. And a lookup
+  fault meant most hearts, hands and weather fell back to the system everywhere
+  in the app, not only there. Both are fixed, and the coding agent wears a
+  laptop, which is a face Skales can actually draw.
+
+- **The sidebar breathes evenly.** The gap under the provider box now matches
+  the one above it, and with the sidebar collapsed the Home button is exactly as
+  wide as the box above it.
+
+- **Chat and History are in Work as well as Home**, in the same place, and the
+  sidebar always shows the page you are on: opening Discover from a notification
+  no longer leaves the menu with nothing marked.
+
 ## v12.5.6 - An Answer You Can Actually Give
 
 Being asked a question is no use if the form has nowhere to put your answer.
@@ -539,7 +1213,6 @@ simply pick.
   like every other mode, and the wireframe deliberately fetches nothing and
   keeps labelled boxes, instead of each run deciding that for itself.
 
-
 - **Stop now ends the session.** Stop reported success whether or not it stopped
   anything, so with a stale run the panel said stopped while the run kept
   generating, and reopening found it still live. A stop now answers honestly and
@@ -981,7 +1654,6 @@ Your phone can now start, watch and stop the work your desktop does. Agents know
 - **The interactive Playground is taking a break.** The mini-app builder is temporarily unavailable while it is reworked and will return in a later release. For now its sidebar entry, its Settings tab and its Add-Ons card are hidden, including for anyone who had it switched on.
 - **Skales IQ is described as free included usage, not a trial.** The Skales IQ copy now makes clear it is free included usage rather than a trial of a paid plan, with nothing to buy: when the included usage runs out you connect your own provider and everything keeps working. Added an explicit "this is not a subscription" line to the Skales IQ settings box.
 - **Flow places your attached images instead of redrawing them.** In a design or build project, an attached image is now described so the model knows what each file shows and embeds the actual file where it fits, instead of trying to recreate the picture in code. In an image or video project the attachment still passes straight to the generator untouched, so an edit works on your real picture.
-
 
 ## v12.2.0 - Freeze
 
@@ -1475,8 +2147,6 @@ Since a few of you have written in asking, here is the full list of the hidden b
 ### Added
 
 - **See your own Discover posts in one place.** A My Posts view in Discover gathers everything you have shared, including anything still waiting on review, so you can find your own work without scrolling the whole feed.
-
-
 
 - **Reset the scheduler when it gets stuck.** A new button in the Autopilot Control Room backs up and rebuilds the scheduler, planner and autopilot state in one step, clears any stuck run and restarts the background runner. Your settings, keys, Friend Mode, chats and memory are kept, and a backup is saved first, so it is a safe way out when scheduling has tangled itself up.
 
@@ -2440,7 +3110,6 @@ AIPointer is a cursor-anchored quick-ask AI overlay by the same team behind Skal
 
 - **AIPointer ⦿ inside Skales no longer asks the system keychain on launch.** The standalone AIPointer keeps its own encrypted provider key store; the in-Skales build doesn't need it because Skales bridges every provider call. On launch the AIPointer module now detects it's running inside Skales (presence of the Skales data directory) and skips the keychain probe entirely, so users with an existing standalone AIPointer install don't see a "Skales would like to use the keychain" prompt every time they open Skales.
 
-
 ## v10.3.7
 
 Settings performance pass, a Friend Mode safety hold, GitHub moves to MCP, plus a handful of cleanups.
@@ -2483,7 +3152,6 @@ Settings performance pass, a Friend Mode safety hold, GitHub moves to MCP, plus 
 
 - **Profile better at parsing pasted paths.** Pasting a path or URL into chat no longer mangles it into a garbage token in your saved profile.
 
-
 ## v10.3.5
 
 Background work, a lighter prompt on smaller models, a one-click memory mode, and a round of fixes.
@@ -2511,7 +3179,6 @@ Background work, a lighter prompt on smaller models, a one-click memory mode, an
 - **Imported chats are clearly marked by source.** Chats migrated from another tool now carry a badge in your history naming where they came from.
 
 - **Stop and killswitch respond immediately.** Both fire instantly, even in the middle of a running task.
-
 
 ## v10.3.4
 
@@ -2634,7 +3301,6 @@ A maintenance release that cleans up rough edges from v10.3.0. Nothing new on th
 - **Desktop Buddy snaps back to a visible display.** If the buddy ends up off-screen after a monitor change, sleep/wake, or rearrangement, it moves back to the primary display's bottom-right corner on the next show.
 - **Desktop Buddy on Linux lets clicks through the transparent area.** The bottom-right rectangle around the mascot used to block clicks from reaching the desktop underneath. The buddy now passes clicks through wherever the mascot, the speech bubble, and the input pill are not.
 
-
 ## v10.3.0
 
 A power-user release. The first genuinely native organisational surface (Project Tracker), a working RAG primer, a real command palette, Friend Mode that actually fires, a summarize flow that returns inline infographics, and a manual /cast page for DLNA. The minor-version bump is for the Project Tracker.
@@ -2696,7 +3362,6 @@ A power-user release. The first genuinely native organisational surface (Project
 
 - Deprecated legacy Custom OpenAI provider section.
 
-
 ## v10.2.12
 
 ### Added
@@ -2748,7 +3413,6 @@ A power-user release. The first genuinely native organisational surface (Project
 
 - Deprecated legacy Custom OpenAI provider section.
 
-
 ## v10.2.9
 
 Hotfix for Organization task lifecycle.
@@ -2758,7 +3422,6 @@ Hotfix for Organization task lifecycle.
 - **Instant abort for Organization tasks.** The Abort button cancels in-flight calls within milliseconds now, instead of waiting for the current call to time out. No more wasted tokens on aborted runs.
 - **Project deletion stops running tasks.** Deleting a project with an active task aborts the task first, so it stops cleanly.
 - **Orphaned tasks cleaned up on startup.** Tasks left running after a crash or restart are marked aborted on next boot, so the UI does not try to resume dead tasks.
-
 
 ## v10.2.8
 
@@ -2787,7 +3450,6 @@ iOS is in review with Apple. The Play Store launch is the public beachhead; iOS 
 - **Skill AI and GPT-5.x consolidation.** Edge cases in the GPT-5.x reasoning detection added in v10.2.7 are consolidated and covered.
 - **Tool pruning logic.** A regression in tool-pruning for large conversations is corrected.
 
-
 ## v10.2.7
 
 Hotfix for three user-reported regressions surfaced after v10.2.6. No new product surfaces. Auto-updater pipeline unchanged.   Locale parity preserved.
@@ -2797,7 +3459,6 @@ Hotfix for three user-reported regressions surfaced after v10.2.6. No new produc
 - **OpenAI GPT-5.x models failing with 400 errors.** v10.2.6 detected o1, o3, o4, and bare gpt-5 but missed every GPT-5.x dot-version. Detection now covers the full lineup (gpt-5.1 through gpt-5.5) including every documented suffix and dated snapshot. Works regardless of routing path (direct, OpenRouter, Custom Provider, or any OpenAI-compatible relay).
 - **Custom Provider 404 errors.** Base URLs that already include a version segment or full path are detected and not duplicated. Z.ai, Groq, and other providers with non-default URL structures work out of the box. Same detection applies to model-list discovery.
 - **Telegram proactive messages returning provider errors.** Friend Mode, Identity Maintenance, daily standup, and cron task completion notifications now go through the same path as in-app chat, so reasoning-model handling stays consistent across every send site.
-
 
 ## v10.2.6
 
@@ -2815,10 +3476,7 @@ Mini-release focused on critical user-reported bugs across the OpenAI and Gemini
 - **Telegram proactive Friend Mode messages not firing since the Desktop Buddy proactive feature was added.** Friend Mode check-ins, autopilot approval notices, daily standup delivery, and cron-task completion notifications all fire correctly on Telegram again, surviving bot restarts.
 - **MCP Servers tab failing to load with 401 error.** Now loads correctly.
 
-
-
 ## v10.2.5
-
 
 ### Bug Fixes (Critical)
 
@@ -2880,7 +3538,6 @@ Mini-release focused on critical user-reported bugs across the OpenAI and Gemini
 - Settings schema additions are optional with safe defaults. Existing settings load unchanged.
 - 12-locale parity preserved.
 
-
 ## v10.2.0
 
 Iterative quality release across providers, modes, error UX, and chat history. No new product surfaces. Existing surfaces become more resilient and configurable.
@@ -2941,18 +3598,15 @@ Iterative quality release across providers, modes, error UX, and chat history. N
 
 - 11 new error-translator keys plus 3 new model-picker keys, translated across all 12 locales (de, en, es, fr, hr, ja, ko, pt, ru, tr, vi, zh).
 
-
 ### Notes
 
 - Settings schema additions are optional with safe defaults. Existing settings load unchanged.
 
 ---
 
-
 ## v10.1.1 - Hotfix
 
 Five hotfix items rolled up on top of v10.1.0 Design. No new features.
-
 
 ### Vision routing
 
@@ -3021,7 +3675,6 @@ Codework matured significantly across the v10.0.4 to v10.1.0 cycle. It is now a 
 - **Codework session sidebar** active-state correctly handles trailing slashes (no more two-row highlights).
 - **Delete session prompt** now properly localized in all 12 languages.
 
-
 ### Mobile
 
 - **Outbox foreground sync.** Pending messages flip to "failed" immediately when the app resumes.
@@ -3035,7 +3688,6 @@ Codework matured significantly across the v10.0.4 to v10.1.0 cycle. It is now a 
 ### Note on Lio AI export from Studio
 
 The "Open in Lio AI" export from the Studio Design Tab was removed. Lio AI and Studio Design are different workflows and the link did not work. Use the Download HTML button instead.
-
 
 ## v10.0.4 - April 20, 2026
 
@@ -3220,12 +3872,9 @@ The biggest Skales release ever. Desktop, Mobile, and Relay now form one ecosyst
 - Playbook steps now wait for actual page load before proceeding
 - macOS screen recording permission detected with user-facing guidance in share window
 
-
-
 ### Localization
 - ~60 new strings added across 12 languages for fal.ai models, HTML preview, voice, Mobile, animated emojis, mute/unmute, scroll-to-latest
 - All new German translations are Du/Sie-neutral ("Vorlesen", "Stumm", "Als Bild speichern")
-
 
 ## v9.3.0 - Stability Release (April 13, 2026)
 
@@ -3252,7 +3901,6 @@ The biggest Skales release ever. Desktop, Mobile, and Relay now form one ecosyst
 ### Localization
 - Removed all "Coming in v9.2.1" text from 12 locale files
 - Version strings corrected to 9.3.0 everywhere
-
 
 ## v9.2.5 - "WordPress 2.0" + Playground (April 13, 2026)
 
@@ -3288,8 +3936,6 @@ The biggest Skales release ever. Desktop, Mobile, and Relay now form one ecosyst
 - Tool deduplication prevents duplicate function errors
 - Tool-awareness warning for local models with tools disabled
 
-
-
 ## v9.2.3 - File Operations & Stability (April 2026)
 
 ### Critical Fixes
@@ -3308,7 +3954,6 @@ The biggest Skales release ever. Desktop, Mobile, and Relay now form one ecosyst
 ### Verified (no changes needed)
 - Auto-updater: full check, download, verify, install flow confirmed working
 - Playwright install: path resolution and error handling all solid
-
 
 ## v9.2.2 - Hotfix (April 2026)
 
@@ -3383,9 +4028,6 @@ The biggest Skales release ever. Desktop, Mobile, and Relay now form one ecosyst
 - ElevenLabs settings link corrected (pointed to Providers, now points to Integrations)
 - 13 new slash command descriptions added to all 12 locale files
 
-
-
-
 ## v9.2.0 - "The Bridge" (April 2026)
 
 ### WordPress Integration (NEW)
@@ -3444,7 +4086,6 @@ The biggest Skales release ever. Desktop, Mobile, and Relay now form one ecosyst
 - Browser: Session isolation, privacy dropdown, history clear, new tab crash
 - Theme and locale persist even after browser data is cleared
 - ONNX runtime warnings suppressed
-
 
 ---
 
@@ -3549,7 +4190,6 @@ planner, knowledge graph, and playbooks.
 - Fixed: Gallery video downloads serving wrong path
 - Removed Beta badges from Swarm, Codework, Organization
 - Added Beta badges to Studio, Templates, Playbooks
-
 
 ---
 
@@ -3771,7 +4411,6 @@ planner, knowledge graph, and playbooks.
 - **Skill iframe communication** validated more strictly.
 - **Notification polling** reduces server load significantly.
 
-
 ---
 
 ## v7.5.0 - The Social Update (March 2026)
@@ -3811,7 +4450,6 @@ planner, knowledge graph, and playbooks.
 - API key enforcement for the telemetry endpoint
 - Discover Feed: 3-layer gamertag validation, admin shadowban system, rate limiting
 - Privacy policy link in Settings > Discover
-
 
 ## v7.2.1 - Hotfix (March 2026)
 
@@ -3894,8 +4532,6 @@ planner, knowledge graph, and playbooks.
   XTTS-API-Server). Not limited to cloud providers.
 - **Local STT Endpoint.** Voice transcription can use local Whisper (KoboldCpp).
 - **Local Image Generation.** Configurable image generation endpoint alongside Replicate.
-
-
 
 ## v7.0.1 - Hotfix (March 2026)
 
@@ -4138,7 +4774,6 @@ planner, knowledge graph, and playbooks.
 - Spellcheck disabled globally (both main window and buddy window)
 - Custom Skill buttons work now
 - Confirmation message shown after approved tool execution
-
 
 ---
 

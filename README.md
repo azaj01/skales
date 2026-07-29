@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/tag/v12.5.6"><img src="https://img.shields.io/badge/version-12.5.6-10b981?style=flat-square" alt="Version 12.5.6" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/tag/v12.5.7"><img src="https://img.shields.io/badge/version-12.5.7-10b981?style=flat-square" alt="Version 12.5.7" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -68,6 +68,7 @@ The private AI that lives on your computer and does real work, not just chat.
 - [⚡ Why Skales?](#-why-skales)
 - [🚀 What Skales Can Do](#-what-skales-can-do)
   - [🎯 Background Goals](#-background-goals)
+  - [🖥️ Skales Code](#️-skales-code---a-coding-window-of-its-own)
   - [💻 Code Mode (`/code`)](#-code-mode-code)
   - [✨ Skales IQ + Skales Stack](#-skales-iq--skales-stack)
   - [📐 Workflows](#-workflows)
@@ -81,6 +82,8 @@ The private AI that lives on your computer and does real work, not just chat.
   - [🌐 Inline HTML Preview](#-inline-html-preview)
   - [🖥️ Computer Use](#️-computer-use)
   - [🦁 Lio AI (Code Builder)](#-lio-ai-code-builder)
+  - [🏠 Home and Work](#-home-and-work-one-switch)
+  - [🎨 Your own accent colours](#-your-own-accent-colours)
   - [🎨 Skales Studio](#-skales-studio)
   - [🗂️ Templates](#️-templates)
   - [🌐 Built-in Browser Agent](#-built-in-browser-agent)
@@ -166,6 +169,9 @@ Type `/goal` and what you want — `/goal build me a trading bot` — and Skales
 - **Run several at once,** or put one on a repeating schedule.
 - **The step limit in Settings is a safety ceiling** against a runaway task (`0` = run to completion), not a check-in.
 - **Every finished goal folds what it learned back into Memory,** so the next one starts ahead.
+
+### 🖥️ Skales Code - a coding window of its own
+Click **Code** in the sidebar and Skales opens a separate window built for working on a repository, in the shape of Claude Code rather than a chat: a full-width session log instead of bubbles, with every step on its own line - `Read`, `Grep`, `Edit`, `Bash`, the file or command beside it, and how many lines it added and removed. An edit shows its diff inline, red and green with real line numbers; a command shows its output in a terminal block; the checklist it works through updates in place. Point it at a folder, clone a repo by URL or SSH, and pick how it works: **Ask** reads and answers without touching anything, **Code** makes the change, **Plan** proposes first, **Auto** runs through. A review panel beside the transcript shows each changed file three ways (preview, diff, raw) with Keep / Revert, a commit box, and **Create PR** (pushes the branch and opens the pull request via the GitHub CLI). `@` mentions the repository's own files, `/` opens the short command list, files and screenshots ride along as chips, and messages typed while it works are queued and picked up at the next step. Parallel sub-agents show in a rail with live token and tool-call counts and a Stop all. It runs a lean coding prompt (about 70% smaller than the chat identity, measured), reads the project's own `CLAUDE.md`/`AGENTS.md`, plus a global AGENTS.md you set once and a per-session override - and it cannot read or write what Skales remembers about you. It is an add-on: switch it off and the sidebar entry is gone.
 
 ### 💻 Code Mode (`/code`)
 
@@ -257,6 +263,14 @@ Your AI can see and control your screen. Screenshots, mouse clicks, keyboard inp
   </a>
 </p>
 Describe what you want and Lio builds it. Multi-AI architecting: One AI designs, one reviews, one builds. Generates HTML, CSS, JS, Python in a sandboxed live preview. Review every file it produced, source and all, inline before you download or deploy. Deploy to FTP/SFTP with one click. Template gallery with quick-start options.
+
+### 🏠 Home and Work, one switch
+
+The sidebar has two sides. **Home** is the personal half: chat, history, Discover, memory and Lio AI, with your browser, group chats, spaces and your year in review under it. **Work** is the other one: Skales Code, Organization, Autopilot, Teams and Swarm, with Codework, playbooks, workflows and WordPress under that. Chat and History stand in both, in the same place, because talking to it and finding what was said are not a mode. The shared groups (Studio, agents, tasks, schedule, planner, projects, and everything under System) do not move. Collapse the sidebar and the switch becomes one button showing the side you are on. Whichever side you are on, the page you are actually looking at is always the one marked in the menu, so opening something from a notification never leaves you without your place.
+
+### 🎨 Your own accent colours
+
+Pick three colours in Settings and the whole interface follows them: buttons, links, the active item in the sidebar, the rings, the gradients, and the soft glow behind the window. Skales corrects each one against the surface it lands on, so a colour that would be unreadable on a pale page or invisible on a dark one is darkened or lightened until it is legible, rather than being accepted as typed and quietly ruining a label. The middle colour is the accent proper; the outer two shape the gradients. Every theme keeps its own character underneath, and one button puts the shipped colours back.
 
 ### 🎨 Skales Studio
 <p align="center">
