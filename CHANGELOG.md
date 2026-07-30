@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.5.76 - Two Corrections
+
+A light window stays light when you have picked your own colours, and connecting
+a Google Calendar works on an account made after 2022.
+
+### Fixed
+
+- **Light mode with your own accent colours.** Switching to light while a custom
+  accent was set left the dark background in place and turned the text dark with
+  it: a page you could not read. The colours are worked out again the moment you
+  flip the switch, which is the step that was missing. If you are on 12.5.75 and
+  see this, "Back to the original" in Settings clears it at once. Nobody who kept
+  the shipped colours was affected.
+
+- **Connecting Google Calendar.** Google stopped accepting the copy-the-code
+  redirect for any OAuth client created after 2022, so a new client could not
+  finish the connection at all. Skales now sends Google back to a small page of
+  its own on your machine, which shows the code with a copy button. Step two in
+  Settings is unchanged: paste it and you are connected. Nothing to register on
+  Google's side, because a desktop client may use any local address. An older
+  client keeps working exactly as it did.
+
 ## v12.5.75 - Extensions
 
 Skales says out loud that you can build onto it, and the Code window stops
