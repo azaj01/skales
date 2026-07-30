@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/tag/v12.5.7"><img src="https://img.shields.io/badge/version-12.5.7-10b981?style=flat-square" alt="Version 12.5.7" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/tag/v12.5.75"><img src="https://img.shields.io/badge/version-12.5.75-10b981?style=flat-square" alt="Version 12.5.75" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -266,11 +266,11 @@ Describe what you want and Lio builds it. Multi-AI architecting: One AI designs,
 
 ### 🏠 Home and Work, one switch
 
-The sidebar has two sides. **Home** is the personal half: chat, history, Discover, memory and Lio AI, with your browser, group chats, spaces and your year in review under it. **Work** is the other one: Skales Code, Organization, Autopilot, Teams and Swarm, with Codework, playbooks, workflows and WordPress under that. Chat and History stand in both, in the same place, because talking to it and finding what was said are not a mode. The shared groups (Studio, agents, tasks, schedule, planner, projects, and everything under System) do not move. Collapse the sidebar and the switch becomes one button showing the side you are on. Whichever side you are on, the page you are actually looking at is always the one marked in the menu, so opening something from a notification never leaves you without your place.
+The sidebar has two sides. **Home** is the personal half: chat, history, Discover, memory and Lio AI, with your browser, group chats, spaces and your year in review under it. **Work** is the other one: Skales Code, Organization, Autopilot and Teams, with Codework, your browser, playbooks, workflows, WordPress and Swarm under that. Chat and History stand in both, in the same place, because talking to it and finding what was said are not a mode. The shared groups (Studio, agents, tasks, schedule, planner, projects, and everything under System) do not move. Collapse the sidebar and the switch becomes one button showing the side you are on; the themes that use a top bar or a narrow icon rail carry the same switch and the same two sides. Whichever side you are on, the page you are actually looking at is always the one marked in the menu, so opening something from a notification never leaves you without your place.
 
 ### 🎨 Your own accent colours
 
-Pick three colours in Settings and the whole interface follows them: buttons, links, the active item in the sidebar, the rings, the gradients, and the soft glow behind the window. Skales corrects each one against the surface it lands on, so a colour that would be unreadable on a pale page or invisible on a dark one is darkened or lightened until it is legible, rather than being accepted as typed and quietly ruining a label. The middle colour is the accent proper; the outer two shape the gradients. Every theme keeps its own character underneath, and one button puts the shipped colours back.
+Pick three colours in Settings and the whole interface follows them: buttons, links, the active item in the sidebar, the rings, the gradients, and the soft glow behind the window. Skales corrects each one against the surface it lands on, so a colour that would be unreadable on a pale page or invisible on a dark one is darkened or lightened until it is legible, rather than being accepted as typed and quietly ruining a label. The middle colour is the accent proper; the outer two shape the gradients, and the tinted glass behind the panels takes your hue while keeping its own depth. The "Skales" lettering is the logo and stays out of it, as does colour that carries a meaning - a success tick stays green. This is the default theme's control: the five other themes are finished designs with an accent chosen against their own palette, and they keep it. One button puts the shipped colours back.
 
 ### 🎨 Skales Studio
 <p align="center">

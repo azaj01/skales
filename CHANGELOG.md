@@ -6,6 +6,122 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.5.75 - Extensions
+
+Skales says out loud that you can build onto it, and the Code window stops
+tripping over its own defaults.
+
+### Added
+
+- **The Extensions pill.** The Code composer has a new toggle next to the
+  attachment clip. Switch it on and the session knows, precisely, how Skales is
+  extended: how a capability that worked once in chat becomes a permanent tool,
+  how an app you build is registered as an API Connector Skales can call, how
+  your app calls into Skales over the DevKit remote API, and how an MCP server
+  plugs its tools straight in. The contracts are spelled out in the prompt, so
+  a small local model can follow them as well as a frontier one. The tooltip on
+  the pill says all of this before you press it.
+
+- **Skales knows it is extensible.** Asked "how do I extend you?" in any chat,
+  Skales now answers with the real routes above instead of guessing at ports
+  and reverse-engineering. The one honest limit is stated too: no injecting
+  panels into the Skales window itself; a companion window wired over the
+  connector and the remote API is the way.
+
+- **A Debian package.** Debian, Ubuntu and Mint have a proper `.deb` again,
+  next to the AppImage that runs on any distro. It is the one to take on
+  Ubuntu 24.04 and newer: installing it keeps the Chromium sandbox switched on,
+  where the AppImage has to fall back without it.
+
+### Changed
+
+- **Home and Work reach every theme.** Obsidian, Snowfield and Neon had no way
+  to switch sides, so the sidebar was stuck on whichever one another theme had
+  left behind. All three carry the switch now and group their entries by it,
+  under the same headings as the full sidebar.
+
+- **Codework and Swarm start switched off.** Both are a deliberate step rather
+  than something to meet on the first launch: one runs commands and writes
+  files in a real project folder, the other sends one task to several models at
+  once. Turn either on in Add-Ons whenever you want it. An existing install
+  keeps exactly what it had. Swarm also moves out of Main and down to Build,
+  under WordPress, with the rest of the ways to run a job.
+
+### Fixed
+
+- **An answered question stays answered.** The occasional question Skales asks
+  about how you work came back on the next reload, in full, as if you had never
+  replied, sometimes days later with the old timestamp still under it. Your
+  answer is kept with the message now. The same reload used to make the
+  small "shape your agent" card disappear instead; it stays too.
+
+- **Your accent colour reaches the rest of the app.** Around fifteen hundred
+  buttons, links, icons, headings, rings and glows were painted in the shipped
+  lime by hand and never moved when you picked a colour. They follow the accent
+  now, including the tinted glass behind the panels, which takes on your hue
+  while keeping its own depth. Green that means something, like a success tick
+  or an online dot, stays green.
+
+- **The Skales lettering is the logo again.** Under Obsidian it came out sand,
+  under Snowfield blue, under Neon cyan, and elsewhere it followed whatever
+  accent you had picked. The wordmark is the brand and no longer takes a colour
+  from anything.
+
+- **The stripe on the active sidebar button.** The pill in the default theme
+  had a hard line down its left edge in a colour from the far end of its own
+  gradient. It is one smooth pill now.
+
+- **The accent belongs to Skales-X.** The other five themes are finished
+  designs with an accent chosen against their own palette, and half of each
+  stayed behind when a picked colour was walked through it. They keep their own
+  accent; the picker says where it lives.
+
+- **A coding session without an agent runs again.** "No agent" is the Code
+  window's default for a reason: no persona, no extra prompt, fewer tokens.
+  A session started on that default aborted immediately with "Isolated agent
+  could not be resolved", and only picking a real agent got it moving. The
+  default works now, and sessions broken this way heal on their next message.
+
+- **Code stays in the Code window.** A run in the standalone Code window used
+  to follow you into the app: clicking Chat landed you inside the coding
+  session, its approval card and live stream included, and the coding session
+  sat in the chat History as if it were a conversation. Code sessions now live
+  with Code: the chat page, its recents, History and the command palette leave
+  them out, and a finished coding run notifies with "Open Code" instead of
+  posing as a chat reply.
+
+- **The type size buttons in the Code settings size the type.** Every size in
+  the window scales with the chosen number; before, the family changed and the
+  size did nothing.
+
+- **The composer's toolbar scrolls instead of wrapping.** The row under the
+  input keeps one line at any width; a mouse wheel now scrolls it sideways,
+  alongside the drag and trackpad swipe it already had.
+
+## v12.5.71 - Windows You Can See Through
+
+Two corrections to 12.5.7. Both are things you look at every day, and both were
+caused by a rule that was right for the windows it was written for and wrong for
+the ones it also reached.
+
+### Fixed
+
+- **Buddy is see-through again.** 12.5.7 gave each window the right to colour its
+  own title bar in the current theme, so Flow and Code stop showing a dark
+  caption bar in a light theme. Two windows have no title bar and no background
+  at all - the desktop Buddy and the AIPointer overlay - and they were filled in
+  along with the rest: a solid rectangle in the theme colour, sitting on your
+  desktop. A window whose pixels come from the page is now left alone, and Flow
+  and Code keep the caption bar that matches their theme.
+
+- **The Home | Work switch obeys the click, not the page you are on.** The
+  sidebar follows you: land on a page only one side shows, and it turns to that
+  side so the page you are on is always in the menu. That rule was also
+  answering your own switch. On Discover - a Home page - pressing Work set the
+  side and the rule put it straight back, so the only way from Discover to Code
+  was a detour via a page both sides show. The rule now answers a move between
+  pages, once. Standing still, the choice is yours.
+
 ## v12.5.7 - Code Gets Its Own Window
 
 Code stops being a page inside Skales and becomes a program of its own: a
