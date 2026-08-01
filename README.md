@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/tag/v12.5.76"><img src="https://img.shields.io/badge/version-12.5.76-10b981?style=flat-square" alt="Version 12.5.76" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.6.0-10b981?style=flat-square" alt="Version 12.6.0" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -78,6 +78,7 @@ The private AI that lives on your computer and does real work, not just chat.
   - [👥 Teams](#-teams)
   - [🐝 Agent Swarm (`/swarm`)](#-agent-swarm-swarm)
   - [📱 Skales Mobile](#-skales-mobile)
+  - [👁️ Iris Orbit](#️-iris-orbit--voice-with-a-face)
   - [🗣️ Voice: Talk to Skales](#️-voice-talk-to-skales)
   - [🌐 Inline HTML Preview](#-inline-html-preview)
   - [🖥️ Computer Use](#️-computer-use)
@@ -246,6 +247,10 @@ Every paired computer becomes a workhorse. `/swarm <task>` sends a job to the be
 
 
 Your AI agent in your pocket, live on Android and iOS. Pair via QR and the phone instantly gets access to THIS desktop's full tool set (180+ tools: shell, files, browser control, email, calendar, Studio, everything). End-to-end encrypted relay. Keys never leave the devices. Or run the phone **standalone** with 62 native mobile tools, no desktop needed — smart home, Spotify, WordPress, the device calendar, files, images and the web. Shared ecosystem: same Discover Feed, same Custom Agents, same Skills.
+
+### 👁️ Iris Orbit — voice with a face
+
+New in 12.6.0. Press the Iris button and a living particle eye ignites in its own window: a big-bang intro, then it watches, listens and speaks. No push-to-talk — it hears you when you talk, answers out loud in your native language (a choice of 55, from the first open), and stops mid-sentence when you speak over it. Tell it "morph into a car" (or a feather, or a heart) and the particles reshape into any of 1,500+ forms; while you talk, it quietly morphs along with the topic. Set a timer and the particles themselves become the countdown digits. Ask for something heavier and Iris opens the right window — Studio, Browser, Code — and tells you where it put it. Same brain and full tool set as chat, not a demo mode. Wake word "Iris" is trained on your own voice and matched locally on your machine — no audio leaves it. Right-click for new conversation, past sessions and settings. Off by default; one toggle in Settings → Voice, and it also lands on mobile with 2.6.0.
 
 ### 🗣️ Voice: Talk to Skales
 Per-message speaker icon on every AI reply. Optional "Read responses aloud" for continuous flow. TTS providers: Device voices (free), OpenAI Speech 6 natural voices, ElevenLabs, Azure, or any OpenAI-compatible endpoint. On the phone you can also pick **the voices installed on your paired Mac** — free, private, premium macOS voices included. STT via Groq Whisper (free tier) or OpenAI Whisper. Full Voice Chat Mode for hands-free operation.
@@ -448,7 +453,6 @@ Like Spotify Wrapped for your AI. Auto-generates every Monday. Activities, top t
 **Contributors:**
 
 <p align="left">
-  <a href="https://github.com/NikiKeyz"><img src="https://github.com/NikiKeyz.png" width="56" height="56" alt="NikiKeyz" style="border-radius:50%" /></a>
   <a href="https://github.com/jazzroutine"><img src="https://github.com/jazzroutine.png" width="56" height="56" alt="jazzroutine" style="border-radius:50%" /></a>
   <a href="https://github.com/xITmasterx"><img src="https://github.com/xITmasterx.png" width="56" height="56" alt="xITmasterx" style="border-radius:50%" /></a>
   <a href="https://github.com/btafoya"><img src="https://github.com/btafoya.png" width="56" height="56" alt="btafoya" style="border-radius:50%" /></a>
