@@ -6,6 +6,619 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.6.0 - Iris Orbit
+
+The release about things that were happening where you could not see them, and
+about who decides once you can. A decision waiting below the fold, a message
+that never arrived, a browser session frozen behind a dialog nobody mentioned.
+Then: a team of agents that ranks its own answers and hands the choice back to
+you, a plan you read before it is written, and a camera move you pick before the
+shot is filmed. Skales recommends. You decide.
+
+### Added
+
+- **Iris Orbit is switched on when you install Skales.** The release is named
+  after her, and a surface you have to find in Settings before it exists is a
+  surface nobody finds. Nothing else changed: if you turned her off, she stays
+  off. Without a provider key the window says so and offers the way to Settings,
+  Voice, the way every other surface that needs a key does.
+- **"What can I say?" is a list you can read.** Every sentence Iris understands
+  was already there and written down nowhere: turning her into a shape, asking
+  for something as a document, a web search, a timer, your tasks. The window's
+  menu shows all of it with a real example each, in twelve languages, and asking
+  her out loud what she can do gets the same answer without a tool call.
+
+- **Iris Orbit: a way to talk to Skales instead of typing to it.** A window of
+  its own, black, with no toolbar and no message list: a particle eye in the
+  middle and one quiet line of text under it. Hold the space bar and speak. Iris
+  hears when you stop talking and answers on its own, out loud, and the line
+  under the eye shows what is being said, sentence by sentence, like a subtitle
+  rather than a chat log. The eye reacts while it happens: it warms and pulses
+  with your voice while it listens, looks away while it works, and becomes a
+  circular soundwave while it speaks. It follows your cursor when it is idle,
+  and clicking sends a ripple through it.
+  Iris is a face on Skales, not a second assistant. The same conversation, the
+  same model, the same tools, the same memory: ask it to forget something and it
+  is forgotten everywhere. Iris opens where you left off and says so, "new
+  conversation" starts a fresh one, and any chat you are already in can be
+  carried over by voice from the button in its header, with everything that was
+  said so far coming with it. Go back to the chat afterwards and the spoken
+  turns are simply the newest messages in it.
+  If speaking is not on right now, start typing: a single line appears over the
+  eye, Enter sends it, Escape puts it away again. "New conversation", "my
+  tasks", "timer ten minutes" and "forget X" are answered directly, with no
+  model involved at all. Cmd or Ctrl plus K brings up the earlier conversations;
+  Escape stops whatever is running, and closes the window when nothing is.
+  The first time you open it, Iris introduces itself. That plays once.
+  The window takes your own light or dark theme, like the Code and Flow windows
+  do: a glow on black at night, dark points on a light ground by day.
+
+- **The eye answers with more than words.** Every command Iris can answer
+  directly now has its own visual reply. Set a timer and the particles become
+  the remaining time, spelled out as digits that count down. Ask how far along a
+  goal is and they draw the progress as a bow. Ask her to forget something and
+  they scatter and gather again. Start a new conversation and the eye blinks. A
+  reminder going off sends a ripple out from the middle.
+  You can also just ask for a shape: "morph into a car", "become a feather", in
+  any of the twelve languages. There are about fifteen hundred of them, and they
+  turn up on their own as well: write down "call the dentist" and the eye
+  becomes a telephone, and while Iris is talking the particles quietly take the
+  shape of whatever is being discussed. That last one can be switched off under
+  Settings, Voice, if you would rather the eye stayed an eye.
+
+- **Results appear inside the eye instead of opening windows.** A picture, a
+  document, search results, a short list: the ring leaves the eye, becomes the
+  border of a panel, and the result appears inside it. One at a time, and Escape
+  puts it away and brings the eye back. Heavier things are handed to the window
+  that already does them - a page goes to the browser, a render goes to Studio,
+  code goes to the Code window - and Iris tells you where she put it.
+  Cmd or Ctrl plus slash opens Help, which lists every command, what it does,
+  which answer the particles give, and a sentence you could actually say.
+
+- **Iris does the work, not just the talking.** "Twenty-five minutes of focus"
+  starts a timer you can pause and resume by voice or by clicking; when it runs
+  out, Iris says so. "What is on today" reads your tasks aloud and shows the
+  list, and you can tick them off from there. "Show me the status" reads out how
+  far along a goal is. All of it goes into the lists, the schedule and the goals
+  you already have - there is no second copy anywhere. Anything that finishes
+  while the window is open is spoken as it lands; anything that finishes while it
+  is shut is waiting to be read out the next time you open it.
+
+- **Settings, Voice: one place for all of it.** The voice that speaks, the ear
+  that listens and Call Mode used to be three cards under Integrations, next to
+  Notion and Spotify. They have moved to a tab of their own, together with the
+  things that never had a home: how long a silence ends your turn, which key is
+  push-to-talk, and what happens when you talk over an answer. There are named
+  presets for a local Kokoro and a local Whisper that fill in the endpoints for
+  you, so running your own voice on your own machine is something you can find.
+
+- **A wake word you teach yourself.** Say "Iris" three times in Settings, Voice,
+  and she learns your pronunciation - yours, not a model's idea of it, so it
+  works whatever your accent. Then you can just say her name instead of holding
+  the space bar. Everything happens on your machine: the recordings become
+  numbers there and are dropped, and nothing is uploaded. When the ear is open
+  the window says so; there is never a microphone listening in silence.
+
+- **Talking over her stops her.** With any provider at all, the microphone stays
+  open while Iris speaks, and starting to talk cuts her off - what you said
+  becomes the next thing she answers, the way it works with a person. Where a
+  provider offers a live audio channel of its own, that can be picked instead;
+  where it does not, the option says so plainly rather than quietly doing
+  something else.
+
+- **A word while a slow model is still thinking.** Some models take several
+  seconds before the first word arrives, and a screen with nothing on it but a
+  pulsing dot reads as broken rather than as busy. If nothing has arrived after
+  a second and a half, the small assist model you set under Settings, Goals,
+  Light-pass model writes one short line about what you just asked, in your
+  language, into the same place the thinking indicator sits. It disappears the
+  moment the real answer starts, it is never part of the conversation, and it is
+  never sent to a model again. With no assist model set, and on a model that
+  answers quickly, nothing extra happens at all.
+
+- **A team of agents has someone in charge of it, and you have the last word.**
+  The first seat of your roster is the coordinator now. Before anyone answers it
+  reads the assignment and breaks it down: what a complete answer has to cover,
+  and which angle each agent leads on. Every agent then answers the whole thing
+  with that brief attached, on its own model. Afterwards the coordinator compares
+  what came back and writes a verdict: a ranking, two sentences per agent saying
+  why it sits where it sits. No scores, no marks out of ten. The verdict
+  recommends and decides nothing, and it says so.
+  Every agent card carries two buttons. "Continue with this agent" switches the
+  session to that one agent and hands its answer to the next turn as the thing to
+  build on. "Take this result" puts the answer into the conversation, or saves it
+  as a file where there is no conversation to put it in. Both survive a reload.
+  The same cards and the same two buttons now appear everywhere several agents
+  produce results: chat, Skales Code, Tasks, Group Chat and the Organization
+  result list draw one component instead of five versions of a list.
+  Every way a run can end is its own state rather than an error message in
+  English. One agent failing leaves a ranking of the rest; all of them failing
+  leaves an honest line instead of an empty verdict card; counting the Agents
+  button back to one ends the run instead of leaving it working behind a door you
+  just closed; and a run whose process died is recognised when you reopen Skales
+  and closed off, keeping whatever had already arrived.
+
+- **Flow can film a shot, and you pick the camera move first.** A new chip in
+  Flow: Film. It makes one clip with one deliberate camera move, chosen from a
+  grid of forty-eight moves grouped by what they are: zoom, dolly, crane, pan,
+  orbit, rig, aerial, lens. One move per clip and no way to pick two, because
+  mixing them is what makes generated footage look generated.
+  The moves are Skales' own film language, not a pointer at somebody else's
+  preset library: each one carries its own formula in three parts, where the
+  camera sits, what it does and how the move runs over time, and that formula
+  shapes the prompt for whichever backend makes the clip. So the order starts
+  with your own keys: the video APIs under Settings, Skales Studio first, then a
+  Hugging Face Space you have activated, then a connected media server such as
+  Higgsfield if you happen to have one, as the optional connector it is.
+  With none of the three set up the chip does not disappear and does not pretend:
+  it says which key is missing and where it goes, and it keeps the move you
+  picked. Follow-up takes build on the last one instead of starting over.
+
+- **Seedance and Atlas Cloud in Settings, Skales Studio.** Seedance was in the
+  list and could never have worked: both of its model rows named an address that
+  does not exist, so every attempt came back as not found. It runs on fal now,
+  which is ByteDance's own route and the only one carrying Seedance 2.0, and the
+  rows for people whose key is at Replicate are repaired rather than dropped.
+  Atlas Cloud is new: one key across several hundred models for chat, image and
+  video, billed per use, and it shows up as a provider in the same three places
+  every other one does.
+
+- **Skales asks you one question, once.** If you were already using Skales
+  before this version, a box appears once and asks what is missing, what could be
+  better, what you actually use it for, what you love and what you do not. One
+  text field, any language, as long or as short as you like. It goes straight to
+  Mario and it is not published anywhere. A checkbox under the field links to
+  the privacy policy, and nothing is sent before it is ticked. "No thanks"
+  closes it for good, and a fresh installation is never asked.
+
+- **Hugging Face Spaces count as a media backend in Flow.** The integration has
+  existed for a long time and Flow was built straight past it: a Space you had
+  activated sat in the model's tool list and was never offered here. Image, video
+  and film all know about them now, as the free-or-nearly-free route with a
+  shared queue.
+
+- **More than one agent can answer, and you can see each of them.** The composer
+  gets a button next to Auto with a number in front of it: how many agents your
+  next message goes to. One is off and means what it always meant - the default
+  agent, or whichever one you picked for this chat. Every click counts up to six
+  and back to one. A run of more than one shows up as cards, the same cards tool
+  calls and diffs already use: one for the run, one per agent that opens to that
+  agent's answer, and a summary at the end. Who takes part is arranged on the
+  Agents page, in a section above the cards; the order in that list is the order
+  they run in, so "3 Agents" means the first three. The first seat belongs to the
+  default agent and does not move, because somebody has to write the summary.
+  Tasks can be run the same way from the create dialog.
+
+- **One Google account instead of the same account asked for five times.**
+  Calendar, Drive, Docs and YouTube each wanted their own credential for what is
+  one Google account. Sign in once under Settings, Integrations and it covers all
+  four. Every one of those fields still wins whenever it holds something, so
+  nothing you already set up changes; with no account connected nothing changes
+  at all.
+
+- **An archived coding session can be looked at again.** Skales Code could put a
+  session away and nothing anywhere could bring it back. The session list has an
+  archive icon at the right of its heading now: one click shows what was
+  archived, with Restore in the right-click menu, another click returns. The
+  search box works in both.
+
+- **Skales can give a web page a file.** Attaching a picture to a post used to
+  end in the operating system's file dialog, which Skales cannot use and which
+  freezes the browser until you close it by hand: an agent would try eleven
+  other ways and post without the picture. The file now goes to the page
+  directly, no dialog involved, and a click that would have opened one is
+  refused with the way that works instead.
+
+- **A browser session that is stuck says so and stops.** It used to keep trying
+  until the budget ran out, because from the inside a blocked page and a slow
+  page look the same. Now it recognises being held, ends, and tells you why.
+
+- **You can see which sites Skales is signed in to, and sign out.** Skales
+  browses in one profile, so a login stayed until you deleted a hidden folder -
+  and there was no list of what was in there. Settings shows the sites, signs
+  out of one, or clears the profile completely. It refuses while a browsing
+  session is running, because the browser writes the profile back when it
+  closes and the deletion would quietly be undone.
+
+- **Replace every occurrence in a file in one go.** Changing the same thing in
+  seventy places meant seventy edits, and it was easy to lose the thread halfway
+  through. One call now does the file, by exact text or by pattern, and says how
+  many places changed.
+
+- **A permission you can answer once for the whole session.** Flow could ask the
+  same question ten times in a row with only two buttons on the card. There is
+  now a third: allow this kind of action for this session. It covers the action
+  AND the reason it was stopped, so agreeing to a command inside your project
+  folder is not agreeing to one that reaches outside it. It lasts for the
+  session, is never saved, and lifts no safety guard. Under Auto, confirming
+  once is enough - which is what choosing Auto was supposed to mean.
+
+- **Your phone can watch a team work.** Starting a team task from the phone used
+  to show nothing at all until it finished. The Organization view now sees who
+  is working, who is waiting and what tool is running, the same live picture the
+  desktop has.
+
+- **Your own transcription server has its own settings.** It shared a card with
+  text-to-speech and only appeared when you set the SPEAKING provider to Custom,
+  so running your own transcription meant changing an unrelated setting first.
+  It sits in the Speech-to-Text section now. Both directions also take extra
+  parameters for your server - temperature, language, guidance, steps, whatever
+  yours has - as one field rather than a fixed list that would go stale.
+
+### Changed
+
+- **The local voice engines are marked as what they are: optional, and not
+  Docker.** The card offering Kokoro and Whisper showed a `docker run` line and
+  nothing else, which read as though Skales wanted Docker. It says plainly that
+  Skales itself never needs it, carries a Docker-free command for each engine
+  beside the Docker one, and is labelled Optional. Ask Skales to install either
+  one and it now walks the whole route for your system, health check and
+  uninstall included, through the normal command approval.
+
+- **Iris Orbit says it is a first version.** A quiet "Beta v1.0" in the corner of
+  the window and a line in its settings block, plus the licence the engine is
+  under and where to read it.
+
+- **The sidebar's Iris entry is an eye.** The dot ring stays where it means
+  something: the window, the settings block and the logo.
+
+- **The user guide covers the shared Google account and Iris Orbit.** Neither
+  was in it. The Google chapter walks the Cloud Console setup end to end, says
+  which client type to pick, and explains why a service's own key still wins and
+  why adding a service later asks for consent again. The Iris chapter covers
+  opening it, speaking, typing, morphs, timers, the wake word, the right-click
+  menu, languages, and where the conversations live.
+
+
+- **A plan is something you read before it exists.** "Generate Master Plan" used
+  to create every task in it in the same breath, so the first time you saw a plan
+  it had already been written into your board. It is a draft now: a list you
+  read, untick and edit, and only "Create these" writes anything. A task the
+  model got wrong no longer takes the whole plan down with it either. The usable
+  ones survive, and the ones that were left out are named with the reason.
+
+- **A Quick Task is a task, not a title.** One line still starts it, but what
+  gets created carries instructions the agent can act on, the project it belongs
+  to and the agent best suited to it, each one a suggestion you untick if it is
+  wrong. And the warning that the task will not run while Autopilot is paused is
+  the switch itself now, where the warning is, instead of a sentence about a
+  button elsewhere.
+
+- **Cards on the Autopilot board move by dragging.** Two moves are refused rather
+  than faked: you cannot drop a card into "in progress", because that is where
+  Skales puts a task when it actually picks it up, and you cannot drag one that
+  is running out from under the runner. A move also clears what the new column
+  would otherwise make untrue.
+
+- **The running-goals strip stops being a shelf.** Open the goal where it lives,
+  carry it on, or stop it, without leaving the page.
+
+- **The composer bar never breaks into a second line.** In a narrow window it
+  scrolls sideways instead, the way Code and Flow already do, with the context
+  readout on the left pinned where it can always be read.
+
+- **Skales is counted while it is running, not while Discover is open.** The
+  online figure came from the Discover tab and only from people with a gamertag,
+  which meant it was measuring almost nobody. It now reflects running apps.
+
+- **What belongs to the conversation stands in the conversation.** The live view
+  of the browser, the plan the model proposes and the offer to turn a chat into a
+  goal used to hang above the text box in their own sizes, outside the
+  conversation. They sit under the last message now, the width of a message, and
+  scroll away with everything else that happened.
+
+- **The user guide is user help.** Five chapters of release notes had grown into
+  it, the newest at the very top, so the first thing a new reader met was a list
+  of things they did not know they were missing. They are gone; what changed in
+  a release is in the changelog, which is where you are.
+
+- **Skales IQ: internal routing update.** Nothing to set, nothing to notice.
+
+### Fixed
+
+- **What Iris writes appears in the ring, not as a clipped line under the eye.**
+  Ask her for a poem, a list or a summary and the text lands inside the frame,
+  readable, with one short spoken sentence beside it. Until now the ring only
+  ever opened for a tool result, so an answer that WAS the thing you asked to see
+  was cut off mid-word in the subtitle line.
+- **The Iris window no longer stands still for several seconds when it opens.**
+  Opening it made four requests to the local server one after another, with
+  nothing on screen moving while they queued. Three of them never depended on
+  each other, and the app now warms the window's own route at launch as well.
+- **Approving a file no longer throws you into the Code window.** Saying yes to
+  "may I write this" is not asking to change windows. Iris says where the file
+  went and stays where she is.
+- **Iris asks for permission in her own voice.** The question used to arrive as
+  a chat approval card over the eye. She now says what she wants to do, the two
+  answers are hers, and "yes" or "no" out loud answers it in twelve languages.
+- **Iris does not play the thing she turns into.** Asked to become a car she
+  wrote a short story about being one, signed off as it, and quietly dropped the
+  document that had been asked for in the same sentence. A morph is what the
+  particles do; she stays herself, and the task in the sentence still gets done.
+- **Iris says who she is in one sentence.** "I am Iris, the voice of Skales",
+  written out per language rather than improvised, after a weaker model answered
+  "I am Iris, Skales at the wheel".
+- **She opens with something different each time.** Fifteen greetings per
+  language, rotating, instead of the same sentence at every open.
+- **Iris speaks like a person about her microphone.** "Ear open", "ear shut,
+  voice off" was a literal translation of an English image into all twelve
+  languages. It says listening, mute and unmute now, and the German, French,
+  Croatian, Turkish, Portuguese and Vietnamese lines got their accents back.
+- **Iris answers no longer ring a bell in the main window.** Every spoken answer
+  produced a "message finished" toast and a chime in the window you were not
+  looking at, and the Code window did the same. A companion window that is open
+  is you being on that surface.
+- **"Continue with this agent" folds the cards and gives you the composer.** It
+  answered the question those cards were asking and left all six answers
+  standing between you and the reply you now wanted to type. A conversation
+  opened again loads its finished run folded, and the cards have a ceiling and
+  their own scroll instead of growing over the input bar.
+- **The working basis is a chip, not a wall of text.** Carrying on from an
+  agent's answer put that whole answer into the conversation as raw text, and in
+  the Code window it was glued onto the front of the next thing you typed, so
+  your own "ok stop" came back with an essay in front of it. It is one line you
+  can open, and it travels beside your message rather than inside it.
+
+- **Iris keeps listening.** With the ear open, the microphone still closed after
+  every answer and Space had to be pressed again to say the next thing. The ear
+  now reopens by itself at the end of everything she says, until "Ear shut,
+  voice off" or the window closes. That entry brings her back too.
+- **A document Iris writes appears in the ring.** After the fix that stopped her
+  framing the bookkeeping around a document, she framed nothing at all: the tool
+  message is a receipt, and the document itself goes into this conversation's
+  document panel. She now reads the receipt as what it is, a title, and puts the
+  real text in the frame under its own name. The guide has a new section on what
+  opens a ring at all: a picture, a document, a web search, a list.
+- **A failed transcription says which provider refused, and why.** "No
+  speech-to-text provider available" with a working key configured: every leg
+  had been tried, each had thrown, and the reasons were only in the server
+  console. The message now carries them ("OpenRouter: 402 ...; Groq: no key"),
+  and a genuinely unconfigured setup still says that instead.
+- **Iris no longer introduces herself as Skales.** On a long conversation a
+  weaker model would read the voice profile, then four thousand tokens of other
+  things, and open with an apology for the wrong name. The one identity line is
+  repeated once at the very end of the prompt. Same profile, no second persona.
+- **The relay stops fighting itself in the log.** `socket REPLACED` once a
+  second, filling the console and burying every other line. The reconnect used
+  to reset its backoff every time the relay let it in, so two connections
+  claiming one identity evicted each other forever at exactly one second apart.
+  Being replaced now backs off and the line is printed once a minute with a
+  count, and it names the process it came from, which is the fact that answers
+  it. The engine that opens those connections is also single now: nothing
+  stopped a second one being started over a running one.
+- **A stream that ends twice no longer throws.** `Controller is already closed`
+  in the console, from closing a stream whose reader had already gone, in fifteen
+  places across the update, build, plan and pull routes.
+- **Six debug lines per model response are gone from the console.** They printed
+  the raw provider answer, including its content, on every step of every turn.
+  One line is left, and only when a step really came back empty, saying what
+  that means. A model that spends its whole reply budget on reasoning already
+  ends in a proper answer that says so.
+- **Iris' voice is a list you can read.** It was a text field asking for a
+  provider voice id in the provider's own spelling, which nobody knows by heart.
+  It is now a dropdown of the voices your TTS provider actually has, fetched
+  from the provider rather than baked in, so a voice you cloned five minutes ago
+  is in it. "Provider default" leads. Where a provider has no list to fetch, it
+  says so and the field stays, so an id you do know still works.
+
+- **A run with several agents survives a reload.** Asking a team of agents a
+  question in a fresh conversation started the run against a conversation that
+  did not exist yet: the question, every answer and the verdict were written
+  nowhere, and reloading left only whatever was typed afterwards. The question
+  now goes into the conversation before the run starts, the verdict is written
+  into it by the server the moment it is ready, and reopening a conversation
+  finds its run again and repairs a verdict that never made it in. Nothing in
+  that path fails quietly any more: when something cannot be saved, the
+  conversation says so at the time instead of losing it silently.
+
+- **A finished team run can be folded away.** After the verdict has been read
+  and an agent picked, the cards collapse to one line saying how many agents
+  answered and whether there is a verdict, and open again on a click. The state
+  belongs to the run, so a phone and the desktop agree about it. The whole run,
+  every answer and the verdict, is also kept as one Markdown file next to your
+  other documents, so folding the cards away never loses it.
+
+- **The team cards no longer follow you into the next conversation.** Switching
+  conversations, or starting a new one, left the previous run's cards sitting
+  above the composer.
+
+- **"Take this result" in the Code window puts the result in the session.** It
+  used to trigger a browser download, which on a phone reaching the window
+  remotely meant the answer ended in a downloads folder instead of the work.
+  Pressing it twice also used to add the same answer twice; it does not now.
+
+- **A team run started from the Code window's start screen is visible.** Sending
+  with two or more agents before a folder was open started a real run that was
+  drawn nowhere at all. The folder is asked for first, as it is for an ordinary
+  message, and the run happens in the session that opens. The run is found again
+  after a reload, and the agent picked to carry on is still picked.
+
+- **Speech that could not be transcribed by your own server says so.** Pointing
+  Skales at your own speech endpoint and having it go down moved your voice to
+  whichever cloud provider had a key, without a word. It still keeps working,
+  and it now tells you it happened. Transcription through Hugging Face also
+  returned something that was not text at all, so Iris said "[object Object]"
+  out loud and dictation in the chat failed with an empty error message.
+
+- **The feedback form looks like a form again.** Its backdrop had a three pixel
+  blur and no Safari equivalent, so through a browser it was a flat dark sheet
+  over an app you could no longer see. It uses the same glass as every other
+  Skales overlay now, in every browser. The same missing Safari line was fixed
+  in twenty-odd other overlays across the app.
+
+- **Settings stops telling you to update an app that is already current.**
+  "Desktop Control" probed a bridge that only exists in the desktop window, so
+  viewing Skales in a browser always read "Update to the latest build to enable
+  replay". It now says which of the two situations you are actually in.
+
+- **A voice setting that could not be saved says so.** The switch moved on
+  screen and quietly went back on the next visit.
+
+- **Iris works when you reach her through a browser.** Three things in her
+  window asked the desktop app for something that only exists in the desktop
+  app, and did nothing at all otherwise: "Voice settings" in her right-click
+  menu, Escape on the resting eye, and handing a result to Studio, the browser
+  or Skales Code - which she announced out loud while nothing happened. Each of
+  them now opens the place it names, in whichever shell she is running in.
+
+- **Iris can hear you.** On macOS the microphone was dead: the signed app was
+  never given the right to use one, so the system never asked and Skales did not
+  even appear under Privacy and Security, Microphone. It asks now, and if the
+  answer is no it says so and opens the right settings pane instead of listening
+  at nothing. When speech cannot be turned into text, the reason is said out
+  loud and written under the eye rather than swallowed: "I could not understand
+  you" with what actually went wrong, in place of silence.
+
+- **After the greeting, Iris listens by itself.** No key needed: the ear opens
+  when the last word of the welcome has been spoken, the line under the eye says
+  so, and it closes again when you stop talking, like any other turn. The space
+  bar is still there for when you want it, and holding it down no longer cancels
+  the very turn it started.
+
+- **Right-clicking in the Iris window does something.** New conversation, your
+  earlier conversations, the voice settings, copy the last answer, ear shut and
+  voice off, close the window. There is also a small cross at the top that
+  appears while the mouse is moving and fades away when it rests, so the window
+  can be closed without knowing that Cmd or Ctrl plus W works. The buttonless
+  surface stays buttonless.
+
+- **Iris speaks your language.** The welcome was always English, whatever the
+  app was set to, because the greeting was written before the language had
+  finished loading. It now follows the app's language like everything else, and
+  Iris answers in it too. There is no separate language setting for the voice:
+  one language, set in one place.
+
+- **The name question takes Enter.** Answering the "what should I call you"
+  prompt with the Return key did nothing at all, and only Skip worked. Typing
+  and pressing Enter now answers it, and an empty Enter means "no name, carry
+  on".
+
+- **Typing to Iris is findable.** The text field appears when you type and is
+  invisible until then, so it was easy to miss entirely. A single quiet line
+  says so once, and never again after you have used it.
+
+- **Wake-word training says what happened.** It could fail six different ways
+  and reported five of them as "no microphone", including the case where the
+  speech detector simply had not loaded. Each one now names itself. There is a
+  Stop button that stops it, a Start over button, a live level bar so you can
+  see the microphone react while you speak, and a microphone picker for machines
+  with more than one input - which the whole voice loop then uses, not just the
+  training.
+
+- **A team of agents answers a typed question too.** Setting the Agents button
+  above one and then typing ran the message as a single ordinary turn: only
+  messages with a picture attached ever reached the team. It also says up front
+  when your roster is smaller than the number you asked for, instead of quietly
+  running fewer, and an answer that came out of a team says how many agents made
+  it rather than naming one model. Chats that ran a team are marked in History.
+
+- **Spoken conversations are marked.** They were always ordinary conversations
+  in the ordinary list - which is the point - but nothing said which ones had
+  been spoken. History marks them, and reopening one in the chat shows which
+  turns were said out loud.
+
+- **The border around a result has no gap, and fits the answer.** The frame the
+  particles form was missing its top right edge, and it was built at a fixed
+  size before the panel existed, so a two-line answer got a full-page border. It
+  is now measured from what is actually there, and the line of text moves with
+  it. In a narrow window the eye no longer runs off both sides.
+
+- **The one question about how Skales is going comes back.** Telling Iris your
+  name rewrote the identity file, and the "is this install old enough to ask?"
+  check read that file's date - so answering Iris reset the clock and the
+  question went quiet for another three days. The clock is now set once and
+  nothing can move it.
+
+- **Running out of Skales IQ credit is a state, not an error.** A turn that hit
+  an empty balance ended in a red error with a provider message in it, and a
+  goal or a scheduled task that hit it was marked failed, its work thrown away.
+  It now says what happened in your language and offers the way on: put your own
+  key in, and carry on. A goal is paused rather than failed, keeps every step it
+  had already done, and continues from there instead of starting over. Nothing
+  is retried against an empty balance any more, so a background task no longer
+  spends attempt after attempt on a request that cannot succeed. A user on their
+  own key never meets any of this.
+
+- **Stopping a team of agents stops the one that is already answering.** Counting
+  the Agents button back to one ended the run, but an agent already talking to
+  its provider carried on generating an answer nobody would read, on a metered
+  connection, until it was finished. It now stops mid-sentence. Its card says it
+  was stopped rather than claiming it failed, and an answer that had already
+  arrived stays where it is.
+
+- **A long message from us is readable on the phone.** Broadcast texts stopped at
+  about sixty characters on a phone while the computer showed all of them, and a
+  message with no link behind it had nothing to open. The full text is shown, and
+  a long one opens out with a tap.
+
+- **A team of agents on the phone no longer gives up over a stray bracket.** If
+  the agent writing the plan added a friendly closing line, the plan was read as
+  unreadable and the whole run ended, over a plan that was perfectly good.
+
+- **Dragging a link no longer shows you a web address.** Nudging any menu entry
+  painted the browser's own drag preview, with the page title and a localhost
+  address under it. A desktop app should not show its web insides, and nobody who
+  brushes a menu item while scrolling asked to see the address of anything.
+
+- **An agent you edited by hand is not overwritten by a page that was open.**
+  Agent definitions are files, and a prompt shortened in the file could come back
+  longer the next time the Agents page saved. Every write stamps the file now,
+  the bookkeeping the app does after a run merges into the file as it is at that
+  moment rather than a copy read minutes earlier, and a save that would clobber a
+  newer file is refused and says so instead.
+
+- **The Studio upload to YouTube works.** It read a setting nothing in the app
+  ever wrote, so it could not publish at all, whatever you had connected. It now
+  asks the same place the rest of the app does.
+
+- **The YouTube tools are offered to anyone who has YouTube.** They only appeared
+  for people with a separate API key, and stayed hidden from anyone whose Google
+  account already covered it.
+
+- **A saved key shown back as dots can no longer be saved as dots.** Reloading
+  Settings filled the Drive, Docs and YouTube fields with a masked stub, and
+  pressing Save wrote the stub over the real credential.
+
+- **A decision waiting out of sight is visible.** In Skales Code the transcript
+  could grow past a permission card sitting below the fold, with the session
+  paused on it and nothing to say so. There is a jump-to-latest arrow now, and
+  when something down there needs an answer it becomes a marked badge with a
+  count.
+
+- **Skales Code names its sessions.** Every one of them was called "New Chat",
+  forever, which made the history a wall you could not find anything in. A
+  session is named after the work after its first exchange.
+
+- **Commands find the tools your terminal finds.** `npm` could be "command not
+  found" in a Skales Code session while it worked perfectly in your own
+  terminal, because an app started from the Dock does not inherit your PATH.
+  It does now.
+
+- **A message you queued gets delivered.** Typed while a long task was running,
+  it could be dropped when the task finished instead of being sent as the next
+  turn.
+
+- **Flow shows a finished page in its own preview.** It would ask for approval
+  and then open the page in your system browser, while the preview panel beside
+  the chat was already showing that exact file.
+
+- **An agent reads the assignment you actually gave it.** A background task's
+  instructions were welded together with the harness's own rules into one block,
+  so the agent was free to summarise the lot and work from its summary - which
+  is how an assignment came back broader than it was written, with examples
+  nobody had supplied. Your words now arrive exactly as written and marked as
+  yours.
+
+- **Publishing a subfolder no longer overwrites the homepage.** Publishing sends
+  the CONTENTS of a folder, so forgetting to name a destination put a subpage on
+  the site root. It happened twice. It now asks where the folder should go.
+
+- **The tool list knows about every tool.** Five that exist were missing from it,
+  so anything asking "does this tool exist" got the wrong answer.
+
+- **Discover download figures respect the platform filter.** Filtering to one
+  platform still summed the downloads of all of them.
+
 ## v12.5.76 - Two Corrections
 
 A light window stays light when you have picked your own colours, and connecting
@@ -154,6 +767,26 @@ globally, or per session - how you like to work. It runs the same engine as
 everything else and none of the identity: a coding agent, and nothing else.
 
 ### Added
+
+- **Hugging Face works the way it looks like it works.** The token test can
+  actually fail now - it checks who you are and then makes one real call, so a
+  made-up token stops passing - and a rejected token says which permission it is
+  missing, with a link straight to the page that sets it. Activating a Space
+  reads that Space's own API instead of guessing at it, and when a Space will not
+  answer, the card says the shape was guessed rather than pretending otherwise;
+  you can correct the endpoint, the inputs and the output type by hand, or have
+  the API read again. Spaces built on current Gradio work, not only the old
+  ones. A Space that returns a file returns a picture, a video or a sound you can
+  see, saved into your gallery rather than handed to you as a link that expires.
+  Speech-to-text and text-to-speech can both run through Hugging Face. Embeddings
+  work. Music is no longer one single model. A dedicated endpoint is tested as
+  the kind of endpoint it is instead of always as a chat. And the model catalogue
+  is read properly at last: prices, context sizes, tool support and the real
+  providers behind a model, instead of a list of the people who uploaded it.
+
+- **Remote MCP servers speak the current protocol.** Skales now offers the
+  2025-06-18 revision and falls back to 2024-11-05 for a server that has not
+  moved yet, so servers that had begun refusing the older revision connect again.
 
 - **Skales Code has a terminal, and it is yours.** A real one, under the box you
   type in and dragged to whatever height you want: your login shell, in the
