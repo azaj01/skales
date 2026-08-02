@@ -1,4 +1,24 @@
 <!DOCTYPE html>
+<!--
+  THIS IS USER HELP. RELEASE NOTES BELONG IN CHANGELOG.md AND IN THE CHANGELOG
+  VIEW, NEVER HERE.
+
+  Written into the file because saying it elsewhere has not worked: release
+  chapters have grown back into this guide three times, and by 12.5.76 there
+  were five of them ("What's New in 12.5.7", "12.5.6", "12.5.1 to 12.5.5",
+  "12.5.0", "12.4.5"). They were removed in 12.5.8 after checking that every one
+  of those versions is in CHANGELOG.md.
+
+  The distinction is not bookkeeping. This document answers "how do I do X" and
+  is read by someone with a question in front of them; a changelog answers "what
+  changed in version N" and is read once, by someone who already knows the
+  product. A guide that carries both ages badly in a specific way - the newest
+  release chapter sits at the top, so the first thing a new user reads is a list
+  of things they have no idea they were missing.
+
+  If a release adds something worth explaining, explain it in the CHAPTER FOR
+  THAT FEATURE. That is the change the guide should carry.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -386,18 +406,13 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.5.7</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.6.0</span> User Guide</div>
       </div>
     </a>
 
     <div class="section-label" data-chapter="start">Getting started</div>
     <a href="#install" data-chapter="start">Installation</a>
     <a href="#onboarding" data-chapter="start">First Launch</a>
-    <a href="#whatsnew-1257" data-chapter="start">What&rsquo;s New in 12.5.7</a>
-    <a href="#whatsnew-1256" data-chapter="start">What&rsquo;s New in 12.5.6</a>
-    <a href="#whatsnew-1251-1255" data-chapter="start">What&rsquo;s New in 12.5.1 to 12.5.5</a>
-    <a href="#whatsnew-1250" data-chapter="start">What&rsquo;s New in 12.5.0</a>
-    <a href="#whatsnew-1245" data-chapter="start">What&rsquo;s New in 12.4.5</a>
     <a href="#sidebar" data-chapter="start">Home and Work</a>
 
     <div class="section-label" data-chapter="chat">Chat</div>
@@ -407,6 +422,7 @@
     <a href="#memory-mode" data-chapter="chat">Memory Mode</a>
     <a href="#knowledge-graph" data-chapter="chat">Knowledge Graph</a>
     <a href="#group-chat" data-chapter="chat">Group Chat</a>
+    <a href="#iris" data-chapter="chat">Iris Orbit 👁</a>
     <a href="#voice" data-chapter="chat">Live Voice</a>
     <a href="#own-speech" data-chapter="chat">Your own speech server</a>
     <a href="#auto-compress" data-chapter="chat">Auto-Compress</a>
@@ -483,6 +499,7 @@
     <a href="#todoist" data-chapter="connected">Todoist</a>
     <a href="#spotify" data-chapter="connected">Spotify</a>
     <a href="#smarthome" data-chapter="connected">Smart Home</a>
+    <a href="#google-account" data-chapter="connected">One Google account</a>
     <a href="#gdrive" data-chapter="connected">Google Drive</a>
     <a href="#gdocs" data-chapter="connected">Google Docs</a>
     <a href="#places" data-chapter="connected">Google Places</a>
@@ -501,7 +518,7 @@
 
     <!-- Hero -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation · v<span data-skales-version>12.5.7</span></div>
+      <div class="hero-badge">📖 Official Documentation · v<span data-skales-version>12.6.0</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -697,84 +714,6 @@
       </div>
     </section>
 
-    <!-- WHAT'S NEW v12.5.6 An Answer You Can Actually Give -->
-    <section id="whatsnew-1257">
-      <h2><span class="icon">🚩</span> What&rsquo;s New in v12.5.7 <span class="badge badge-new">Code Gets Its Own Window</span></h2>
-      <p>Code stops being a page inside Skales and becomes a program of its own: a window built for working on a repository. Around it, the things a coding tool needs and Skales did not have.</p>
-      <ul>
-        <li><strong>Skales Code, in its own window.</strong> Its own title bar, its own status line, four modes that decide what a session may do, every step openable, every change reviewable beside the transcript, parallel checkouts, several agents at once. See <a href="#code">Skales Code</a>.</li>
-        <li><strong>A terminal that is yours.</strong> A real shell under the composer, in the session&rsquo;s folder. The agent can neither see it nor type into it.</li>
-        <li><strong>Commands that never end.</strong> A dev server or a watcher runs in the background with its output growing under the step that started it, a stop button that really stops it, and no timeout.</li>
-        <li><strong>Calling an API.</strong> Method, headers and body of your choice, your own network reachable, this computer not unless you allow it. See <a href="#http-request">Calling an API</a>.</li>
-        <li><strong>Home and Work.</strong> The sidebar has a personal side and a working side.</li>
-        <li><strong>Your own accent colours</strong>, kept readable, and never on the Skales lettering.</li>
-        <li><strong>Folders nothing may touch</strong>, including the shell, in every mode.</li>
-        <li><strong>Your own speech server</strong> for reading aloud and for dictation.</li>
-        <li><strong>Templates for developers.</strong> A coding template opens Skales Code with the prompt already typed, and five new ones cover debugging, review, understanding a codebase, refactoring and test coverage.</li>
-        <li><strong>Mail that says which code to get.</strong> A mailbox that refuses your password by design &mdash; QQ, 163, 126, GMX, Web.de, iCloud, Zoho, Yandex &mdash; now gets the sentence that helps instead of &ldquo;verify credentials&rdquo;.</li>
-      </ul>
-    </section>
-
-    <section id="whatsnew-1256">
-      <h2><span class="icon">🚩</span> What&rsquo;s New in v12.5.6 <span class="badge badge-new">An Answer You Can Actually Give</span></h2>
-      <p>Being asked a question is no use if the form has nowhere to put your answer. Skales could ask you four things and accept none of them, and the setup screen for browsing the web reported itself ready on the same page that said it was not. Both were the same fault: something reported a state instead of checking it.</p>
-      <ul>
-        <li><strong>Instructions you write once, followed everywhere.</strong> Telling Skales how you want it to work &mdash; answer in German, keep it short, never open with a compliment &mdash; used to last exactly one conversation. <strong>Settings &gt; Chat &amp; Code</strong> now has a box for standing instructions that travels with every conversation, with tasks and schedules that run while you are away, and with your own custom agents. Two places leave it out on purpose: an isolated agent, which carries nothing of yours by design, and the internal calls Skales makes to itself. A project&rsquo;s own <code>CLAUDE.md</code> is the more specific instruction and still wins inside that project. The box is backed by a plain <code>SKALES.md</code> in your data dir &mdash; the path is printed under it &mdash; and editing that file in a text editor is the same edit; if it changed on disk while you had unsaved text in the box, Skales says so rather than writing over it.</li>
-        <li><strong>A question with choices no longer stops at the choices.</strong> When Skales asked something and offered buttons, the buttons were all there was: &ldquo;What is your name and what do you do?&rdquo; came with four roles and nowhere to type a name, so the run looked dead. Every set of choices now ends with one you can write into yourself, the question&rsquo;s short label is shown, and the line explaining what each choice means appears under it instead of being dropped on the way to the screen.</li>
-        <li><strong>Browser Control says whether it can browse, not whether it once could.</strong> The setup panel read a note written the last time an install had gone well and never revised it, so it could sit marked ready while the same page refused to open a window. It now asks the question every time you open it: would opening a page work <em>right now</em>, with the browser you have chosen. If not, it names the missing part and offers the button that fixes it. A failure to launch is also no longer reported as a failure to install, and <strong>Install Chromium</strong> installs Chromium.</li>
-        <li><strong>Muting is actually silent.</strong> The switch promises no pings on any channel while everything still lands on the Notifications page. The toast in the corner was built from that page&rsquo;s own records, so it and its sound came through anyway. It is a channel like the others now. The one exception the other channels already made stays: a request waiting on your answer still reaches you. Nothing is saved up either &mdash; unmuting does not empty the quiet period onto your screen. A Discover mention also stopped outranking your settings: it was filed at the urgency reserved for things that block work, which took it through Mute, through quiet hours and past your Discover ping limit.</li>
-        <li><strong>The Organization scene shows you who is stuck.</strong> The office under a running team has been redrawn around that one job. Colour means state and nothing else: a pool of light under each desk carries the agent&rsquo;s status, readable across the whole panel before a single word is, the monitor breathes while there is work, and the chip under each desk names the tool actually running instead of the word &ldquo;Working&rdquo;.</li>
-        <li><strong>Right-click a key field and paste into it.</strong> The menu on a password field offered three things to do with a key you already had, and nothing to put one <em>in</em>. Paste is in it now, it respects a selection, and the keyboard shortcut works as before.</li>
-        <li><strong>A page you visit cannot reach the Skales API on your own machine.</strong> The local server is reachable from any page open in your browser, and that was being closed one route at a time. There is one shared check now, in front of every <code>/api</code> request: a caller that claims an origin which is neither this server nor your own machine is refused. Everything that is not a browser &mdash; the messaging bots, the CLI, the app talking to itself &mdash; is untouched.</li>
-        <li><strong>Discover stops passing its own template off as your model&rsquo;s work.</strong> Composing a post gave the model 45 seconds and then quietly substituted a local phrase bank, unmarked; with auto-post on, that template was published under your name. The ceiling is 180 seconds now (measured: at 45 s ten live models were being called dead, at 180 s seven of them answered), a fallback draft says it is one, and auto-post holds for it.</li>
-      </ul>
-    </section>
-
-    <!-- WHAT'S NEW v12.5.1 - v12.5.5 -->
-    <section id="whatsnew-1251-1255">
-      <h2><span class="icon">🚩</span> What&rsquo;s New in v12.5.1 &ndash; v12.5.5</h2>
-      <p>A turn used to be a one-way door: regenerating an answer deleted the one you had, and a Flow turn rewrote the deck you liked with no way back. Around that, five releases of making the app say true things about itself.</p>
-      <ul>
-        <li><strong>Nothing you made is gone.</strong> Regenerating keeps the previous answer and lets you walk back to it, and a Flow project keeps every version on disk instead of overwriting the one you liked. Flow projects can also be archived (reversible, keeps everything) or deleted (the folder moves to a trash folder next to your projects, so it can be recovered by hand).</li>
-        <li><strong>More providers you can simply pick.</strong> Moonshot (Kimi), MiniMax, GLM (z.ai), Qwen (DashScope) and <strong>Nvidia NIM</strong> are provider cards with current models, rather than something to reach through OpenRouter or a Custom endpoint. The Nvidia list is the models that <em>answer</em>: every entry was re-verified by making a real call, not by reading the catalogue &mdash; that catalogue listed 118 models of which 44 responded, and the one previously shipped as &ldquo;Best&rdquo; had been retired. Nemotron 3 Super and Ultra, GLM 5.2, DeepSeek V4 Pro and Flash, GPT-OSS 120B, Qwen3 Next 80B and Llama 3.3 70B. Some of them take more than a minute to the first word; the picker says so instead of the app giving up on them.</li>
-        <li><strong>Motion can be made in a technique, not just a palette.</strong> Flow&rsquo;s Motion mode has its own Style setting with fourteen techniques &mdash; papercut, pixel, particles, whiteboard, kinetic type, motion graphics, sketch, ASCII, isometric, blueprint, neon, comic, origami and silhouette &mdash; so asking for papercut gets papercut rather than a normal animation with the word in the copy.</li>
-        <li><strong>Stop actually stops.</strong> Stopping an image turn, a Flow run or a task now ends the work rather than clearing the screen while it continues and lands afterwards anyway. An uncapped task runs uncapped, and an isolated agent no longer writes into your memory.</li>
-        <li><strong>Pictures behave like the rest of chat.</strong> An image answer streams token by token, is routed to a model that can actually see, keeps your agent&rsquo;s own instructions, and no longer pushes the conversation out of the request. Incognito covers the picture too: nothing about an off-record chat is written anywhere, the attachment included.</li>
-        <li><strong>A crash screen tells you what crashed.</strong> Both crash screens now show the detail that identifies the fault &mdash; error, page, and where in the app it broke &mdash; in a box you can select, with a copy button that says to select the text instead of pretending it worked when copying is blocked.</li>
-        <li><strong>A reply cut off mid-sentence finishes itself, everywhere.</strong> On the desktop, on Telegram and WhatsApp, in Buddy and from the phone: the remainder is requested and joined so one complete message lands, and a tool call torn by the reply limit is redone rather than run broken.</li>
-      </ul>
-    </section>
-
-    <!-- WHAT'S NEW v12.5.0 Skills -->
-    <section id="whatsnew-1250">
-      <h2><span class="icon">🚩</span> What&rsquo;s New in v12.5.0 <span class="badge badge-new">Skills</span></h2>
-      <p>Skales learns skills: a built-in library it can reach for on its own, style packs that give Studio a committed aesthetic, ready-made agent teams &mdash; and an agent that keeps working instead of stopping halfway.</p>
-      <ul>
-        <li><strong>A built-in skill library, ready on install.</strong> Skales ships with a curated set of working skills &mdash; disciplined bug diagnosis, relentless plan interviews, research with cited sources, test-first coding, handoff documents and more. Skills marked automatic are picked up by the AI on its own when the task fits; the others run when you name them (with @ or by asking). Every card shows its author and license, the library is searchable with category filters, and a skill you import under the same name simply takes over.</li>
-        <li><strong>Style packs for Studio.</strong> 74 aesthetic references &mdash; each clearly labelled as <em>inspired by</em> a well-known look &mdash; can be pinned to a Flow project next to the Brand Kit. A pack shapes typography, color and layout mood; your brief always wins on content, and no real logos or trademarks are ever reproduced.</li>
-        <li><strong>Flow knows its skills.</strong> Pin up to three skills on the Flow landing that ride along on every step of the project; your choices show as chips on the first message.</li>
-        <li><strong>Ready-made agent teams.</strong> Organization offers five presets &mdash; Research, Build, Analysis, Content and Ops &mdash; each with sensibly prompted roles. One click creates the team; everything stays editable.</li>
-        <li><strong>The agent finishes what it starts.</strong> An answer that ends mid-plan is no longer the end of the turn: with open checklist items or an announced next step, Skales continues on its own. Scheduled tasks that hit their time limit while still progressing resume themselves from the checkpoint.</li>
-        <li><strong>Honest artifacts.</strong> Images that really came from generation wear an origin badge, the prompt folds into a &ldquo;Show prompt&rdquo; accordion, downloads are content-checked before they touch the disk, and a website that blocks the built-in browser says so &mdash; with a pointer to the visible-browser login handoff.</li>
-      </ul>
-    </section>
-
-    <!-- WHAT'S NEW v12.4.5 Checkpoint -->
-    <section id="whatsnew-1245">
-      <h2><span class="icon">🚩</span> What&rsquo;s New in v12.4.5 <span class="badge badge-new">Checkpoint</span></h2>
-      <p>The release that locks the doors before adding more rooms: remote access becomes one honest switch, pairing asks you first, videos work from the very first message, and your phone can hand the desktop videos, PDFs and whole photo batches.</p>
-      <ul>
-        <li><strong>Remote access is one switch, default off.</strong> Off means the server listens only on this machine &mdash; in a hotel or caf&eacute; network the port simply is not there. On means reachable over LAN/Tailscale <em>and</em> token-protected, as one inseparable setting. The access token survives restarts now, and Settings &gt; Security shows it at the very top with a copy button, a QR code and a regenerate button. With remote access on, the token guards the entire local surface &mdash; not just the API routes. Swarm users are unaffected: an enabled Swarm keeps the port open for its peers.</li>
-        <li><strong>Pairing asks you first.</strong> A device that knocks with your pairing code no longer connects by itself: the Mobile page shows who is asking &mdash; device name plus the tail of its key &mdash; and you allow or refuse. Your Allow counts only for the device you were shown, refusing is &ldquo;not now&rdquo; rather than a ban, and unanswered requests expire after a few minutes.</li>
-        <li><strong>Pair without a camera.</strong> Under the pairing QR there is now a copyable pairing string &mdash; for remote onboarding, headless devices, or whenever scanning is impractical. The app (2.4.5 and newer) accepts it pasted, and can also read a QR out of a gallery photo.</li>
-        <li><strong>Video from the very first message.</strong> The chat landing page accepts videos (picker and drag &amp; drop), shows a thumbnail chip, and hands the clip to the same frame-sampling analysis the in-session composer uses. The sampled frames now fold into a compact accordion under the reply instead of ten full-size images, and the Stop button aborts an analysis even during the sampling phase.</li>
-        <li><strong>Videos, PDFs and full photo batches from your phone.</strong> The paired app (2.4.5 and newer) streams videos and PDFs to the desktop in chunks, every attached image arrives instead of only the first, and the phone can display the desktop&rsquo;s knowledge graph as a live map. Older app versions keep working exactly as before.</li>
-        <li><strong>The knowledge graph stays yours.</strong> Machine-written sessions and Skales&rsquo; own product terms no longer enter the graph, and Settings offers a one-time cleanup that removes previously collected ones &mdash; without touching your real entities.</li>
-        <li><strong>Attach audio &mdash; and videos get their soundtrack read.</strong> An audio file dropped into either composer is transcribed through your configured speech-to-text provider and reads like any attached document. Video analysis now also listens: the soundtrack is transcribed alongside the sampled frames, so &ldquo;what is said in this clip&rdquo; finally has an answer.</li>
-        <li><strong>Friend Mode no longer double-texts.</strong> Two overlapping schedulers could each send their own check-in within a minute; one guard now spans everything.</li>
-      </ul>
-    </section>
-
     <!-- CODE MODE (v11.2.1) -->
     <section id="code">
       <h2><span class="icon">💻</span> Skales Code</h2>
@@ -922,7 +861,17 @@
     <!-- Templates -->
     <section id="flow">
       <h2><span class="icon">🌊</span> Flow</h2>
-      <p>Flow is Studio&rsquo;s conversational design workspace: one brief, and it keeps working on it with you instead of returning a single result. Eight modes, and Flow picks the one that fits what you asked unless you say otherwise: <strong>deck</strong>, <strong>prototype</strong>, <strong>wireframe</strong>, <strong>mobile</strong> mockup, print <strong>document</strong>, <strong>image</strong>, <strong>video</strong> and <strong>motion</strong> graphic.</p>
+      <p>Flow is Studio&rsquo;s conversational design workspace: one brief, and it keeps working on it with you instead of returning a single result. Nine modes, and Flow picks the one that fits what you asked unless you say otherwise: <strong>deck</strong>, <strong>prototype</strong>, <strong>wireframe</strong>, <strong>mobile</strong> mockup, print <strong>document</strong>, <strong>image</strong>, <strong>video</strong>, <strong>film</strong> and <strong>motion</strong> graphic.</p>
+      <h3>Film: one shot, one camera move</h3>
+      <p>Film makes a single clip with a single deliberate camera move, and the move is what you pick first &mdash; before you write a word of the brief. Forty-eight of them, grouped by what they are: zoom, dolly, crane, pan, orbit, rig, aerial and lens. One move per clip, and there is no way to pick two: mixing camera moves in one generated shot is exactly what makes generated footage look generated.</p>
+      <p>Where the clip comes from, in this order:</p>
+      <ol>
+        <li><strong>Higgsfield</strong>, if you have connected it as an MCP server under Settings. It executes a camera preset as a preset rather than as words, so it gives the best result for this mode.</li>
+        <li><strong>The video APIs under Settings &rsaquo; Skales Studio</strong> &mdash; Kling, Runway, fal, Google Veo, Replicate or OpenRouter. None of them takes a camera-move parameter, so the move you picked steers the prompt instead. This is the normal path and it works well.</li>
+        <li><strong>A Hugging Face Space you have activated</strong>, as the budget route: free or nearly so, on a shared queue, and slower.</li>
+      </ol>
+      <p>If none of the three is set up, the chip stays where it is and tells you which key is missing and where it goes. It keeps the camera move you picked either way. Follow-up messages are takes: &ldquo;tighter&rdquo;, &ldquo;try it as a crane up&rdquo;, &ldquo;same shot at night&rdquo; keep everything you did not change and save the result beside the earlier takes.</p>
+      <p>On the phone, Film works the same way with the same moves, and generates through the video key on the phone (fal.ai under Integrations, or an OpenRouter key under Provider). With no key it says so rather than producing an animation and calling it a film.</p>
       <h3>Nothing you made is gone</h3>
       <p>Every turn seals a version of the whole project, so you can go back to any of them &mdash; and the rollback is itself sealed first, which is what keeps going back reversible. Projects can be archived (reversible, keeps everything) or deleted (the folder moves to a trash folder next to your projects).</p>
       <h3>Brand Kit and style packs</h3>
@@ -1039,13 +988,38 @@
       <p>Set a max API calls per hour in Settings → Autopilot to prevent runaway costs. Autopilot pauses automatically when the limit is reached.</p>
 
       <div class="tip"><strong>💡 Tip:</strong> Autopilot must be enabled in Settings → Autopilot → Enable Autopilot for background task processing. Friend Mode and Buddy Intelligence work independently of this toggle.</div>
-    </section>
+    
+      <h3>A plan you read before it exists</h3>
+      <p>The Deep-Dive interview ends in a Master Plan, and the plan is a <em>draft</em>: a list of tasks you read, untick and edit. Nothing is created until you press &ldquo;Create these&rdquo;. If the model got one task wrong, the rest survive and the ones that were left out are named with the reason.</p>
+
+      <h3>Quick Task</h3>
+      <p>Type one line and Skales works it up into a task an agent can actually run: instructions, the project it belongs to and the agent best suited to it. Each of the three is a suggestion with a tick beside it; untick whatever is wrong. If Autopilot is paused, the warning carries the switch itself, so the task you just made can start without going anywhere else.</p>
+
+      <h3>The board</h3>
+      <p>Drag a card to another column to move it. Two moves are refused rather than faked: you cannot drop a card into &ldquo;in progress&rdquo;, because that is where Skales puts a task when it actually picks it up, and you cannot drag a task that is running out from under the runner &mdash; cancel it first.</p>
+
+      <h3>Running goals</h3>
+      <p>The strip above the board shows the goals running across all your conversations. Each one opens where it lives, and can be carried on or stopped from here.</p>
+</section>
 
     <!-- Agents -->
     <section id="agents">
       <h2><span class="icon">🤖</span> Agents</h2>
       <p>Create custom AI personas with their own name, personality, system prompt, and model selection. Agents appear in the chat persona picker and each maintain a separate conversation history.</p>
       <p>Built-in personas include: <strong>Default</strong>, <strong>Entrepreneur</strong>, <strong>Coder</strong>, <strong>Family</strong>, and <strong>Student</strong>.</p>
+
+      <h3>Asking several agents at once</h3>
+      <p>The button beside the composer&rsquo;s mode strip says how many agents your next message goes to. One is off and means what it always meant: the agent picked for this chat answers, alone. Every click counts up to six and back to one.</p>
+      <p>Above one, four things happen in order:</p>
+      <ol>
+        <li>The <strong>coordinator</strong> &mdash; the first seat of your roster, which is your default agent &mdash; reads the assignment and breaks it down: what a complete answer has to cover, and which angle each agent leads on.</li>
+        <li>Every agent answers the <em>whole</em> assignment with that brief attached, each on its own model and provider. The focus says where it goes deepest, never where it stops.</li>
+        <li>The coordinator compares what came back and writes a <strong>verdict</strong>: a ranking, two sentences per agent saying why it sits where it sits. No scores. It recommends and decides nothing.</li>
+        <li><strong>You decide.</strong> Every agent card carries &ldquo;Continue with this agent&rdquo;, which switches the session to that one agent and hands its answer to the next turn as the thing to build on, and &ldquo;Take this result&rdquo;, which puts the answer into the conversation or saves it as a file.</li>
+      </ol>
+      <p>Who takes part, and in which order, is arranged in the roster on this page. The order <em>is</em> the assignment: &ldquo;3 Agents&rdquo; means the first three. The first seat belongs to your default agent and does not move, because somebody has to write the breakdown and the verdict.</p>
+      <p>Counting the button back to one ends the run: nothing further starts, and no verdict is written over a run you walked away from. The cards stay exactly as they are. If Skales is closed mid-run, reopening it keeps whatever had already arrived and says plainly that the rest was ended.</p>
+      <p>The same cards and the same two buttons appear wherever several agents produce results: chat, Skales Code, Tasks, Group Chat and the Organization result list.</p>
     </section>
 
     <!-- Memory -->
@@ -1361,6 +1335,85 @@
       <p>When Friend Mode is enabled, the Buddy proactively reaches out — checking in, celebrating wins, or sending nudges based on your activity. Messages can be delivered via Chat, Telegram, or WhatsApp.</p>
 
       <div class="tip"><strong>💡 Tip:</strong> Friend Mode works independently of Autopilot. You don't need Autopilot enabled to receive proactive messages.</div>
+    </section>
+
+    <!-- Iris Orbit -->
+    <section id="iris">
+      <h2><span class="icon">👁</span> Iris Orbit <span class="badge badge-beta">Beta v1.0</span></h2>
+      <p>A window with no toolbar, no composer and no message list: a particle eye, and one line of text under it. You talk, Skales answers out loud, and the particles do something that matches what just happened. It is the same Skales underneath - the same conversation file, the same model, the same tools, the same permissions. Only the way in is different.</p>
+      <p><strong>It is a first version.</strong> It works and it is in the release, but not every test is through. If something behaves oddly here, it is worth reporting.</p>
+      <p><strong>It is switched on when you install Skales</strong> (12.6.0). It was opt-in while it was being built, and a surface you have to find in Settings before it exists is a surface nobody finds. If you would rather not have it, the sidebar entry and the chat header button both go away again the moment you turn it off. With no provider key set up yet, the window says so and offers the way into Settings &rsaquo; Voice, like every other surface that needs one.</p>
+
+      <h3>Opening it</h3>
+      <ul>
+        <li><strong>Sidebar &rsaquo; Iris Orbit</strong> opens a fresh voice conversation in its own window.</li>
+        <li>The <strong>Iris Orbit button in the chat header</strong> hands the conversation you are already in over to the voice window. The same session, carried on out loud.</li>
+      </ul>
+
+      <h3>Speaking</h3>
+      <p>Press <strong>Space</strong> and talk. The eye opens and the ring pulses with your microphone level, so you can see that the ear is really open. Skales decides you are finished when you stop talking; how long a silence that takes is <strong>Settings &rsaquo; Voice &rsaquo; how long a silence ends your turn</strong>, and the push-to-talk key is set right below it.</p>
+      <p><strong>You only press it once.</strong> Once a conversation has started, the ear opens again by itself at the end of every answer she speaks, so a back-and-forth needs no keyboard at all. Space still works and still means the same thing. <strong>Mute</strong> in the right-click menu ends it, and the same entry brings her back.</p>
+      <p>If nothing was understood, the line under the eye says so and says why. It never fails silently.</p>
+
+      <h3>Typing</h3>
+      <p><strong>Just start typing.</strong> A single field appears over the eye, Enter sends it, Escape makes it go away again. There is no composer sitting there waiting, on purpose - the surface is for talking, and the field is for the sentence you would rather not say out loud. A first-time hint says "Or just type" until you have done it once.</p>
+
+      <h3>What lands in the ring</h3>
+      <p>When an answer <em>is</em> the thing you asked to see - a poem, a list, a summary, a table - it goes <strong>inside the frame</strong>, readable, and the line under the eye carries only the short sentence that goes with it. Anything longer than that line can honestly hold is frame content by definition; it is never cut off mid-word. A short spoken answer opens nothing, which is not a fault and has no empty panel.</p>
+      <p>The same is true of what her tools produce: a picture, a document, search results, a list. Something heavy goes to the window that owns it and <strong>she says where she put it</strong> - and a file she writes is announced rather than followed: approving a write does not move you to another window.</p>
+      <p>When she wants to do something that needs your permission, she <strong>says what it is and waits</strong>. Two answers sit under the eye, and "yes" or "no" out loud works just as well.</p>
+
+      <h3>What can I say?</h3>
+      <p>The right-click menu's first entry is a list of sentences that actually do something, with a real example each: turning the particles into a shape, asking for something as a document, a web search, a timer, your tasks. Asking her out loud what she can do gets the same list back.</p>
+
+      <h3>Reaching Iris from a phone browser</h3>
+      <p>You can open Skales from another device over Tailscale, and Iris will draw - but <strong>she will not hear you</strong>, and that is the browser rather than Skales. A browser only hands out the microphone in a <em>secure context</em>: HTTPS, or localhost. Over a plain <code>http://100.x.x.x</code> address it refuses silently, so the surface looks like it is ignoring you. Nothing is broken and nothing needs fixing on the phone; the way to a working microphone from another device is HTTPS in front of the standalone server, and it is on the roadmap rather than in this release.</p>
+
+      <h3>Morphs</h3>
+      <p>The particles are not decoration: every deterministic thing Iris does has its own visual answer. A new conversation blinks. A timer becomes the countdown digits themselves. Something forgotten scatters and gathers again. And you can ask for a shape directly:</p>
+      <ul>
+        <li>"Morph into a car"</li>
+        <li>"Turn into a coffee cup"</li>
+        <li>"Become a music note"</li>
+      </ul>
+      <p>The shape vocabulary is the Lucide icon catalogue, and the words that reach it are recognised in all twelve interface languages, so "Auto", "voiture" and "coche" all find the car. A word with no shape behind it is not an error: the particles simply stay as they are.</p>
+
+      <h3>Orbits: when the ring becomes a panel</h3>
+      <p>Some answers are worth looking at rather than only listening to. When one is, the ring leaves the eye and becomes the border of a panel, sized to what it is holding. You do not ask for this and there is no button for it: it follows from what the answer DID.</p>
+      <table>
+        <thead><tr><th>What you asked for</th><th>What appears in the ring</th></tr></thead>
+        <tbody>
+          <tr><td>A picture: "draw me a...", "make an image of...", an edit or an upscale</td><td>The picture itself</td></tr>
+          <tr><td>A document: "write me a plan", "put that in a document"</td><td>The document, readable, in the frame</td></tr>
+          <tr><td>A web search: "look up...", "what is the news on..."</td><td>The results as cards, with their sources</td></tr>
+          <tr><td>A list: your tasks, your day plan, the files in a folder</td><td>The list, with what is done ticked off</td></tr>
+          <tr><td>Reading something: a page, a file, a Skales doc</td><td>The text</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Anything heavier goes where it belongs</strong> and she says so out loud rather than making you find it: a browsing session opens the browser, a generated video or a Flow artifact goes to Studio, code goes to Skales Code. The sentence you hear names the window it landed in.</p>
+      <p>One orbit at a time, and it is the newest one: if an answer searched the web and then drew a picture, the picture is what you see, because that is what the last sentence was about. Click the backdrop, or say "close", and the ring goes back to being an eye.</p>
+      <p>An answer with nothing to look at simply does not open one. That is not a failure and there is no empty panel for it.</p>
+
+      <h3>Timers</h3>
+      <p>"25 minutes of focus" starts a timer, and the ring becomes the countdown. Right-click while it runs to pause or resume it. When it goes off, a shockwave rolls out from the middle and Iris says so.</p>
+
+      <h3>Wake word</h3>
+      <p>Optional, and off until you train it. In <strong>Settings &rsaquo; Voice &rsaquo; Wake word</strong> you say "Iris" three times and Skales learns <em>your</em> pronunciation. Everything about it stays on the device: there is no cloud round trip and no recording leaves the machine. With it armed, the hint line reads "Listening for Iris" and you can start a turn without touching the keyboard.</p>
+
+      <h3>Right-click</h3>
+      <p>The window has almost no chrome, so the context menu is where the rest of it lives: <strong>New conversation</strong>, <strong>Conversations</strong> (the list of past voice sessions), <strong>Voice settings</strong> (straight to Settings &rsaquo; Voice), <strong>Copy the last answer</strong>, <strong>Ear shut, voice off</strong>, and <strong>Close window</strong>.</p>
+
+      <h3>Closing it</h3>
+      <p>Three ways, and all three work: the small cross that fades in at the top of the window while the mouse is moving, <strong>Cmd/Ctrl+W</strong>, and <strong>Escape</strong> while the eye is resting. A window nobody is touching goes back to being the buttonless field it was designed as.</p>
+
+      <h3>Languages</h3>
+      <p>Iris greets you and answers in the language you set under <strong>Settings &rsaquo; General &rsaquo; Native language</strong>. Set to "auto", or set to a language Skales has no interface translation for, the greeting follows the interface language while the answers still come in yours. The spoken language is the language of the text, so the two never drift apart.</p>
+
+      <h3>Coming back to it</h3>
+      <p>Reopening Iris picks up the last voice conversation and greets you with where you left off, rather than starting from nothing. "New conversation" (spoken, or from the right-click menu) is how you start clean.</p>
+
+      <h3>Where the conversations live</h3>
+      <p>Nowhere new. A voice conversation is an ordinary Skales session, in the same place as every other one, and it shows up in <strong>History</strong> like the rest. Open one in the chat and it is a normal chat - the voice surface is a way of talking to a session, not a separate kind of session.</p>
     </section>
 
     <!-- Live Voice -->
@@ -1835,10 +1888,49 @@
       <p>Control Home Assistant devices: lights, temperature, and services. Requires your Home Assistant URL and a long-lived access token. Configure in <strong>Settings > Integrations</strong>.</p>
     </section>
 
+    <!-- One Google account -->
+    <section id="google-account">
+      <h2><span class="icon">🔑</span> One Google account</h2>
+      <p>Calendar, Drive, Docs and YouTube all want the same Google account, and until 12.6.0 you had to set it up once per service. Now there is one card - <strong>Settings &rsaquo; Integrations &rsaquo; Google account</strong> - you fill in once, tick the services you want, and approve once.</p>
+
+      <h3>What Google needs from you first</h3>
+      <p>Google does not hand out a client id to an app; it hands one out to <em>your</em> project. It is a five minute detour, once.</p>
+      <ol>
+        <li>Open <strong>console.cloud.google.com</strong> and create a project (or pick one you already have).</li>
+        <li><strong>APIs &amp; Services &rsaquo; Library</strong>: enable an API for each service you want. Google Calendar API, Google Drive API, Google Docs API, YouTube Data API v3. Enable only what you will use; you can come back later.</li>
+        <li><strong>APIs &amp; Services &rsaquo; OAuth consent screen</strong>: fill it in. While the project is unpublished, add your own address under test users, or Google will refuse the sign-in.</li>
+        <li><strong>APIs &amp; Services &rsaquo; Credentials &rsaquo; Create credentials &rsaquo; OAuth client ID</strong>. Application type: <strong>Desktop app</strong>. This is the one that matters - a "Web application" client will be refused at the redirect.</li>
+        <li>Copy the <strong>Client ID</strong> and <strong>Client secret</strong> into the Google account card in Skales.</li>
+        <li>Tick the services, press Connect, and approve in the browser window that opens. That is the one consent.</li>
+      </ol>
+
+      <h3>The two rules worth knowing</h3>
+      <ul>
+        <li><strong>A service's own key wins.</strong> This card is additive. If Calendar already has its own OAuth setup, or Drive its own token, that keeps working and keeps its own field. The shared account only fills the gaps.</li>
+        <li><strong>Adding a service later means Authorize again.</strong> Google's desktop-app flow has no incremental authorization, so Skales asks for the <em>union</em> of what you already granted and what you are adding, and you approve once more. Nothing you had is lost by doing it - that union is exactly why it is asked for again.</li>
+      </ul>
+
+      <h3>It has to be done on the machine Skales runs on</h3>
+      <p>The consent comes back to a loopback address (<code>http://localhost/oauth/google</code>), because Google retired the copy-and-paste flow desktop apps used to use. So the connect step only works when you are looking at Skales on the computer it is running on. Reached from another device - a phone over Tailscale, another machine on the LAN - the card says so up front rather than sending you through six steps and failing at the last one. Connect once locally; every device that reaches that Skales afterwards uses the account.</p>
+
+      <h3>What each service asks for</h3>
+      <table>
+        <tr><th>Service</th><th>Scope</th></tr>
+        <tr><td>Calendar</td><td><code>auth/calendar</code></td></tr>
+        <tr><td>Drive</td><td><code>auth/drive</code></td></tr>
+        <tr><td>Docs</td><td><code>auth/documents</code></td></tr>
+        <tr><td>YouTube (read)</td><td><code>auth/youtube.readonly</code></td></tr>
+        <tr><td>YouTube (upload)</td><td><code>auth/youtube.upload</code></td></tr>
+      </table>
+      <p>Your address (<code>userinfo.email</code>) is always requested as well, and for one reason: so the card can show you <em>which</em> account is connected instead of just "connected".</p>
+
+      <div class="tip"><strong>Disconnecting</strong> removes the token from this machine. It does not revoke the grant on Google's side - do that at <strong>myaccount.google.com &rsaquo; Data &amp; privacy &rsaquo; Third-party apps</strong> if you want it gone there too.</div>
+    </section>
+
     <!-- Google Drive -->
     <section id="gdrive">
       <h2><span class="icon">📁</span> Google Drive</h2>
-      <p>List, search, upload, and download files from Google Drive. Requires OAuth setup. Configure in <strong>Settings > Integrations</strong>.</p>
+      <p>List, search, upload, and download files from Google Drive. Runs on the shared <a href="#google-account">Google account</a> (Settings &rsaquo; Integrations &rsaquo; Google account) - tick Drive there and it is done. A Drive setup of its own still works and still wins where you have one.</p>
     </section>
 
     <!-- GitHub -->
@@ -1850,7 +1942,7 @@
     <!-- Google Docs -->
     <section id="gdocs">
       <h2><span class="icon">📄</span> Google Docs</h2>
-      <p>Create, read, and edit Google Docs. Requires OAuth setup. Configure in <strong>Settings > Integrations</strong>.</p>
+      <p>Create, read, and edit Google Docs. Runs on the shared <a href="#google-account">Google account</a> (Settings &rsaquo; Integrations &rsaquo; Google account) - tick Docs there and it is done. A Docs setup of its own still works and still wins where you have one.</p>
     </section>
 
     <!-- Custom Skill Interactive UI -->
@@ -2083,7 +2175,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.5.7</span> · © 2024-2026 Mario Simic · BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.6.0</span> · © 2024-2026 Mario Simic · BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 
