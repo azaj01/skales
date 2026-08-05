@@ -6,6 +6,67 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.6.1 - Order and Follow-Through
+
+The release after the big one is where your first week of feedback lives. The
+provider page you can finally read, agents that take turns on one graphics
+card, a scheduler that owes you nothing after a night of sleep, and a dozen
+small wrongs made right.
+
+### Added
+
+- **The provider page is a grid you can read.** Every provider is a tile with a
+  short description, badges for what it can do (voice, vision, media) and a
+  switch. Switched off means gone, from the page and from every model picker.
+  Filters find providers by capability, and "+ Custom endpoint" is a tile like
+  the others. Choosing your active provider works exactly as before, and no
+  setting was removed: the advanced ones now live in the provider's own card or
+  in one folded Advanced Routing section at the end.
+- **Tencent Hunyuan is a provider**, with a switch between its regions.
+- **Agent teams can take turns.** On local models, running several agents at
+  once means they fight for the same graphics card. Sequential mode runs them
+  one after another and unloads each model where the runtime supports it, and a
+  new "Keep models loaded" setting for Ollama puts that duration under your
+  control, from unload-immediately to always.
+- **MCP servers that use a plain API token** get a headers field right in the
+  form, and a rejected request no longer pretends the server wants a sign-in.
+- **skales:// links.** A link can open Skales and land on the right screen.
+  Nothing is downloaded or executed without a confirmation card first.
+- **Bring your own vector database.** Qdrant and ChromaDB work as retrieval
+  backends beside the built-in store, and the built-in one remains the
+  fallback.
+- **One Telegram bot, several chats.** Pair additional chats and choose where
+  an answer goes.
+- **The scheduler survives sleep.** Runs missed while the machine slept are
+  caught up on wake, and a timer that the system froze says so instead of
+  silently drifting.
+- **A headless start** for machines without a screen, reachable through the
+  existing web access, and **a tiny-model preset** that trims tools and context
+  so sub-1B models stay usable.
+- **The guide explains the three multi-agent modes** and when to reach for
+  which.
+
+### Fixed
+
+- Buttons and links that were invisible on dark themes. A whole family of dead
+  color references, all of them found and replaced, with a check that keeps the
+  class out.
+- Signing in with your Google account now unlocks Drive and Docs everywhere,
+  not only Calendar, and each card says which login it is actually using.
+- The voice list loads for every provider, not only one, and the preview button
+  plays a sample on each.
+- Conversations keep a timestamp per message instead of a clock in the prompt,
+  which keeps long conversations faster and cheaper.
+- The navigation menu no longer hides behind page content.
+- Local models that write their tool calls as plain text in one more dialect
+  are understood and executed instead of leaking markup into the answer.
+- An agent that stops after a failed tool now says which tool failed instead of
+  returning nothing.
+- In team runs, your agents' own instructions outrank the coordinator's
+  boilerplate.
+- Bug reports sent from the app carry the screen they came from, so you do not
+  have to remember it.
+
 ## v12.6.0 - Iris Orbit
 
 The release about things that were happening where you could not see them, and
