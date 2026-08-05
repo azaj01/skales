@@ -64,8 +64,9 @@ small wrongs made right.
   returning nothing.
 - In team runs, your agents' own instructions outrank the coordinator's
   boilerplate.
-- Bug reports sent from the app carry the screen they came from, so you do not
-  have to remember it.
+- A crash remembers where it happened: the next bug report
+  you send automatically carries the screen and the component that crashed,
+  so you do not have to.
 
 ## v12.6.0 - Iris Orbit
 
