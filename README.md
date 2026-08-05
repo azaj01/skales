@@ -1,4 +1,4 @@
-> **This source snapshot is outdated.** The source in this repository is the v7 tree (`package.json` version 7.1.0), last current in March 2026; since then only a single security fix (July 2026) has landed, no feature updates. Skales continues as binary releases only: [Releases](https://github.com/skalesapp/skales/releases) and [skales.app](https://skales.app).
+<sub>Looking for the source code, or planning to fork? [Read this first](#about-the-source-in-this-repository).</sub>
 
 <div align="center">
     <h1><img width="45" height="45" alt="image" src="https://github.com/user-attachments/assets/c3e88872-6fb4-449d-84a8-4789acf3ef02"/><br>S K A L E S
@@ -505,3 +505,9 @@ The easiest way to start is **Skales IQ**, the free built-in trial that needs no
 You do not need a paid plan or a local GPU to start. Several providers offer a real free tier you can paste straight into **Settings → AI Providers** and use right away, like Google AI (Gemini), Groq, OpenRouter free models, Cerebras, and Mistral.
 
 For a current, community-maintained list of what is free and how much you get, see **[Free LLM API Resources](https://github.com/cheahjs/free-llm-api-resources)**. Pick one, drop the key into Skales, and you are running.
+
+---
+
+## About the source in this repository
+
+**This source snapshot is outdated.** The source in this repository is the v7 tree (`package.json` version 7.1.0), last current in March 2026; since then only a single security fix (July 2026) has landed, no feature updates. Skales continues as binary releases only: [Releases](https://github.com/skalesapp/skales/releases) and [skales.app](https://skales.app).
