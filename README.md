@@ -1,5 +1,3 @@
-<sub>Looking for the source code, or planning to fork? [Read this first](#about-the-source-in-this-repository).</sub>
-
 <div align="center">
     <h1><img width="45" height="45" alt="image" src="https://github.com/user-attachments/assets/c3e88872-6fb4-449d-84a8-4789acf3ef02"/><br>S K A L E S
 </h1>
@@ -31,6 +29,9 @@ The private AI that lives on your computer and does real work, not just chat.
   </p>
    <p>
     <sub>Switching from <b>OpenClaw</b>, <b>Hermes Agent</b>, or <b>ChatGPT</b>? Skales has a built-in migration importer. Settings > Import from Another Tool.</sub>
+  </p>
+  <p>
+    <sub><a href="#about-the-source-in-this-repository">Looking for the source code, or planning to fork?</a></sub>
   </p>
 <br><br>
 
