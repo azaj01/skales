@@ -421,6 +421,7 @@
     <a href="#memory" data-chapter="chat">Memory</a>
     <a href="#memory-mode" data-chapter="chat">Memory Mode</a>
     <a href="#knowledge-graph" data-chapter="chat">Knowledge Graph</a>
+    <a href="#vector-db" data-chapter="chat">External vector database</a>
     <a href="#group-chat" data-chapter="chat">Group Chat</a>
     <a href="#iris" data-chapter="chat">Iris Orbit 👁</a>
     <a href="#voice" data-chapter="chat">Live Voice</a>
@@ -447,6 +448,7 @@
 
     <div class="section-label" data-chapter="agents">Agents and teams</div>
     <a href="#agents" data-chapter="agents">Agents</a>
+    <a href="#multi-agent" data-chapter="agents">Which multi-agent mode</a>
     <a href="#skills" data-chapter="agents">Skills</a>
     <a href="#agent-skills" data-chapter="agents">Agent Skills Import</a>
     <a href="#skills-interactive" data-chapter="agents">Skill Interactive UI</a>
@@ -470,6 +472,7 @@
     <a href="#themes" data-chapter="settings">Themes</a>
     <a href="#accents" data-chapter="settings">Accent colours</a>
     <a href="#shortcuts" data-chapter="settings">Commands</a>
+    <a href="#deep-links" data-chapter="settings">skales:// links</a>
     <a href="#notifications" data-chapter="settings">Notification Center</a>
     <a href="#dashboard" data-chapter="settings">Dashboard</a>
     <a href="#buddy" data-chapter="settings">Desktop Buddy</a>
@@ -578,6 +581,18 @@
       <p>Skales supports multiple AI providers. Configure them in <strong>Settings → Providers</strong>.</p>
       <p>Skales works with any model you configure, and it tells you which model it is running. The active model is shown below the composer and in the system tray, so you always know what is answering.</p>
 
+      <h3>The provider grid</h3>
+      <p>The page opens with a grid: one tile per provider, with a short description, badges for what it can do beyond chat (Voice, Vision, Generative, Local), and a switch. The filter chips above the grid narrow it to one of those capabilities.</p>
+      <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Switch on</strong> to get the provider's full card below the grid, where the key, the model and the rest live.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Switch off</strong> to put the card away. This is not deleting: the key stays saved and comes straight back when you switch the provider on again. A provider that is off also stops appearing in the model pickers, which is the point of the switch.</li>
+        <li style="margin-bottom: 0.5rem;">The provider you have set <strong style="color:var(--text)">Active</strong> cannot be switched off &mdash; make another one active first. If anything else still points at a provider (agents, the fallback chain, per-mode overrides, Lio), the tile says so before you switch it off.</li>
+        <li style="margin-bottom: 0.5rem;">A fresh install shows Skales IQ and Ollama. An existing one opens on exactly the providers it was already using, and whatever you set up in onboarding is switched on for you.</li>
+        <li style="margin-bottom: 0.5rem;">Searching Settings reaches providers that are switched off too &mdash; their tile shows &ldquo;Switch on to configure&rdquo; rather than hiding.</li>
+      </ul>
+      <p><strong>+ Custom endpoint</strong> is a tile in the same grid: it opens the extra OpenAI-compatible endpoints (LM Studio, llama.cpp, vLLM, koboldcpp, a second local server) right under the cards.</p>
+      <p>Each card carries its own <strong>Timeout, retries and model limits</strong> block, folded shut until you need it. Fallback chain, advisor strategy, per-mode overrides and the global request timeout live together in one collapsed <strong>Advanced Routing</strong> section at the bottom of the page. The ChatGPT (Codex) subscription sits inside the OpenAI card, since that is the account it belongs to.</p>
+
       <div class="provider-list">
         <div class="provider-item">
           <div class="provider-dot"></div>
@@ -663,6 +678,11 @@
         </div>
         <div class="provider-item">
           <div class="provider-dot muted"></div>
+          <div class="provider-name">Hunyuan (Tencent)</div>
+          <div class="provider-desc">Tencent Hy3: 256K context, fast and slow thinking in one model, strong at agents and code. Three separate services with separate accounts &mdash; TokenHub Singapore, TokenHub China, and the older Hunyuan API, which serves the hunyuan-* models instead of Hy3. The endpoint is a switch on the provider card.</div>
+        </div>
+        <div class="provider-item">
+          <div class="provider-dot muted"></div>
           <div class="provider-name">Replicate</div>
           <div class="provider-desc">Bring Your Own Key (BYOK) for Replicate. Run open-source models on their infrastructure.</div>
         </div>
@@ -687,9 +707,11 @@
 
       <div class="tip"><strong>💡 Tip:</strong> You can configure multiple providers and switch between them mid-session. Use <code>/model gpt-4o</code> or the model picker in the chat toolbar.</div>
 
+      <div class="tip"><strong>Ollama, keeping models loaded:</strong> The Ollama card has a <strong>Keep models loaded</strong> setting - how long the daemon holds a model in VRAM after a turn. Longer means the next turn starts warm; shorter means the card frees up sooner. It matters most for a squad: several agents on several local models pin all of them for that whole window, which is how a 24 GB card ends up swapping to system RAM. Pick <em>Unload immediately</em> if VRAM is tight, <em>Keep loaded</em> if you have room and want no cold starts. The change applies to the very next turn - no restart. <code>SKALES_OLLAMA_KEEP_ALIVE</code> still overrides it for scripted installs.</div>
+
       <div class="tip"><strong>🔄 Live model fetch (v10.2.2):</strong> Each provider card has a Refresh button that pulls the current model list directly from the provider's API. The cached list is preferred over the built-in baseline, so newly released models become usable without waiting for a Skales release. Supported providers: Anthropic, OpenAI, Google Gemini, Groq, DeepSeek, Mistral, xAI, Together, MiniMax, Cloudflare, NVIDIA, SambaNova, Cerebras (plus the existing OpenRouter, Ollama, and Custom Endpoint flows).</div>
 
-      <div class="tip"><strong>⚙️ Override Model Limits (v10.2.2, power user):</strong> Settings → AI Providers → Override Model Limits. Add per-(provider, model) override rows for context and output token caps. Use <code>*</code> as the model name for a provider-wide wildcard. Useful when a brand-new model has different limits than the built-in registry — no Skales update required.</div>
+      <div class="tip"><strong>⚙️ Override Model Limits (power user):</strong> Settings → AI Providers → the provider's card → <em>Timeout, retries and model limits</em>. Add per-(provider, model) override rows for context and output token caps. Use <code>*</code> as the model name for a provider-wide wildcard. Useful when a brand-new model has different limits than the built-in registry — no Skales update required.</div>
     </section>
 
     <!-- Chat -->
@@ -1020,6 +1042,51 @@
       <p>Who takes part, and in which order, is arranged in the roster on this page. The order <em>is</em> the assignment: &ldquo;3 Agents&rdquo; means the first three. The first seat belongs to your default agent and does not move, because somebody has to write the breakdown and the verdict.</p>
       <p>Counting the button back to one ends the run: nothing further starts, and no verdict is written over a run you walked away from. The cards stay exactly as they are. If Skales is closed mid-run, reopening it keeps whatever had already arrived and says plainly that the rest was ended.</p>
       <p>The same cards and the same two buttons appear wherever several agents produce results: chat, Skales Code, Tasks, Group Chat and the Organization result list.</p>
+      <p>This is one of three multi-agent modes, and they are not interchangeable. <a href="#multi-agent" style="color:var(--accent)">Which multi-agent mode</a> lays out what each one is for, and how to run a team on a single graphics card.</p>
+    </section>
+
+    <!-- Which multi-agent mode -->
+    <section id="multi-agent">
+      <h2><span class="icon">🧭</span> Which multi-agent mode</h2>
+      <p>Skales has three ways to put more than one agent on something, and they are genuinely different machines rather than three names for one. They differ in who writes the question each agent gets, whether the agents can see each other, whether they may use tools, and what you are left holding at the end.</p>
+
+      <table>
+        <thead><tr><th></th><th>Parallel answers</th><th>Group Chat</th><th>Organization</th></tr></thead>
+        <tbody>
+          <tr><td><strong>You get</strong></td><td>Several answers to <em>your</em> question, plus a ranking</td><td>A discussion, plus a summary</td><td>One finished deliverable</td></tr>
+          <tr><td><strong>Each agent is asked</strong></td><td>The whole assignment, with a coordinator&rsquo;s brief attached</td><td>The topic, plus everything said so far</td><td>Its own subtask, decided by the leader</td></tr>
+          <tr><td><strong>Agents see each other</strong></td><td>No &mdash; they answer independently</td><td>Yes &mdash; that is the point</td><td>Only through results passed down a dependency</td></tr>
+          <tr><td><strong>Tools</strong></td><td>Yes, each agent&rsquo;s own scope</td><td><strong>No</strong> &mdash; discussion only</td><td>Yes, the run&rsquo;s scope</td></tr>
+          <tr><td><strong>Who picks the agents</strong></td><td>Your roster order, top N</td><td>You, explicitly</td><td>The team you selected; the leader assigns the work</td></tr>
+          <tr><td><strong>Started from</strong></td><td>The Agents button beside the composer</td><td>The Group Chat surface</td><td>Organization &rarr; Execute</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Parallel answers &mdash; when you want a second opinion</h3>
+      <p>Reach for this when the question has more than one defensible answer and you want to see them side by side: a design direction, a diagnosis, a piece of writing, a plan. Every agent answers the <em>whole</em> thing, so you are comparing complete answers rather than fragments.</p>
+      <p><strong>How the agents are chosen and ordered:</strong> from your roster, in roster order, top N &mdash; &ldquo;3 Agents&rdquo; means the first three seats. The first seat belongs to your default agent and does not move, because that seat also writes the breakdown at the start and the verdict at the end. Rearrange the roster on the Agents page to change who takes part.</p>
+      <p>The coordinator&rsquo;s brief says which angle each agent leads on. That is a hint about depth, never a fence: no agent is told to stop at its angle.</p>
+
+      <h3>Group Chat &mdash; when you want them to argue</h3>
+      <p>Reach for this when the value is in the exchange rather than in any one answer: stress-testing an idea, weighing trade-offs, hearing an objection you had not thought of. Participants take turns over the number of rounds you set, and each one reads the full transcript before speaking, so round two is a reply and not a repetition.</p>
+      <p><strong>Group Chat agents have no tools.</strong> They cannot search, read a file or send anything &mdash; they only talk. That is deliberate: a debate in which one participant quietly goes and changes something on disk is not a debate. If the work needs doing rather than discussing, this is the wrong mode.</p>
+      <p>At the end a moderator summarises. If you nominated a decision maker, that agent writes the closing instead of a neutral summary, and it decides.</p>
+
+      <h3>Organization &mdash; when you want the work done</h3>
+      <p>Reach for this when the job splits into parts that different agents should own: research this, draft that, check the numbers, then write it up. You describe the task and pick a team; the leader breaks it into subtasks, names which agent gets each one, and states which subtasks depend on which. Agents work with tools. The leader then synthesises everything into one answer.</p>
+      <p><strong>Why the steps do not finish in plan order.</strong> Subtasks that declare no dependency are independent by definition, so they are started together; the ones that declared a dependency run afterwards, each seeing everything finished so far. A five-step plan whose third step waits on another can therefore finish 0-1-3-2-4. That is the schedule working, not a fault, and the live trace now says which steps are waiting on which rather than leaving you to infer it.</p>
+
+      <h3>What your agent&rsquo;s own prompt is worth in a team run</h3>
+      <p>All three modes attach some context to your agent about the run it is part of. <strong>Your agent&rsquo;s own system prompt wins.</strong> Where the run context conflicts with it &mdash; the output format it demands, the length, the things it is told never to say &mdash; your prompt is the contract and the run context yields. This is stated in the prompt itself, so the model is not left to guess which of two instructions is the real one.</p>
+      <p>The list of capabilities an agent is told about is derived from the tools the run actually offers. An agent with no tools is told about no tools, rather than being promised email and a shell it does not have.</p>
+      <p>If an agent comes back empty after a tool failed, the card says which tool failed. An empty card that just says &ldquo;no response&rdquo; reads as &ldquo;this agent had nothing to contribute&rdquo; and hides the real reason.</p>
+
+      <h3>Running a team on one graphics card</h3>
+      <p>Agents on local models are the case where running them all at once is a false economy: four agents on four models means four models loaded, and a 24 GB card holds roughly one 27B-32B model. <strong>Settings &rarr; Agent &amp; Tasks &rarr; How a team run spends the machine</strong> offers <em>Sequential</em>, which runs one agent at a time and asks the model to leave before the next one loads.</p>
+      <p>The unloading works over Ollama. LM Studio, koboldcpp, vLLM and text-generation-webui apply their own eviction policy and are not asked, so there the running order still helps and the unload does not happen &mdash; the setting says so rather than implying a control that does not exist.</p>
+      <p>When every agent in your roster sits on the same local provider, the page offers to switch for you and says why. A team with a cloud model in it has something real to overlap and is not nudged.</p>
+
+      <div class="tip"><strong>💡 Short version:</strong> want opinions &rarr; Parallel answers. Want a conversation &rarr; Group Chat. Want a result &rarr; Organization.</div>
     </section>
 
     <!-- Memory -->
@@ -1131,6 +1198,7 @@
     <section id="organization">
       <h2><span class="icon">🏢</span> Organization</h2>
       <p>Create multi-agent teams. Build departments, assign agents, and delegate tasks across your AI company.</p>
+      <p>How this differs from Group Chat and from asking several agents at once: see <a href="#multi-agent" style="color:var(--accent)">Which multi-agent mode</a>.</p>
 
       <h3>Structure</h3>
       <table>
@@ -1249,6 +1317,10 @@
 
       <h3>Env vars and tokens</h3>
       <p>Env variable values default to readable text. Each row has a per-key Show / Hide toggle for screen-sharing situations. Storage is plain JSON on disk anyway (<code>~/.skales-data/mcp-servers.json</code>), so masking only existed to dodge shoulder-surfing.</p>
+
+      <h3>Servers behind an API token</h3>
+      <p>Not every remote server uses sign-in. Most self-hosted ones want a token in a header instead, so an <strong>http</strong> or <strong>sse</strong> server has a <strong>Request headers</strong> editor: add <code>Authorization</code> with a value of <code>Bearer &lt;token&gt;</code>, or whatever header that server asks for. Headers are sent with every request to that server, and they take precedence over anything the sign-in flow would attach.</p>
+      <p>If a server answers <strong>401</strong> and neither uses sign-in nor advertises it, Skales says that plainly and points at the header, rather than sending you to a sign-in that does not exist. If you already set a header and it is still refused, it says that too: the header went out and the server did not accept it.</p>
 
       <h3>Status badge sanity</h3>
       <p>A successful Test now promotes the freshly tested client into the live connection pool, so the status badge on the /mcp page flips to "connected (N tools)" on the very next 5 second poll without waiting for a chat turn to lazy-connect. Disabled servers stay disconnected.</p>
@@ -1522,6 +1594,15 @@
       <h3>Telegram</h3>
       <p>Create a bot via <strong>@BotFather</strong>, paste the token in Settings → Integrations → Telegram. Send messages to your bot to talk to Skales from your phone.</p>
 
+      <h3>One bot, several chats</h3>
+      <p>Pairing <em>adds</em> a chat rather than replacing one. Send <code>/pair &lt;your code&gt;</code> in a direct message, then add the bot to a group and send <code>/pair &lt;your code&gt;</code> there too: it answers in both. Previously the bot stored a single chat and every message from anywhere else was ignored by design, so a group it had been added to stayed silent.</p>
+      <p>One of the chats is the <strong>main chat</strong>, marked as such in the list in Settings. The rule is the one you would guess:</p>
+      <ul>
+        <li><strong>An answer goes back to the chat that asked.</strong> Ask in the group, get the answer in the group.</li>
+        <li><strong>Anything Skales starts by itself goes to the main chat</strong> &mdash; reminders, the morning briefing, Friend Mode. The first chat you paired keeps that seat, so adding the bot to a team group never redirects your private reminders into it. You can move it in Settings.</li>
+      </ul>
+      <p>Each chat can be removed on its own, and a new pairing code disconnects all of them, because a new code means the bot belongs to somebody else now.</p>
+
       <h3>WhatsApp</h3>
       <p>Scan the QR code shown in Settings → Integrations → WhatsApp. Uses WhatsApp Web — your number is paired, no separate account needed.</p>
 
@@ -1763,6 +1844,7 @@
     <section id="group-chat">
       <h2><span class="icon">👥</span> Group Chat</h2>
       <p>Multiple AI personas debate your questions in configurable rounds. Perfect for exploring different perspectives and validating ideas.</p>
+      <p>Not sure whether you want a debate, several independent answers, or a finished piece of work? See <a href="#multi-agent" style="color:var(--accent)">Which multi-agent mode</a>.</p>
 
       <h3>Custom Personas</h3>
       <p>Select which agents participate in the debate. Each agent uses its own system prompt and personality to generate responses.</p>
@@ -1925,6 +2007,8 @@
       <p>Your address (<code>userinfo.email</code>) is always requested as well, and for one reason: so the card can show you <em>which</em> account is connected instead of just "connected".</p>
 
       <div class="tip"><strong>Disconnecting</strong> removes the token from this machine. It does not revoke the grant on Google's side - do that at <strong>myaccount.google.com &rsaquo; Data &amp; privacy &rsaquo; Third-party apps</strong> if you want it gone there too.</div>
+
+      <div class="tip"><strong>One limit worth knowing:</strong> YouTube transcripts. Skales can tell you <em>which</em> caption tracks a video has, in which languages, but it cannot hand you the text of someone else's video. That is not a missing setting or a scope you can add - the YouTube Data API only serves caption downloads for videos the connected account owns. For your own uploads it works; for anything else, no key and no grant unlocks it.</div>
     </section>
 
     <!-- Google Drive -->
@@ -2099,6 +2183,29 @@
     </section>
 
     <!-- Knowledge Graph -->
+    <!-- External vector database -->
+    <section id="vector-db">
+      <h2><span class="icon">🗄️</span> External vector database</h2>
+      <p>Skales keeps its own index of the documents you add to it: keyword search, plus a vector index when embeddings are configured. If you already run <strong>Qdrant</strong> or <strong>ChromaDB</strong> and your corpus is already in it, you can point Skales at that collection instead of importing everything a second time. <strong>Settings &rarr; Memory &rarr; External vector database</strong>.</p>
+      <p>Fill in the server URL, the collection name, and an API key if your server needs one. <strong>Test connection</strong> runs one real query and shows the database's own answer, because a dimension mismatch, a collection name that does not exist and a rejected key are three different problems and only the server can tell them apart.</p>
+
+      <h3>What changes, and what does not</h3>
+      <ul>
+        <li><strong>Skales only reads.</strong> It never writes to your collection, never creates one, never deletes anything. Your corpus is yours.</li>
+        <li><strong>Only the vector half is swapped.</strong> Keyword search over the documents you added to Skales keeps running alongside it, so both kinds of document stay findable rather than one hiding the other.</li>
+        <li><strong>It falls back.</strong> If the database is unreachable, or the collection is wrong, or the key is refused, Skales uses its own store for that search instead of failing. You get a slightly worse answer rather than an error.</li>
+      </ul>
+
+      <div class="warn"><strong>⚠️ One thing to get right</strong> &mdash; use the same embedding model the collection was built with. A question embedded by a different model lands in a different space and comes back confidently wrong. Skales cannot detect that for you: a vector of the right size from the wrong model looks exactly like the right one.</div>
+    </section>
+
+    <!-- skales:// links -->
+    <section id="deep-links">
+      <h2><span class="icon">🔗</span> skales:// links</h2>
+      <p>Skales registers the <code>skales://</code> scheme with your operating system, so a web page can hand something to the app you already have installed. The app opens (or comes forward) and lands on the right screen with what the link carried.</p>
+      <p><strong>A link opens a screen. It never acts.</strong> The first thing the scheme carries is a model: <code>skales://open_from_hf?model=owner/repo</code> opens the Ollama card with that name in it and a button underneath. A page on the internet can put a model in front of you; only you can spend the gigabytes. Anything the app does not recognise is ignored rather than followed.</p>
+    </section>
+
     <section id="knowledge-graph">
       <h2><span class="icon">🕸️</span> Knowledge Graph</h2>
       <p>An enterprise-grade knowledge graph that builds relationships between entities as you work. Skales learns about your projects, people, tools, and preferences and connects them automatically.</p>
