@@ -1,4 +1,4 @@
-> **This source snapshot is outdated.** The source in this repository is the v7 tree (`package.json` version 7.1.0), last current in March 2026, and no longer receives updates. Skales continues as binary releases only: [Releases](https://github.com/skalesapp/skales/releases) and [skales.app](https://skales.app).
+> **This source snapshot is outdated.** The source in this repository is the v7 tree (`package.json` version 7.1.0), last current in March 2026; since then only a single security fix (July 2026) has landed, no feature updates. Skales continues as binary releases only: [Releases](https://github.com/skalesapp/skales/releases) and [skales.app](https://skales.app).
 
 <div align="center">
     <h1><img width="45" height="45" alt="image" src="https://github.com/user-attachments/assets/c3e88872-6fb4-449d-84a8-4789acf3ef02"/><br>S K A L E S
