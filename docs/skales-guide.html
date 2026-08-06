@@ -406,7 +406,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.6.0</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.6.5</span> User Guide</div>
       </div>
     </a>
 
@@ -487,6 +487,7 @@
 
     <div class="section-label" data-chapter="providers">Providers</div>
     <a href="#providers" data-chapter="providers">Providers</a>
+    <a href="#regional" data-chapter="providers">Which providers work where</a>
     <a href="#fallback" data-chapter="providers">Fallback Provider</a>
     <a href="#ollama-marketplace" data-chapter="providers">Ollama Marketplace</a>
     <a href="#setup-koboldcpp" data-chapter="providers">KoboldCpp Setup</a>
@@ -512,6 +513,7 @@
     <a href="#aipointer" data-chapter="connected">AIPointer ⦿</a>
 
     <div class="section-label" data-chapter="help">Help</div>
+    <a href="#long-runs" data-chapter="help">Long runs and sleep</a>
     <a href="#feedback" data-chapter="help">Feedback</a>
 
   </nav>
@@ -521,7 +523,7 @@
 
     <!-- Hero -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation · v<span data-skales-version>12.6.0</span></div>
+      <div class="hero-badge">📖 Official Documentation · v<span data-skales-version>12.6.5</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -589,8 +591,10 @@
         <li style="margin-bottom: 0.5rem;">The provider you have set <strong style="color:var(--text)">Active</strong> cannot be switched off &mdash; make another one active first. If anything else still points at a provider (agents, the fallback chain, per-mode overrides, Lio), the tile says so before you switch it off.</li>
         <li style="margin-bottom: 0.5rem;">A fresh install shows Skales IQ and Ollama. An existing one opens on exactly the providers it was already using, and whatever you set up in onboarding is switched on for you.</li>
         <li style="margin-bottom: 0.5rem;">Searching Settings reaches providers that are switched off too &mdash; their tile shows &ldquo;Switch on to configure&rdquo; rather than hiding.</li>
+        <li style="margin-bottom: 0.5rem;">The grid has a <strong style="color:var(--text)">chevron header</strong> that folds it away, and the fold is remembered across restarts. If you come here for one provider every day, fold the grid once and its card is at the top from then on. The header keeps showing how many providers are switched on, and a search opens the grid again so a match is never hidden behind the fold.</li>
       </ul>
-      <p><strong>+ Custom endpoint</strong> is a tile in the same grid: it opens the extra OpenAI-compatible endpoints (LM Studio, llama.cpp, vLLM, koboldcpp, a second local server) right under the cards.</p>
+      <p><strong>+ Custom endpoint</strong> is a tile in the same grid: it opens the extra OpenAI-compatible endpoints (LM Studio, llama.cpp, vLLM, koboldcpp, a second local server) right under the cards. The same door sits inside the Custom endpoint card itself, as <strong>+ Add another endpoint</strong>, so you do not have to scroll back up to the grid to add a second one. Each extra endpoint has its own <strong>Set Active</strong> button, so any of them can be the provider Skales routes to by default, not only one you pick per chat.</p>
+      <p>A model you type into a provider card yourself &mdash; which is the only kind the Custom endpoint has &mdash; is searchable in the chat model picker like any other. You do not have to make the provider active first to reach its model.</p>
       <p>Each card carries its own <strong>Timeout, retries and model limits</strong> block, folded shut until you need it. Fallback chain, advisor strategy, per-mode overrides and the global request timeout live together in one collapsed <strong>Advanced Routing</strong> section at the bottom of the page. The ChatGPT (Codex) subscription sits inside the OpenAI card, since that is the account it belongs to.</p>
 
       <div class="provider-list">
@@ -712,6 +716,17 @@
       <div class="tip"><strong>🔄 Live model fetch (v10.2.2):</strong> Each provider card has a Refresh button that pulls the current model list directly from the provider's API. The cached list is preferred over the built-in baseline, so newly released models become usable without waiting for a Skales release. Supported providers: Anthropic, OpenAI, Google Gemini, Groq, DeepSeek, Mistral, xAI, Together, MiniMax, Cloudflare, NVIDIA, SambaNova, Cerebras (plus the existing OpenRouter, Ollama, and Custom Endpoint flows).</div>
 
       <div class="tip"><strong>⚙️ Override Model Limits (power user):</strong> Settings → AI Providers → the provider's card → <em>Timeout, retries and model limits</em>. Add per-(provider, model) override rows for context and output token caps. Use <code>*</code> as the model name for a provider-wide wildcard. Useful when a brand-new model has different limits than the built-in registry — no Skales update required.</div>
+
+      <h3 id="regional">Which providers work where</h3>
+      <p>Skales runs on your machine and talks to whichever provider you configure, so what is reachable from your country is decided by that provider, not by Skales. This matters most for the recommended default: <strong>OpenRouter does not serve every country</strong>, and where it does not, its key will not work no matter how it is entered. Nothing about Skales itself is limited by where you are.</p>
+      <p>If OpenRouter is not available to you, every one of these is a full replacement &mdash; they are ordinary providers in the same grid, with the same tools, vision and agent features:</p>
+      <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">DeepSeek</strong>, direct rather than through a gateway. Own account, own key, reasoning models included.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Moonshot (Kimi)</strong>, <strong style="color:var(--text)">GLM (z.ai)</strong>, <strong style="color:var(--text)">Qwen (DashScope)</strong> and <strong style="color:var(--text)">Hunyuan (Tencent)</strong>. All four are first-class provider cards. Moonshot and Hunyuan each serve several regions from separate accounts, and the region is a switch on the card &mdash; pick the one your account belongs to.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Custom endpoint</strong>, for any OpenAI-compatible service that answers where you are, including one you host yourself. Add as many as you need.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Ollama</strong>, fully local. Nothing leaves the machine, so there is no country question at all. This is the option that always works.</li>
+      </ul>
+      <p>If a key is rejected and you are unsure whether it is the key or the location, try the same key against the provider's own site from the same connection. If it fails there too, the answer is the connection, and one of the alternatives above is the way forward.</p>
     </section>
 
     <!-- Chat -->
@@ -885,7 +900,7 @@
       <h2><span class="icon">🌊</span> Flow</h2>
       <p>Flow is Studio&rsquo;s conversational design workspace: one brief, and it keeps working on it with you instead of returning a single result. Nine modes, and Flow picks the one that fits what you asked unless you say otherwise: <strong>deck</strong>, <strong>prototype</strong>, <strong>wireframe</strong>, <strong>mobile</strong> mockup, print <strong>document</strong>, <strong>image</strong>, <strong>video</strong>, <strong>film</strong> and <strong>motion</strong> graphic.</p>
       <h3>Film: one shot, one camera move</h3>
-      <p>Film makes a single clip with a single deliberate camera move, and the move is what you pick first &mdash; before you write a word of the brief. Forty-eight of them, grouped by what they are: zoom, dolly, crane, pan, orbit, rig, aerial and lens. One move per clip, and there is no way to pick two: mixing camera moves in one generated shot is exactly what makes generated footage look generated.</p>
+      <p>Film makes a single clip with a single deliberate camera move, and the move is what you pick first &mdash; before you write a word of the brief. Fifty-one of them, grouped by what they are: zoom, dolly, crane, pan, orbit, rig, aerial and lens. One move per clip, and there is no way to pick two: mixing camera moves in one generated shot is exactly what makes generated footage look generated.</p>
       <p>Where the clip comes from, in this order:</p>
       <ol>
         <li><strong>Higgsfield</strong>, if you have connected it as an MCP server under Settings. It executes a camera preset as a preset rather than as words, so it gives the best result for this mode.</li>
@@ -2274,6 +2289,22 @@
       </ul>
     </section>
 
+    <section id="long-runs">
+      <h2><span class="icon">🌙</span> Long runs, sleep and the disk</h2>
+      <p>Skales is built to keep working while you are away: a goal, a scheduled job, a team of agents, a long build. Two things on the machine itself can end such a run without Skales having done anything wrong, and both are worth checking before you go looking for a bug.</p>
+      <h3>The disk that goes to sleep under a running job</h3>
+      <p>Windows can park a drive after a few minutes of no reads or writes. A run that thinks for a while and then writes a file finds the disk gone, and what comes back is a write error, a crash, or a job that simply stops. Skales retries a write that fails while a disk is waking up, but a drive that is slow or worn can take longer than any retry is worth.</p>
+      <p>Reported by a user running Skales overnight on an RTX 4090 with a worn system SSD: with <strong>Control Panel &rsaquo; Power Options &rsaquo; Change plan settings &rsaquo; Change advanced power settings &rsaquo; Hard disk &rsaquo; Turn off hard disk after</strong> set to <strong>Never</strong>, ten hours of continuous work ran without a single crash, where the same work had been failing before. If you leave Skales working unattended, set that to Never.</p>
+      <h3>The machine that sleeps</h3>
+      <p>Sleep is different from a parked disk: the whole system stops. Skales catches up scheduled runs that were missed while the machine slept, and a timer the system froze says so rather than drifting silently. What it cannot do is finish a model call that was cut in half, so for a long unattended run set sleep to Never as well, or keep the machine awake for as long as the job needs.</p>
+      <h3>What to check first when a long run ends early</h3>
+      <ul>
+        <li><strong>Logs</strong> in the sidebar: a run that hit a write error says so there, with the path.</li>
+        <li><strong>The disk itself.</strong> A drive reporting reallocated sectors will fail a long write eventually, whatever the power settings say.</li>
+        <li><strong>The model, not the machine.</strong> If the run ended with an answer rather than an error, it finished the way the model decided to finish it.</li>
+      </ul>
+    </section>
+
     <section id="feedback">
       <h2><span class="icon">💌</span> Feedback & Reports</h2>
       <p>Found a bug or have a suggestion? Use the <strong>Feedback</strong> button in the sidebar or visit <strong>Settings → Feedback</strong>.</p>
@@ -2282,7 +2313,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.6.0</span> · © 2024-2026 Mario Simic · BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.6.5</span> · © 2024-2026 Mario Simic · BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 

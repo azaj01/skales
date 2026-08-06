@@ -6,6 +6,221 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.6.5 - Say What Happened
+
+
+A release about the difference between a screen that says something and a
+thing that happened. Two answers people were promised, a tool family that
+reported success it had not earned, and the first accessibility check this
+app has ever had that actually runs.
+
+It also clears out a set of things that were there but could not be got at: an
+endpoint you had configured and could not pick, a second one you could not
+find, a number under an answer that read as waste, and a grid you scrolled past
+every day.
+
+### Added
+
+- **The system appearance setting follows the system.** Choosing "System" used
+  to read your operating system once and remember the answer, so it never
+  noticed a later switch and the button never stayed selected. It follows now,
+  live and after a restart, and the sun and moon in the sidebar set the same
+  setting the appearance row does instead of a second copy of it.
+- **A busy Skales IQ says it is busy, and shows you the way on.** When the
+  service cannot take a request, the message says so in your language and
+  offers the next step in the same breath: connect your own provider. During
+  setup the Skales IQ card stays where it is, says why it could not start, and
+  leaves the other three options one click below instead of finishing setup in
+  silence with no provider at all.
+- **An accessibility check that runs.** Six core screens are measured against
+  the WCAG AA rules and walked with the keyboard, and the check is part of the
+  toolbox rather than something someone remembers to do.
+- **Every extra endpoint can be made the active provider.** The additional
+  OpenAI-compatible endpoints could be chosen per chat but could never become
+  the one Skales routes to by default. Each one has a Set Active button now,
+  like every other provider card.
+- **A way to add a second endpoint from where you already are.** It used to
+  live only behind a dashed tile up in the provider grid, which is above where
+  you are standing when you configure the first one. The Custom endpoint card
+  offers it directly and takes you to it.
+- **The provider grid folds away, and remembers.** A header with a chevron
+  above the tiles: fold it once and the card you actually came for is at the
+  top from then on, after a reload and after a restart. The header still says
+  how many providers are switched on, and a search opens the grid so a match is
+  never hidden behind the fold.
+- **The token count under an answer says what it is made of.** Hovering it now
+  breaks the input half into the two things it consists of: the tool
+  definitions and system prompt that are the same on every turn and are what
+  makes the agent able to act at all, and your own message plus the
+  conversation. Nothing is deducted and nothing about billing changes - the
+  number was always this, it just never said so.
+- **The guide says which providers work where.** Some services do not serve
+  every country, which is a fact about them and not about Skales. The
+  Providers chapter now lists the full replacements, including the local one
+  that always works.
+
+### Fixed
+
+- **The sidebar and dashboard provider status is green again the way it always was:**
+  an active provider with a key shows Connected immediately. The stricter
+  proven-connection state briefly shipped here had no way to ever turn green for
+  the provider and read as offline on every install. Live proofs are still
+  recorded quietly (a successful chat turn or provider test), and while the
+  status is loading the sidebar shows a neutral placeholder instead of flashing
+  red with a guessed provider name.
+
+- **Windows finds npm and Node.js again during browser-automation setup**, even
+  when Node was installed last: a corrupted PATH entry hit exactly freshly
+  installed Node, so everything worked in PowerShell and failed in Skales.
+
+- **A goal that says it is finished, and a check that says otherwise, now ask
+  you.** They used to argue in private: the run declared the task complete, the
+  check refused to confirm it, and the run was pushed straight back into the
+  same step. One run said it was done twelve times over twenty steps and only
+  stopped because someone stopped it. The disagreement comes to you instead,
+  with both sides on one card and three answers: accept it as done, keep
+  working, or stop. A run that keeps repeating the same closing summary with
+  nothing new behind it now stops on its own and says so, and it says the same
+  paragraph once instead of collecting a copy of it every round.
+- **A goal shows you its checklist before it starts,** and an instruction you
+  wrote down in plain words ("use at least three parallel strands") stays on
+  that checklist word for word instead of being summarized into something
+  general and rediscovered twenty steps later.
+- **WhatsApp is either connected or it is not, everywhere.** Settings said
+  "Connected as ..." with your number on it while Skales itself was told
+  WhatsApp needed setting up, so it would decline a message it could perfectly
+  well have sent. Both now read the same answer. Telegram got the opposite
+  correction: a saved bot token with no chat paired to it counted as ready even
+  though nothing could be delivered.
+- **A WhatsApp message says what happened to it.** All three send tools
+  reported plain success whether the message went out, was merely handed over,
+  or went to a number that has no WhatsApp at all. They now say delivered,
+  handed over but not confirmed, or not delivered and why, and a number with no
+  WhatsApp account is refused instead of quietly accepted. The three also share
+  one recipient rule: a contact that works in one of them works in all of them,
+  and "unknown number" and "sending to this contact is switched off" are no
+  longer the same sentence.
+- **One tooltip per button.** Every icon in the chat header showed two bubbles
+  stacked on each other, and the expanded sidebar put a tooltip over the row
+  below the one you were pointing at. There is one tooltip, and only where the
+  label is hidden.
+- **The keyboard shows where it is.** The chat composer looked identical
+  focused and unfocused, so there was no way to tell it had the keyboard.
+- **Muted text is readable.** Hints, captions and the "Configured" badge were
+  below the contrast a normal text needs in every light theme, and in Neon.
+  Same colour family, dark enough to read.
+- **The selected temperature unit can be read** in a light theme, the Flow
+  surface can be scrolled from the keyboard, and the information button on the
+  Agents page has a name and opens for the keyboard too.
+- **A file tool that fails says why.** Listing, moving, copying, creating a
+  folder and unpacking an archive reported that something went wrong without
+  saying what, and all of them told Windows and Linux users to open a macOS
+  settings page. Moving into a folder that does not exist yet works, the way
+  copying already did, and an archive says whether a file was left out because
+  of the size limit or because it was trying to write outside its folder.
+- **Typing into a web page reports where the text went,** and says so plainly
+  when nothing had the keyboard and the text went nowhere. Scrolling says where
+  on the page it ended up instead of always saying "scrolled down". A click
+  placed by the vision model says where it clicked and whether anything
+  changed. Attaching a file names the field it attached to and refuses to guess
+  when the page has more than one.
+- **Reading aloud stops calling silence a success.** A voice that could not be
+  played counted as read, so the next voice in line was never tried.
+- **A team run writes its result into the conversation it happened in,** not
+  into whichever one you had open when it finished.
+- **The question card in Skales Code keeps every answer.** It sent on the first
+  click, so a card with three questions answered one and threw two away.
+- **The Google authorization page speaks your language,** and the camera move
+  you picked keeps its name after you browse another category.
+- **Product names stay product names.** Seventy-two labels across the eleven
+  translations had turned Discover, Swarm, Autopilot and Wrapped into ordinary
+  nouns, so the thing you read about could not be found in the app.
+- **The Russian first screen is Russian.** The privacy and autonomy notice
+  everyone accepts before Skales starts was Russian written in Latin letters,
+  as were several settings tabs.
+- **The roadmap page shows the last three releases,** the guide explains why a
+  long unattended run can end when a disk parks itself, and the camera-move
+  count in both is the number that is actually there.
+- **A model you typed in yourself is findable in the chat model picker.** The
+  Custom endpoint has no catalogue to offer - the model is whatever you point
+  it at - and that turned out to mean its model appeared in no list the picker
+  reads. So an endpoint that was set up, switched on and working could not be
+  chosen for a chat unless it happened to be the active provider already. Any
+  model you configure on any provider card is searchable now.
+- **The extra endpoints speak your language.** That whole block was English
+  only, in all twelve languages.
+- **A local Qwen 3.6 acts instead of printing what it meant to do.** The model
+  writes its tool calls in a shape Skales did not read, so a request to look at
+  a folder came back as a line of raw text where the answer should have been.
+  Skales reads that shape now, and Qwen 3.6 has settings of its own instead of
+  borrowing an older model's.
+- **The Open Flow button in Studio can be read.** White on the accent colour was
+  below the contrast text needs, on that button and on six more like it. They
+  take the readable colour for whichever accent you are running.
+
+## v12.6.2 - Nothing Green Without Proof
+
+Two people wrote in the same night to say Skales had told them a file was saved
+and the file was nowhere. A third could not connect her iCloud calendar because
+that connection had never been able to work. This release is about the gap
+between what the screen says and what actually happened.
+
+### Added
+
+- **A connection is green only after it was tested.** Every "Connected" and
+  "Active" badge in Settings now means a live test reached the service and
+  passed, and hovering it says when. Credentials you saved but never tested read
+  "Configured" instead: the card still looks set up, it just stops promising a
+  connection nobody has made. Saving or changing a credential drops the old
+  result, so a passed test can never vouch for a new key.
+- **Test buttons where there were none.** Notion, Todoist, Spotify, Home
+  Assistant, Replicate, Stability, ElevenLabs and Runway can be tested from
+  their own card, and Slack, Signal, X and your Google account got a button for
+  the check that already existed behind them and was never run. Kling, Fal and
+  Atlas Cloud have no such check, so they stay honest at "Configured".
+- **Apple Calendar works.** iCloud refuses every request against its front door,
+  so Skales now walks the discovery path Apple expects, finds your calendars and
+  writes to a real one. You can pick which calendar new events go into, and a
+  refused connection says whether it was the password or the address.
+
+### Fixed
+
+- **A saved file says where it is.** Generated images, videos, voice files and
+  merged clips now report the full path they were written to instead of a bare
+  filename or a folder nobody could locate, the answer card shows that path with
+  a button that opens it in your file manager, and Skales is no longer allowed
+  to tell you a file was written unless the tool that wrote it says so.
+- **Answers no longer carry internal markers.** A model that quoted a tool
+  result word for word used to quote the fences around it too, and they landed
+  in the answer. The markers come off, the quoted text stays.
+- **The token line under an answer reads correctly.** It showed one number that
+  looked like the cost of the reply while it was mostly the question, the
+  instructions and the tool list. It now shows the two directions separately.
+- **The VirusTotal key check asked an address that does not exist,** so a valid
+  key was reported as invalid. It also tested the dots the field shows instead
+  of the key you saved, so the answer was "invalid" every time after a save.
+- **LinkedIn posts and uploads use the current API,** and fall back to the older
+  one only when LinkedIn says this app may not use the new one.
+- **Microsoft mail says what it can and cannot do.** Work and school accounts
+  cannot be connected with a password at all; personal accounts usually can with
+  an app password. A refused send now explains itself the same way a refused
+  inbox already did.
+- **A file written while the disk is waking up is written, not lost.** Scheduled
+  jobs running unattended could fail on a write that a moment later would have
+  worked.
+- **Skales Code on the phone shows your coding sessions again,** even when you
+  have thirty newer chats, and archived sessions stop appearing as live work.
+- **Switching a team off during its final step no longer writes a verdict over
+  the run you cancelled.**
+- **Signing out of the Google account clears the form it was set up in.**
+
+### Changed
+
+- The model picker mentions the four thinking levels once, so the strongest one
+  is not something you have to find by accident.
+- Release builds fetch the Linux package before writing the update manifest, and
+  refuse to write a manifest that silently leaves it out.
+
 ## v12.6.1 - Order and Follow-Through
 
 The release after the big one is where your first week of feedback lives. The
@@ -202,7 +417,7 @@ shot is filmed. Skales recommends. You decide.
 
 - **Flow can film a shot, and you pick the camera move first.** A new chip in
   Flow: Film. It makes one clip with one deliberate camera move, chosen from a
-  grid of forty-eight moves grouped by what they are: zoom, dolly, crane, pan,
+  grid of fifty-one moves grouped by what they are: zoom, dolly, crane, pan,
   orbit, rig, aerial, lens. One move per clip and no way to pick two, because
   mixing them is what makes generated footage look generated.
   The moves are Skales' own film language, not a pointer at somebody else's
