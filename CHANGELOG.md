@@ -6,6 +6,100 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.7.1 - Which Model
+
+Two reports on the day 12.7.0 shipped, both about the same thing from opposite
+ends: a model you cannot reach, and a model the app names wrongly. This patch
+answers both.
+
+### Fixed
+
+- **GigaChat reaches its current generation.** Skales talked to Sber at the
+  older address, which does not serve the GigaChat 3 models at all, so an
+  account with a live Ultra entitlement could not reach a single one of them.
+  Skales now uses the current address, and the GigaChat card has an endpoint
+  field with both hosts on it, so a company still working against the older one
+  can stay there and anyone running their own deployment can type its address.
+- **A model id you type is sent, not second-guessed.** Typing a model name that
+  Skales had never heard of came back as "the model was most likely retired or
+  renamed" even when the model was alive and well and the real problem was the
+  address it was asked at. Skales now only says a model is gone when the
+  provider says so; anything else names what actually happened and points at the
+  setting that causes it.
+- **The context readout names the model that is answering.** Picking a model for
+  one conversation changed what answered but not what the readout under the
+  composer said: it kept naming your default model and measuring against that
+  model's window. It now names the model the next message will use, whether that
+  comes from the picker, from an agent, or from your defaults.
+- **The status pill says where this conversation goes.** A chat running on a
+  cloud model under a local default read "Local AI", and a chat running on your
+  own machine under a cloud default was labelled with the cloud provider. That
+  line is a statement about privacy, so it now follows the conversation in front
+  of you and goes back to your default when you leave it.
+- **Switching the model with a command changes this chat, not your settings.**
+  Typing the switch command wrote the model into your provider card instead, so
+  it could pair a model with a provider that does not serve it, it outlived the
+  chat it was typed in, and since the conversation started carrying its own
+  choice it no longer reached the next message at all while still reporting
+  success. It is now the same per-chat switch the picker is: your defaults are
+  left alone, the provider is worked out from the model, and if more than one of
+  your providers serves that model, Skales asks which one instead of guessing.
+- **Context windows come from the provider's own catalogue.** A model with a
+  one-million window was measured as if it held 128,000, so the automatic
+  shortening of long conversations began at roughly an eighth of the real
+  budget. The window now comes from the same catalogue Skales already downloads,
+  and both the readout and the shortening use it.
+- **The Code window names the model that will answer.** A session with its own
+  model was labelled with your default one, and a session with no model of its
+  own showed nothing at all rather than the default it actually runs on. Its
+  context figure was measured against a model nobody had selected.
+- **Lio says what "use default" means.** The option said "Settings" while Lio's
+  own saved configuration is what decides, so it could name a provider Settings
+  had nothing to do with. It now shows the provider and model that will build.
+- **Compacting a conversation by hand uses the conversation's model.** The
+  button sized the history against a model that was not running, which on a
+  large window meant it cut far more than it needed to.
+- **A lost connection is no longer reported as a crash.** Looking at Skales from
+  your phone or a second computer and the machine running it goes to sleep,
+  restarts or changes network: the request never arrives, and the screen said
+  "something crashed" with the browser's own words underneath. It now says the
+  connection was lost, in your language, and explains where to look. Nothing had
+  crashed in that case, which is why those reports were impossible to act on.
+- **The diagnostics report stops calling ordinary shutdowns crashes.** Closing
+  Skales stops its engine, and each of those was listed as a recorded crash, so
+  a report of four crashes could be one crash and three normal exits. They are
+  listed separately now, by name.
+- **A recorded engine stop finally says what happened to it.** The report
+  printed the word "undefined" for exactly the entries that carry the most: the
+  signal, the exit code, the last output of the engine, and the last things the
+  window asked for before it went away. All of it was recorded and none of it
+  was shown.
+- **Times in the diagnostics report are your times.** They were written in UTC
+  and formatted to look local, so an event at 19:52 was reported as 17:52. The
+  report now says which timezone it is using.
+
+### Added
+
+- **A bug report can carry the crash your computer recorded.** Reports that say
+  "it closes sometimes" are impossible to act on, while the answer sits on the
+  reporter's own machine behind a Copy button on another page. The report dialog
+  now offers the last recorded crash as an attachment: switched off unless you
+  turn it on, and the exact text is on screen before anything is sent.
+- **The wait before the first word says what it is.** Between sending and the
+  first character the chat showed a spinner and the word "Thinking", which is
+  the same picture a hung request draws. It now says it is reading your prompt
+  and how long it has been doing so, and on a model running on your own machine
+  it adds that this phase is silent by nature and can take a while on slower
+  hardware. The moment the first word arrives, the line is gone.
+- **GigaChat works without hunting for a certificate.** Sber's endpoints are
+  signed under the Russian national root, which no operating system carries, so
+  until now the first step was finding that certificate and pasting it in.
+  Skales ships it and uses it for GigaChat requests only. It is never installed
+  on your computer, never applied to any other provider, and it is added to the
+  roots your system already trusts rather than replacing them. The field stays
+  for anyone who needs their own certificate, and the card shows the exact file
+  the bundled one came from.
+
 ## v12.7.0 - Everybody's AI
 
 Skales started as a platform for everyone: set up in minutes, no prior
