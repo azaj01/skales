@@ -406,7 +406,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.6.5</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.7.0</span> User Guide</div>
       </div>
     </a>
 
@@ -414,6 +414,7 @@
     <a href="#install" data-chapter="start">Installation</a>
     <a href="#onboarding" data-chapter="start">First Launch</a>
     <a href="#sidebar" data-chapter="start">Home and Work</a>
+    <a href="#addons-view" data-chapter="start">Add-Ons and Settings views</a>
 
     <div class="section-label" data-chapter="chat">Chat</div>
     <a href="#chat" data-chapter="chat">Chat</a>
@@ -523,7 +524,7 @@
 
     <!-- Hero -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation · v<span data-skales-version>12.6.5</span></div>
+      <div class="hero-badge">📖 Official Documentation · v<span data-skales-version>12.7.0</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -564,15 +565,17 @@
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Provider</strong> — Select your AI provider (OpenRouter recommended)</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">API Key</strong> — Paste your API key. Keys are stored locally in encrypted settings.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Model</strong> — Pick a default model. You can switch anytime in Settings or via <code>/model</code> in chat.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">What Skales should do for you</strong> — Five kinds of work: Generative AI, Audio AI, Coding AI, Business agent, Personal agent. Picking one switches on the add-ons that belong to it, and you can change any individual switch on the same screen. The sidebar and the Settings page are then built from that answer, so you see what you chose and not the rest.</li>
       </ol>
       <p>After onboarding you land directly in <strong>Chat</strong> — ready to go.</p>
+      <p>Nothing in that last step is final, and nothing is lost by it. Chat, memory, planner, tasks, schedule, history and Discover are always there and are not on the list, because they are not a choice. Everything else is one switch on the <strong>Add-Ons</strong> page, and the <strong>Advanced</strong> view of Settings always shows every setting there is. An existing installation is offered the same screen once, with everything it already had left switched on.</p>
 
       <h3>Permissions your system may ask for</h3>
       <p style="color: var(--muted); font-size: 0.875rem;">Each prompt comes from your operating system, and Skales asks only for what the feature you are using needs. If you never use a feature, its prompt never appears.</p>
       <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Microphone.</strong> Asked the first time you start a voice message, so your speech can be turned into text. Skales never records on its own.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Accessibility / input control.</strong> Only if you turn on the on-screen assistant, which can move the pointer and type for you. macOS phrases this as "control this computer" and Windows may flag the global shortcut; grant it on macOS under System Settings, Privacy &amp; Security, Accessibility. Skales acts only when you start it, never in the background.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Local network.</strong> Only if you cast a page or a creation to a TV or media player (DLNA). Skales looks on your own network only, and each cast is something you start.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Local network.</strong> Only if you pair a phone, delegate to a second machine (Swarm) or scan your own network for devices. Skales looks on your own network only, and each of those is something you start.</li>
       </ul>
       <p style="color: var(--muted); font-size: 0.875rem;">You can review or revoke any of these later in your system settings, and Skales keeps working without the ones you skip.</p>
     </section>
@@ -830,8 +833,40 @@
 
     <section id="sidebar">
       <h2><span class="icon">🗂️</span> Home and Work</h2>
-      <p>The sidebar has a personal side and a working side, and the switch at the top decides which one you are looking at. <strong>Home</strong> holds what you use for yourself: chat, history, discover, memory. <strong>Work</strong> holds what you use to get something done: Code, Studio, agents, tasks, schedule, planner, projects.</p>
-      <p>It is a filter on one list, not two apps: everything is still reachable, and the side you were on is remembered. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
+      <p>The sidebar has a personal side and a working side, and the switch at the top decides which one you are looking at. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
+      <p>What the switch actually swaps is the <strong>Main</strong> group and the third group under it. Everything else stands in both.</p>
+      <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, on both sides.</strong> Dashboard, Chat, History, Discover, Memory. Somebody working has the same two questions as somebody at home — talk to it, and find what was said — so having to leave Work to ask them would make the switch a toll rather than a view.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, Home only.</strong> Lio AI.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, Work only.</strong> Code, Organization, Autopilot, Teams. Code and Teams stand there whatever the Add-Ons page says, because a Work side that can end up identical to Home is a switch that earns nothing.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Workspace, on both sides.</strong> Iris Orbit, Studio, Agents, Tasks, Schedule, Planner, Projects.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Personal (Home) / Build (Work).</strong> Home shows Browser, Group Chat, Spaces, Wrapped. Work shows Codework, Browser, Playbooks, Workflow, WordPress, Swarm.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Custom Widgets and System, on both sides.</strong> Skales Mobile, Add-Ons, Custom Skills, Custom Widgets, Templates, Logs, Update.</li>
+      </ul>
+      <p>An entry whose add-on is switched off is simply not in the list. Nothing is lost either way: the side you were on is remembered, and the page you are actually on is always visible in the sidebar, so a link or a finished task can never land you somewhere the menu does not show.</p>
+    </section>
+
+    <!-- Add-Ons and the two Settings views (12.7.0) -->
+    <section id="addons-view">
+      <h2><span class="icon">🧩</span> Add-Ons, and the two views of Settings</h2>
+      <p>Skales can do a great many things, and nobody uses all of them. Two controls decide how much of that you have to look at, and neither of them turns anything off that you switched on.</p>
+
+      <h3>The Add-Ons page</h3>
+      <p><strong>Sidebar → System → Add-Ons.</strong> One card per add-on, one switch each. An add-on that has a page of its own puts that page in the sidebar while it is on and takes it away again when it is off; an add-on that needs an account says which key it needs and where to put it.</p>
+      <p>Nine things are not on the list because they are not a choice: weather, summarizing, documents, web search, the system monitor, local file chat, screenshots and vision, VirusTotal and Wrapped. Switching those off would make Skales worse at being Skales, and nobody came to a setup screen to decide them.</p>
+      <p>The five categories in the setup screen are a shortcut into the same switches, not a mode. Picking <em>Coding AI</em> preselects that bundle; what gets stored is the add-ons, not the category.</p>
+
+      <h3>Standard and Advanced</h3>
+      <p>The switch at the top of <strong>Settings</strong> chooses between two views of the same page.</p>
+      <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Standard</strong> shows the settings your add-ons actually need, plus the ones everybody needs. A section that belongs to an add-on you have not switched on is not there.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Advanced</strong> shows every setting there is, exactly as before.</li>
+      </ul>
+      <p>It is a <em>view</em>, not a state. Anything you switched on in Advanced stays on in Standard — it is only out of sight. Search reaches both views, so typing what you are looking for finds it whichever one you are in, and a tab that would open onto an empty page in Standard is not offered.</p>
+      <p>The Advanced view is not a list of dangerous things. Diagnostics, Updates, Export/Import and the data controls all sit in the <strong>Advanced tab</strong> and are all shown in the Standard view, because those are things ordinary users are sent to.</p>
+
+      <h3>Changing your mind</h3>
+      <p><strong>Settings → Advanced → Setup</strong> runs the add-on screen again. Nothing is deleted by it: chats, keys and settings stay exactly as they are, and only what is shown changes.</p>
     </section>
 
     <section id="accents">
@@ -1131,6 +1166,7 @@
     <section id="skills">
       <h2><span class="icon">🔧</span> Skills</h2>
       <p>Skills extend what Skales can do. Built-in skills are always available. Custom skills can be created and shared.</p>
+      <p style="color: var(--muted); font-size: 0.875rem;">The page they are switched on is called <strong>Add-Ons</strong> (sidebar, System). "Skill" is the word for what one <em>is</em>; Add-Ons is where they live. See <a href="#addons-view">Add-Ons, and the two views of Settings</a>.</p>
 
       <h3>Built-in Skills</h3>
       <div class="card-grid">
@@ -1144,7 +1180,6 @@
         <div class="card"><div class="card-title">Documents</div><div class="card-desc">Read and write Word, PDF, and text documents.</div></div>
         <div class="card"><div class="card-title">Voice TTS</div><div class="card-desc">Text-to-speech with ElevenLabs, Azure, or system voices.</div></div>
         <div class="card"><div class="card-title">Network</div><div class="card-desc">Scan devices, check connectivity, query network info.</div></div>
-        <div class="card"><div class="card-title">Casting</div><div class="card-desc">Send content to Chromecast and compatible devices.</div></div>
         <div class="card"><div class="card-title">Image Gen</div><div class="card-desc">Generate images via Replicate or local endpoints.</div></div>
       </div>
 
@@ -2313,7 +2348,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.6.5</span> · © 2024-2026 Mario Simic · BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.7.0</span> · © 2024-2026 Mario Simic · BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 

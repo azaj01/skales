@@ -6,6 +6,343 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.7.0 - Everybody's AI
+
+Skales started as a platform for everyone: set up in minutes, no prior
+knowledge, grandma approved. Over the past two months Skales has grown fast -
+and week by week it became more and more a power user's tool. Both are true,
+and both belong to Skales. But one promise was at stake: the lightness.
+
+So with this release we rethought setup, add-ons and settings. On first start
+you choose what you want Skales to do for you - and that is exactly what you
+get: a sidebar that only shows what you use, settings that in Standard show
+only what belongs to your choice. And for everyone who wants everything:
+Advanced still shows every screw, same as always.
+
+Every single piece of feedback was read. We matched the roadmap against your
+feedback and pulled forward what helps you today. And the promise stands: we
+will keep helping people who do not know what an API is to run a safe, local
+agent on their own computer - one that respects your privacy and ties you to
+no cloud and no provider.
+
+Skales stands for everybody's AI. What it is not yet, it will become.
+We do not build for a target group - we build for every one of you.
+
+### Fixed
+
+- **A local model is allowed to think before it answers.** LM Studio, llama.cpp
+  and anything else on your own machine sends nothing at all while it reads your
+  prompt, and on slower hardware that quiet stretch runs for minutes. Skales
+  measured it with the same thirty-second stopwatch it uses for a cloud stream,
+  declared the connection dead, silently sent the whole request a second time
+  (so the machine evaluated the same prompt twice), and then reported that the
+  provider had stopped responding. Local and custom endpoints now get a
+  generous window for the wait before the first token, and the ordinary short
+  window from the first token onward, so a socket that really dies mid-answer is
+  still caught. The Request Timeout slider in Settings raises that first window
+  too; until now it only ever governed the wait for the connection itself, which
+  is why turning it up changed nothing. Nothing about cloud streaming changed.
+- **A local runtime is no longer asked to do the work twice.** A stalled stream
+  used to be retried by sending the identical request again. Against a cloud
+  endpoint that is a cheap second try; against your own machine it throws away
+  the prompt evaluation already done and starts it over, so the retry is slower
+  than the attempt it replaced. Local endpoints now report what happened instead.
+- **An interrupted answer says it was interrupted.** When a provider's
+  connection closes mid-generation without saying why, Skales used to record
+  that as a normal finish. At the end of a chain of tool calls the result was a
+  cut-off turn presented as a completed one, sometimes with nothing but a
+  cheerful closing line. A dropped connection is now named as one: an answer
+  that was already partly written is continued, an empty one is reported and
+  retried rather than accepted, and the same is true on the Anthropic and Gemini
+  paths, in the chat, and in the Telegram and WhatsApp loops.
+- **A model that thinks slowly can now say so.** Skales decides how long a model
+  may stay silent by reading its name, which works until a model that thinks for
+  minutes is called something that mentions none of it. An LLM profile can now
+  declare it outright, so the next model of that kind is a profile update rather
+  than an app release. Nemotron is declared in the built-in profiles.
+- **A blocked free model no longer sends you looking for a replacement.** When a
+  provider answers that no endpoint matches your data policy, Skales used to say
+  the model had most likely been retired or renamed. The model is there; your
+  account's privacy settings exclude every endpoint that could serve it, which
+  is what usually happens with free variants. The message now says that, and
+  names the model.
+- **A 403 from OpenRouter names its three causes.** The key being disabled or
+  over its limit, the account privacy settings excluding every endpoint for that
+  model, and the model's provider not accepting requests from your location, in
+  the order worth checking.
+- **Provider errors are read in your language.** Every provider error already
+  carried a translation key and nothing ever looked one up, so all twelve
+  languages saw the English sentence. They no longer do.
+- **Excel and Word files can be attached.** Skales could read a .xlsx or a
+  .docx off disk for a year; the paperclip just did not know the formats
+  existed, so the picker never offered them and a dropped file came back with
+  "cannot be read directly" and instructions to save it into the Workspace by
+  hand. They attach now, in the chat, on the new-chat screen, in a coding
+  session and from the phone, through the same readers the agent already used.
+  A format nothing here can open (.doc, .ppt, .rtf) now says which one it is and
+  what to export it as, instead of getting the same sentence as every unknown
+  binary.
+- **The conversation says when it stops carrying everything.** A long
+  tool-heavy chat was cut to its last sixty entries at a fixed count, silently,
+  while the context meter still showed room: the cut counted messages and the
+  meter counted tokens, so a model started forgetting for reasons nobody could
+  see. The limit now comes from the model's own window, older parts are
+  summarised rather than dropped wherever that is possible, and either way a
+  line appears in the transcript saying what happened. Nothing was ever deleted
+  from disk, and the line says that too. Reopening a long chat shows the same
+  notice in all three places it can happen; before, only one of them mentioned
+  it.
+- **Windows window buttons stop sitting on the Code window's header.**
+  Minimize, Maximize and Close are painted over the page on Windows, and the
+  Code window's header put the model chip and its buttons in exactly that
+  corner. The header now reserves the width the system reports for those
+  buttons, so it stays correct at any display scale. macOS and Linux are
+  unchanged, and the other four windows were checked: two already reserve the
+  strip, and two have no system buttons at all.
+- **A working agent is no longer stopped for being slow.** Sending a second
+  message while Skales was answering the first one cancelled the answer, even
+  when it was three tool calls into finishing the job. Now the count only
+  builds while the turn produces nothing: an agent that is visibly working
+  keeps working however impatient you get, and one that has gone quiet is still
+  stopped after two messages. "stop" still stops it immediately.
+- **Two people on one Telegram bot are two people.** Several Telegram accounts
+  writing to the same bot shared one conversation, and every message was
+  labelled with the name of whoever paired the bot first. Each sender now has
+  their own conversation and their own name, and /clear clears their own rather
+  than everyone's. WhatsApp already worked this way.
+
+- **The Tasks page no longer crashes on a task with no name.** A to-do created
+  by a model that left the title out was written to disk without one, and every
+  later visit to the Tasks page hit the crash screen instead of the list, over
+  and over, until the file was deleted by hand. A task that arrives without a
+  title is now named after what it says to do, both when it is written and when
+  an existing one is read, so the ones already sitting on your disk stop
+  breaking the page.
+- **Your own endpoint is no longer capped at 65K.** A custom or LM Studio
+  endpoint had no per-model table to look its context window up in, so it fell
+  to a generic 65,536 - and a 200K model was compacted at a third of its window.
+  Three things changed. The endpoint gets to report its own window, and Skales
+  reads it whatever the server calls it. The extra endpoint slots, which had no
+  advanced panel at all, now have the same timeout, retry and limit controls
+  every other provider card has. And a number you type into Override Model
+  Limits now wins over everything else, which it did not: a window reported by
+  the endpoint quietly overruled it. The panel also says which of the three the
+  figure came from, so a setting that took can be seen to have taken.
+- **The context meter shows what Skales is actually using.** It resolved the
+  window without ever looking at your overrides, so raising a limit in Settings
+  changed how much Skales sent and never changed the number on the screen, which
+  is how anyone checks. It reads the same override the call sites read now.
+- **The empty composer is one line tall again.** The box grows with what you
+  type by measuring itself, and the measurement counted the placeholder text as
+  if it were a draft. Any moment the window was narrow - a page transition, a
+  resize - "Ask anything, or describe a goal..." wrapped to six lines and a
+  six-line box was burned in, and it stayed that way, because the height was
+  only re-measured when the draft changed and an empty field has no draft. The
+  thinking dial and the access lock also stood half again too far apart, and now
+  sit as one pair. Both the start screen and the chat.
+- **The German in the app says "du" everywhere.** The WordPress card, the two
+  subscription disclaimers and the whole AIPointer page addressed you as "Sie"
+  while the rest of the app said "du" - a tone that switches mid-app reads as
+  two products stitched together. Thirty-three strings pulled across, each one
+  read first, because German writes the polite address and the ordinary third
+  person with the same words.
+- **The German in the app is written in German again.** The strings the new
+  setup and the Standard view brought with them arrived with every accent
+  stripped, in all seven Latin-script languages: "Was soll Skales koennen?",
+  "Rien n'est definitif", "Skales nen lam duoc nhung gi?". That was the
+  onboarding, the first screen a new user reads. All of them are restored, and
+  the German file is now clean throughout - two hundred more strings had been
+  carrying "aendern" and "Gedaechtnis" since earlier releases. A build check
+  counts the accent-free sentences per language so the next batch cannot arrive
+  the same way.
+- **Two settings nobody could search for.** The safety levels answered to their
+  old names - strict, balanced, permissive - so typing "unrestricted" into the
+  settings search found nothing, and the folders Skales must never touch
+  answered to nothing at all. Both are findable.
+- **Simple chat stops offering DLNA casting.** It has been retired since
+  v11.3.2 and was still being advertised as always available.
+- **A crash that happens in the window is now recorded like one.** Until now
+  only the background processes wrote to the crash log, so a user asked to
+  reproduce a crash and open Settings, Advanced, Diagnostics found nothing
+  there. A render crash now lands in the same place, with its stack, and the
+  crash screen says where to find it. In the chat it also carries the component
+  trail that names what threw, which is the one thing that makes a crash nobody
+  can reproduce fixable.
+
+### Added
+
+- **GigaChat is a provider now, not a workaround.** Sber's models were reachable
+  only by running a proxy of your own, because the custom endpoint field wants a
+  key it can send as-is and GigaChat wants something else twice over: an
+  Authorization Key that has to be traded for a token roughly every half hour,
+  and a root certificate that is in no default certificate store. Skales does
+  the trade itself, keeps the token fresh, and trusts that certificate for
+  GigaChat's requests only - not for this computer, and not for anything else it
+  talks to. Paste the key, pick whether it is a personal, B2B or corporate one,
+  and add the certificate on the card.
+
+- **You can put a chat on a shorter leash.** Next to the thinking dial in the
+  composer there is now an access control: read-only, read and write, accept
+  edits, or auto. Read-only means Skales can look at anything and change
+  nothing, and it is refused in the place tools actually run, not merely greyed
+  out on screen. It is set per conversation, it survives a reload, it is there
+  on the start screen as well as in a running chat, and read and write, exactly
+  what Skales did before, stays the default. When a folder is bound in Code mode
+  as well, the shorter of the two leashes is the one that counts.
+- **Skales can show you its own crashes.** Settings, Advanced, Diagnostics:
+  what this machine has recorded, on screen and on the clipboard. Crashes, the
+  provider calls that failed this session, recent warnings, and the version and
+  hardware they happened on. It is read from this computer and sent nowhere. An
+  install with nothing recorded says exactly that, rather than implying health.
+- **The assistant reads its own logs before it explains a failure.** Asked why
+  something broke, it used to answer from general knowledge about programs like
+  itself. It now reads the same diagnostics you can see, and says plainly when
+  they show no cause.
+- **LM Studio is a provider with a name.** It always worked through the generic
+  custom endpoint, for anyone who knew the port, the path and that the key
+  field should stay empty. It has its own card now, with the address filled in,
+  no key asked for, a note about the server switch that trips most people up,
+  and the local prompt-evaluation window from the first item on this list
+  applied without anyone configuring it.
+- **Your own browser can do the browsing.** Settings, Browser Control takes the
+  full path to a Chromium-based browser, so automation runs in the profile and
+  the extensions you already have. Leave it empty and nothing changes. A path
+  that is not there stops the launch and says so rather than quietly opening a
+  different browser, and a fork or an old build that refuses to start is named
+  as the untested thing it is.
+- **The add-on cards stop taking each other's entries.** Two cards on the setup
+  screen could claim the same add-on, so switching one off switched something
+  else off with it. Each add-on now belongs to exactly one card, and the last
+  screen of the setup says how many are on rather than guessing.
+- **The accessibility check measures the two setup screens too.** They were the
+  newest screens in the app and the only ones the audit did not open.
+- **Eight accent presets, one click each.** The three-colour picker stays for
+  anyone who wants it. Every preset is checked against the same readability bar
+  the picker warns you about, in light and in dark, before it can ship.
+- **The note that says what this release is about is in your language.** It sits
+  above the changelog in Settings, Advanced, Updates, in all twelve - because the
+  person who most needs to hear that setup and settings were rethought is the one
+  who does not read release notes in English. It retires itself when the build
+  moves off this line, so it can never end up describing an older release.
+
+### Changed
+
+- **The setup asks what you want Skales to do, and builds the app around the
+  answer.** A new step at the end of the first run offers five kinds of work -
+  Generative AI, Audio AI, Coding AI, Business agent, Personal agent - and each
+  one switches on the add-ons that belong to it. Every individual switch stays
+  on the same screen, so a bundle is a starting point and not a package. What
+  gets stored is the add-ons, never the category. The sidebar is then built from
+  that answer: an entry whose add-on is off is simply not in the list. Chat,
+  memory, planner, tasks, schedule, history and Discover are not offered,
+  because they are not a choice.
+- **Settings has a Standard view and an Advanced one, and Advanced still shows
+  everything.** The switch sits at the top of the page. Standard shows the
+  settings your add-ons actually need; Advanced shows every setting there is,
+  exactly as before. It is a view and not a state - anything switched on in
+  Advanced stays on in Standard, only out of sight - and search reaches both, so
+  typing what you are looking for finds it either way. A tab that would open
+  onto an empty page in Standard is not offered. The Advanced view is not a list
+  of dangerous things: Diagnostics, Updates, Export/Import and the data controls
+  live in the Advanced *tab* and are shown in both views, because those are
+  things ordinary users get sent to.
+- **An existing Skales is offered the new setup once, and loses nothing to it.**
+  A single notice, dismissable, that opens the same add-on screen with
+  everything you already had left switched on. Settings, Advanced, Setup runs it
+  again whenever you want. Nothing is deleted by either: chats, keys and
+  settings stay exactly as they are, and only what is shown changes.
+- **Who belongs to whom is decided in one file.** Which add-ons a category
+  offers, which sidebar entries follow an add-on, and which settings sections
+  the Standard view shows all used to be three separate lists kept in step by
+  hand. They are one map now, and a test walks the real files to prove nothing
+  is missing from it - an unplaced add-on or an unkeyed settings section fails
+  the build rather than quietly becoming visible-to-everyone or
+  invisible-to-everyone.
+- **Skales knows the interface it is actually running.** The map the assistant
+  answers "where do I find X" from is no longer written by hand: it is generated
+  from the same files that build the sidebar, the Settings page and the Add-Ons
+  list, and the build fails if the interface moves without it. So after a
+  release that rearranged a great deal, asking Skales where something is gets
+  the current answer rather than a confident description of the old app. The
+  answer also says which view a setting is in and which add-on it follows.
+- **A new installation starts with the Desktop Buddy switched on.** Buddy is the
+  face of Skales - the skin is picked during setup and it is the most used thing
+  in the app - and it was off unless you went looking for the switch. It now
+  arrives on, introduces itself in your language the first time it appears, and
+  points at Settings, General, where it is changed or switched off. An existing
+  Skales is not touched: if you never turned Buddy on, it stays off, and if you
+  turned it off, it stays off.
+- **Discover and Memory now stand on both sides of the sidebar.** The feed and
+  the working context used to live only in the Home view, so switching to Work
+  took both away. They are core surfaces and follow you across the toggle.
+- **Wrapped is always on again.** The yearly recap only works if its numbers
+  are collected all year, so Wrapped is no longer an add-on you can switch off -
+  which also means it returns for anyone who had it disabled. Its entry stays
+  in the Home view only; nothing about what it collects has changed, and it
+  still leaves your machine only if you share a card yourself.
+
+## v12.6.51 - Name The Failure
+
+A patch about failures that did not say their name. A browser that would not
+start, a sign-in that stopped with three words, a settings page that took the
+whole app down with it, and a picture that came back as an error nobody could
+read. None of these were new. What was missing in every case was a sentence.
+
+### Fixed
+
+- **The settings page no longer takes Skales down with it.** On some Windows
+  installs, opening Settings ended the engine outright: the page went blank or
+  the window closed, Skales quietly restarted itself, and it happened again on
+  the next visit. The cause was the browser automation library, which had moved
+  on to a newer version than this build can run and stops the program the moment
+  it is loaded. Skales now uses one exact version, checks before loading
+  anything, and refuses to load something that would end the session. The
+  "Install Chromium" button can no longer pull in a version that breaks the app
+  it is meant to fix.
+- **A browser that cannot start says why.** Missing Chromium, no system Chrome,
+  a check the machine would not let Skales run: each of these is its own
+  sentence now, in your language, with the two ways out named. Browser actions
+  that fail can no longer end a reply in silence.
+- **Signing in with ChatGPT explains itself.** "OAuth flow failed." is gone. The
+  port being taken, a firewall refusing the local listener, a browser that would
+  not open, a sign-in left too long: each says what happened and what to try, in
+  your language. The port is checked before your browser opens, so you are not
+  sent to a sign-in page whose answer could never arrive.
+- **A window that dies is written down.** If a window or the engine stops
+  unexpectedly, Skales records what happened and what it was doing at the time,
+  and the window comes back with the reason on screen instead of vanishing.
+- **Images reach local models again.** Pictures sent to a local model through
+  chat, Telegram or WhatsApp could come back as an unreadable error, depending
+  on where the picture came from. All three now prepare images the same way.
+- **An older channel chat shows the model it is actually using.** Telegram and
+  WhatsApp chats always followed your current model choice; the label just kept
+  showing the one from the day the chat started. A model you picked for a
+  specific chat is still yours and is left alone.
+- **The model search finds an endpoint by the name you gave it.** Typing
+  "LM Studio" found nothing, because the search only knew the internal id. Your
+  endpoints now appear under their names everywhere, and the internal id is gone
+  from the screen.
+- **Local models get their own settings again.** A newer Gemma release was
+  quietly running on settings meant for a much older one, and being handed a
+  shortened prompt it did not need. Measured against the real model and
+  corrected. The shared profile library and the copy built into Skales can no
+  longer drift apart, which matters most where the library cannot be reached at
+  all.
+
+### Added
+
+- **A "Free" filter in the model picker.** Shows only models nobody is billed
+  for: free variants and anything running on your own machine. Worked out from
+  the model lists themselves, so it does not go stale.
+- **Custom endpoints remember their model list.** Ask once, with a Refresh
+  button and the age of the list next to it, instead of asking your endpoint
+  every time you open the picker.
+- **You can see how much of a request was cached.** The token tooltip now shows
+  the share the provider served from its cache, when the provider reports it.
+- **The model list tells the truth about what it can do right now.** When a
+  smaller local model is given a reduced set of tools, it is told so, instead of
+  promising an ability it was not handed.
+
 ## v12.6.5 - Say What Happened
 
 
