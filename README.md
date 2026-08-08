@@ -481,6 +481,8 @@ Like Spotify Wrapped for your AI. Auto-generates every Monday. Activities, top t
   <a href="https://github.com/jarbcs1-prog"><img src="https://github.com/jarbcs1-prog.png" width="56" height="56" alt="jarbcs1-prog" style="border-radius:50%" /></a>
   <a href="https://github.com/LLen"><img src="https://github.com/LLen.png" width="56" height="56" alt="LLen" style="border-radius:50%" /></a>
   <a href="https://github.com/sebastiondev"><img src="https://github.com/sebastiondev.png" width="56" height="56" alt="sebastiondev" style="border-radius:50%" /></a>
+  <a href="https://github.com/WindWardMist"><img src="https://github.com/WindWardMist.png" width="56" height="56" alt="WindWardMist" style="border-radius:50%" /></a>
+  <a href="https://github.com/Shtirlyts"><img src="https://github.com/Shtirlyts.png" width="56" height="56" alt="Shtirlyts" style="border-radius:50%" /></a>
 </p>
 
 [Discussions](https://github.com/skalesapp/skales/discussions) · [Bug Reports](https://github.com/skalesapp/skales/issues)
