@@ -124,7 +124,7 @@ The private AI that lives on your computer and does real work, not just chat.
 
  <p>If you find this useful, a ⭐ helps others discover it</p>
   <p>
-    <a href="https://docs.skales.app">Documentation</a> · <a href="https://getskales.app">Blog</a> · <a href="./CHANGELOG.md">Changelog</a> · <a href="https://github.com/skalesapp/skales/discussions">Community</a>
+    <a href="https://docs.skales.app">Documentation</a> · <a href="./CHANGELOG.md">Changelog</a> · <a href="https://github.com/skalesapp/skales/discussions">Community</a>
   </p>
  
 
