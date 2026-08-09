@@ -50,6 +50,10 @@ burden is on us to say clearly what it is, which is the purpose of this file.
   testing of any kind.
 - Reports produced solely by an automated scanner, without a working
   demonstration against a released build.
+- Offers of a paid "security review" or "release assurance" attached to an
+  unsolicited report. We do not commission security work this way, and a real
+  finding needs no invoice to be taken seriously - send the reproduction and
+  you get the credit above.
 
 ## How to report
 
