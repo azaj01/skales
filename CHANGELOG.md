@@ -6,6 +6,68 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.7.3 - Drop-In
+
+A release about being answered. A local provider that would not talk, tools
+that reported more than they did, and a call you can now interrupt in the
+middle of a word.
+
+### Fixed
+
+- **LM Studio answers again.** The provider card said no API key was needed and
+  every message came back asking for one. The guard in front of the chat kept
+  its own list of the providers that need none, and had never been told about
+  LM Studio. That list is now written once and asked from everywhere.
+- **The LM Studio card's Refresh Models button exists.** Its own hint told you
+  to press it; the button was never drawn, and the model list behind it was
+  refused for want of a key it never needed. A running LM Studio now shows up
+  in the model picker, in model search, on the Agents page and in the provider
+  grid, and an agent pinned to it stays pinned.
+- **A group chat can be pointed at your own OpenAI-compatible endpoint**, and
+  the group-chat skill runs on a local model with no key at all.
+- **A failed Windows update leaves a trail.** Every step of the update path is
+  written down with a timestamp, and the last lines of it ride along in
+  Settings > Advanced > Diagnostics. The app also stops quitting on a timer
+  while the installer is still starting: it waits for the installer to actually
+  be there, and says so when it is not.
+- **A failed send is explained the way a failed test is:** the mailbox that
+  refuses your password says which credential it wants and where to get it, on
+  every mail action rather than only when you press Test.
+- **A mailbox that cannot be opened no longer answers under the name you asked
+  for**, and a list that was shortened says that it was shortened. Emptying the
+  trash reports what it deleted, not what it found.
+- **A calendar that could not be read says so** instead of shortening your week,
+  and a week with no calendar connected no longer reads as a free one.
+- **Speech, images and video stop claiming more than they did.** A voice that
+  fell through to a free fallback says which provider refused and why; text that
+  was too long to speak says it was cut; a video job that failed says it failed
+  instead of going quiet after "started"; and a provider that answers 401, 402 or
+  429 is named as your account rather than as a fault in the app.
+- **There was a second copy of the speech cascade**, and the two had drifted far
+  enough that the same settings produced two different voices. There is one now.
+- **A file too large for the phone is refused before the connection breaks.**
+  The ceiling was set by an estimate that counted one round of encoding; it is
+  now the measured number, written down once for both file paths.
+
+### Changed
+
+- **Talking over Call Mode interrupts her mid-word.** Call Mode used to stop the
+  audio only after the sentence had finished. It now listens through playback
+  with the same calibrated listener the Iris window uses, and hands the turn
+  back to you as soon as you start speaking. Where the microphone cannot be
+  opened for it, the old behaviour stays and the screen says why.
+- **Iris uses your name the way a person does:** once at the start of a
+  conversation, and after that only when she is actually addressing you.
+- **Qwen 3.7 gets a profile of its own:** the thinking-mode sampling the vendor
+  publishes instead of the generic Qwen profile's non-thinking numbers, and a
+  long-thinking budget so a silent stretch is not cut off as a stalled stream.
+- **The guide has its first screenshots**, and the LM Studio and KoboldCpp setup
+  pages have caught up with the provider grid that replaced the old dropdown.
+- **The acknowledgment that fills the silence follows where your endpoint
+  actually points**, not what it is labelled. A custom endpoint on the internet
+  is treated as being on the internet; one that cannot be read at all stays
+  silent, as before.
+
 ## v12.7.2 - Cockpit
 
 A release about seeing what is going on. What is running and where, what a

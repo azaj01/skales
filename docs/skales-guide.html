@@ -610,11 +610,25 @@
        the middle of a paragraph. The precise shot instruction lives in an HTML
        comment next to each figure and in REPORT-S10-DOCS.md, deliberately NOT
        on screen: a reader must never be shown a production note. */
-    figure.shot { margin: 1.25rem 0; }
+    figure.shot { margin: 1.25rem 0; position: relative; }
     figure.shot img { display: block; width: 100%; border-radius: var(--radius); border: 1px solid var(--border); }
     figure.shot figcaption { font-size: 0.78rem; color: var(--muted); margin-top: 0.45rem; }
     figure.shot .slot { display: none; }
-    figure.shot.pending img { display: none; }
+    /* A pending image is hidden by SHRINKING it, not by display:none. The images
+       are loading="lazy", and a lazily loaded image inside a display:none box is
+       never fetched - so its load event never fires, the pending class is never
+       removed, and a screenshot that exists on disk still shows the placeholder.
+       That is how the first six pictures arrived invisible. One pixel, fully
+       transparent, still counts as being in the viewport, so lazy loading keeps
+       working and the figure flips to the real image the moment it decodes. */
+    figure.shot.pending img {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      border: 0;
+      pointer-events: none;
+    }
     figure.shot.pending figcaption { display: none; }
     figure.shot.pending .slot {
       display: flex;
@@ -730,7 +744,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.7.2</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.7.3</span> User Guide</div>
       </div>
     </a>
 
@@ -896,7 +910,7 @@
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.7.2</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.7.3</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1092,8 +1106,7 @@
       <p>The sidebar has a personal side and a working side, and the switch at the top decides which one you are looking at. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
       <p>What the switch actually swaps is the <strong>Main</strong> group and the third group under it. Everything else stands in both.</p>
       <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, on both sides.</strong> Dashboard, Chat, History, Discover, Memory. Somebody working has the same two questions as somebody at home — talk to it, and find what was said — so having to leave Work to ask them would make the switch a toll rather than a view.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, Home only.</strong> Lio AI.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, on both sides.</strong> Dashboard, Chat, History, Discover, Memory — and on the Home side, Lio AI directly under Memory. Somebody working has the same two questions as somebody at home — talk to it, and find what was said — so having to leave Work to ask them would make the switch a toll rather than a view.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, Work only.</strong> Code, Organization, Autopilot, Teams. Code and Teams stand there whatever the Add-Ons page says, because a Work side that can end up identical to Home is a switch that earns nothing.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Workspace, on both sides.</strong> Iris Orbit, Studio, Agents, Tasks, Schedule, Planner, Projects.</li>
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Personal (Home) / Build (Work).</strong> Home shows Browser, Group Chat, Spaces, Wrapped. Work shows Codework, Browser, Playbooks, Workflow, WordPress, Swarm.</li>
@@ -2838,12 +2851,12 @@
       <p>Run KoboldCpp executable, select your GGUF model, and click <strong>Launch</strong>. The server starts on <code>localhost:5001</code> by default.</p>
 
       <h3>Configure in Skales</h3>
-      <p>In <strong>Settings → Providers → Custom Endpoint</strong>:</p>
+      <p>KoboldCpp has no tile of its own — it is reached through <strong>Custom (OpenAI-compatible)</strong> in <strong>Settings → AI Providers</strong>, the same tile that serves llama.cpp and vLLM:</p>
       <ul style="margin: 0.5rem 0 0.5rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
-        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">Endpoint URL:</strong> <code>http://localhost:5001/api/v1/completions</code></li>
-        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">API Key:</strong> Leave blank or use any dummy key</li>
+        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">Endpoint URL:</strong> <code>http://127.0.0.1:5001/v1</code> — the OpenAI-compatible path, not KoboldCpp's own API</li>
+        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">API Key:</strong> leave it empty; custom endpoints are keyless</li>
       </ul>
-      <p>Click <strong>Test Connection</strong> to verify. Once connected, KoboldCpp models appear in your model selector.</p>
+      <p>Click <strong>Fetch Models</strong> to verify. Once connected, the loaded model appears in your model picker. The full walkthrough, including Vision and TTS, is on the <a href="setup-koboldcpp.html" style="color:var(--accent)">KoboldCpp setup page</a>.</p>
 
       <div class="tip"><strong>💡 Tip:</strong> KoboldCpp supports up to 4-bit quantization, keeping even large models under 8GB RAM. Perfect for local-only operation.</div>
     </section>
@@ -2865,12 +2878,12 @@
       <p>Click the <strong>Local Server</strong> tab on the left sidebar. Set your desired parameters (max tokens, temperature, etc.) and click <strong>Start Server</strong>. The server runs on <code>localhost:1234</code> by default.</p>
 
       <h3>Configure in Skales</h3>
-      <p>In <strong>Settings → Providers → Custom Endpoint</strong>:</p>
+      <p>LM Studio has its own tile in <strong>Settings → AI Providers</strong> — you no longer go through <em>Custom (OpenAI-compatible)</em> for it:</p>
       <ul style="margin: 0.5rem 0 0.5rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
-        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">Endpoint URL:</strong> <code>http://localhost:1234/v1/chat/completions</code></li>
-        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">API Key:</strong> Leave blank or use any dummy key</li>
+        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">Endpoint URL:</strong> pre-filled with <code>http://127.0.0.1:1234</code>; change it only if you moved the server</li>
+        <li style="margin-bottom: 0.4rem;"><strong style="color: var(--text)">API Key:</strong> there is no key field — LM Studio is keyless, like Ollama</li>
       </ul>
-      <p>Click <strong>Test Connection</strong>. Once connected, your loaded model is available in Skales.</p>
+      <p>Click <strong>Fetch Models</strong>. Skales asks your running server what it has loaded; there is no built-in model list for LM Studio, so everything in the picker comes from your own machine. The full walkthrough is on the <a href="setup-lmstudio.html" style="color:var(--accent)">LM Studio setup page</a>.</p>
 
       <div class="tip"><strong>💡 Tip:</strong> LM Studio has a friendly UI for model management and inference parameters. Great for beginners or users who prefer a visual interface.</div>
     </section>
@@ -3680,7 +3693,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.7.2</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.7.3</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 
