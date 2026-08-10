@@ -795,6 +795,7 @@
     <a href="#ch-code" data-chapter="code">Overview and walkthrough</a>
     <a href="#code" data-chapter="code">Skales Code</a>
     <a href="#chat-code-settings" data-chapter="code">Settings: Chat &amp; Code</a>
+    <a href="#assist" data-chapter="code">Settings: Assist</a>
     <a href="#codework" data-chapter="code">Skales Codework</a>
     <a href="#playground" data-chapter="code">Playground</a>
     <a href="#devkit" data-chapter="code">DevKit</a>
@@ -1801,7 +1802,30 @@
       <h3>Priority</h3>
       <p>Most specific wins: <strong>the project&rsquo;s own file</strong>, then <strong>your global instructions</strong>, then <strong>this session</strong>. A rule you set for one session beats the same rule set globally, and a project that ships its own conventions beats both.</p>
       <h3>The rest of the tab</h3>
-      <p><strong>Shell command timeout</strong> sets how long a single command may run before Skales stops it (a command started in the background is not timed at all). <strong>Deep reasoning</strong> asks any model to think a problem through before acting, including models with no reasoning mode of their own. <strong>Code model</strong> runs a strong model for code while your chat stays on your default.</p>
+      <p><strong>Shell command timeout</strong> sets how long a single command may run before Skales stops it (a command started in the background is not timed at all). <strong>Deep reasoning</strong> asks any model to think a problem through before acting, including models with no reasoning mode of their own. <strong>Code model</strong> runs a strong model for code while your chat stays on your default. <strong>Assist</strong> has its own section, right below.</p>
+    </section>
+
+    <section id="assist">
+      <h2><span class="icon">⚡</span> Settings: Assist</h2>
+      <p>Not every step of a conversation needs your best model. Planning a step, checking a result, shortening a long one and writing the short line that appears while a slow model is still silent are small jobs, and Assist is where you say which model does them. It sits in <strong>Settings &gt; Chat &amp; Code</strong>, under Chat &amp; Code itself. Until 12.7.2 these three controls stood under Goals, which is why you may remember them there.</p>
+
+      <h3>The assist model</h3>
+      <p>Leave it on <strong>Follow the chat</strong> and the small jobs run on whatever model the conversation runs on. Point it at a provider and a model - a cheap cloud model, or a local one - and every light pass goes there instead, while your chat stays where it is. The model field only applies once a provider is set.</p>
+
+      <h3>Say something while the model is still thinking</h3>
+      <p>A big model can sit silent for several seconds before it writes anything. With this on, one short line appears in the status slot saying what Skales is about to do. It is written by your assist model, it is never stored in the conversation, and it is never sent back to a model on a later turn - it lives only in the window you are looking at. On by default. Switching it off gives you the ordinary indicator and nothing else changes.</p>
+      <p>Who writes it follows the boundary your conversation already crosses, and never widens it:</p>
+      <ul>
+        <li><strong>Skales IQ</strong>: the line rides the same lane the conversation already rides.</li>
+        <li><strong>Your own key</strong>: the same provider, on the cheapest small model of that vendor, with the key you already gave it.</li>
+        <li><strong>A local model</strong>: a local assist model if you configured one, otherwise no line at all. Nothing leaves the machine, not even a ping.</li>
+      </ul>
+
+      <h3>Let Skales write that line</h3>
+      <p>Indented under the toggle, because it only exists for one case: your provider has no cheap small model that Skales can name for the job. Then, and only if you switch this on, a Skales server writes the line instead.</p>
+      <p>Normally your conversation never touches a Skales server. This one line is the exception. The server sees the first sentence of your message and nothing else - no history, no system prompt, no files - and it keeps none of it: measured on the server, the lane stores a request counter and your device id as a one-way hash for rate limiting, and no text at all. Off by default.</p>
+      <p>One boundary belongs next to that, because it is a different kind of promise: this is what <em>our</em> server does, and it is measured. The model that actually writes the sentence runs at a provider, and there the guarantee is the zero-data-retention setting Skales sends with every such request - a commitment we require, not something we can measure from here.</p>
+      <p>If the lane is switched off on the server side, you get no line and no error: the feature is best-effort by design and never makes you wait twice. It does say so once, quietly, in <strong>Settings &gt; Advanced &gt; Diagnostics</strong>, so a switch that looks on but produces nothing can be explained rather than guessed at.</p>
     </section>
 
     <section id="codework">

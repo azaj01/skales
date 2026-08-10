@@ -28,9 +28,10 @@ model wrote when it meant to call one.
   surface, model, open goal - and leave an unread note in one of them. It starts
   nothing over there and spends nothing. An isolated agent can do neither, and
   the refusal sits in the tool itself rather than in whoever called it.
-- **A long conversation offers to carry on somewhere fresh.** When a turn gets
-  expensive the chat says what it actually sent, how much of that was the
-  history, and what a new session with a summary would start at. It only ever
+- **A long conversation offers to carry on somewhere fresh.** When a conversation
+  has really grown - several exchanges, and the size spread across them rather
+  than sitting in one enormous turn - the chat says how much history it is
+  carrying and what a new session with a summary would start at. It only ever
   offers. Nothing is deleted, and nothing is spent without you saying so.
 - **An available update stays visible until you deal with it.** A pill in the
   window chrome, fed by both the updater and an announcement from us, instead of
@@ -56,8 +57,8 @@ model wrote when it meant to call one.
   Who writes that line follows where your conversation already goes: on Skales
   IQ it comes from Skales and says so; on your own key it comes from a small
   cheap model at the same provider; and if you run a local model it stays on
-  your machine or does not happen at all. One switch in Settings turns it off
-  everywhere.
+  your machine or does not happen at all. One switch, in Settings under
+  Chat & Code, Assist, turns it off everywhere.
 - **A team run shows up in the list of what is going on.** A team of agents
   working through a task was the loudest thing in the product that appeared on
   only one screen. It has a line now, with the stop button the other rows have.
@@ -66,10 +67,29 @@ model wrote when it meant to call one.
   existed for a while with no way to reach them; there is a setting for them
   now, and it still starts on the old behaviour.
 - **The cockpit says when a hand-off is worth taking.** The phone can see it
-  too: how much of each turn is history being resent, and what a fresh session
-  on a summary would save.
+  too: how much history a conversation carries into every turn, and what a fresh
+  session on a summary would save.
 
 ### Fixed
+
+- **The nightly identity upkeep stops looking in the wrong place.** The built-in
+  3am job that keeps what Skales knows about you up to date was pointed at its
+  memory folder by a relative path, and every night it landed in the program
+  directory instead: two red lines in the log, and the half of the job that
+  reads your recent memories never read anything. It names its folders outright
+  now. The same slip was in the file tools underneath it - listing or creating a
+  folder by a short name went to the program directory while every other file
+  tool went to your workspace - so they agree now too.
+- **Skales answers questions about itself from its own manual.** Asked what a
+  setting does, it used to go rummaging through its own program code: thirteen
+  tool calls and a very expensive turn for an answer three sentences long, and
+  on a normal installation that code is not even there. It reads the guide, the
+  changelog and its capability list, and if the answer is in none of them it
+  says so rather than going digging.
+- **The invitation to send feedback waits until you have actually used the
+  desktop app.** It only asked how old the installation was, so somebody who
+  installed Skales on their computer, worked on their phone and never opened the
+  desktop window got a form three days later asking what was missing.
 
 - **Mute now means mute.** Switching notifications off silenced everything
   except the messages Skales considered important, which is how two reminders
@@ -195,6 +215,13 @@ model wrote when it meant to call one.
   Mobile and remote, which had no chapter, has one; so do the model readout, the
   profiles page and updates. What was in the guide and no longer true went out
   with it.
+- **The waiting line, the model that writes it and its fallback stand together
+  in one place.** Three settings that explain each other sat under Goals, where
+  the first of them has nothing to do with goal mode, and the same feature was
+  described three times on one screen. They are one section now, Assist, in
+  Settings under Chat & Code, with one explanation, and the fallback sits
+  underneath the switch it belongs to instead of beside it. Nothing you had set
+  changes; the guide has a section on it.
 - Update announcements reach every screen in the app, not just the dashboard.
 
 ## v12.7.1 - Which Model
