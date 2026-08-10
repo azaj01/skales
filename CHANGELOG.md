@@ -6,6 +6,197 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.7.2 - Cockpit
+
+A release about seeing what is going on. What is running and where, what a
+conversation is costing, what a tool actually did or did not do, and what the
+model wrote when it meant to call one.
+
+### Added
+
+- **Autopilot opens on what is in flight.** Goals, runs, tasks and scheduled
+  jobs stand in one list, each as a single line saying what it is, which
+  surface it is on, which model is answering, when it last moved, and the one
+  thing you can do with it. Code sessions working in the background appear
+  there too; no screen showed them before.
+- **A Code session can carry a goal.** `/goal` in the Code window arms the same
+  ledger the chat uses, and a strip above the composer shows what the session is
+  working towards, how far it has got, and whether it is running, waiting for
+  you or on hold. It survives a restart, so a coding task can be followed over
+  days rather than a sitting.
+- **Sessions have addresses.** A model can list your other conversations - title,
+  surface, model, open goal - and leave an unread note in one of them. It starts
+  nothing over there and spends nothing. An isolated agent can do neither, and
+  the refusal sits in the tool itself rather than in whoever called it.
+- **A long conversation offers to carry on somewhere fresh.** When a turn gets
+  expensive the chat says what it actually sent, how much of that was the
+  history, and what a new session with a summary would start at. It only ever
+  offers. Nothing is deleted, and nothing is spent without you saying so.
+- **An available update stays visible until you deal with it.** A pill in the
+  window chrome, fed by both the updater and an announcement from us, instead of
+  a toast you had to be looking at for five seconds. Hiding it is remembered
+  until the next version, and it goes away by itself once the update is in.
+
+- **WordPress can do what your site can do.** Skales reached about a third of a
+  WordPress site before. Now: find, read, change and delete posts, the media
+  library, categories and tags, comment moderation, menus and widgets, colours
+  and fonts, the logo, site settings and permalinks.
+- **The featured image finally gets set.** "Write a blog post and add a fitting
+  image" used to put the picture in the body only, and the thumbnail your theme,
+  your post list and every WhatsApp or LinkedIn preview shows stayed empty.
+- **The phone reaches the cockpit.** The session directory, everything in
+  flight and how to stop it, a coding session's goals, the handover, and
+  leaving a note in another session. It can also open a coding session's file
+  tree and read a file out of it.
+- **Something is said while the model is still thinking.** A big model can sit
+  silent for several seconds before it writes anything, and a pulsing dot in
+  that window reads as broken. One short line now says what is about to happen,
+  in your language, and disappears the moment the real answer starts. It is
+  never stored and never sent back to a model on a later turn.
+  Who writes that line follows where your conversation already goes: on Skales
+  IQ it comes from Skales and says so; on your own key it comes from a small
+  cheap model at the same provider; and if you run a local model it stays on
+  your machine or does not happen at all. One switch in Settings turns it off
+  everywhere.
+- **A team run shows up in the list of what is going on.** A team of agents
+  working through a task was the loudest thing in the product that appeared on
+  only one screen. It has a line now, with the stop button the other rows have.
+- **Sub-agents can be given a role.** A dispatched sub-agent inherits every tool
+  in the catalogue and pays for the whole list on every turn. Eleven roles have
+  existed for a while with no way to reach them; there is a setting for them
+  now, and it still starts on the old behaviour.
+- **The cockpit says when a hand-off is worth taking.** The phone can see it
+  too: how much of each turn is history being resent, and what a fresh session
+  on a summary would save.
+
+### Fixed
+
+- **Mute now means mute.** Switching notifications off silenced everything
+  except the messages Skales considered important, which is how two reminders
+  arrived at ten to midnight with the switch on. Nothing goes out on any channel
+  now, and nothing is swallowed either: what was held back waits on the
+  Notifications page, and a line at the top says how many important ones there
+  were.
+- **One meeting, one reminder.** Three parts of Skales reminded about calendar
+  events without knowing about each other, so a single entry could ping you
+  twice. Whichever gets there first now owns the reminder for that event that
+  day, and tomorrow's occurrence of a recurring entry reminds again as before.
+- **Friend Mode switched off also stops Skales taking the initiative.** The
+  proactive assistant had its own switch buried on the Notifications page, so
+  turning the companion off left it running and it kept surfacing meetings and
+  overdue tasks.
+- **An approval request obeys the mute too.** It went straight to Telegram and
+  never asked, so it was the one ping a muted user still got.
+- **Unchecking every notification channel now actually means silence.** A
+  last-resort system notification still went out, because it could not tell
+  "the channel you picked is unreachable" from "you picked none". The first one
+  still gets the fallback; the second one gets the Notifications page.
+- **A tool call the model wrote as text no longer becomes the answer.** In any of
+  the shapes models write it in, including the ones that are not in English and
+  the ones that look like a line of Python. A call whose name just missed a real
+  tool is now corrected in the conversation instead of being dropped in silence,
+  and the same correction reaches Telegram, WhatsApp and the CLI, not only the
+  desktop window.
+- **Personas report a failed tool as a failed tool.** Inventing a plausible
+  result was the most expensive thing any of them did.
+- **A provider error says which provider, which status, and what the provider
+  itself said** - in every language. The detail used to be attached to the
+  English sentence and then thrown away by the translation.
+- **A refused page stops being reported as a page.** `fetch_web_page` and
+  `extract_web_text` lead with the HTTP status and say in words when what came
+  back is a server's error page. A PDF, an image or an archive is refused by
+  name instead of being run through the HTML strip and handed over as text.
+- **Web search says whose problem a failure is.** A rejected key is a rejected
+  key, a spent quota is a quota, and a provider having a bad day is that. The
+  SearXNG hint about JSON output only appears on the status that actually means
+  it.
+- **A file tool says which argument it is missing,** and accepts the argument
+  names models really send. A well-formed call carrying `contents` or
+  `file_text` used to fail where a malformed one carrying the same key was
+  repaired.
+- **A write that wrote nothing leaves nothing behind.** No folders, no backup
+  file, and an existing file untouched.
+- **A full disk reads as a full disk** in every file tool, not as an errno line
+  in five of them.
+- **A signed-in ChatGPT, Claude or Gemini subscription is stored the way an API
+  key is stored.** The token that signs you in sat in the settings file as
+  readable text next to keys that were encrypted; it is encrypted now, and an
+  existing sign-in is converted the next time Skales starts.
+- **A schedule that switches itself off says so.** After three failed runs a
+  schedule pauses itself, which was right - but it only wrote a log line, so a
+  nightly job could simply stop happening and nobody found out.
+- **The phone stops waiting for an answer that was never coming.** Two of the
+  requests it makes about a coding session could end without a reply at all, so
+  the phone sat out its timeout and then blamed the computer instead of naming
+  the reason.
+- **Listing a folder no longer empties the context window.** The listing is
+  capped, says how many entries there are in total, and no longer holds up every
+  other conversation while it counts.
+- **A big image no longer breaks the automation.** A generated picture used to
+  travel through the model as one enormous block of text before it was uploaded;
+  Skales reads the file itself now. That is where a scheduled overnight run used
+  to stop.
+- **SEO is read before it is overwritten.** And when the site is set to
+  discourage search engines, Skales says so instead of reporting SEO nobody will
+  see.
+- **A refusal names what is missing.** If the connector hangs on an account with
+  limited rights, Skales says which right is missing on which account. And when
+  a design change would do nothing in the active theme, it says that instead of
+  reporting success.
+- **A signed-in ChatGPT subscription starts on the general flagship** instead of
+  the Codex coding model, and the account's own model catalogue is asked for
+  rather than assumed.
+- **Google says why it refused:** a location it does not serve, a rejected key,
+  an API that was never switched on, or an exhausted quota, instead of one
+  blanket "check your settings" for all four. The same refusal from OpenAI and
+  from a ChatGPT subscription reads the same way, in every language.
+- **The chat model picker lists the active provider's models straight away**
+  instead of waiting for a search term, and an install with no provider set up
+  is told that, rather than pointed at a search box with nothing behind it.
+- **The CLI routes that manage MCP servers ask who is calling.** Four of them
+  did not: one handed out the stored server configuration including the linked
+  server's keys, one deleted a definition, and two started and stopped the
+  configured process, for anyone who could reach the port. The DevKit token is
+  now compared the same careful way as the API token beside it.
+- **A command that fails says how it failed.** The exit status travels with the
+  answer, so a search that found nothing reads as nothing found rather than as a
+  broken command, and a program that is not installed says that instead of
+  blaming the command. Output too large to read back is reported as a command
+  that ran with its output cut, not as one that never happened.
+- **A shell tool with nothing to run says which argument is missing** instead of
+  answering with an internal error, and the same goes for the browser: no
+  address, no target to click, no key to press. A scroll direction the browser
+  does not have is refused rather than quietly scrolling the other way.
+- **A page that was not there stops being read as a page.** When a site answers
+  404, 403 or 503, the browser says so before the error page's own words are
+  handed over, the same way fetch already does.
+- **Background commands left running by a previous start are visible again.**
+  After a hard restart the list said nothing was running while last session's dev
+  server still held its port.
+- **Twenty translations had lost the value they were supposed to show** - a count
+  with no number, a countdown with no seconds. They are repaired, and a build
+  check now catches the next one.
+- **The profiles that ship inside Skales say the same thing as the public ones
+  again.** Eight model families, GigaChat among them, existed only in the
+  library fetched over the network, which means exactly the machines that cannot
+  reach it were the ones without them.
+- **The GigaChat card offers the generation it can actually reach** and no longer
+  asks for a certificate that ships with Skales.
+- **The release check stopped warning about two Windows manifests** that were
+  never finished and have now been removed.
+
+### Changed
+
+- **The user guide is a guide again.** It had a chapter system and no way to use
+  it: the chapter headings in the sidebar were not links, and there was no
+  search at all. The sidebar now switches chapters from anywhere, the search
+  reaches every chapter at once, and each of the eleven chapters opens with a
+  walkthrough you can follow on your own installation in about three minutes.
+  Mobile and remote, which had no chapter, has one; so do the model readout, the
+  profiles page and updates. What was in the guide and no longer true went out
+  with it.
+- Update announcements reach every screen in the app, not just the dashboard.
+
 ## v12.7.1 - Which Model
 
 Two reports on the day 12.7.0 shipped, both about the same thing from opposite
