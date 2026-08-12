@@ -744,7 +744,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.7.3</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.7.4</span> User Guide</div>
       </div>
     </a>
 
@@ -848,6 +848,7 @@
     <a href="#which-model" data-chapter="providers">Which model is answering</a>
     <a href="#llm-profiles" data-chapter="providers">LLM Profiles</a>
     <a href="#fallback" data-chapter="providers">Fallback Provider Chain</a>
+    <a href="#skales-local" data-chapter="providers">Skales Local</a>
     <a href="#ollama-marketplace" data-chapter="providers">Ollama Model Marketplace</a>
     <a href="#setup-koboldcpp" data-chapter="providers">KoboldCpp Setup</a>
     <a href="#setup-lmstudio" data-chapter="providers">LM Studio Setup</a>
@@ -910,7 +911,7 @@
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.7.3</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.7.4</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1104,6 +1105,7 @@
     <section id="sidebar">
       <h2><span class="icon">🗂️</span> Home and Work</h2>
       <p>The sidebar has a personal side and a working side, and the switch at the top decides which one you are looking at. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
+      <p><strong>When a conversation is active</strong>, on the themes with a full sidebar (Slate, Skales-X, Classic), the sidebar becomes the chat’s own navigation: New, Agents, Tasks and Add-Ons &amp; Skills as overlays, and below them your history grouped by day, pinned chats first. Home and Work stay on top and are the way back to the main navigation, and the chat landing page always keeps the main navigation — the chat sidebar belongs to a conversation, not to the chat address.</p>
       <p>What the switch actually swaps is the <strong>Main</strong> group and the third group under it. Everything else stands in both.</p>
       <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, on both sides.</strong> Dashboard, Chat, History, Discover, Memory — and on the Home side, Lio AI directly under Memory. Somebody working has the same two questions as somebody at home — talk to it, and find what was said — so having to leave Work to ask them would make the switch a toll rather than a view.</li>
@@ -2562,6 +2564,7 @@
         <a href="#which-model">Which model is answering</a>
         <a href="#llm-profiles">LLM Profiles</a>
         <a href="#fallback">Fallback Provider Chain</a>
+        <a href="#skales-local">Skales Local</a>
         <a href="#ollama-marketplace">Ollama Model Marketplace</a>
         <a href="#setup-koboldcpp">KoboldCpp Setup</a>
         <a href="#setup-lmstudio">LM Studio Setup</a>
@@ -2810,6 +2813,47 @@
       <p>Skales checks the primary provider every 60 seconds. When it recovers, Skales automatically switches back and dismisses the fallback banner. No manual action needed.</p>
 
       <div class="tip"><strong>💡 Tip:</strong> API keys are inherited from your saved provider settings — you don't need to re-enter them in the fallback chain configuration.</div>
+    </section>
+
+    <section id="skales-local">
+      <h2><span class="icon">🖥️</span> Skales Local</h2>
+      <p>Every other card in <strong>Settings &rarr; Providers</strong> asks you for a key. This one does not, and it does not ask you to install a server either: Skales brings the inference server with it. <strong>Settings &rarr; Skales Local</strong> is where the models live, and it covers four capabilities rather than one - language, speech in, speech out, and images.</p>
+      <p>Skales Local is in <strong>Beta</strong> and wears the label in the app. It grows release by release on real feedback — if something on your machine does not behave the way this chapter says, that report is exactly what the Beta label is asking for.</p>
+
+      <h3>The tab</h3>
+      <p>The banner at the top says what is loaded right now and whether it is running on the graphics chip or on the processor. Below it stands your machine (memory, cores) with the largest catalogue model that fits comfortably. Then the model list: a search box, category filters (Language, Vision, Voice, Image, Imported, Downloaded) and a sort (size, name, recently used). Each card carries its size, its badges and its licence, because a model you cannot use commercially is worth knowing about before the download and not after it.</p>
+      <p>At the bottom: <strong>Storage</strong>, which counts what the library takes, what is free on the disk, and any leftovers from interrupted downloads, with a button that clears them.</p>
+
+      <h3>Getting a model</h3>
+      <p>Three ways, all of them ending in the same library:</p>
+      <ul>
+        <li><strong>Download</strong> from the catalogue. The progress is real, an interrupted download continues where it stopped rather than starting again, and the file is checked against its published checksum before it counts as installed. A repository that wants you to accept its licence first says so, with a link, instead of reporting a failed download.</li>
+        <li><strong>Import</strong> a file you already have (.gguf, .onnx, .safetensors). Importing the same file twice updates the entry rather than producing a second row.</li>
+        <li><strong>Adopt</strong> what is already on the machine. Skales finds Ollama and LM Studio model folders and offers to use them where they are - the disk pays once.</li>
+      </ul>
+
+      <h3>Main or fallback, per capability</h3>
+      <p>This is the part worth reading twice. The choice is not "local or cloud" for the whole product; it is one choice per capability. Images on this machine, speech on this machine, and the language model through OpenRouter is a normal setup, and so is the opposite.</p>
+      <ul>
+        <li><strong>Main</strong> - the local model answers first. A cloud provider is only reached after a local failure, and the answer says that it was.</li>
+        <li><strong>Fallback</strong> - the cloud answers first, and this machine steps in when there is no key and no connection. That crossing is named too.</li>
+        <li><strong>Off</strong> - this capability does not use Skales Local at all.</li>
+      </ul>
+      <p>The promise underneath: if you set a capability to Main, your work is never quietly moved into the cloud. When it has to cross, the answer says which side produced it and why. When neither side can answer, you get a sentence and a next step rather than a spinner.</p>
+
+      <h3>Per-model settings</h3>
+      <p>Each installed model has its own context length (Auto reads what the model was trained for and is almost always right), temperature, top-p, repeat penalty, threads, GPU layers and chat template. Two of them explain themselves when they cannot be combined: a draft model and a vision file cannot be loaded together, so the draft is switched off with the reason next to it.</p>
+
+      <h3>Speech</h3>
+      <p>Under <strong>Settings &rarr; Voice</strong>, "On-device voice (Skales Local)" downloads a Whisper model to dictate with and a voice to be spoken to. Ten of the twelve interface languages have a voice; Japanese and Korean do not yet, and the tab says so rather than substituting something that sounds wrong. The models are the same files the phone uses.</p>
+
+      <h3>Images</h3>
+      <p>The image models go through the same list and the same downloader, and they land behind the image tool you already use - in chat, in Studio and in Flow, as a backend rather than a separate place to go. Speed depends entirely on the machine: with a modern graphics chip this is a normal way to work, and on an older processor-only machine a single picture is a matter of minutes. Skales checks the graphics chip before the first image and moves to the processor by name rather than crashing.</p>
+
+      <h3>Where the files are</h3>
+      <p>Models live beside your Skales data, not inside the application, so an update never costs you the download. The other side of that: <strong>they also survive uninstalling Skales</strong>. If you want the space back, clear the library from the Storage block before you remove the app.</p>
+
+      <div class="tip"><strong>💡 Tip:</strong> Third-party notices for every bundled component and every model licence live in <strong>Settings &rarr; Advanced &rarr; Third-party notices</strong>, offline and searchable.</div>
     </section>
 
     <section id="ollama-marketplace">
@@ -3123,6 +3167,17 @@
         <li><strong>Anything Skales starts by itself goes to the main chat</strong> &mdash; reminders, the morning briefing, Friend Mode. The first chat you paired keeps that seat, so adding the bot to a team group never redirects your private reminders into it. You can move it in Settings.</li>
       </ul>
       <p>Each chat can be removed on its own, and a new pairing code disconnects all of them, because a new code means the bot belongs to somebody else now.</p>
+
+      <h3>When the bot speaks in a group</h3>
+      <p>In a group the bot answered every message, which is fine in a room built around it and unusable in a room where people are talking to each other. <strong>Settings &rarr; Integrations &rarr; Telegram &rarr; Answer in groups</strong> decides which messages get a reply:</p>
+      <ul>
+        <li><strong>Every message</strong> &mdash; the default, and what every existing setup already does.</li>
+        <li><strong>Only when mentioned or replied to</strong> &mdash; <code>@yourbot</code> anywhere in the message, or a reply to something Skales said. A reply counts because answering a question Skales just asked should not require typing its name again.</li>
+        <li><strong>Only replies to Skales</strong> &mdash; nothing but a reply to one of its own messages.</li>
+        <li><strong>Only commands</strong> &mdash; a message that starts with <code>/</code>. A command addressed to a different bot in the same room, like <code>/todo@otherbot</code>, is left alone.</li>
+      </ul>
+      <p>A direct message is always answered; the setting is about groups. Any single chat can be <strong>muted</strong> from the list in Settings, which quiets it without unpairing it, and <strong>New groups start muted</strong> makes a group that pairs from now on wait for you to switch it on. It is told so when it pairs, so a silent bot is never a mystery.</p>
+      <p>One limit worth knowing: a voice message carries no <code>@</code> and no mention data, so under <em>Only when mentioned or replied to</em> a spoken message in a group is answered only when it is sent as a reply to Skales.</p>
 
       <h3>WhatsApp</h3>
       <p>Scan the QR code shown in Settings → Integrations → WhatsApp. Uses WhatsApp Web — your number is paired, no separate account needed.</p>
@@ -3693,7 +3748,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.7.3</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.7.4</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 

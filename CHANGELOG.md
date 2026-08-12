@@ -6,6 +6,183 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.7.4 - Skales Local
+
+A release about screens that tell the truth. A connection that worked but read
+as broken, a tool that was announced and could not be called, a question asked
+by the operating system in a way that left the window unusable afterwards. Five
+copies of the same answer do not make it true, so there is one of each now.
+
+### Added
+
+- **A Telegram bot in a group can be told when to speak.** It answered every
+  message in the room, which is fine where the room is built around it and
+  unusable where people are talking to each other. Settings, Integrations,
+  Telegram now offers every message, only when mentioned or replied to, only
+  replies, or only commands. Every message stays the default, so nothing changes
+  for a bot that works today. Any single chat can be muted without unpairing it,
+  and a group that pairs from now on can start muted and is told so when it does.
+
+- **Skales ships its own server.** Skales Local is a provider like any other
+  in the list, with one difference: it asks for no key, no account and no
+  install. The inference server lives inside the app. A new Settings tab
+  carries the models, with search, categories (language, seeing, voice, image,
+  imported, downloaded) and sorting by size, name or last used.
+- **Four capabilities, four separate decisions.** Chat, dictation, read-aloud
+  and images can each be set to this machine first, cloud first, or off.
+  Images local, voice local and the language model through OpenRouter is an
+  intended combination, and so is every other one, on every surface that
+  needs a model.
+- **Whoever answers is named, before and after.** The model line above the
+  composer reads "Skales Local" and the model with it, so the choice can be
+  checked before a word is sent. Set a capability to this machine first and it
+  is never quietly pulled into the cloud. When a turn does have to leave the
+  machine, the answer carries the reason; when neither side can answer, there
+  is a sentence and a next step instead of a spinner.
+- **Fetch a model, bring your own, or adopt one.** The download shows real
+  progress, resumes where it stopped, and checks the file against its checksum
+  before it counts as installed. A repository that wants a licence confirmed
+  first says exactly that instead of "download failed". Your own .gguf, .onnx
+  or .safetensors files come in through the file picker, and existing Ollama
+  and LM Studio folders are recognised and used where they lie: the disk pays
+  once. A file that is part of a model rather than a model - a projector, an
+  autoencoder, a text encoder - is recognised as one and shown as one, so it
+  never turns up in a list of models to answer with.
+- **Dictate and listen with no network.** Whisper for hearing, VITS voices for
+  speaking, both through one runtime and one install shared by Chat, Iris and
+  AIPointer. Ten of the twelve interface languages have a voice, Croatian
+  among them. Japanese and Korean have none we are allowed to ship, and the
+  screen says so.
+- **Pictures that never leave the machine.** The local image model sits behind
+  the same tool as before, in Chat, in Studio and in Flow, as a backend and
+  not as an island of its own. Skales reads the graphics chip's report first:
+  if it cannot run the needed kernels, the picture runs on the processor,
+  named, instead of crashing.
+- **Every licence is in the app.** Settings, Advanced, Third-party notices:
+  the open-source components and the terms of every local model, full texts,
+  offline and searchable. A build that is handed a catalog model without its
+  licence does not pass.
+
+- **The sidebar becomes the chat's own navigation.** In a conversation, on the
+  themes with a full sidebar, it shows New, Agents, Tasks and Add-Ons & Skills
+  as overlays over the same screens the routes show, and below them the history,
+  grouped by day, pinned chats first. A row says what its chat is doing -
+  running, waiting for an approval, failed, a goal met - and keeps saying it
+  after a reload, because the state is written to disk. A chat that came in over
+  WhatsApp, Telegram, the phone or a task wears that channel's mark; everything
+  else wears a quiet bullet. Hold still on a row and it gives you the date and
+  time; pass over it on the way somewhere else and it stays out of your way.
+  Home and Work stay on top and are the way back.
+- **Setup names the three ways in.** Skales IQ, Skales Local with what it
+  costs on disk and its Beta label, or your own key.
+
+### Fixed
+
+- **One dialog asks every question.** Deleting a chat on Windows put up the
+  operating system's own box, and after it closed the composer was dead until
+  you switched windows and back. Sixty-four of those calls across the app are
+  now the Skales dialog, in every window, and the keyboard goes back to the
+  button you pressed.
+- **A ChatGPT subscription reads as connected, because it is.** The status card
+  asked one question and the chat asked another, so a paid account that answered
+  every message was reported as no provider at all. GLM and Qwen were read and
+  never mentioned. There is one predicate now, and a new provider card lists
+  itself.
+- **Skales stops calling twelve of its own abilities switched off.** The
+  self-report looked them up under a name the settings page does not write, so
+  the answer was silently no. Places, Planner, Teams, Extensions and eight more
+  now report the switch they actually have.
+- **Drive, Docs, Calendar and YouTube can be called when they are configured.**
+  They were announced as active and then were not in the toolbox, because the
+  announcement and the catalogue read different files. Calendar was the same
+  mistake one step worse: a machine with only an Apple or Outlook calendar had
+  no calendar tool at all.
+- **Connecting a Google account no longer paints an error over the success.**
+  The landing page finished the exchange a second time and reported that the
+  authorisation was closed, on top of a connection that had just worked.
+  Disconnecting it has an exit too: a request that is dropped rather than
+  refused used to leave the card waiting for ever, and a delete that failed
+  still said the account was gone.
+- **GigaChat can use tools on both of its hosts.** The current one refused the
+  follow-up request because a tool result was sent as raw markdown where it
+  wants JSON. The older one has no tools field at all, so the tools travelled
+  there and were discarded before the model saw them; it now gets the contract
+  it publishes. Model lists belong to the host that offers them, so the endpoint
+  you selected stops offering a model it answers 404 for.
+- **A tool call written in any script is recognised as a tool call.** The
+  recogniser was a list of known markers, and a list only grows after somebody
+  reports what it missed. It asks a structural question now, so a block in
+  Arabic or Cyrillic is caught the same as one in English, and a fenced example
+  is still left alone.
+- **The Google Places hint names the API that is actually called**, which is
+  Places API (New) and not the older one with almost the same name, and the card
+  has a test button that hands Google's own answer back word for word.
+- **Pressing Try again after a crash reloads instead of remounting.** The
+  retry rebuilt the router inside a document that had already lost it, so
+  /profiles and /settings answered a crash with the same crash, three times in
+  three seconds.
+- **Notifications stop appearing under the window buttons** on Windows, and the
+  full-screen close button in Studio moves out from under the system one.
+- **A tool that cannot work stops being asked again.** A missing browser, a
+  search that hit a bot challenge, a path that is a folder: those were retried
+  five and nine times a second with slightly different arguments. The failure
+  now says whether it is worth another try, and the runner listens.
+- **A tool name mangled by the model resolves to the tool it meant**, instead of
+  being reported as an unknown one.
+
+- **A local model could end up in the cloud without anyone saying so.** Four
+  places outside the chat path ended their provider chain at a paid service
+  when they did not know the configured provider: Autopilot, Lio and two of
+  the background runners. An unknown provider is a named error now, not a
+  silent detour, and the hard-coded paid default is gone.
+- **Agents, Flow, Studio and Lio ask the same place the chat asks.** All four
+  used to decide on their own which provider answers, and Flow's fall-back to
+  a cloud-only list happened in silence. They go through the same resolution
+  as everything else now, and Studio's Auto names the model that actually
+  answers.
+- **A downloaded model is also found.** The downloader wrote into a folder the
+  server never looked at. One folder for both.
+- **The machine may sleep.** A generation that runs into system sleep is
+  called sleeping now instead of nothing; on waking, Skales probes the server
+  and only restarts it when it has really lost it.
+
+- **The chat page outlives a long answer.** After minutes of an unanswered
+  turn the page could be replaced by a crash card, React's error 482. The page
+  was suspending its own router: every timer on it polled through server
+  actions, and each of those parks the router on an unresolved promise. The
+  timers poll over plain requests now, and the seven-minute watch that used to
+  die in the fifth minute runs through with the honest timeout line still on
+  screen.
+- **A Telegram answer belongs to the chat that asked for it.** When two chats
+  wrote at the same time, one could be handed the other's answer, pictures and
+  even an approval keyboard included. The answer is picked by chat now, and
+  the bot refuses to post one addressed to another room.
+- **Iris's mute button leaves the window buttons alone**, and muting her means
+  she stops listening, not that she stops talking: the microphone closes, the
+  sentence finishes, and the choice survives a restart.
+- **Opening Iris no longer announces anything.** She does not greet you, she
+  listens. Same as on the phone: the window opens, the ear is ready, and the
+  first sentence in the room is yours.
+- **The floating Save button no longer covers the end of a settings tab.**
+- **The size on a model card is what the download really costs.** A model that
+  can see is fetched together with the file it sees through, and the card
+  counts both. The description sits behind the card's own chevron, so the
+  list stays a list.
+
+### Changed
+
+- **An image that goes to another model says so.** The routing was right and
+  invisible: a picture handed to a model that can see it was a console line and
+  nothing on screen. The conversation now carries a line naming the model, and
+  says explicitly when the image left the machine.
+- **A pairing that fails against an old desktop says which versions are
+  involved**, on the phone, instead of fifteen silent seconds. The confirmation
+  dialog on the desktop shows the phone's version too, which is the one dialog
+  where the owner had no way of seeing what was asking.
+- **The Agents page asks before deleting the way everything else does.** Its
+  second-click-within-four-seconds pattern was built to avoid the operating
+  system dialogs that this release removed.
+
 ## v12.7.3 - Drop-In
 
 A release about being answered. A local provider that would not talk, tools
