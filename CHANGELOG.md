@@ -6,6 +6,111 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.7.45 - SKLS
+
+A repair release, built the day after 12.7.4 from what the first devices
+reported. The local server that the release was named for now answers on the
+machines it was promised to, and a handful of screens that guessed, hid or
+misnamed their failures say what actually happened instead.
+
+### Added
+
+- **Unsloth Desktop is a provider with its own name.** It has a tile in the
+  provider grid with the same on and off switch every other provider has, an
+  address already filled in, and a button that finds a running instance on
+  either of the two ports it uses. It is the first local runtime that wants an
+  API key, so the card says where that key is made, and a refused key is
+  reported as a refused key instead of as a missing model. Refresh Models reads
+  the runtime's own GGUF catalogue with the quantisation of each file, and a
+  model that is still loading gets the long silent window a local runtime needs.
+  How long a model stays in VRAM is set inside Unsloth Desktop, and the card
+  says so rather than showing a control that would do nothing.
+
+### Fixed
+
+- **A turn to the local server carries a local model id.** Switching to Skales
+  Local kept the previous provider's model id, so the runtime was asked for
+  "openai/gpt-5-mini" it could never hold. Both request paths now resolve the
+  id from the capability matrix, the provider card or the runtime itself, in
+  that order, and a request to a local address can no longer carry another
+  vendor's id.
+- **The Mac build for Apple Silicon carries the local server.** The arm64
+  package held 253 MB of engines for three other platforms and none of its
+  own. Each platform and architecture now stages its own engines, a build
+  gate measures the staged files against what the configs promise to ship,
+  and every bundled library had its build-machine search path repaired, not
+  just the executable. Mac packages shrink by the foreign payload they no
+  longer carry.
+- **Fetch Available Models sees what the runtime holds.** The fetch button
+  knew one URL and two answer shapes while the error path knew two and three,
+  so the card said "0 models" while the chat error listed all of them. One
+  reader serves both now, the card offers its own library without a button
+  press, and projector companion files no longer appear as answerable models.
+- **Models on another disk are found.** Detection read two default folders on
+  the system drive and called the rest of the computer empty. It now reads
+  Ollama's configured model path including the Windows user environment, LM
+  Studio's own settings, and asks running runtimes what they hold; an empty
+  scan names the folders it read and offers picking one instead of claiming
+  absence.
+- **One status line, one Start now.** The Skales Local card rendered two
+  answers to "is it running", one of them with a dead start button when no
+  model was installed. One resolver decides, and the more concrete answer
+  wins.
+- **Connecting a Google account survives its own landing page.** The return
+  page re-ran its effect the moment translations finished loading and burned
+  the one-time code, which read as "This authorization is no longer open"
+  seconds after a successful consent. With remote access on, the final step
+  was rejected as unauthenticated and surfaced as a bare "Failed to fetch".
+  The landing step is reachable on its own now, the code is claimed before
+  the exchange, a run lives an hour, and a second tab can no longer erase
+  the account the first one connected.
+- **A tool that is named can be called.** The capability answer listed tools
+  from the catalog that the running turn had not loaded, and the model,
+  unable to find them, tried them as shell commands and invented an excuse
+  when that failed. Naming now loads, a tool name typed as a shell command is
+  steered back to the tool instead of executed, and the answer says how a
+  not-yet-loaded tool becomes callable.
+- **Credentials stay out of transcripts.** The integrations folder is sealed
+  against file tools the way settings.json already was, and web requests
+  redact tokens and secret fields by name in what they log and store.
+- **Calendar reads with your account, not just your key.** With both an API
+  key and a connected account, events were fetched with the key alone, which
+  can only see public calendars and read as "google rejected access". A
+  rejected fetch retries once with the account token, and writes always use
+  credentials that can write.
+- **Saved keys stop eating themselves.** Twenty fields showed a shortened
+  key prefix after saving, and saving again wrote that shortening over the
+  real credential, after which every check failed. A saved secret shows as
+  dots that are never written back.
+- **Replies to bug reports arrive.** An answer from the maintainer was
+  fetched and thrown away by the notification poller, unclickable on the
+  notifications page and invisible on the feedback page. It now surfaces in
+  all three places.
+- **Searching Settings finds every line again.** The 12.7.4 rule that let a
+  section-name match win outright also erased every inventory match, which
+  made "Google" unable to find the Google account setup inside Productivity
+  Integrations, and the same for 144 other word-to-section pairs. Name
+  matches sort first now, everything else follows under a divider, and a
+  test probes every word of every section name and keyword against the index.
+- **A turn that ends with nothing says what ended it.** A dropped connection,
+  a filtered answer, an output limit reached before the first word, a reply
+  spent entirely on reasoning and a genuinely empty answer all ended in the
+  same sentence with no log line, and the retry button only existed in
+  English. Each cause has its own sentence in all twelve languages, one log
+  line names it on the server, and the reason and retry survive a reload.
+- **Post generation stops calling a token limit a timeout.** Discover's
+  compose gave every model 120 tokens; reasoning models spent them thinking
+  and never wrote, and the empty result was labelled "your model did not
+  answer in time". The budget starts at 1024 and climbs before reasoning is
+  switched off, an answer cut at the limit is named as cut, and a fallback
+  template says why it is one.
+- **The diagnosis stops blaming the outside for a stop Skales ordered.** The
+  server exit recorded as an external SIGKILL during Discover traffic was
+  Skales's own five-second shutdown grace ending a long request; measured,
+  not guessed. The forced stop marks itself and the diagnosis names it. The
+  same report also claimed crash recording was off while it was on; the
+  answer now comes from the installed handlers instead of an env guess.
+
 ## v12.7.4 - Skales Local
 
 A release about screens that tell the truth. A connection that worked but read

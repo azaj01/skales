@@ -852,6 +852,7 @@
     <a href="#ollama-marketplace" data-chapter="providers">Ollama Model Marketplace</a>
     <a href="#setup-koboldcpp" data-chapter="providers">KoboldCpp Setup</a>
     <a href="#setup-lmstudio" data-chapter="providers">LM Studio Setup</a>
+    <a href="#setup-unsloth" data-chapter="providers">Unsloth Desktop Setup</a>
 
     <div class="section-label" data-chapter="mobile">Mobile and remote</div>
     <a href="#ch-mobile" data-chapter="mobile">Overview and walkthrough</a>
@@ -2705,6 +2706,11 @@
         </div>
         <div class="provider-item">
           <div class="provider-dot muted"></div>
+          <div class="provider-name">Unsloth Desktop</div>
+          <div class="provider-desc">Run models on your own machine with Unsloth Desktop, including quantisations the other local runtimes do not serve. The only local card that asks for a key, because the app issues one. Step by step below.</div>
+        </div>
+        <div class="provider-item">
+          <div class="provider-dot muted"></div>
           <div class="provider-name">ChatGPT (Codex)</div>
           <div class="provider-desc">Your ChatGPT subscription by signing in rather than by key. It lives inside the OpenAI card, since that is the account it belongs to.</div>
         </div>
@@ -2930,6 +2936,25 @@
       <p>Click <strong>Fetch Models</strong>. Skales asks your running server what it has loaded; there is no built-in model list for LM Studio, so everything in the picker comes from your own machine. The full walkthrough is on the <a href="setup-lmstudio.html" style="color:var(--accent)">LM Studio setup page</a>.</p>
 
       <div class="tip"><strong>💡 Tip:</strong> LM Studio has a friendly UI for model management and inference parameters. Great for beginners or users who prefer a visual interface.</div>
+    </section>
+
+    <section id="setup-unsloth">
+      <h2><span class="icon">🦥</span> Unsloth Desktop Setup</h2>
+      <p>Unsloth Desktop runs models on your own machine and serves them over the same OpenAI-compatible protocol Skales uses everywhere else. It is worth its own card for two reasons: it offers quantisations the other local runtimes do not, and unlike them it authenticates.</p>
+
+      <h3>Point Skales at the server</h3>
+      <p>Open <strong>Settings → AI Providers</strong> and switch the <strong>Unsloth Desktop</strong> tile on. The address is pre-filled with <code>http://127.0.0.1:8888/v1</code>, which is the port the installer uses. If your install announced a different one, press <strong>Find running Unsloth Desktop</strong>: it tries the address in the field, then 8888, then 8000, and writes back whichever answered. If none of them does, the card says so instead of spinning, and you can type the address the Unsloth window shows.</p>
+
+      <h3>Create the key</h3>
+      <p>This is the one local provider with a key field, and it is not optional. In Unsloth Desktop, open <strong>Settings → API</strong>, create a key and copy it: it starts with <code>sk-unsloth-</code> and is shown only once. Paste it into the card in Skales. If you revoke that key later, Unsloth answers every request with 401 and Skales says the key was refused and where to make a new one, rather than blaming the model.</p>
+
+      <h3>Pick a model</h3>
+      <p>Press <strong>Refresh Models</strong>. Skales reads the runtime's own catalogue, which is the model currently loaded plus the GGUF files on your disk, and keeps what each entry says about itself: its quantisation, and whether it can call tools or read images. There is no built-in list, because the only truthful one is your own machine's. Companion files such as vision projectors are filtered out, since they cannot answer a turn.</p>
+
+      <h3>Keeping a model in VRAM</h3>
+      <p>Residency is an Unsloth setting, not something a client sends per request. In Unsloth Desktop, <strong>Idle auto-unload</strong> frees VRAM after a number of idle seconds (0 keeps the model loaded, the minimum is 60) and <strong>Keep model in GPU memory</strong> holds it between prompts. If you run several models in sequence through agents or teams, that is where you tune it. Skales shows no control for it, because a switch that quietly does nothing is worse than none.</p>
+
+      <div class="tip"><strong>💡 First call is slow:</strong> with <em>Switch model by request</em> enabled in Unsloth, a chat request naming a model that is not loaded triggers the load first. Skales allows a long silent stretch before the first token for exactly this reason, so leave it be rather than pressing stop.</div>
     </section>
 
     <!-- ===== Chapter: Mobile and remote ===== -->
