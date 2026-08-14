@@ -51,7 +51,7 @@ An AI agent that runs on your own computer, with access to your files, browser, 
 > from [skales.app](https://skales.app). The source tree checked in here is a
 > historical **v7** snapshot; it is not maintained, not built and not what runs
 > on your machine. Reporting a security issue? Please read
-> [SECURITY.md](SECURITY.md) first. It says what is in scope, and it will save
+> [SECURITY.md](https://github.com/skalesapp/skales/blob/main/SECURITY.md) first. It says what is in scope, and it will save
 > you a lot of time.
 
 ---
