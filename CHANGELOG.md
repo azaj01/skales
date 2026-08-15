@@ -6,6 +6,89 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.8.0 - Sightline
+
+The sidebar is one list again, the surfaces that had grown into a menu of their
+own are back where the work happens, and what Skales knows about you can be kept
+off the network with one switch.
+
+### Added
+
+- **One sidebar, and it belongs to what you are doing.** Home lists Dashboard,
+  Chat, Code, Studio, Cockpit, Planner, Iris, Memory, Mobile, then Discover and
+  Wrapped, then System. Open a conversation and the same column becomes the
+  chat's own navigation: New chat, Agents, Cockpit, and a More group holding
+  History, Projects, Teams, Group Chat, Organization, and Add-Ons and Skills.
+  The shortcuts open as overlays over the same screens the routes show, each
+  with its own title bar, so nothing sits under the close button any more.
+- **Cockpit: everything that is running, in one place.** Goals, Tasks and
+  Schedule as three tabs of one screen, with the tab in the address so a reload
+  brings you back where you were. Goals has a screen for the first time: what
+  each goal is trying to do, the criteria it must meet and the evidence it has
+  collected, its last steps with the tool each one used, what it produced, what
+  it learned, and what it has spent, with Open, Continue and Stop on each one.
+  Finished goals are listed too, and so are the ones on a repeating schedule.
+- **Studio opens Flow.** Clicking Studio puts you straight into the workspace
+  in its own window instead of a screen asking which half you want. The whole
+  of the older Studio is still there, one door below the composer as **Studio
+  Classic**, on the tab you were linking to, with a Back to Flow line at the
+  top of its rail. A second door starts a prototype in Lio AI, and that page
+  has its way back too.
+- **Planner has its own entry again.** It is the one visual calendar surface
+  and it survives a fresh install.
+- **A Codework mode in Code.** A pill in the composer starts the session with
+  the file and preview panel and the review panel already open, so the chat,
+  the files and the diff stand side by side from the first message. Pressed or
+  not pressed is remembered like the terminal and the panel widths, and it
+  shapes a session when it starts rather than rearranging one mid task.
+- **Code takes a typed project path,** so a folder can be opened without the
+  native picker, and the server validates it the same way either way.
+- **Code drafts its own commit message.** A Draft message button beside Commit
+  reads the staged diff and writes the message; a repository without a first
+  commit is handled rather than failing on a missing HEAD.
+- **Chat and Code can see your Projects,** and can keep their own working notes
+  in one instead of scattering scratch files.
+
+### Changed
+
+- **Privacy Mode: what Skales remembers about you never leaves the machine.**
+  One switch. With it on, a cloud model gets no memory index, no name, no
+  facts, no preferences, no interests and no learnings, and the prompt says
+  plainly that a memory exists and is being kept local rather than pretending
+  there is none. Your language and the clock survive, local models are
+  unaffected, and the background briefing follows the same rule. Which
+  provider counts as local is decided by the address it points at, never by
+  its name, so a custom slot on a rented endpoint is treated as the cloud it
+  is.
+- **The prompt is budgeted before it is sent,** so a model with a small context
+  window is given a tool set it can actually hold instead of one that pushes
+  the conversation out, and it is told what is not currently loaded rather than
+  being left to guess.
+
+### Fixed
+
+- **A goal is only finished when its criteria are met.** The chat used to be
+  able to write a goal off as done past the gate the runner honours. Both paths
+  go through the same gate now. Accepting a result may overrule the criteria,
+  but never a sub task that is still running, and a refused accept leaves the
+  goal parked and says on the card why.
+- **A completion marker never appears in the answer.** The word the runner uses
+  to signal it is finished is stripped from what you read, on every surface.
+- **Updates that stall say so.** The updater notices a download that stopped
+  moving instead of leaving a progress bar sitting at a number forever.
+- **Unsloth Desktop, and every other provider, gets the address it documents.**
+  Fetching models from a cloud provider whose default address carries no path
+  appends the version segment those providers resolve to anyway, and the bare
+  address is still tried second. A conformance check now walks the whole
+  provider registry so one card can no longer build its URL differently from
+  the rest.
+- **The Obsidian theme has all of its menu.** Its dropdown had been dropping
+  every entry that was not in a group, which since the sidebar was rebuilt
+  meant Agents, Tasks, Schedule and Notifications had no door at all.
+- **Settings opens on the section a link names,** instead of landing at the top
+  of the page and leaving you to find it.
+- **New chat no longer reloads the history list** every time it is pressed.
+
 ## v12.7.45 - SKLS
 
 A repair release, built the day after 12.7.4 from what the first devices

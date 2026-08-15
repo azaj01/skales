@@ -774,7 +774,7 @@
     <a href="#ch-start" data-chapter="start">Overview and walkthrough</a>
     <a href="#install" data-chapter="start">Installation</a>
     <a href="#onboarding" data-chapter="start">First Launch</a>
-    <a href="#sidebar" data-chapter="start">Home and Work</a>
+    <a href="#sidebar" data-chapter="start">Home and Chat</a>
     <a href="#addons-view" data-chapter="start">Add-Ons, and the two views of Settings</a>
 
     <div class="section-label" data-chapter="chat">Chat and agents</div>
@@ -787,6 +787,7 @@
     <a href="#easter-eggs" data-chapter="chat">Easter Eggs</a>
     <div class="group-label" data-chapter="chat">What it remembers</div>
     <a href="#memory" data-chapter="chat">Memory</a>
+    <a href="#privacy-mode" data-chapter="chat">Privacy Mode</a>
     <a href="#memory-mode" data-chapter="chat">Memory Mode</a>
     <a href="#knowledge-graph" data-chapter="chat">Knowledge Graph</a>
     <a href="#vector-db" data-chapter="chat">External vector database</a>
@@ -1049,7 +1050,7 @@
       <div class="lead-index">
         <a href="#install">Installation</a>
         <a href="#onboarding">First Launch</a>
-        <a href="#sidebar">Home and Work</a>
+        <a href="#sidebar">Home and Chat</a>
         <a href="#addons-view">Add-Ons, and the two views of Settings</a>
       </div>
     </section>
@@ -1091,7 +1092,7 @@
         <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">What Skales should do for you</strong> — Five kinds of work: Generative AI, Audio AI, Coding AI, Business agent, Personal agent. Picking one switches on the add-ons that belong to it, and you can change any individual switch on the same screen. The sidebar and the Settings page are then built from that answer, so you see what you chose and not the rest.</li>
       </ol>
       <p>After onboarding you land directly in <strong>Chat</strong> — ready to go.</p>
-      <p>Nothing in that last step is final, and nothing is lost by it. Chat, memory, planner, tasks, schedule, history and Discover are always there and are not on the list, because they are not a choice. Everything else is one switch on the <strong>Add-Ons</strong> page, and the <strong>Advanced</strong> view of Settings always shows every setting there is. An existing installation is offered the same screen once, with everything it already had left switched on.</p>
+      <p>Nothing in that last step is final, and nothing is lost by it. Chat, memory, the planner, tasks, schedule and Discover are always there and are not on the list, because they are not a choice. Everything else is one switch on the <strong>Add-Ons</strong> page, and the <strong>Advanced</strong> view of Settings always shows every setting there is. An existing installation is offered the same screen once, with everything it already had left switched on.</p>
 
       <h3>Permissions your system may ask for</h3>
       <p style="color: var(--muted); font-size: 0.875rem;">Each prompt comes from your operating system, and Skales asks only for what the feature you are using needs. If you never use a feature, its prompt never appears.</p>
@@ -1104,17 +1105,15 @@
     </section>
 
     <section id="sidebar">
-      <h2><span class="icon">🗂️</span> Home and Work</h2>
-      <p>The sidebar has a personal side and a working side, and the switch at the top decides which one you are looking at. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
-      <p><strong>When a conversation is active</strong>, on the themes with a full sidebar (Slate, Skales-X, Classic), the sidebar becomes the chat’s own navigation: New, Agents, Tasks and Add-Ons &amp; Skills as overlays, and below them your history grouped by day, pinned chats first. Home and Work stay on top and are the way back to the main navigation, and the chat landing page always keeps the main navigation — the chat sidebar belongs to a conversation, not to the chat address.</p>
-      <p>What the switch actually swaps is the <strong>Main</strong> group and the third group under it. Everything else stands in both.</p>
+      <h2><span class="icon">🗂️</span> Home and Chat</h2>
+      <p>There are exactly two sidebars, and the switch at the top decides which one you are looking at. <strong>Home</strong> is the suite: the eight surfaces the work happens on, then the system block. <strong>Chat</strong> hands the whole column to the conversation and opens the chat landing page. The point is that a sidebar with thirty entries is a sidebar nobody reads.</p>
       <ul style="margin: 0.75rem 0 1rem 1.5rem; color: var(--muted); font-size: 0.875rem;">
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, on both sides.</strong> Dashboard, Chat, History, Discover, Memory — and on the Home side, Lio AI directly under Memory. Somebody working has the same two questions as somebody at home — talk to it, and find what was said — so having to leave Work to ask them would make the switch a toll rather than a view.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Main, Work only.</strong> Code, Organization, Autopilot, Teams. Code and Teams stand there whatever the Add-Ons page says, because a Work side that can end up identical to Home is a switch that earns nothing.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Workspace, on both sides.</strong> Iris Orbit, Studio, Agents, Tasks, Schedule, Planner, Projects.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Personal (Home) / Build (Work).</strong> Home shows Browser, Group Chat, Spaces, Wrapped. Work shows Codework, Browser, Playbooks, Workflow, WordPress, Swarm.</li>
-        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Custom Widgets and System, on both sides.</strong> Skales Mobile, Add-Ons, Custom Skills, Custom Widgets, Templates, Logs, Update.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, Main.</strong> Dashboard, Chat, Code, Studio, Cockpit, Planner, Iris Orbit, Memory, Skales Mobile — and at the end, quietly, Discover and Wrapped.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Home, System.</strong> Add-Ons, Custom Skills, Custom Widgets, Logs, Update. Your own widgets get their own heading above it as soon as you have one.</li>
+        <li style="margin-bottom: 0.5rem;"><strong style="color:var(--text)">Chat.</strong> Four rows and nothing else: <strong>+New</strong>, <strong>Agents</strong>, <strong>Cockpit</strong>, and a <em>More</em> block that folds out into History, Projects, Teams, Group Chat, Organization and Add-Ons &amp; Skills. Tasks is not a row of its own any more - it is a tab of the Cockpit, and one thing belongs in one place. Everything under More opens in a window over the app rather than taking you away from the conversation, and More stays closed until you open it, so what you look at every day is three rows and your conversations.</li>
       </ul>
+      <p>On the themes with a full sidebar (Slate, Skales-X, Classic) the Chat column also appears on its own while a conversation is open, and Home is the way back. The chat landing page always keeps whichever side you chose — the chat column belongs to a conversation, not to the chat address.</p>
+      <p>Some surfaces no longer have an entry of their own: Codework, Lio AI, Workflow, Playbooks, WordPress, Swarm, Spaces, Browser, Templates and the Business page. <strong>Nothing was removed.</strong> Their pages still work, their add-ons still work, and the tools they bring to the chat — the WordPress family, the browser the agent drives with its logged-in profile, the codework and swarm tools — are untouched and can still be switched on from the Add-Ons page. What went away is the door in the menu.</p>
       <p>An entry whose add-on is switched off is simply not in the list. Nothing is lost either way: the side you were on is remembered, and the page you are actually on is always visible in the sidebar, so a link or a finished task can never land you somewhere the menu does not show.</p>
     </section>
 
@@ -1125,6 +1124,7 @@
       <h3>The Add-Ons page</h3>
       <p><strong>Sidebar → System → Add-Ons.</strong> One card per add-on, one switch each. An add-on that has a page of its own puts that page in the sidebar while it is on and takes it away again when it is off; an add-on that needs an account says which key it needs and where to put it.</p>
       <p>Nine things are not on the list because they are not a choice: weather, summarizing, documents, web search, the system monitor, local file chat, screenshots and vision, VirusTotal and Wrapped. Switching those off would make Skales worse at being Skales, and nobody came to a setup screen to decide them.</p>
+      <p>A few cards are no longer offered to somebody setting up — Spaces, Templates, Lio AI, Organization, Workflow, Playbooks. They still work for anybody who has one switched on, and every add-on that also gives the agent tools stays on the list, because the menu is what was trimmed and never a capability.</p>
       <p>The five categories in the setup screen are a shortcut into the same switches, not a mode. Picking <em>Coding AI</em> preselects that bundle; what gets stored is the add-ons, not the category.</p>
 
       <h3>Standard and Advanced</h3>
@@ -1363,6 +1363,15 @@
 
       <h3>Shared Organization Memory</h3>
       <p>Organization teams have their own shared memory pool. Team members read and write shared context — project decisions, research findings, meeting notes — that persists across execution runs. Shared memory is separate from your personal memory and managed in the Organization settings.</p>
+    </section>
+
+    <section id="privacy-mode">
+      <h2><span class="icon">🔒</span> Privacy Mode</h2>
+      <p>Everything Skales remembers about you normally travels into the system prompt on every turn, which means it also travels to whichever model provider is answering. <strong>Settings &rsaquo; Memory &rsaquo; Privacy Mode</strong> is the one switch that stops that. With it on, the system prompt is built without your <code>MEMORY.md</code> index, without your saved facts and learnings, and without the identity fields - name, occupation, interests - along with your stored preferences and standing instructions.</p>
+      <p><strong>Nothing is deleted and nothing stops being written.</strong> The Memory page, the word cloud, the extraction that files new facts away and the memory tools all read the real store as before. What changes is one thing: what leaves this machine.</p>
+      <p><strong>A local model still gets everything.</strong> Ollama, LM Studio, Skales Local and the rest run on your own computer, so there is nothing to withhold and the switch leaves them alone. What decides is the address the provider is configured with, not its name, so a custom slot pointed at a rented server counts as remote and is treated as remote.</p>
+      <p>The model is told why it suddenly knows less, rather than being left to invent a reason: it gets one line saying your memory exists on this machine and is deliberately not being sent to this provider. Ask it to look something up with the memory tools and it still can - that is you asking, on purpose. The background briefing takes the honest way out too: with a remote provider it pauses and says so instead of running without your memory, and with a local model it keeps running.</p>
+      <p>The switch is permanent rather than per conversation, and it is off by default.</p>
     </section>
 
     <section id="memory-mode">
@@ -1774,6 +1783,10 @@
       <h3>The artefact panel and the picker</h3>
       <p>The panel beside the transcript shows a file three ways: <strong>Preview</strong>, <strong>Diff</strong> and <strong>Raw</strong>. An HTML file is not shown as source but <em>run</em>, with its own stylesheet and script, so a widget works there the way it will work anywhere. Turn on the picker and click an element in that running page: what to call it in CSS, its own markup and a picture of just that piece go onto the message you are writing.</p>
 
+      <h3>Codework: the desk already laid out</h3>
+      <p><strong>Codework</strong> is a switch in the box you type into, and it decides what the window looks like when the session starts: the file column, the preview and the review diff are already open, before the first answer lands, instead of being three clicks you make every time. It is a view preset and nothing more - it does not change the mode you picked, what the agent may do, or which model runs. Turn it on with a session already open and the panels appear at once rather than waiting for the next session.</p>
+      <p>The shape belongs to the session it was applied to. Move to another session, from history or by starting a new one, and the panels close again, so an opened desk never arrives somewhere you did not ask for it. Your choice is remembered on this machine, beside the terminal's height and the panel widths, so the next session you start opens the way you like to work.</p>
+
       <h3>Two things at once: worktrees</h3>
       <p>Give a second piece of work a name and Skales checks the repository out again into a folder of its own, on a branch of its own, with its own session. Neither run can overwrite the other, and each session says whether it is working, waiting for you, or idle. Removing a parallel checkout tells you when there is uncommitted work in it rather than taking it with the folder, and it never removes the repository itself.</p>
 
@@ -2024,6 +2037,8 @@
     <section id="flow">
       <h2><span class="icon">🌊</span> Flow</h2>
       <p>Flow is Studio&rsquo;s conversational design workspace: one brief, and it keeps working on it with you instead of returning a single result. Nine modes, and Flow picks the one that fits what you asked unless you say otherwise: <strong>deck</strong>, <strong>prototype</strong>, <strong>wireframe</strong>, <strong>mobile</strong> mockup, print <strong>document</strong>, <strong>image</strong>, <strong>video</strong>, <strong>film</strong> and <strong>motion</strong> graphic.</p>
+      <h3>A window of its own</h3>
+      <p>Flow opens beside Skales rather than inside it, the way Skales Code does. Start it from Studio and the workspace gets its own window, so a project that is generating for a few minutes does not hold the app hostage: you keep chatting, keep the Cockpit open, keep working, and look over at Flow when there is something to look at. Opening Flow again brings the window you already have back to the front instead of starting a second one, and closing it leaves the project exactly where it was - the versions are sealed on the disk, not in the window.</p>
       <h3>Film: one shot, one camera move</h3>
       <p>Film makes a single clip with a single deliberate camera move, and the move is what you pick first &mdash; before you write a word of the brief. Fifty-one of them, grouped by what they are: zoom, dolly, crane, pan, orbit, rig, aerial and lens. One move per clip, and there is no way to pick two: mixing camera moves in one generated shot is exactly what makes generated footage look generated.</p>
       <p>Where the clip comes from, in this order:</p>
@@ -2326,7 +2341,7 @@
             <span class="then">the result in Task History, with what it did and what it cost.</span>
           </li>
           <li>
-            <span class="do">Now try the other shape of the same idea. Open <strong>Autopilot</strong> and give it a quick task.</span>
+            <span class="do">Now try the other shape of the same idea. Open <strong>Cockpit</strong>, stay on its Goals tab, and give Autopilot a quick task.</span>
             <span class="say">Collect the pricing pages of the five best known note taking apps and put them in one table.</span>
             <span class="then">a plan you can read before it exists, then live execution on the board with the running cost beside it.</span>
           </li>
@@ -2405,6 +2420,8 @@
 
     <section id="autopilot">
       <h2><span class="icon">⚡</span> Autopilot</h2>
+      <p><strong>Where it lives.</strong> The sidebar entry is called <strong>Cockpit</strong>: one surface with three tabs, Goals, Tasks and Schedule. Goals shows what the goal engine is working on and everything it produced, and it holds the Autopilot controls described below. Tasks and Schedule are the same screens their own pages show, hosted here rather than copied. Autopilot is the capability; Cockpit is the place. There are exactly three tabs and there is no fourth surface behind them: Cockpit took the place of the old Autopilot screen rather than sitting next to it, so there is one board, one schedule and one goal list, whichever door you came through.</p>
+      <p><strong>It keeps its place.</strong> The address of the page carries the tab you are on - <code>/autopilot?tab=goals</code>, <code>?tab=tasks</code>, <code>?tab=schedule</code> - so a reload, a bookmark or a link you sent yourself comes back on the tab it was on and not on the first one. The route is still called <code>/autopilot</code> on purpose: renaming the surface is not a reason to break every link that already points at it. Opened from the chat sidebar, Cockpit is the same screen as a window over the conversation, and that window leaves the address of the page underneath alone.</p>
       <p>Background task runner with a Kanban board. Delegate long-running tasks and Skales will execute them autonomously while you work on other things.</p>
 
       <h3>Task Board</h3>
