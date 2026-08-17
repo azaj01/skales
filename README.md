@@ -244,7 +244,7 @@ These do not have a page in the sidebar. They are things Skales does when you as
 ### AIPointer ⦿
 
 <p align="left">
-<img width="800" height="450" alt="AIPointer screenshot" src="https://github.com/user-attachments/assets/3d174dda-b961-4ce8-8474-e05e07e27009" />
+<img width="800" height="450" alt="AIPointer screenshot" src="https://raw.githubusercontent.com/gonemedia/aipointer/main/assets/screenshot.gif" />
 
 <p align="left"><a href="https://youtu.be/NRIlG32hvLg">AIPointer ⦿ Demo Video</a></p>
 
