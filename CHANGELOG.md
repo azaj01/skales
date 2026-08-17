@@ -6,6 +6,473 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.8.1 - Rewrite
+
+Two kinds of text get looked at in this release. The first is what a model
+leaves in its own answers: the characters nobody can see and the typography that
+reads as machine-written now come off, if you ask for it, and `/spin` writes a
+text again in a plainer voice. The second is what Skales carries about you,
+which is now something you can see, shape and delete: the assistant has a name,
+a character you set with sliders, and a working history that grows out of the
+work you actually did together.
+
+Underneath it, shell works on a local model again, remote access can ask for a
+second factor, autonomous workers can be your own agents, the local server
+starts when you have chosen it, and the interface finished a long consolidation:
+the controls, the type scale, the colours and the window chrome now come from
+one place across the whole app.
+
+### Added
+
+- **Skales Visuals is something you can ask for.** The generator that designs a
+  poster, a title card, an infographic or an animation as a real page was only
+  reachable from the Studio screen, so asking the chat for a graphic got you an
+  apology. It is a tool now: ask in the chat or in the Code window, and the
+  finished design is drawn in the answer and saved to the same Studio gallery a
+  Studio-made one goes to. Asking for a change ("wider", "more colour") changes
+  that visual instead of designing a new one. It needs no image provider and no
+  key.
+- **3D, and the difference between the two kinds.** A three.js scene - lit,
+  turning, drawn in the answer - now comes out of the same visuals path, and
+  three.js is in the app, so no page has to fetch it. Separately, a real `.glb`
+  model file can be made from a description or from a picture through Replicate,
+  fal.ai, Meshy or Tripo, saved to your workspace, and turned and zoomed in the
+  chat and in Studio. Skales says which of the two it is giving you: a scene is
+  a picture, a model is a file you can open in Blender. Where WebGL is not
+  available the page says so instead of going black.
+- **Video Editor, stage one: the cut.** A timeline with a video and an audio
+  track, clips from the Studio gallery and from your workspace, trim, reorder,
+  delete, and export. It goes through the renderer Studio already uses - there
+  is no second encoder - and an export that was interrupted comes back as
+  finished or as stopped, never as a bar that says "running" for ever.
+- **3D is something you can pick in Flow.** The composer has a "3D scene" mode
+  next to Deck, Prototype and the rest: pick it, describe the scene, and Flow
+  writes a real three.js page that the preview draws and turns. There is no
+  provider and no key involved - three.js travels in the app - and a brief that
+  says "3D" lands there on its own when the mode is left on Auto. A downloadable
+  `.glb` model file is still the other thing, and still needs a provider; the 3D
+  tile now says which of the two is which.
+- **Two more doors in Flow.** 3D and the Video Editor sit beside Lio and Studio
+  Classic, in the same tiles.
+
+### Changed
+
+- **The Widget AI form recommends instead of warning.** It opened with a red
+  panel about an alpha phase, a corrupted setup and a backup to make first, for
+  a feature that has been shipping for months. What is left is the part that was
+  ever useful: an orange note that a premium or a coding model gives the better
+  result. Twelve languages.
+
+- **The video editor says it is in beta.** It carries the same amber badge
+  Skales Local wears, both on the door in Studio and on its own heading, so
+  what it is is clear before you walk in rather than after.
+
+- **The character step no longer uses an internal name.** Setting up your
+  agent's character said "Form your Zenit", which is what the mechanism is
+  called in the source and means nothing to anybody else. The heading already
+  says what the step is for, in all twelve languages.
+
+- **Work that was invisible reaches Discover and the usage figures.** Designing
+  a visual from the chat, making a 3D model and exporting a cut from the video
+  editor all did their work and then appeared nowhere, while the same work
+  started in Studio did. A designed graphic and a 3D model also stopped being
+  filed as "images generated", which they are not: each has its own name in the
+  feed now. Opening Analyze and answering a question card are counted as usage
+  only and never reach the feed - what was asked, what was answered and what a
+  session spent stay private.
+- **The media tools ask what you have set up instead of announcing an order.**
+  `generate_image` used to state its own cascade in its description - local
+  ComfyUI, then A1111, then Skales Local, "otherwise Gemini or Replicate" - and
+  Replicate was not in that sentence at all. So somebody with a Replicate key
+  who asked for a picture was told about Gemini. And the tool that should answer
+  "what can I make here" only knew about local backends, so a machine with cloud
+  keys and no ComfyUI answered with an empty list, which reads as "not
+  possible". There is one place now that works out what this machine can do -
+  local backends, the built-in engine, every configured provider, Skales IQ and
+  an endpoint you added yourself - and every media tool asks it. Name a provider
+  you have and that one is used; name one you have not set up and Skales says
+  so with the way to set it up, never a substitute and never "not possible".
+- **three.js and GSAP travel with the app on the computer too.** The generator
+  used to hand the model two CDN script tags. They are in the page before it
+  runs now, on both the computer and the phone, and `cdnjs.cloudflare.com` has
+  left the list of places a generated page may reach - on both.
+
+- **Analyze: what a run spent, and whether anything went wrong.** Right-click any
+  conversation in History or in the chat sidebar and pick Analyze, or click the
+  spend bar under an answer or the context figure under the composer. A wide bar
+  shows where the tokens actually went - system tools and system prompt, the
+  conversation, what came back from the provider's cache, thinking, and the
+  answer itself - and the fixed prefill is usually the largest slice by far,
+  measured at the real payload rather than estimated. Under it the run is a log,
+  one row per turn, foldable: the model, where the turn came in from, the tools
+  in order with their arguments and results, the thinking text as thinking, the
+  providers that failed before the one that answered, and a voice note with its
+  transcription and the honest statement of where it was transcribed. Every turn
+  carries a verdict derived from signals the run already recorded: ran clean, a
+  provider failure, a model failure, or a failure of Skales itself, which gets
+  its own tone rather than being filed under the model. Where the signals cannot
+  separate the provider from the model, it says the cause is not clear instead of
+  guessing. There is no grade, no score and no percentage. **None of this calls a
+  model, and nothing leaves the computer** - it reads what the run already wrote
+  down, so opening a report costs nothing. What a provider never reported is
+  shown as not reported, which is a different thing from zero.
+- **A typeface for the chat bubbles.** Settings, Appearance, above Text size:
+  Inter, Lora, Comic Neue or Caveat. All four travel inside the app, so the same
+  choice looks the same on every machine. It applies to the text of the bubbles
+  and to nothing else - code, previews, tool cards and the thinking lid keep
+  their own type, and code stays monospace under every choice.
+
+- **Watermark: what comes off an answer before you read it.** A new section in
+  Settings -> Chat & Code, off by default. **Remove invisible characters** takes
+  out the zero-width spaces, text-direction marks and unusual spaces a model
+  leaves behind, and changes nothing you can read. **Neutralize typography** is a
+  separate switch because it edits visible text: the long dash becomes a comma
+  and the one-character ellipsis becomes three dots, in Chinese and Japanese too,
+  where the dash carries no spaces and a rule written for English prose finds
+  nothing at all. **Straighten quotes** sits under it. Code blocks and inline
+  code are never touched by any of them. What this does not do, and does not
+  claim to do, is remove a statistical sampling watermark: that lives in the
+  choice of words.
+- **Rewrite, with `/spin`.** `/spin <text>` writes a text again in a plainer,
+  more human voice; `/spin` on its own does that to the last answer, and the
+  message menu offers the same action next to Copy. Pick the model that does it
+  in the same Watermark section, or leave it on the one that is already
+  answering; a local model keeps the text on your machine. The result always
+  goes through the invisible-character pass, whether or not the switches above
+  are on, because a rewrite model stamps its own markers in like any other.
+- **Your assistant can have a name, and a character you set.** Settings ->
+  Memory -> Companion, then **Shape your companion** on the Memory page: give it
+  a name, pick a starting point (Companion, Colleague, Mentor, Sparring partner,
+  Trickster, Quiet type), and move seven sliders - serious to playful,
+  diplomatic to direct, dry to funny, polite to cheeky, speculative to grounded,
+  and two new ones, businesslike to warm and answers-only to asks-back. All of
+  it shapes how it talks to you in every conversation. A name is what you call
+  it; it never claims to be a different model, and it still answers truthfully
+  when asked what it runs on.
+- **A working history that grows.** With the companion switched on, Skales
+  counts the days you worked together, the messages and the goals you finished,
+  and uses that to drop the introductions and use your shorthand instead of
+  rebuilding context every time. It counts shared WORK and says so: it never
+  claims to have missed you or to be fond of you, and a test walks every state
+  it can reach looking for exactly that sentence.
+
+- **A second factor for remote access.** Settings -> Security -> Remote access
+  can now ask for a six-digit code from an authenticator app (Google
+  Authenticator, Authy, 1Password) when a browser opens a remote session, with
+  ten one-shot recovery codes for a lost phone. It is off until you set it up,
+  and it is deliberate about what it covers: a browser signing in with the
+  access URL is asked, and programs that send the token as a header - the mobile
+  app, the relay, a headless instance, swarm peers - are not, so nothing that
+  works today stops working. The card says that in as many words rather than
+  implying more.
+- **Dispatch from your own agents.** Settings -> Autonomy -> What a sub-agent
+  starts with has a new option, **Pick from my agents**: tick the agents that
+  may run as dispatched sub-agents and Skales chooses among those by name. Each
+  brings its own instructions, skills and pinned model; the tool limits every
+  autonomous worker has still apply to it unchanged.
+- **The role presets are readable.** The same setting can now show, word for
+  word, what a dispatched worker starts with: the tools every role gets, what
+  the chosen role adds, whether it may dispatch workers of its own, what it can
+  ask for at runtime, and what is never available to it.
+- **Interests and mood.** One switch in Settings -> Memory, off by default.
+  Skales tracks the topics you keep coming back to - at the level of the topic
+  rather than the conversation, and down to which part of a topic - and carries
+  a working mood between sessions. Both feed the messages it sends on its own,
+  so a briefing or a Friend Mode note reads like it comes from someone who knows
+  you. The mood is about the work, never about you, and it appears in a reply
+  only where it fits.
+- **Skales Local starts on its own** when this machine is the one you chose to
+  answer: it is your active provider, or a row in the matrix is set to Main or
+  Fallback. A chat that goes to a local model brings the server up if it is not
+  running. Nothing points at this machine, nothing starts and no memory is used.
+  **Start it on its own** at the top of the tab is the switch.
+- **Rewrite a passage, not a whole answer.** Select any part of a reply, right
+  click the selection, and the menu acts on the passage instead of the message:
+  **Rewrite selection** first, then copy it, quote it, read it aloud or save it
+  to a document. The gesture was already there and reached nothing; picking a
+  paragraph out of a long answer no longer means retyping it after `/spin`. A
+  selection dragged across several bubbles belongs to none of them, so the menu
+  offered on each stays the one for the whole message.
+- **Diagrams, drawn.** A ```` ```mermaid ```` block in an answer is now rendered:
+  flowchart, sequence, state, class, entity-relationship, gantt, timeline, pie
+  and xychart, in your accent and your theme, with the source one click away and
+  a download as SVG. For a process, a structure or a comparison this is the
+  cheapest good answer there is - four lines instead of a whole generated page -
+  and unlike a page it is also the form a small local model gets right. The
+  renderer is in the app; nothing is fetched.
+- **Code blocks have colour.** Comments, strings, numbers, keywords and markup
+  tags are tinted in every fenced block in the chat, in about fifty languages,
+  using the same tokenizer the Code window's review panel already used. The five
+  colours are measured against the surface they sit on rather than chosen by
+  eye, and a gate holds them above the readable floor.
+- **A page in an answer is shown as a page.** The chat drew a live preview only
+  when the model wrote exactly `html` after the backticks. A block tagged `htm`,
+  `svg`, `xhtml` or `html5`, or one that simply begins with a document, arrived
+  as grey monospace - which is why the same answer from the same model was a
+  drawn page on the phone and source code here. The rule is now the phone's, and
+  a test compares the two so they cannot drift apart again. A snippet that
+  merely mentions a tag stays code, and a `text` or `xml` fence is still the way
+  to hand over markup you want to copy.
+- **Skales knows what its own chat can do.** The system prompt described tools
+  and providers and never the renderer, and the one sentence that said "put a
+  page in a code block and it is drawn" sat in Code mode and nowhere else - so
+  whether an explanation arrived as a picture or as three paragraphs came down
+  to the habits of whichever model was answering. It now carries the live
+  preview, the diagram, the formula and the colouring in every mode, with a test
+  that checks each claim against the component that has to honour it.
+
+- **A widget can be an application now, not just an answer.** Custom Widgets
+  have been in Skales since v1, but a widget was an `execute()` function whose
+  return value got drawn in one of four shapes - a gallery, a table, a block of
+  HTML, or text. Nothing it produced survived being looked at twice, so the
+  obvious thing to build, a notes app that keeps your notes, could not be built.
+  There is now a fifth shape: a page you wrote, running in its own sandbox, with
+  a store of its own. The four existing shapes are untouched and every widget
+  built before this one still works exactly as it did.
+- **The store a widget keeps.** A widget gets `window.skales.storage` with four
+  calls - `get`, `set`, `remove`, `keys` - and that is the entire surface it gets
+  from Skales. Deliberately not `localStorage`: that lives in the page's own
+  origin, so it disappears when a cache is cleared, sits outside the folder a
+  backup walks, and cannot be put back on import. This store is a file next to
+  the widget's page, which means your entries survive a restart, travel in an
+  export, and come back on the other side.
+- **Widgets travel.** A backup now carries a `widgets/` section - the folder, the
+  page and the store, per widget - and it is listed as mobile-compatible, so a
+  widget built on the computer opens on the phone and back again. An import that
+  brings a widget you already have never writes over it: the widget on this
+  machine is left exactly as it is, the incoming copy is kept beside it, and the
+  import names both. The store is your entries, and replacing it silently would
+  be the expensive kind of quiet.
+- **The house typography.** Twenty families across the six directions the design
+  rules ask for - display, serif, grotesk, condensed, mono and script - now ship
+  inside the app as subset woff2, and only the ones a page actually names get put
+  into it. A generated page gets its typeface instantly, offline, and identically
+  on both platforms. Naming a different Google family still works; the bundle is
+  the guaranteed path, not the only one.
+
+### Fixed
+
+- **Analyze opens on the conversation you are actually in.** Clicking the spend
+  bar under an answer, or the context readout under the composer, said there was
+  no conversation to analyze - while you were sitting in one. Only the
+  right-click in the session list worked, so the same conversation had a report
+  by one route and nothing by the other. Both of those two ways in ask for
+  "whatever is open right now", and the answer to that question was being read
+  off a yes/no flag, which could never name a conversation. All three ways in
+  reach the same report now.
+
+- **Analyze and the figures under the answer are visibly the same numbers.**
+  They always were: the first three parts of the bar are the input the provider
+  counted, the last two are the output. Nothing said so, so a breakdown reading
+  24k / 477k / 4.5k next to a bubble reading 501K in / 4.5K out looked like two
+  different measurements with no way to tell which one to believe. The
+  distribution now writes both totals out and says they are the same two
+  figures.
+
+- **A conversation that came in over WhatsApp, Telegram or Iris says why it has
+  no figures.** It was being told it had been written before Skales kept usage
+  figures, which for a conversation from this morning is simply untrue. A
+  channel hands Skales a message and takes the answer back and reports no usage
+  of its own; that is what it says now, and it names the channel.
+
+- **The full-screen panels no longer sit on the window buttons.** Analyze,
+  History, Group Chat and the rest opened flush against the top of the window,
+  which on macOS is where the close, minimize and zoom buttons are drawn. People
+  reached for what looked like the panel's own controls and quit Skales. The
+  panels start below them, and so do the X and "Back to Flow" buttons in the
+  Flow window, which were pinned four pixels from the same edge.
+
+- **Port selection tests the address the server will actually use.** The check
+  that walks ports 3000 to 3009 bound the loopback address while the server
+  itself binds every interface whenever remote access or Swarm is on. On macOS
+  those two can coexist, so the check reported the first port free, the real
+  start died on it, and the nine spare ports were never tried. With remote
+  access off it was the quieter half of the same fault: a second copy of Skales
+  could take over the first one's address in silence.
+
+- **The token readout under the composer can be read again.** Hovering it raised
+  the operating system's own tooltip directly over the card carrying the exact
+  figures, and the card could not be moved onto with the mouse. The tooltip is
+  gone, what clicking does is written in the card itself, and the card can be
+  hovered and its numbers selected.
+
+- **The spend figures appear at the bar, not under the pointer.** The model line
+  under an answer and the spend bar in the bubble explained themselves through
+  the operating system's own tooltip, which is drawn about twenty pixels below
+  the cursor and never beside the thing it explains. Both now open the same
+  hover card the rest of the composer uses, anchored above the figure.
+
+- **The whole context card opens the report it offers.** It ends with "click for
+  the full report" and was the one part of the readout that did nothing when
+  clicked; only the "... context" line underneath worked. The card is the button
+  now, and the figures in it can still be selected and copied.
+
+- **"Code" in the menu no longer glows.** It carried a ring that faded in and out
+  every few seconds until the entry had been opened once, so on a machine where
+  nobody opens Code it never stopped, and it read as a fault rather than an
+  invitation.
+
+- **The four Flow doors are one shape.** Lio AI, Studio Classic, 3D and Video
+  Editor were laid out one, three or four across depending on the window width,
+  with a title long enough on one of them to make it a different height from the
+  rest. They are two by two, the same size, with the same amount of text. The Lio
+  door is called Lio AI; what it does is the line underneath. 3D wears the beta
+  badge alongside Video Editor, because it can do about as much.
+
+- **The personality questions stop after one.** Five to seven "a quick question
+  for you" cards could land in a single conversation, each with its own toast, and
+  a card dropped into an old conversation while you were away marked it unread.
+  There is one per conversation now and one announcement with it, the mark is
+  gone, and the ordinary clarifying question the assistant asks while working -
+  which is not this feature at all and was raising the same notice - is quiet.
+
+- **A long conversation costs less to draw.** The spend breakdown behind each
+  answer's bar was recalculated for every answer in the conversation on every
+  redraw, and a conversation redraws on every word of an answer being written.
+  It is worked out once per answer now.
+
+- **The chat typeface reaches the answer, not only your own message.** Choosing
+  a face changed the text you wrote and left everything Skales said in the
+  default one, which made the setting look half-broken. An answer that carries
+  reasoning - which is every answer from a thinking model - was drawn outside
+  the place the choice applies. Both kinds of answer follow it now, at the size
+  that belongs to the face. The reasoning lid deliberately stays in the default
+  face: it is not the answer.
+
+  The same setting was still stopping at your own message whenever the answer
+  had run a tool, which in practice is most answers: an answer with tool results
+  and an answer waiting for approval are drawn by a different piece of the chat,
+  and neither of them knew about the choice. All of them follow it now. The size
+  is a multiplier, so no bubble is allowed to sit inside a second one and apply
+  it twice.
+
+- **A designed page that animates in is visible even when the animation never
+  starts.** A poster or a visual is usually written to fade and slide into
+  place, which means every element begins at zero opacity. When whatever was
+  supposed to bring them up did not run, the result was not a page missing its
+  motion - it was a blank rectangle, impossible to tell apart from a page that
+  failed to generate. Every page is now watched as it opens: if nothing at all
+  is on screen shortly after it loads, its opening is triggered a second time,
+  and if it is still empty after that, it is shown in its finished state. Pages
+  made earlier are covered too, because the check happens when a page is shown
+  rather than when it is written.
+
+- **A question in the Code window is answerable again.** A question with no
+  options to pick from drew no field at all, and the send button demanded a
+  choice for every question - which a free-text question can never give - so the
+  card sat there greyed out and the composer was the only way past it. There is
+  now a proper field wherever there is nothing to pick, every option list ends
+  in a "Something else" escape with a field behind it, and a typed answer counts
+  as an answer. With more than one question on the card, the footer says which
+  one the number keys are currently pointing at and that question is marked, so
+  a 2 is never a guess. The composer still answers everything, as before.
+- **The answer to a question card looks like the answer to a question card.**
+  What you picked used to come back as a numbered list in a plain message
+  bubble, so the question was a card and the reply to it was a paragraph. The
+  reply now draws as the pair to the card, one row per question with the choice
+  under it. Nothing changed about what is sent: the model still receives the
+  questions and answers in full, in plain text, which is the only record of the
+  exchange once a conversation has been compacted.
+- **Shell survives every tool budget.** On a local model, `execute_command`
+  could be trimmed out of a turn while the first line of the system prompt still
+  promised a shell, so the model reported - accurately - that it had no shell
+  tool. The shell family is now protected alongside the file tools, and the
+  Shell line only appears when the tool was actually sent.
+- **A local model is no longer planned against a window four times too small.**
+  The per-turn budget assumed 8192 tokens of context for any local runtime, even
+  though LM Studio reports its real window and a custom endpoint was not in the
+  table at all. Measured on the same catalogue, LM Studio went from 7 tools per
+  turn to 88 and a custom endpoint from 7 to 120. A real rate limit still binds:
+  a key on an 8000-tokens-per-minute plan is planned for exactly as before.
+- **The trim note points at the setting that did the cutting.** Three different
+  limits can shorten the tool set and the note always named the local-model
+  slider, which changes nothing for two of them.
+- **The IMAP account test works.** Testing an account against a server that
+  sends folder names in modified UTF-7 (Yandex among them) failed with
+  `allocateBase64Buffer is not defined` from inside a minified chunk. The
+  library it comes from is written for plain CommonJS and was being bundled into
+  a strict-mode chunk, where the helper it needs stops existing. It now loads as
+  what it is.
+- **The IMAP and SMTP test buttons always answer.** A server that accepted the
+  login and then went quiet left the button spinning with no error and no
+  result; both now stop after 45 seconds and say what happened.
+- **A custom agent no longer runs on a model its provider does not have.** An
+  agent that stored a model id while one provider was active kept it after a
+  switch, and the id travelled to an endpoint that never heard of it. The stored
+  id is now checked against the provider's own catalogue, and only a catalogue
+  that actually answers can replace it.
+- **Skales Local failures say what they are.** A local server that is not
+  answering, a machine that ran out of memory loading a model, and a model that
+  cannot read images are three different sentences with three different next
+  steps, instead of a transport error.
+- **AIPointer's switches are reachable by keyboard and named for a screen
+  reader.** They were neither.
+
+- **A goal now remembers the files it produced.** The ledger has always had a
+  place for them and nothing ever wrote one, so the list was empty everywhere it
+  was read: the checker's evidence, the "Produced:" line of a distilled strategy,
+  and the durable half of the did-any-work test. A run could write a file, have
+  its raw turns compacted away, and then have nothing left that remembered the
+  file existed. Every successful write is recorded on the goal now.
+
+### Changed
+
+- **Code in a chat takes its colour from the theme.** The dark surface behind a
+  code block was written into three separate places as a fixed value, so no
+  theme could reach it. It is one setting now, next to the five colours the code
+  itself is written in - and those five are measured against it, so a theme that
+  moves the surface cannot leave the text unreadable on top of it.
+
+- **Interests and mood moved to Settings, Memory, and what they learn is
+  visible.** The switch sat in General under a heading about units and the
+  weather, and the settings search could not find it: looking for "emotion"
+  returned nothing. It is a section of its own under Memory now, where it
+  belongs, and the Memory page shows every topic Skales has noticed, how often
+  it came up and which narrower part of it recurred. Each one can be deleted on
+  its own, all of them at once, and the mood and the working history each have
+  their own reset. Deleting is real deleting: a removed topic only comes back if
+  it comes up again. A memory you can neither read nor erase is not a feature.
+- **The chat's popups open full width.** Agents, Group Chat, Teams,
+  Organization, History, Projects and Add-Ons opened into a dialog the width of
+  a document, which is about half of what a team roster or an org chart was
+  drawn for. They now open in the same frame the Cockpit uses, and History is
+  one of them rather than a navigation away from the conversation. The width
+  comes from the host, so the same screen reads full width in the popup and as a
+  document on its own route.
+- **One interface, from one place.** Over several passes the app finished a
+  consolidation that had been running for a while: every toggle, select, slider
+  and API-key field now comes from one shared component, the small font sizes
+  have names instead of arbitrary pixel values, status colours and accent
+  colours come from tokens so all six themes are correct, every document page
+  shares one content width, and window chrome and the brand typeface are the
+  same on every surface, including the splash, error and OAuth screens. Studio
+  speaks the same base as the rest of the app again.
+- **Two switches showed two states at once.** A stylesheet rule left over from
+  an older kit drew a second, fixed knob under every shared toggle; on, the two
+  drifted apart.
+- **Slider legends sit on their real value.** A three-mark legend was spaced
+  evenly regardless of the scale, so "5 min (default)" sat in the middle of a
+  one-to-sixty-minute track where half an hour actually is, and the last mark
+  stood past the end of the track it labelled.
+- **One background per surface.** The chat landing page, Wrapped, the DevKit
+  docs page and the sidebar popup each laid a second background over the app.
+- **Clean up under Skales Local actually deletes.** It skipped anything that was
+  not a file and reported success.
+
+- **Model-written pages have a stated network posture, and it is the same one on
+  both platforms.** The preview iframe in chat had no content policy at all, so a
+  generated page could load from anywhere. It now carries one, and it allows
+  exactly the three places the generator prompts themselves point at:
+  `cdnjs.cloudflare.com`, Google Fonts, and `images.unsplash.com`. Everything
+  else is refused, and the refusal is printed on the page with the address that
+  was tried, rather than failing as a blank space that reads like a bug in the
+  page. A Custom Widget gets a stricter posture still: no network at all, on
+  either platform, so a widget behaves the same wherever you open it.
+- **The widget builder can build the new shape.** Widget AI now knows about pages
+  with state: it is told the four storage calls, that it has no network, and
+  which typefaces are already loaded. Rebuilding a widget keeps its folder, so a
+  rewrite of the page is not a way to lose the entries you had.
+
 ## v12.8.0 - Sightline
 
 The sidebar is one list again, the surfaces that had grown into a menu of their

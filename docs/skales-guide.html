@@ -1248,6 +1248,17 @@
       <h3>Tool Execution</h3>
       <p>Skales can call tools directly from chat — write files, search the web, send emails, read your calendar, run terminal commands, and more. Tool results are shown inline.</p>
 
+      <h3>How an answer is shown</h3>
+      <p>An answer is not only text. Markdown is rendered, and so are four things worth knowing about, because knowing they exist changes what you ask for.</p>
+      <p><strong>A page.</strong> A fenced block tagged <code>html</code>, <code>htm</code>, <code>svg</code>, <code>xhtml</code> or <code>html5</code> - or one that simply opens with a document - is drawn as a live preview inside the conversation, with show-code, download and save-as-image under it. Scripts, CSS animation and canvas all run in it. So "show me a chart of this" or "make me a little landing page" gives you the thing, not its source. If you want the markup to copy instead, ask for it in a <code>text</code> or <code>xml</code> block, which are never drawn.</p>
+      <p><strong>A diagram.</strong> A <code>mermaid</code> block is drawn: flowchart, sequence, state, class, entity-relationship, gantt, timeline, pie and xychart. It follows your accent and your theme, the source is one click away, and it downloads as SVG. For a process, a structure or a comparison this is usually the better ask than a full page: it is faster, it is editable, and it is the form a small local model gets right most reliably.</p>
+      <p><strong>A formula.</strong> Maths wrapped in <code>$$</code> is typeset. A single <code>$</code> deliberately does not start maths, so prices and shell variables stay as you wrote them.</p>
+      <p><strong>Code with colour.</strong> Fenced code blocks are syntax-coloured and carry a copy button; naming the language after the backticks is what gets the colouring right. <kbd>Ctrl</kbd>+<kbd>A</kbd> inside a block selects that block rather than the whole conversation.</p>
+      <p>Skales itself knows all of this now, in every mode rather than only in Code mode, so you can simply ask for a diagram or a page and expect one.</p>
+
+      <h3>Working with a reply</h3>
+      <p>Right click a message for its menu: copy, rewrite, quote in reply, save to a document, read aloud, regenerate or branch a new session from that point. Select part of a reply first and the same right click acts on the passage instead, starting with <strong>Rewrite selection</strong>.</p>
+
       <div class="warn">
         <strong>⚠️ Safe Mode</strong> — In Safe Mode, Skales will show an approval prompt before executing destructive actions (delete files, send emails, shell commands). See <a href="#safety" style="color:var(--accent)">Safety Mode</a>.
       </div>
@@ -1263,6 +1274,7 @@
         <div class="shortcut-item"><div class="shortcut-key">/memory</div><div class="shortcut-desc">Show or search remembered facts</div></div>
         <div class="shortcut-item"><div class="shortcut-key">/clear</div><div class="shortcut-desc">Clear current session messages</div></div>
         <div class="shortcut-item"><div class="shortcut-key">/kill</div><div class="shortcut-desc">Stop any running Autopilot task immediately</div></div>
+        <div class="shortcut-item"><div class="shortcut-key">/spin</div><div class="shortcut-desc">Rewrite a text in a plainer voice. <code>/spin &lt;text&gt;</code> rewrites what follows, <code>/spin</code> alone rewrites the last answer</div></div>
         <div class="shortcut-item"><div class="shortcut-key">/help</div><div class="shortcut-desc">Show the full command list</div></div>
       </div>
     </section>
@@ -1830,6 +1842,14 @@
       <p>Both are plain files &mdash; the path is printed under the box, and editing the file in a text editor is the same edit. If it changed on disk while you had unsaved text in the box, Skales says so rather than writing over it. Two places leave your standing instructions out on purpose: an isolated agent, which carries nothing of yours by design, and the calls Skales makes to itself.</p>
       <h3>Priority</h3>
       <p>Most specific wins: <strong>the project&rsquo;s own file</strong>, then <strong>your global instructions</strong>, then <strong>this session</strong>. A rule you set for one session beats the same rule set globally, and a project that ships its own conventions beats both.</p>
+      <h3>Watermark</h3>
+      <p>A model leaves marks in text it writes for you. Some of them nobody can see: zero-width spaces, text-direction controls, a no-break space where an ordinary space belongs. Others are visible habits that read as machine-written: the long dash standing in for a comma, the one-character ellipsis, curly quotes. <strong>Clean output</strong> takes them off before the answer reaches you, and it is off until you switch it on.</p>
+      <p>Three switches, because they are three different promises. <strong>Remove invisible characters</strong> changes nothing you can read. <strong>Neutralize typography</strong> does edit visible text: the dash becomes a comma, the ellipsis becomes three dots, and it finds the glued form used in Chinese and Japanese as well as the spaced one. <strong>Straighten quotes</strong> sits under that. Code blocks and inline code are never touched by any of them, so a zero-width character inside a string literal and a dash inside a shell command both survive.</p>
+      <p>What this does <em>not</em> do, and does not claim to: remove a statistical sampling watermark. That kind lives in the choice of words rather than in the characters, and only writing the text again gets near it.</p>
+      <h3>Rewrite, and <code>/spin</code></h3>
+      <p>Rewrite writes a text again in a plainer, more human voice, keeping the meaning, the facts, the language and any code exactly as they are. <code>/spin &lt;text&gt;</code> rewrites what you type after it, <code>/spin</code> on its own rewrites the last answer, and the message menu next to Copy offers the same action. The result is added to the conversation rather than swapping the original out.</p>
+      <p>Pick the model that does it here. Leave it empty and the model already answering does the work; choose a local one and the text never leaves your machine. Whatever the switches above are set to, a rewrite always goes through the invisible-character pass, because the rewriting model stamps its own marks in like any other.</p>
+      <p><strong>Rewriting one passage.</strong> Select any part of a reply and right click the selection: the menu then acts on what you picked rather than on the whole message, with <strong>Rewrite selection</strong> first, and copy, quote, read aloud and save to a document under it. Right clicking with nothing selected still gives you the menu for the whole message. A selection dragged across several bubbles belongs to none of them, so each bubble keeps offering its own message menu instead of acting on somebody else's text.</p>
       <h3>The rest of the tab</h3>
       <p><strong>Shell command timeout</strong> sets how long a single command may run before Skales stops it (a command started in the background is not timed at all). <strong>Deep reasoning</strong> asks any model to think a problem through before acting, including models with no reasoning mode of their own. <strong>Code model</strong> runs a strong model for code while your chat stays on your default. <strong>Assist</strong> has its own section, right below.</p>
     </section>
@@ -2036,9 +2056,13 @@
 
     <section id="flow">
       <h2><span class="icon">🌊</span> Flow</h2>
-      <p>Flow is Studio&rsquo;s conversational design workspace: one brief, and it keeps working on it with you instead of returning a single result. Nine modes, and Flow picks the one that fits what you asked unless you say otherwise: <strong>deck</strong>, <strong>prototype</strong>, <strong>wireframe</strong>, <strong>mobile</strong> mockup, print <strong>document</strong>, <strong>image</strong>, <strong>video</strong>, <strong>film</strong> and <strong>motion</strong> graphic.</p>
+      <p>Flow is Studio&rsquo;s conversational design workspace: one brief, and it keeps working on it with you instead of returning a single result. Ten modes, and Flow picks the one that fits what you asked unless you say otherwise: <strong>deck</strong>, <strong>prototype</strong>, <strong>wireframe</strong>, <strong>mobile</strong> mockup, print <strong>document</strong>, <strong>3D scene</strong>, <strong>image</strong>, <strong>video</strong>, <strong>film</strong> and <strong>motion</strong> graphic.</p>
       <h3>A window of its own</h3>
       <p>Flow opens beside Skales rather than inside it, the way Skales Code does. Start it from Studio and the workspace gets its own window, so a project that is generating for a few minutes does not hold the app hostage: you keep chatting, keep the Cockpit open, keep working, and look over at Flow when there is something to look at. Opening Flow again brings the window you already have back to the front instead of starting a second one, and closing it leaves the project exactly where it was - the versions are sealed on the disk, not in the window.</p>
+      <h3>3D: a scene, written rather than generated</h3>
+      <p>Pick <strong>3D scene</strong> and Flow writes a real three.js page: geometry, a three-light rig, shadows, a camera and a slow continuous move. The preview draws it and you turn it there. <strong>No provider and no key are involved</strong> &mdash; three.js travels inside Skales and is put into the page before it runs, so the scene also works with the network off. Follow-up messages change the scene the way they change any other Flow artifact.</p>
+      <p>This is a <em>picture</em>, not a model file. When you want a real <code>.glb</code> you can open in Blender, that is the <strong>3D</strong> tile on the Flow home screen, and that one does need a provider (Replicate, fal.ai, Meshy or Tripo). The two sit next to each other on purpose: one is the thing Skales can always make, the other is the thing you can take away.</p>
+      <p>A brief that says &ldquo;3D&rdquo; lands in this mode by itself while the composer is on Auto, so you rarely have to pick it.</p>
       <h3>Film: one shot, one camera move</h3>
       <p>Film makes a single clip with a single deliberate camera move, and the move is what you pick first &mdash; before you write a word of the brief. Fifty-one of them, grouped by what they are: zoom, dolly, crane, pan, orbit, rig, aerial and lens. One move per clip, and there is no way to pick two: mixing camera moves in one generated shot is exactly what makes generated footage look generated.</p>
       <p>Where the clip comes from, in this order:</p>
@@ -2488,7 +2512,7 @@
       <h3>Conversation Log</h3>
       <p>The last 5 exchanges are shown above the input bar — your commands (→) and Skales' responses (🦎). Full history is exported with the Markdown button.</p>
 
-      <h3>Sign in to sites (v12.3.0)</h3>
+      <h3>Sign in to sites</h3>
       <p>When a task needs you logged in (X, Reddit, a webshop), Skales opens a visible browser window so you can sign in by hand. Your login is saved to the Skales browser profile and reused by later browsing. Skales never sees your password. Open a login window any time from Settings → Browser Control ("Log in to a website"), or turn on "Show browser window" there to watch Skales work. When it reads a page, Skales now uses a compact text map of the page instead of a Vision screenshot for each step, which is faster and cheaper; screenshots are still used for image-heavy pages.</p>
     </section>
 
@@ -2863,6 +2887,11 @@
         <li><strong>Off</strong> - this capability does not use Skales Local at all.</li>
       </ul>
       <p>The promise underneath: if you set a capability to Main, your work is never quietly moved into the cloud. When it has to cross, the answer says which side produced it and why. When neither side can answer, you get a sentence and a next step rather than a spinner.</p>
+
+      <h3>Starting the server</h3>
+      <p>The server starts on its own when this machine is the one you chose to answer: Skales Local is your active provider, or a row above is set to Main or Fallback. Nothing else has to be pressed, and a chat that goes to a local model brings the server up if it is not already running.</p>
+      <p><strong>Start it on its own</strong> at the top of the tab is the switch for that, and it is on by default. It is worth knowing what it does <em>not</em> do: if nothing on this machine points at Skales Local, no server starts and no memory is used, whether the switch is on or off. Downloading a model does not by itself start anything. Turn the switch off if you would rather press Start yourself every time.</p>
+      <p>When the server cannot come up, the tab names which of three it is - no server for this platform, no model installed, or a model that will not load - instead of reporting a connection problem.</p>
 
       <h3>Per-model settings</h3>
       <p>Each installed model has its own context length (Auto reads what the model was trained for and is almost always right), temperature, top-p, repeat penalty, threads, GPU layers and chat template. Two of them explain themselves when they cannot be combined: a draft model and a vision file cannot be loaded together, so the draft is switched off with the reason next to it.</p>

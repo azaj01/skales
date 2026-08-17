@@ -8,7 +8,7 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.8.0-10b981?style=flat-square" alt="Version 12.8.0" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.8.1-10b981?style=flat-square" alt="Version 12.8.1" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
@@ -163,7 +163,7 @@ A window built for a repository rather than for a conversation: a full-width ses
   <img src="https://skales.app/ss_0.gif" alt="Skales Studio - Design, Image, Video, Audio, Music" width="100%" />
 </p>
 
-Opens straight into **Flow**: describe what you want and the agent designs it as real files, live preview on one side, files and code on the other, in its own window so you keep working while a design generates. **Eight modes**, each carrying its own design discipline so the first result already looks deliberate: slide decks · interactive prototypes · wireframes · mobile app mockups · print documents · generated images · generated videos · motion graphics that render to a real MP4.
+Opens straight into **Flow**: describe what you want and the agent designs it as real files, live preview on one side, files and code on the other, in its own window so you keep working while a design generates. **Ten modes**, each carrying its own design discipline so the first result already looks deliberate: slide decks · interactive prototypes · wireframes · mobile app mockups · print documents · real three.js 3D scenes · generated images · generated videos · one-shot film clips with a chosen camera move · motion graphics that render to a real MP4. The 3D scenes need no provider and no key: three.js travels inside Skales, so they draw with the network off.
 
 - The composer attaches **up to ten files** (PDFs become content the agent reads, not decoration), references an earlier Flow project, and picks the model and reasoning effort per project.
 - **Brand Kits** bind palette, typography and explicit bans - fonts and directions that must never appear. **Templates shape the output**, not just the prompt.
