@@ -189,3 +189,6 @@ temp/
  
 # Skills
 skills-lock.json
+
+# Skales Pocket firmware lives outside git (Mario, 06.09.2026)
+pocket/
