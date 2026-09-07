@@ -4,6 +4,8 @@
     
 The private AI that lives on your computer and does real work, not just chat.
 
+<sub>closed source under BSL 1.1 · free for personal use · this repository carries the releases, the changelog and the issues; the checked-in source is a frozen v7 snapshot, not the code that ships</sub>
+
 <p align="center">
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
