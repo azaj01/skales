@@ -1,3 +1,11 @@
+---
+summary: Every released version of Skales Desktop with its user-visible changes, newest first.
+read_when:
+  - you need to know what changed in a specific version, or when a feature first shipped
+  - you are writing release notes and need the established wording and section format
+  - a user reports behaviour that changed and you want to find the release that changed it
+---
+
 # **Changelog**
 
 All notable changes to Skales will be documented in this file.
@@ -6,6 +14,480 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v12.9.27 - Hotfix
+
+### Added
+
+- **Image tools give the working model the actual picture.** Chat, Code and
+  the shared agent loop attach screenshot and `show_image` results as image
+  inputs, including the ChatGPT subscription adapter. Session-private copies
+  let a resumed run reopen its pictures without resending every old screenshot.
+  In Code, `show_image` now resolves relative files inside the bound project and
+  refuses images outside it, matching the other file and image tools.
+- **The ChatGPT subscription follows the existing effort control.** Chat and
+  Code send the selected supported reasoning level through the shared request
+  builder, including session overrides and the model's available levels.
+
+- **Diagnose now says what actually left this machine.** Mails, messages,
+  uploads to your server, a post to Discover and a finished video are written
+  down at the moment they happen, with what the far side answered - successes
+  and failures both. Until now a mail Skales believed it had sent and a mail
+  that really went out looked exactly the same afterwards, and a bug report
+  about "it said it sent it" had nothing in it to settle the question. A
+  half-finished upload says so, and a render whose progress bar reached the end
+  without producing a file counts as failed, because that is what it is. The
+  record is local, the recipients are shortened, and it goes into the report
+  you copy out.
+- **A working sub-agent says what it is doing, not just that it is working.**
+  The chips under a run now carry the step the child is on, the tool it just
+  reached for and how long it has been going, ticking on its own. A child on
+  its ninth careful step, one looping on the same tool and one whose provider
+  stopped answering used to wear the same spinner for as long as they lasted.
+
+- **Diagnose has a model check: every model you set up must place a real tool
+  call.** Some models write their calls in a spelling this build cannot read.
+  When that happens the machine text is hidden, as it should be, but the call
+  is dropped - so the answer bubble looks finished and nothing actually
+  happened. The check asks the models themselves rather than a list of known
+  spellings, which is the only way to catch the next one. It runs one model at
+  a time, shows each row the moment it is known, and the result copies out into
+  a bug report.
+
+- **Settings > Appearance now has a switch for the animated background, and
+  it starts off on Intel Macs.** The Skales X theme draws three soft gradients
+  that drift behind the shell; on a Mac with an integrated Intel GPU that
+  layer costs real frames, and a user watching their fan reported it. The
+  switch turns the layer off entirely - it is not rendered at all, so it costs
+  nothing - and takes effect at once, in every open window, without a reload.
+  On an Intel Mac it starts off and the row says why; everywhere else it
+  starts on, exactly as before. An x64 build translated onto Apple Silicon is
+  not an Intel Mac and keeps the aurora. Whatever you set beats the default,
+  survives a restart, and survives a cleared browser store. Switching it off
+  also parks the ambient bloom behind the conversation, which is the other
+  layer that never stops moving - but only when you switch it off yourself:
+  the machine-picked default speaks for the drifting gradients alone and
+  leaves every other theme exactly as it was.
+- **A PDF now opens inside Skales instead of sending you to another
+  application.** A PDF the agent wrote, one you find in a file card, and a link
+  to a PDF in an answer all open in the app's own panel, with the scrolling,
+  zoom, search and print you know from any reader - drawn by the Skales window
+  itself, so nothing is downloaded and nothing new is installed. There is one
+  panel, so opening a second document replaces the first rather than piling up
+  windows, and Escape, the X or a click beside it closes it. Download and Open
+  Folder stay in the panel's title row, so a file can still be taken into your
+  own reader. A PDF lying in a project folder is shown the same way in the Code
+  window's preview pane, where it used to be handed over as a download.
+- **Skales Code can now run a task through three models instead of one:
+  an architect, a coder and a reviewer, each on its own provider and model.**
+  Press Roles in the Code composer, or type `/roles` with what you want done.
+  The architect plans the change and names the files without writing code, the
+  coder makes the change as an ordinary coding turn - the same tools, the same
+  approvals, the same diff cards - and the reviewer reads back the difference
+  that actually landed and says what is wrong with it. `/architect` and
+  `/reviewer` ask one of them on its own. The three roles can sit on three
+  different companies, which is the point: a blind spot is not reviewed by the
+  model that has it. Set them up in Settings > Chat & Code > Skales Code roles;
+  a role left empty runs on the model that session would have used anyway, and
+  the row says which one that is. Each answer lands in the session log as its
+  own folded block naming the role, the model and what that call cost, so it is
+  still there after a restart, and all three prices count against the session's
+  spending ceiling. Stop stops all of them. Nothing runs by itself: a session
+  where you never press the key behaves exactly as it did before.
+- **A custom endpoint is no longer one model.** An OpenAI-compatible server
+  usually serves several, and Fetch models on the endpoint's card has been
+  asking it for a while - but only the card read the answer. Every model the
+  endpoint returned now appears under that endpoint's own name in the chat
+  model picker, in model search, in Flow and in the model field of an agent,
+  with the model typed on the card leading the list. Several endpoints can be
+  set up side by side as before, each with its own name, address, key and
+  models. Typing a model id by hand still works, for a server that answers with
+  one it does not list. Pointing an endpoint at a different address drops the
+  previous server's models instead of offering ids the new one refuses - and a
+  different address now includes a different port, so two local runtimes on one
+  machine no longer share one model list. In the chat model search, a model of
+  an extra endpoint is now captioned with the name you gave that endpoint
+  instead of the internal slug.
+- **An agent on your own endpoint picks its model from a list.** The provider
+  field has held every extra endpoint by name for a while; the model field
+  beside it was a free-text box, so the one model that had to be typed from
+  memory was the one the app had already fetched and cached. It is now the same
+  catalogue the chat picker shows, with the free-text box still there for an
+  endpoint that has never been asked.
+- **The Analyze report now says what a run cost, and what each single answer
+  in it cost.** The price used to live only in the meter under the composer,
+  which answers "what has today cost" but never "which answer cost it": a
+  screenshot step that charged a quarter of a dollar disappeared into a
+  session total. The report's header now carries the same sum the meter
+  carries - the same adder, so the two can never print different totals - and
+  every turn in the log names its own price beside its tokens. A provider that
+  reported no price says so rather than showing $0, because a zero reads as an
+  answer that was free. The copy-as-text report carries both figures too.
+- **The bar under an answer now names that answer's price when you hover it.**
+  The bar that opens Analyze already broke a turn's tokens into where they
+  went; it now adds the money on the same card, including what sub-agents and
+  the behind-the-scenes calls charged on that step's behalf. Shown only when
+  the provider named a price.
+- **The AIPointer hotkey picker can now learn the key by listening for it.**
+  Press "Choose by pressing" beside the picker and hold the key you want:
+  AIPointer takes the name from the key itself. Which modifier sits in a given
+  position is a property of the keyboard, not of the operating system - on
+  many non-Apple keyboards the key where right Cmd sits reports as right Alt -
+  so picking a name from a list could leave you holding a key the app was
+  never listening for, with nothing on screen to say so. Only modifiers are
+  accepted, anything else is refused with a sentence, and the list stays for
+  keyboards and for the Web UI, where nothing can listen.
+- **The row under the hotkey picker now names the key it last saw, not only
+  whether the selected one arrived.** A status dot and one plain sentence say
+  what is going on - "Last key seen: Right Alt (2s ago)", or, when that is not
+  the key you selected, "You are pressing Right Alt, but Right Cmd / Win is
+  selected". The way to fix it is the button beside the sentence, and while a
+  freshly pressed key is taking effect the row says so instead of naming the
+  old one. A hotkey that never fires and a hotkey you are simply not pressing
+  used to look identical from the outside: nothing at all.
+- **You can now say how full the context window may get before Skales
+  summarises a long run.** The threshold sits in Settings under Memory Mode,
+  next to the other memory dials, and defaults to the same 75% it has always
+  used - so nothing changes unless you move it. Set it to 0 and Skales never
+  summarises mid-run, which is what a very large window wants and what a small
+  local model must not have. The hint beside it names where the size of that
+  window itself is decided.
+
+### Changed
+
+- **The ChatGPT subscription is its own provider card, above OpenRouter.** It
+  used to be an accordion folded INSIDE the OpenAI card - one vendor's sign-in
+  living inside another vendor's key card, although the two are different
+  relationships with different credentials and different model catalogues. It
+  is now an ordinary card called "OpenAI Codex (OAuth)", with a tile in the
+  provider grid, a switch, a Test button, the timeout and context-window
+  settings every other provider has, and the model dropdown with the Fetch
+  button beside it. The card that asks for a key is now called "OpenAI API", so
+  the two are told apart at a glance. Signing in is what its card shows where
+  every other card shows a key field, and the sign-in is also offered during
+  first-run setup, which only ever listed providers you can paste a key into.
+- **Skales Local now reports the context window it is actually serving to the
+  rest of the app.** The Skales Local tab printed the real number while the
+  chat meter, the budget and the compaction threshold read a deliberately
+  small default - so one model on one machine showed 8K on one screen and
+  65,536 on another, and nobody could tell which one the conversation
+  followed. The running server's own answer is now written where every one of
+  those readers looks, the moment a model is loaded, and it is removed again
+  when the server stops rather than left behind as a stale promise.
+- **A document the agent writes now says where it went.** The tool described a
+  "Document panel" and named no way to it, so an answer could send somebody
+  looking for a tab that does not exist. It now names the panel behind the
+  document icon in the chat header, says it is not a page or a tab, and the
+  same place is in the app's own map, so asking "where is my document" gets
+  the real answer.
+- **Asked what it can do, Skales now answers about the model as well as about
+  itself.** The reply used to describe the app and leave out the half people
+  actually ask about: which model is answering, how big its window is and
+  whether it reads pictures. Those three facts now ride in the same answer,
+  resolved from the same sources the turn itself is run on.
+- **The per-model context override is findable.** Setting a context window for
+  a model has been possible on every provider card for a while, folded away
+  under a word that named none of it. The fold now says what is behind it, the
+  fields say what they are for, and Settings search finds them under "context
+  window", "context size" and "max tokens".
+- **The time zone follows you.** It was read from the browser once during
+  setup and never again, so moving to another zone left the current time,
+  reminders, quiet hours and new schedules on the old one while only the
+  weather followed. Skales now re-reads it at every start and updates the
+  stored zone when it changed. Settings > General has a new Time zone row:
+  Automatic follows the browser, Manual pins a zone you pick from the full
+  IANA list. Schedules you already created keep the zone they were created in.
+- **The location field says what it is for.** It is now called Weather
+  location, and its hint says plainly that it does not set the time zone -
+  which is what the Time zone row above it is for.
+
+### Fixed
+
+- **Skales Local explains why a model cannot load before a turn starts.** Chat
+  now checks the selected local model's installation and free-memory
+  requirements before sending, and reports the actionable reason instead of
+  forwarding an opaque llama-server failure. Code sessions remain visible in
+  Chat history, approval cards keep a neutral session-scoped third choice for
+  every pending tool batch, and queued replies are consumed at the next agent
+  step.
+
+- **Chat can remember approvals for this session, and Settings has one save.**
+  The approval card offers the same session choice as Code for each named
+  action. The fixed Settings save also saves Goal activation and call limits,
+  and switching tabs keeps unsaved values. Changes to the action
+  classification still pass through the existing permission checks.
+
+- **Markdown files in Skales Code open as documents, and their file links stay
+  inside the workspace.** The file tree sent Markdown into a browser preview
+  that served plain text; it now opens the existing rendered document panel.
+  Links to another project document, PDF, image or HTML file use the same file
+  opening path as the transcript instead of navigating the Code window away.
+- **Sub-agents have one progress card in Chat and Code.** Direct children now
+  use the same trace as dispatched tasks, instead of a second hand-built card
+  and a generic working-tool line. Hover or focus a child for its step budget,
+  current tool, elapsed time, model and reported cost. The result keeps those
+  details after the run and after reopening the conversation; a finished child
+  does not appear twice while its parent continues working.
+- **The ChatGPT subscription can fetch the models your account actually has.**
+  The catalogue requires a client version; leaving it out made a valid sign-in
+  fail with a misleading address or firewall error. The request now identifies
+  its client, so newly available models such as GPT-6 Astra arrive from your
+  account's catalogue instead of waiting for a hardcoded list to change. Their
+  reported context windows and supported effort levels stay with the model.
+  A limit or outage during sign-in renewal keeps its real cause instead of
+  becoming a request to sign in again.
+- **Ollama uses the same context window as the conversation it receives.** A
+  long chat could be kept against the model's larger window while its image
+  request quietly asked Ollama for only 32K. The request and the conversation
+  now follow the same explicit setting, live model information or catalogue
+  value. The output budget also counts only the current pictures, after older
+  image turns have become text placeholders.
+- **Code Auto now covers the script runner and remote sessions keep their permission controls.**
+  PowerShell and other multiline scripts use the same in-project Auto decision as
+  shell commands, while dangerous or out-of-project scripts still ask. Turns sent
+  from Mobile now persist their explicit Code and access modes before any work is
+  queued or started, so Desktop enforces the same choice.
+- **A long Code run no longer turns its compressed context into a Goal of its
+  own.** The forty-step handoff used the machine-written compression block as
+  if you had typed it, and it ignored the Auto-trigger switch entirely. It now
+  keeps your real instruction before compression, rejects internal context and
+  image messages, and only hands a plain chat to Goal when Auto-trigger is on
+  and that instruction clears the sensitivity you chose. Codework stays in its
+  Code run instead of spawning empty-criteria goals that die forty steps later.
+- **Code and its shell can see the tools a Windows terminal can see.** Shell
+  children now combine the app's inherited search path with the current
+  machine and user PATH from Windows itself, without creating competing `Path`
+  variables or changing which existing command wins. PowerShell 7 detection,
+  Node, npm, npx, MCP servers and Codework all use that same path, so installed
+  commands no longer fail with a bare `ENOENT` inside Skales.
+- **A picture returned by a tool stays available on the next turn.** Its private
+  session reference now survives the Code handoff, a queued follow-up, Goal
+  resume, ordinary chat-history reconstruction and the image-turn path. A
+  screenshot the model could inspect when it arrived no longer turns into a
+  text-only placeholder after a reload or when you ask about it again.
+
+- **A temporary ChatGPT refresh failure keeps its real cause.** Network errors,
+  server outages and usage limits no longer inherit the original request's
+  “sign in again” message. Refreshing credentials also leaves global model and
+  effort preferences alone. Both plain chat and tool runs use this behavior.
+- **The isolated read-tool benchmark finishes even when a tool rejects.** Its
+  timer is released on errors, and the source-tree measurement explicitly binds
+  its own folder instead of depending on personal file-access settings.
+
+- **The ChatGPT subscription can finally be asked which models your plan has.**
+  Every provider card has a "Fetch Available Models" button; on the
+  subscription it was permanently greyed out, because the button asks whether
+  an API key is filled in and a subscription has no API key at all - the
+  credential is the sign-in. So the one provider whose catalogue nobody can
+  know from memory, because a Plus account and a Pro account do not see the
+  same models, was the one that could not be asked. The button works now, on
+  the computer and on the phone, and it asks the Codex backend with the
+  account header the way a real turn does.
+- **The sidebar no longer says "Not Connected" under a subscription that is
+  answering.** Two separate reasons, both fixed: the name under the status was
+  built by stripping "_oauth" off the id, which printed the name of a
+  DIFFERENT provider, and the status itself was only re-read when you changed
+  page - so signing in on the settings page left the red box standing until
+  the window was reloaded. It now names OpenAI Codex and updates the moment the
+  sign-in, the active provider or a provider switch changes.
+- **Speaking to a paired Skales Pocket no longer sits on "Understanding" while
+  a slow speech provider takes its time.** Every leg of the speech-to-text
+  cascade now has its own clock, and the recording moves on to the next one
+  after 25 seconds instead of waiting forever - only your own endpoint had a
+  clock before, and the two callers that have no browser behind them (the
+  paired device and the video tool) had none at all. The whole cascade is also
+  capped for a paired device, so the puck hears what went wrong rather than
+  running out its own patience in silence.
+- **A dedicated speech provider now transcribes before a general router.**
+  Running the chat on OpenRouter used to hand it your dictation too, with Groq
+  - which answers Whisper in seconds - waiting behind it. Which model writes
+  your answers and which one hears your voice are two different choices, and
+  only one of them was ever made on purpose. A speech model you pinned on
+  OpenRouter yourself still leads.
+
+- **The weather understands your place names in your own language.** The
+  gazetteer only knows a town under the names of the language it is asked in,
+  and it was always asked in English: "Wien" came back as Wien, Missouri, and
+  "Graz, Steiermark, Österreich" as nothing at all. It is now asked in your
+  language first, then in the language of your region, then in English, and
+  the answers are merged - the same rule the phone has used all along. The
+  widget and the greeting line take the language of the window, the weather
+  tool the language you set in Settings.
+- **Reminders, schedules, calendar events, the planner and the greeting run in
+  the zone you pinned.** The planner tool stamped a new reminder with the
+  zone of the machine the server happens to run on, a recurring task carried
+  no zone at all, a calendar event took the server's zone, and the greeting
+  read the browser's clock - so a pinned zone or a server without one moved an
+  absolute reminder by the difference. All of them now read the same zone the
+  clock line in the prompt reads. A second walk through the setup, or a
+  profile save, no longer overwrites a zone you pinned by hand.
+- **The setup pre-selects Fahrenheit for a US locale.** A default, not a
+  question: the three regions that read Fahrenheit get it, everyone else keeps
+  Celsius, and Settings still lets you change it.
+- **A run stopped after a few words of thinking leaves no empty bubble.** The
+  transcript kept the message because reasoning existed, while the trace is
+  only drawn from about twenty tokens on - the result was an avatar, a token
+  bar and a time with nothing between them. One rule now answers both.
+- **A PDF the agent produced sits above the fold.** The View button of a file
+  written by the PDF tools lay behind the collapsed Reasoning fold, unlike a
+  file written by the edit tools; a produced file is the result of the turn
+  and shows like one.
+- **After a stop, the late re-read of the session actually runs, and Enter
+  cannot start a second run on the stopped one.** The re-read hung on a flag
+  that was cleared a line later, so it always turned back; the composer was
+  freed before the run record was, so an Enter in that window doubled the run.
+- **A custom endpoint that serves hundreds of models gets the same short
+  picker group as every provider.** The search still lists all of them, and
+  the model you are on always leads. The agent editor re-reads a stored model
+  once the catalogue has arrived instead of showing an empty dropdown.
+- **A weather location written the way you say it now finds your town
+  instead of nothing.** A field like "Los Nogales, Tafi Viejo,
+  Argentina" was sent to the gazetteer in one piece, which answers nothing for
+  it; the dashboard then fell back to browser location and, when the window
+  had no permission for that, to Vienna - so a user in an Argentinian winter
+  was shown 31 degrees. The field is now searched one segment at a time, and
+  the remaining segments decide which of the answers is meant, forgiving
+  accents and up to two typos in the province and the country. The chat's
+  weather tool takes the same route.
+- **A location that cannot be found is named on the widget instead of being
+  swapped for another city.** As long as a location is set, neither browser
+  location nor the Vienna default can take its place: the widget says which
+  field it could not resolve and offers the way to Settings, in all twelve
+  languages, and the weather tool answers the same way in chat. The greeting
+  line above the dashboard follows the same rule - it was the one that showed
+  31 degrees to a user in mid-winter. The old fallback chain stays for the one
+  case it was written for - no location set at all.
+- **The browser no longer keeps running after the job that opened it is
+  done.** A page opened for one turn used to stay up for as long as Skales did
+  - a headless Chromium with a graphics process on several cores, nowhere on
+  screen and nothing to click to end it. A browser now closes with the run
+  that opened it, however that run ended, and any browser left sitting
+  untouched closes itself after the session length set under Browser Control.
+  Nothing is lost: cookies and logins live in the browser profile, so the next
+  page opens still signed in. Headless browsing also no longer asks for
+  graphics acceleration it cannot show, and the visible window you sign in by
+  hand stays open while you type. Quitting Skales sweeps up any browser an
+  earlier crash left behind. Browser Control's "Max session time" now says
+  what it does, and the tools themselves know the browser does not outlive the
+  run.
+- **A place search no longer bills your Google key at the most expensive
+  rate.** Every `search_places` call asked Google for the rating, the review
+  count, the opening hours, the price level, the phone number and the website,
+  and in Places API (New) a single one of those fields prices the whole search
+  in the Enterprise tier, whose free monthly allowance is a fifth of the one
+  below it - so an agent that only needed a name and an address quietly spent
+  the expensive quota on every lookup. A search now asks for name, address,
+  coordinates, type and photo, tells the agent in its own answer which fields
+  it left out, and takes `rich` when the rating really is wanted for a whole
+  list. The new `get_place_details` tool fetches all of it for ONE place,
+  which is billed per place instead of per result list, and the Settings hint
+  next to the Places key says which tier a search stays in. Place cards are
+  unchanged: they draw those fields, so they still ask for them.
+- **Editing a message right after Stop now actually sends it.** Pressing Stop
+  and then correcting the question used to look like Save did nothing: the
+  second and third attempt were refused in silence and the fourth arrived
+  together with the ones before it, picture and prompt three times over, and
+  the answer reasoned about the question you had already replaced. Stop now
+  releases the chat the moment it is pressed, and a corrected message waits
+  for the run it replaced to be gone before it goes out - once, in order,
+  about the new text. If the old run will not end, you are told so instead of
+  watching Save do nothing.
+- **Stopping a turn keeps what you already read.** The half-written answer and
+  the reasoning behind it used to be wiped in the same instant the run ended,
+  so a paragraph you were in the middle of reading disappeared and nothing of
+  it came back on reload. What had arrived when you pressed Stop is now part
+  of the conversation, trace included, and it is still there after a restart.
+- **The thinking and tools panel no longer disappears in the middle of an
+  answer.** On a model that thinks out loud, the panel showed up with the
+  first thought, vanished the moment the model reached for its first tool, and
+  only returned once the whole answer was finished - which on a long run was
+  most of the wait. It now stands from the first thought through every tool
+  step to the last word, and it keeps whatever you had opened open.
+- **Switching an endpoint to a different address no longer keeps offering the
+  old one's models.** The provider card added everything a previous fetch had
+  cached to whatever the current endpoint serves, and because that list only
+  ever grew, pressing Fetch models could not clear it - so models that answer
+  404 stayed on the menu. The card now reads the catalogue the way the chat
+  picker always has: a list belongs to the address it came from, and a fresh
+  fetch replaces it instead of adding to it.
+- **Forcing "this model can see images" on Skales Local no longer sends a
+  picture into a model that cannot receive one.** The switch outranked what
+  the running server reported, so the picture went out, the engine dropped it,
+  and the model answered about something it never saw - or started hunting for
+  the file with read_file. For our own local server the loaded model's actual
+  modalities now decide, and when the switch is on for a model without vision
+  the picture is set aside with that said plainly, to you and to the model.
+- **An MCP server no longer answers "HTTP 400" when several tool calls arrive
+  at once.** Sub-agents work in parallel, and two of them reaching the same
+  not-yet-connected server used to open two connections: the server issued two
+  sessions, Skales kept the second, and calls carrying the first were refused
+  with a bare 400 and no explanation. There is now one connection per server
+  no matter how many callers ask for it at the same moment.
+- **A tool call no longer overtakes the connection handshake.** Skales counted
+  a streamable-HTTP server as connected before the final step of the handshake
+  had been delivered, so a strict server rejected the first call of a session.
+  The handshake is completed first, and a call that is refused because the
+  server no longer knows the session re-opens it once and is repeated, instead
+  of failing in front of the user.
+- **The MCP server log now says what was asked, not just what came back.** A
+  failing tool call can be reproduced by hand: the log carries the tool name
+  and its arguments, shortened, with API keys and other credential fields
+  masked.
+- **Ollama no longer resends every picture of the conversation on every
+  turn.** A chat with several image turns used to put all of their images into
+  each new request, so a model that answered five pictures well was handed
+  fifteen and replied with nonsense. Only the pictures of the turn being
+  answered travel; earlier turns say that an image was there.
+- **Every shell command works again on Windows.** `execute_command` and
+  `run_script` failed with ENOENT for everything - `powershell.exe`, `cmd`,
+  `node`, `git` - because child processes were handed a search path containing
+  nothing but Skales' own fallback folder. Windows spells the variable `Path`,
+  the filter copied it under that name and then wrote a second one called
+  `PATH`, so the child ended up with two search paths and ran with the wrong
+  one. The search path is now written under the one key the platform already
+  uses, and it is the inherited system path with Skales' fallback appended -
+  never a replacement for it. The same collision is closed in the MCP server
+  spawn, the language-server spawn and install, the dependency check and
+  browser control.
+- **A trigger key you picked for AIPointer now survives switching AIPointer
+  off and on again.** Turning the master switch wrote only the on/off state,
+  and that write replaced the whole AIPointer block: the trigger key, the hold
+  duration, the appearance, the accent, the screenshot crop and the
+  only-when-Skales-is-hidden gate were all gone the next time it was touched,
+  so the hotkey silently fell back to right Cmd and the rectangle that hangs
+  off holding it went with it. The switch now only changes the switch.
+- **The hold duration under AIPointer now actually governs how long you hold
+  the trigger key.** The slider saved its value and nothing read it - every
+  hold was two tenths of a second no matter where it stood.
+- **AIPointer no longer asks the Keychain whether you pressed its trigger
+  key.** Deciding that took the full settings read: four provider keys
+  decrypted through the system Keychain and the whole settings file re-parsed
+  - once per keystroke, twice counting the release, and again for every mouse
+  move at screen refresh rate. All of it ran on the same thread the global
+  input hook waits on while it holds the OS event tap open, which is why the
+  keyboard half could go quiet on a busy machine while mouse wiggle kept
+  working. The hotkey and the wiggle switch are now read on their own, and the
+  settings file is re-read only after it actually changes.
+- **AIPointer says when a trigger key never reaches it.** macOS can let an app
+  watch the mouse while withholding keystrokes, which looks exactly like a
+  broken hotkey: mouse wiggle summons the box, the key does nothing, and the
+  app said nothing at all. The row under the hotkey picker now names the state
+  - key arriving, waiting for a first press, keystrokes withheld while the
+  mouse is seen, Accessibility off with a way straight to it, or the input
+  hook not running - instead of leaving a dead control on screen.
+- **The drag rectangle can no longer get stuck armed.** If the box was stopped
+  from opening at the last moment because Skales itself was in front, region
+  mode was armed anyway for a box that was never shown, and nothing ever
+  disarmed it - the next rectangle started in a state the user had not asked
+  for.
+- **A room agent now gets at most five pictures per turn, the newest ones.** A
+  Space agent was handed every image attached to every message in its window,
+  so three messages of three pictures arrived as nine in a single request -
+  more than any other surface in Skales can send, and more than a local Ollama
+  model accepts at all. The ceiling is now the same one the chat composer has:
+  the most recent five travel, the pictures left behind are marked as set
+  aside in the line they belonged to, and the agent is told it did not see
+  them instead of guessing. The task card says how many stayed behind, so
+  nobody has to work it out from a bad answer.
 ## v12.9.26 - Grip
 
 ### Added
@@ -7888,4 +8370,3 @@ Two steps ahead. (This entry covers the work landed so far; the release is still
 - **Role bundles load safely.** An empty or malformed bundle file no longer stops the rest of a bundle from loading, and a connector named with a scope or a symbol is recognised correctly.
 - **The dark and light mode control is labelled correctly** again, instead of reading "Appearance".
 - **Typing a command in a long message keeps the cursor where you are.** When your draft held a /command or an @mention and grew tall enough to scroll, the box could stop following your cursor and drop your taps in the wrong spot, so you could not fix a word. The box now scrolls with you and the highlighted text lines up with the caret, so a long message edits normally.
-
