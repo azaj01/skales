@@ -1,4 +1,50 @@
 <!DOCTYPE html>
+<!--
+summary: "The chaptered end-user guide rendered inside the app: what every feature is and how a user drives it."
+read_when:
+  - you shipped a user-visible feature and the guide must describe it
+  - you need the established wording for a feature as users see it, not as the code names it
+-->
+<!--
+  THIS IS USER HELP. RELEASE NOTES BELONG IN CHANGELOG.md AND IN THE CHANGELOG
+  VIEW, NEVER HERE.
+
+  Written into the file because saying it elsewhere has not worked: release
+  chapters have grown back into this guide three times, and by 12.5.76 there
+  were five of them ("What's New in 12.5.7", "12.5.6", "12.5.1 to 12.5.5",
+  "12.5.0", "12.4.5"). They were removed in 12.5.8 after checking that every one
+  of those versions is in CHANGELOG.md.
+
+  The distinction is not bookkeeping. This document answers "how do I do X" and
+  is read by someone with a question in front of them; a changelog answers "what
+  changed in version N" and is read once, by someone who already knows the
+  product. A guide that carries both ages badly in a specific way - the newest
+  release chapter sits at the top, so the first thing a new user reads is a list
+  of things they have no idea they were missing.
+
+  If a release adds something worth explaining, explain it in the CHAPTER FOR
+  THAT FEATURE. That is the change the guide should carry.
+
+  ---------------------------------------------------------------------------
+  STRUCTURE (12.7.2). One file, on purpose, and the reasons are load-bearing:
+
+    * fetch_skales_docs (actions/orchestrator.ts) reads exactly
+      public/docs/skales-guide.html and splits it on h1-h3. Splitting the guide
+      into chapter files would take the app's own manual away from the app.
+    * docs.skales.app and the public repo carry this single file too.
+
+  So the chapters are inside it. Every chapter is a <section data-lead> landing
+  page followed by its own <section id>s; the sidebar is the table of contents;
+  one chapter is on screen at a time; the search at the top of the sidebar
+  indexes every heading and every paragraph of every chapter, including the
+  ones that are not currently shown. Pure CSS and inline script, nothing
+  fetched, so it behaves identically inside the app and in a browser, online or
+  off.
+
+  Adding a chapter: add a <div class="section-label" data-chapter="x"> plus its
+  links to the nav, and give the sections the same ids. Everything else - the
+  routing, the search index, the prev/next footer - follows from the nav.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -704,7 +750,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.9.26</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.9.27</span> User Guide</div>
       </div>
     </a>
 
@@ -854,6 +900,7 @@
 
     <div class="section-label" data-chapter="settings">Settings and security</div>
     <a href="#ch-settings" data-chapter="settings">Overview and walkthrough</a>
+    <a href="#timezone" data-chapter="settings">Time zone and location</a>
     <a href="#themes" data-chapter="settings">Themes</a>
     <a href="#accents" data-chapter="settings">Your own accent colours</a>
     <a href="#deep-links" data-chapter="settings">skales:// links</a>
@@ -885,7 +932,7 @@
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.26</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.27</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1321,6 +1368,7 @@
 
       <h3>A file it made</h3>
       <p>When Skales writes a file for you — a spreadsheet, a document, a PDF, a note, a downloaded file, an edit to a file you already had — the file arrives as a <strong>card under the answer</strong> rather than as a path buried in a sentence. The card carries the filename, with the full path on hover, and a second line with the type and the size. Under it are <strong>Download</strong> (for files inside the Skales data folder) and <strong>Open Folder</strong>.</p>
+      <p>A <strong>PDF opens inside Skales</strong>. The card carries a <strong>View</strong> button, and a link to a PDF in an answer opens the same way: the document is shown in the app's own panel with the scrolling, zoom, search and print you know from any reader, drawn by the Skales window itself. There is one panel, so opening a second PDF replaces the first rather than piling up windows; Escape, the X in the title row or a click beside the panel closes it. Download and Open Folder stay in that title row, so the file can still be taken into another reader. A PDF lying in a project folder is shown the same way in the Code window's preview pane.</p>
       <p>The card is part of the conversation, not part of that moment: it survives a reload and it is still there when you reopen the conversation tomorrow. If the file has since been deleted the card says so — the size line becomes <em>No longer on this computer</em>, the card dims and Download goes away — instead of offering you a file that is not there.</p>
       <p>One deliberate exception: a file written by a <strong>script</strong> Skales ran gets no card, because nothing is watching a script's output closely enough to promise the card is right. In that case Skales tells you in words where it put the file.</p>
 
@@ -1328,6 +1376,10 @@
       <p>You no longer have to wait for the answer before typing the next thing. Messages you send while Skales is working are <strong>collected and answered together, as one turn</strong>, in the order you wrote them — not as one answer per message, which used to mean three impatient messages became three answers to three halves of a question, and three times the wait.</p>
       <p>A bar above the composer shows how many are waiting, lists them, and lets you remove one or clear them all before they go. Up to twenty can queue. If a run ends without the queue being taken up, a card offers to hand the whole queue back to you rather than dropping it. The same rule holds everywhere Skales listens — a run on the server, Telegram, WhatsApp and the phone all fold a queue into one answer.</p>
       <p>What is waiting goes out once the run is really over. That is not the same moment as the composer unlocking: a turn that stops responding frees the composer so you are not stuck, while the run itself carries on, and a queued message sent into that gap used to arrive as a second answer to a question that already had one. If a queued message cannot be sent at all, it is tried once more and then stays in the bar saying so, with <strong>Try again</strong> beside it, rather than being retried silently.</p>
+
+      <h3>Stopping, and correcting what you asked</h3>
+      <p>Stop frees the chat the moment you press it. What had already arrived stays on screen &mdash; the half-written answer and the reasoning behind it are part of the conversation, and they are still there after a restart, rather than being wiped in the same instant the run ended.</p>
+      <p>Correcting the question straight afterwards works the way it looks: an edited message waits for the run it replaces to be gone and then goes out once, about the new text, carrying its picture with it. If the old run will not end, you are told so instead of watching Save do nothing.</p>
 
       <h3>A recommendation arrives as cards</h3>
       <p>Ask for the good beaches near Funtana, six recipes for a Tuesday or the libraries worth reading, and the written answer comes with a row of <strong>cards</strong> under it: each page's own preview picture, its name, one sentence, tags and the link. The answer itself is unchanged and stays where it was — the cards carry it, they do not replace it. A page with no picture gets a lettered tile of the same height, so the row settles once and does not jump about while the pictures arrive.</p>
@@ -1348,6 +1400,9 @@
       <h3>The running price</h3>
       <p>A price sits beside the context meter in the footer of the composer and counts this conversation. Each answer also carries its own price in the token line under it, and the hover card over that line breaks the turn down: what the input cost, what the output cost, and how much of the input came out of the provider&rsquo;s cache instead of being paid for a second time.</p>
       <p>The card counts the model calls you never see a bubble for, because they are real charges on your key: the summariser that shortens a long conversation to keep it inside the model&rsquo;s window, and the vision model that describes a screenshot for a browser or computer-use step. Each rides on the step that made it and stands on its own line. A price that cannot be known — a vision model on your own machine — says nothing rather than showing a zero.</p>
+
+      <h3>What a single answer cost</h3>
+      <p>The meter answers &ldquo;what has this conversation cost&rdquo;, never &ldquo;which answer cost it&rdquo; &mdash; and a screenshot step that charges a quarter of a dollar disappears into a session total. <strong>Analyze</strong>, opened from the bar under an answer, carries the same sum the meter carries in its header, and every turn in its log names its own price beside its tokens. The report you copy as text carries both figures. A provider that reported no price says so, because a zero reads as an answer that was free.</p>
 
       <h3>The session ceiling</h3>
       <p>A conversation can stop itself before it spends more than you meant it to. <strong>Settings &rsaquo; Goals &rsaquo; Session budget</strong> sets the ceiling; a fresh installation starts at five dollars, and a machine that already has settings keeps exactly what it had. <code>0</code> means no ceiling.</p>
@@ -1535,6 +1590,9 @@
 
       <h3>Configure in Settings</h3>
       <p>Pick your default mode under <strong>Settings → Memory Mode</strong>. Minimal lives behind an Advanced disclosure since it strips identity and memory; click the disclosure to access it. The header badge in Chat surfaces when your saved mode is anything other than Always Remember.</p>
+
+      <h3>When a long run is summarised</h3>
+      <p>How full the context window may get before Skales shortens the conversation is yours to set, next to the other memory dials under <strong>Settings &rarr; Memory Mode</strong>. It defaults to the 75% it has always used, so nothing changes unless you move it. Set it to <code>0</code> and Skales never summarises mid-run &mdash; which is what a very large window wants, and what a small local model must not have. The size of the window itself is decided on the provider card.</p>
 
       <h3>Auto-tune for Local Models</h3>
       <p>Local providers (Ollama, LM Studio, KoboldCpp, vLLM) typically run with an 8k context budget. With auto-tune enabled, Skales silently runs in Compact on those providers even when your saved mode is Always Remember, so the prompt fits without truncation surprises.</p>
@@ -1934,6 +1992,9 @@
       <p>Not every remote server uses sign-in. Most self-hosted ones want a token in a header instead, so an <strong>http</strong> or <strong>sse</strong> server has a <strong>Request headers</strong> editor: add <code>Authorization</code> with a value of <code>Bearer &lt;token&gt;</code>, or whatever header that server asks for. Headers are sent with every request to that server, and they take precedence over anything the sign-in flow would attach.</p>
       <p>If a server answers <strong>401</strong> and neither uses sign-in nor advertises it, Skales says that plainly and points at the header, rather than sending you to a sign-in that does not exist. If you already set a header and it is still refused, it says that too: the header went out and the server did not accept it.</p>
 
+      <h3>Several calls at once</h3>
+      <p>Agents fan out, so two tool calls can reach the same server in the same moment. Skales opens one connection per server however many callers ask for it, finishes the handshake before the first call goes out, and a call the server turns away because it no longer knows the session re-opens it once and is repeated &mdash; instead of a bare <code>HTTP 400</code> in front of you. A server that fails for a real reason still says so, in its own words. The server log records each call with its arguments, shortened and with credentials masked, so a failing query can be replayed by hand.</p>
+
       <h3>Status badge sanity</h3>
       <p>A successful Test now promotes the freshly tested client into the live connection pool, so the status badge on the /mcp page flips to "connected (N tools)" on the very next 5 second poll without waiting for a chat turn to lazy-connect. Disabled servers stay disconnected.</p>
     </section>
@@ -2021,6 +2082,11 @@
         <li><strong>Accept edits</strong> &mdash; file changes go through without asking, because choosing this mode <em>is</em> that consent. Commands, pushes and deploys still ask.</li>
         <li><strong>Auto</strong> &mdash; gets on with it. It still asks about anything that reaches <em>outside</em> the bound folder, anything catastrophic, and anything the scope check flags as more than you asked for.</li>
       </ul>
+      <h3>Three roles, three models</h3>
+      <p>One task can go through <strong>three</strong> models instead of one. Press <strong>Roles</strong> in the box you type into, or write <code>/roles</code> followed by what you want done, and the work runs as a chain: an <strong>Architect</strong> plans the change and names the files without writing any code, a <strong>Coder</strong> then makes the change as an ordinary coding turn &mdash; same tools, same approvals, same diff cards &mdash; and a <strong>Reviewer</strong> reads back the difference that actually landed and says what is wrong with it. <code>/architect</code> and <code>/reviewer</code> ask one of them on its own.</p>
+      <p>Each role gets its own provider and model, in <strong>Settings &rarr; Chat &amp; Code &rarr; Skales Code roles</strong>, and they can be three different companies &mdash; which is the point: a blind spot is not reviewed by the model that has it. A role you leave empty runs on the model the session would have used anyway, and the row says which one that is. Nothing happens until you press the key or type the command; a session where you never touch it works exactly as it always did.</p>
+      <p>Every role&rsquo;s answer lands in the log as its own folded block naming the role, the model and what that one call cost, so it is still there tomorrow. All three prices count towards the session&rsquo;s spending ceiling, and <strong>Stop stops all of them</strong>.</p>
+
       <div class="warn">
         <strong>🔒 What no mode lifts</strong> &mdash; Blocked folders stay blocked, every path resolves inside the bound folder, catastrophic commands are refused rather than offered, and a coding session never reads or writes your memory. Auto does not switch any of that off.
       </div>
@@ -2580,6 +2646,11 @@
       <h2><span class="icon">👁️</span> AIPointer ⦿</h2>
       <p>A cursor-anchored quick-ask overlay that floats over any application. Hold the <strong>right Cmd key</strong> (right Ctrl on Windows and Linux) or wiggle your cursor, then type or speak a question about whatever you are pointing at. Turn it on in Settings → Appearance → AIPointer ⦿. It replaces the old Spotlight bar.</p>
 
+      <h3>Choosing the trigger key, and knowing it arrives</h3>
+      <p>Which modifier sits in a given position is a property of the keyboard rather than of the operating system &mdash; on many non-Apple keyboards the key where right Cmd sits reports itself as right Alt &mdash; so a key picked from a list can be a key the app never hears. Beside the picker under <strong>Settings &rarr; AIPointer &#10687;</strong> there is <strong>Choose by pressing</strong>: press it, hold the key you want for a moment, and AIPointer takes the name from the key itself. Only modifiers are accepted; anything else is refused with a sentence. The list stays, for keyboards you are not sitting at and for the Web UI, where nothing can listen.</p>
+      <p>The row under the picker says what is actually happening: the key it last saw and how long ago, or that you are holding a different key than the one selected, or that macOS is letting Skales watch the mouse while withholding keystrokes &mdash; which looks exactly like a broken hotkey, since the wiggle still works. Accessibility that is switched off says so with a way straight to it. A hotkey that never fires and a hotkey you are simply not pressing used to look identical from the outside.</p>
+      <p>The hold duration on the same page governs how long the key has to be held, and turning AIPointer off and on again leaves your trigger key, appearance and crop settings exactly where they were.</p>
+
       <h3>It already knows you</h3>
       <p>AIPointer reads your Skales identity on every query (name, language, timezone, active projects), so you never re-introduce yourself. Ask "what was I working on?" and it pulls your recent topics; mention a name and it looks the person up in your knowledge graph.</p>
 
@@ -2780,6 +2851,8 @@
       <h2><span class="icon">🌐</span> The browser the agent drives</h2>
       <p>Skales has a real browser of its own, with its own profile and its own logins, and the agent drives it. <strong>You reach it from the chat.</strong> Ask for something on the web that needs more than a search — <em>"go to hacker news and summarise the top five stories"</em>, <em>"check the tracking number on the courier's site"</em> — and it navigates, reads the page and answers, up to ten steps per command. The tools are switched on and off as <strong>Browser Control</strong> on the Add-Ons page.</p>
       <p><strong>The Browser surface has no entry in the menu in this build.</strong> The tools above are untouched and are where the feature actually lives now; the page still answers at <code>/browser</code> for anybody who goes to it, and the Code window keeps its own browser panel behind the globe in its title bar.</p>
+
+      <p><strong>A browser closes with the run that opened it</strong>, however that run ended, and one left sitting untouched closes itself after the session length set under <strong>Settings &rarr; Browser Control</strong>. Nothing is lost: cookies and logins live in the browser profile, so the next page opens still signed in. Quitting Skales sweeps up any browser an earlier crash left behind.</p>
 
       <h3>Sign in to sites</h3>
       <p>When a task needs you logged in (X, Reddit, a webshop), Skales opens a visible browser window so you can sign in by hand. Your login is saved to the Skales browser profile and reused by later browsing. Skales never sees your password. Open a login window any time from Settings → Browser Control ("Log in to a website"), or turn on "Show browser window" there to watch Skales work. When it reads a page, Skales now uses a compact text map of the page instead of a Vision screenshot for each step, which is faster and cheaper; screenshots are still used for image-heavy pages.</p>
@@ -3053,7 +3126,7 @@
         <div class="provider-item">
           <div class="provider-dot muted"></div>
           <div class="provider-name">Custom Endpoint</div>
-          <div class="provider-desc">Connect any OpenAI-compatible API — llama.cpp, vLLM, koboldcpp, or any local server. Add as many as you need, each with its own Set Active.</div>
+          <div class="provider-desc">Connect any OpenAI-compatible API — llama.cpp, vLLM, koboldcpp, or any local server. Add as many as you need, each with its own Set Active. One endpoint is not one model: press <strong>Fetch models</strong> on its card and Skales asks the server what it serves, keeps the answer, and offers every one of those models under that endpoint’s name — in the card, in the chat model picker, in model search and in the model field of an agent. Typing a model id by hand still works, for a server that answers with one it does not list.</div>
         </div>
       </div>
 
@@ -3113,6 +3186,8 @@
 
       <h3>Context windows</h3>
       <p>The size of a model's window comes from the same catalogue Skales already downloads for the model lists, not from a built-in guess. Both the readout and the automatic shortening of a long conversation use that figure, and so does compacting a conversation by hand. On a model with a very large window this is the difference between shortening at an eighth of the real budget and shortening when it is actually needed.</p>
+
+      <p>You can also set the window by hand for one model, on its provider card under <strong>Advanced</strong>. That fold now says what is behind it, the fields say what they are for, and Settings search finds them under &ldquo;context window&rdquo;, &ldquo;context size&rdquo; and &ldquo;max tokens&rdquo;. How full that window may get before Skales summarises a long run is a separate dial, under <a href="#memory-mode" style="color:var(--accent)">Memory Mode</a>.</p>
 
       <h3>A model id you typed yourself</h3>
       <p>A model name you type into a provider card is sent as you typed it. Skales says a model is gone only when the provider says so; anything else is named for what it actually was, with a pointer at the setting that caused it. That matters because the most common cause is not a retired model at all but the wrong address, which is exactly what the <a href="#providers">GigaChat endpoint field</a> exists for.</p>
@@ -3204,6 +3279,10 @@
 
       <h3>Per-model settings</h3>
       <p>Each installed model has its own context length (Auto reads what the model was trained for and is almost always right), temperature, top-p, repeat penalty, threads, GPU layers and chat template. Two of them explain themselves when they cannot be combined: a draft model and a vision file cannot be loaded together, so the draft is switched off with the reason next to it.</p>
+
+      <h3>What the running model can actually do</h3>
+      <p>The window the server is really serving is reported to the rest of the app the moment a model is loaded, so the tab, the price meter, the budget and the point at which a long conversation is summarised all read the same number instead of one screen saying 8K while another says 65,536. It is removed again when the server stops, rather than left behind as a promise nothing keeps.</p>
+      <p>The same holds for pictures. Switching &ldquo;this model can see images&rdquo; on for a model served by Skales Local no longer outranks what the running server reports: if the loaded model has no vision, the picture is set aside instead of sent, and both you and the model are told so with the next step named. Automatic detection is unchanged, and nothing changes for any other provider &mdash; where a server cannot tell us, your switch is still the last word.</p>
 
       <h3>Speech</h3>
       <p>Under <strong>Settings &rarr; Voice</strong>, "On-device voice (Skales Local)" downloads a Whisper model to dictate with and a voice to be spoken to. Ten of the twelve interface languages have a voice; Japanese and Korean do not yet, and the tab says so rather than substituting something that sounds wrong. The models are the same files the phone uses.</p>
@@ -3740,6 +3819,9 @@
       <h3>Business Details</h3>
       <p>Fetch phone numbers, hours, reviews, photos, and other details for any place. Great for research and planning.</p>
 
+      <h3>What a search costs on your key</h3>
+      <p>In Places API (New) a single expensive field prices the whole search: asking for the rating, the opening hours or the price level puts the call into the Enterprise tier, whose free monthly allowance is a fifth of the one below it. A search therefore asks for the name, the address, the coordinates, the type and the photo, and says in its own answer which fields it left out. Pass <code>rich</code> when the ratings really are wanted for a whole list, and use <strong>get_place_details</strong> for one place &mdash; that is billed per place instead of per result list. The hint beside the Places key in Settings names the tier a plain search stays in.</p>
+
       <h3>What works without a key, and what the key adds</h3>
       <p>A row of places in a chat is drawn as cards whether or not you have a key here, every card opens in your map app, and the <strong>Map</strong> button draws the whole row over OpenStreetMap. None of that costs a key.</p>
       <p>With a Places key entered under <strong>Settings &rsaquo; Integrations</strong>, a place card additionally shows the real photograph, the rating with how many people gave it, and whether it is open right now. Without one, a single quiet line under the row says what a key would add. <strong>Ratings and opening times are never invented</strong>: they come from that lookup, or they are not shown at all.</p>
@@ -3902,6 +3984,7 @@
 
       <h3>In this chapter</h3>
       <div class="lead-index">
+        <a href="#timezone">Time zone and location</a>
         <a href="#themes">Themes</a>
         <a href="#accents">Your own accent colours</a>
         <a href="#deep-links">skales:// links</a>
@@ -3916,6 +3999,13 @@
         <a href="#tool-loop">Tool Loop Protection<span>Security</span></a>
         <a href="#danger-zone">Danger Zone<span>Security</span></a>
       </div>
+    </section>
+
+    <section id="timezone">
+      <h2><span class="icon">🕒</span> Time zone and location</h2>
+      <p>The time zone used to be read from the browser once during setup and never again, so moving to another zone left the current time, your reminders, quiet hours and every new schedule on the old one while only the weather followed. Skales re-reads it at every start and updates the stored zone when it has changed.</p>
+      <p><strong>Settings &rsaquo; General</strong> has a <strong>Time zone</strong> row for the times you would rather decide yourself: <em>Automatic</em> follows the machine you are sitting at, <em>Manual</em> pins a zone you pick from the full IANA list. Schedules you already created keep the zone they were created in.</p>
+      <p>The field under it is called <strong>Weather location</strong>, and it is exactly that: the place the forecast is fetched for. It does not set the time zone &mdash; the row above it does.</p>
     </section>
 
     <section id="themes">
@@ -4276,7 +4366,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.9.26</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.9.27</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 
