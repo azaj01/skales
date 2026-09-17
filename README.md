@@ -53,6 +53,18 @@ An AI agent that runs on your own computer, with access to your files, browser, 
 > built, 70 API routes against 225. It drew four security reports about code the
 > shipped application does not contain.
 >
+> With the same release Skales moved from the Business Source Licence 1.1 to
+> its own [End User Licence Agreement](https://skales.app/licence). For what
+> you may do, nothing changes: private use, study and teaching stay free of
+> charge, and commercial use needed a licence under the previous terms too.
+> The step was taken deliberately, together with the removal above: a source
+> tree six months behind the product created more confusion than clarity, and
+> one agreement in plain language, shown once on first start, is easier to
+> understand than a source licence pointing at code that no longer described
+> what you were running. Releases up to 12.9.27 keep the terms they were
+> supplied under. The full text ships beside the app as [LICENSE](./LICENSE)
+> and [LICENSE.de](./LICENSE.de).
+>
 > Reporting a security issue? Please read
 > [SECURITY.md](https://github.com/skalesapp/skales/blob/main/SECURITY.md) first. It says what is in scope, and it will save
 > you a lot of time.
