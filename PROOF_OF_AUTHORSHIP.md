@@ -6,12 +6,12 @@ Skales is the original work of Mario Simic, Vienna, Austria.
 
 - **Original Author**: Mario Simic
 - **First Commit**: January 2026
-- **License**: BSL-1.1 (Business Source License)
+- **Licence**: Skales End User Licence Agreement (proprietary)
 - **Apple Developer ID**: Mario Simic (Q5ASU2DB6P)
 - **Domain**: skales.app (registered 2025)
 - **GitHub**: github.com/skalesapp/skales
 - **Portfolio**: mariosimic.at
-- **Current Version**: 10.2.8 (May 2026)
+- **Current Version**: 12.9.30 (September 2026)
 
 ## Integrity
 
@@ -20,5 +20,5 @@ Skales binaries are signed and verified.
 ## Copyright
 
 2025-2026 Mario Simic. All rights reserved.
-Licensed under BSL-1.1 for personal and educational use.
-Commercial use requires a separate license.
+Licensed free of charge for private and educational use.
+Commercial use requires a written licence.

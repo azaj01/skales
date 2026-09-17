@@ -1,6 +1,8 @@
 # Commercial Licensing - Skales
 
-Skales is released under the **Business Source License 1.1 (BSL)**.
+Skales is proprietary software, supplied under the **Skales End User Licence
+Agreement** ([LICENSE](./LICENSE), published with every earlier version at
+[skales.app/licence](https://skales.app/licence)).
 
 ## Free Use
 
@@ -18,7 +20,10 @@ Any of the following activities require a **written commercial license** from th
 - Redistributing or reselling Skales as part of a commercial product
 - Any use generating direct or indirect commercial revenue
 
-Using Skales commercially without a license is a violation of the BSL 1.1.
+Using Skales commercially without a licence is outside the agreement. It was
+outside the Business Source Licence 1.1 that governed releases up to and
+including 12.9.27 as well, whose Additional Use Grant covered personal use,
+learning and non-commercial internal testing only.
 
 ## Contact
 
@@ -28,7 +33,10 @@ To obtain a commercial license or inquire about pricing:
 Email: request@skales.app
 Website: https://skales.app
 
-Pricing is determined individually based on use case and scale. Contact us to discuss your needs.
+Commercial licensing starts with an evaluation licence: free of charge, the
+full scope, no seat limit, confirmed in writing with an end date. The commercial
+terms after it are set with the first design partners, so write and tell us what
+you need.
 
 ---
 

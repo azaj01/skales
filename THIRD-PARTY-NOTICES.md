@@ -9,8 +9,7 @@ author, source, and license inline (in the app UI and in each file's metadata).
 
 ## Built-in Agent Skills — mattpocock/skills
 
-The built-in Agent Skills library
-(`apps/web/src/data/builtin-agent-skills/`) adapts skills from
+The built-in Agent Skills library bundled with Skales adapts skills from
 **mattpocock/skills** (https://github.com/mattpocock/skills), used under the
 MIT License. Each skill's `SKILL.md` frontmatter records `author: Matt Pocock`,
 `source: mattpocock/skills`, and `license: MIT`.
@@ -47,8 +46,8 @@ SOFTWARE.
 
 ## Design Style-Packs — VoltAgent/awesome-design-md
 
-The design style-packs (`apps/web/src/data/design-style-packs/`) adapt DESIGN.md
-styleguides from **VoltAgent/awesome-design-md**
+The design style-packs bundled with Skales adapt DESIGN.md styleguides from
+**VoltAgent/awesome-design-md**
 (https://github.com/VoltAgent/awesome-design-md), used under the MIT License.
 Each pack is presented in the UI as an "inspired by" aesthetic reference with
 its source (VoltAgent/awesome-design-md) and license (MIT). Packs carry no
@@ -83,7 +82,7 @@ SOFTWARE.
 
 ## Bundled typefaces - Inter, Space Grotesk, DM Sans, JetBrains Mono
 
-Skales bundles four typefaces in `apps/web/public/fonts/`, each used under the
+Skales bundles four typefaces, each used under the
 **SIL Open Font License 1.1**. They are shipped with the app rather than fetched
 at runtime so a packaged, offline install renders the real type instead of a
 system fallback, and so no page load reaches a font CDN.
@@ -159,3 +158,39 @@ OR CONSEQUENTIAL DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM OTHER
 DEALINGS IN THE FONT SOFTWARE.
 ```
+
+---
+
+## Local speech — sherpa-onnx, Whisper, and the Piper voices
+
+Skales Local's on-device speech is built on **sherpa-onnx**
+(https://github.com/k2-fsa/sherpa-onnx), used under the Apache License 2.0. The
+`sherpa-onnx-node` package and its platform binaries are shipped unmodified,
+except for one packaging repair: `install_name_tool -add_rpath @loader_path` is
+applied to `sherpa-onnx.node` on macOS, because the published binary carries the
+build machine's own directory as its only rpath and cannot otherwise find the
+libraries beside it. No source is changed.
+
+Speech to text uses **Whisper** (https://github.com/openai/whisper), MIT
+licensed in both code and weights, in the int8 ONNX conversions published by the
+sherpa-onnx project.
+
+Text to speech uses **Piper voices** for most languages, a **Coqui VITS** model
+for Croatian and an **icefall VITS** model for Chinese. A note on the Piper ones,
+because the distinction is load-bearing: Piper's own code (OHF-Voice/piper1-gpl)
+is licensed GPL-3.0 and is **not** linked, imported, vendored or shipped by
+Skales. What Skales downloads is the voice files (`.onnx`), which are read by
+sherpa-onnx.
+
+Each voice carries its own licence, recorded per entry in the model catalogue
+and shown on the model card in Settings before the download starts. The licences were read out of each
+published archive rather than taken from a list of recommended voices, and that
+mattered in both directions: six candidate voices were EXCLUDED on those grounds
+(three are CC-BY-NC-SA, two declare no licence at all, one is research-only) and
+one - the Croatian voice - was very nearly excluded for the opposite reason, its
+sherpa packaging carrying no licence file while the Coqui manifest it is built
+from and its author's own model card both state BSD-3-Clause.
+
+No model files are bundled with the application. They are downloaded, on
+request, from the upstream release the catalogue names, directly to the user's
+machine.

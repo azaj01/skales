@@ -750,7 +750,7 @@ read_when:
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.9.27</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.9.30</span> User Guide</div>
       </div>
     </a>
 
@@ -783,6 +783,7 @@ read_when:
     <a href="#sidebar" data-chapter="start">Home and Chat</a>
     <a href="#addons-view" data-chapter="start">Add-Ons, and the two views of Settings</a>
     <a href="#plugins" data-chapter="start">Plugins</a>
+    <a href="#business" data-chapter="start">Business, and using Skales at work</a>
 
     <div class="section-label" data-chapter="chat">Chat and agents</div>
     <a href="#ch-chat" data-chapter="chat">Overview and walkthrough</a>
@@ -932,7 +933,7 @@ read_when:
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.27</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.30</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -1072,6 +1073,7 @@ read_when:
         <a href="#sidebar">Home and Chat</a>
         <a href="#addons-view">Add-Ons, and the two views of Settings</a>
         <a href="#plugins">Plugins</a>
+        <a href="#business">Business, and using Skales at work</a>
       </div>
     </section>
 
@@ -1229,6 +1231,9 @@ read_when:
 
       <div class="tip"><strong>Two things worth knowing.</strong> A plugin's own storage holds up to <strong>2 MB</strong>, and it tells you how much of that is used when it runs out, rather than losing what it was saving. And a plugin has no settings section of its own on purpose: everything about it is either on this page or on the plugin's own page.</div>
 
+      <h3>Tools a plugin brings with it</h3>
+      <p>A plugin does not only <em>use</em> the tools you allowed it. It can also <strong>bring tools of its own</strong> &mdash; ones its author wrote for it. Those become things Skales can call like any other tool: from a normal conversation, from the plugin's own page, and from the schedules it runs on. They never reach further than the plugin was allowed to reach in the first place, so a plugin that may not touch the network cannot smuggle a tool in that does. Its row on the shelf lists them beside the permissions, so you can see what arrived with it.</p>
+
       <h3>Taking one with you, and handing one on</h3>
       <p>The download arrow on a plugin's row packages it as a <strong>.skplugin</strong> file. Because that file is meant to be handed to somebody - carried to your other machine, published, or sold - it asks first for the things anyone installing it will want to read: who it is published as, what it does in one sentence, and the licence and your link if there are any. Those answers go into the packaged copy; the one installed here is left alone unless you tick the box.</p>
       <p>What travels is the plugin: its manifest, its pages, its own tools, its assets and its README. What does not travel is <strong>everything the plugin saved while you used it</strong>. Your reading list, your briefs, its memory - those stay on this machine, and the dialog lists both sets so you do not have to take that on trust. Before it writes the file it also looks through the pages and tools for things that read as yours rather than the plugin's - a home folder path, an email address, something shaped like an API key - and shows you what it found. It changes nothing; you decide.</p>
@@ -1244,6 +1249,26 @@ read_when:
       <p>An <strong>invalid</strong> signature refuses the install outright, with the reason. A package that carries a signature that does not check out is a package somebody changed after it was published, and the fact that the claim cannot be verified is exactly why it must not be installed.</p>
       <p>An unsigned package still installs. Signing is a way to say more, not a new bar every author has to clear - and the card says plainly that nobody can be named for it.</p>
       <div class="tip"><strong>Signing your own.</strong> Run <code>node scripts/plugin-sign.js keygen</code> once. It writes a private key into your data folder, readable only by you, and prints the public half as one line. The private key never leaves the machine and Skales never sends it anywhere. From then on every <strong>.skplugin</strong> you export is signed, and the export tells you whether it was. Put the public line into your plugin's <code>publicKey</code> field in the directory, and everybody installing your release gets the named check rather than the anonymous one.</div>
+    </section>
+
+    <section id="business">
+      <h2><span class="icon">&#127970;</span> Business, and using Skales at work</h2>
+      <p><strong>Business</strong> is a page in the sidebar, and it is the one place in Skales that talks about money. Two things live there: what a commercial licence covers, and the waiting list for the Business suite.</p>
+
+      <h3>Why there is a licence at all</h3>
+      <p>Skales is free to use, and it is not open source. Using it <strong>inside a company</strong> needs a written licence, and that is what this page is the door to. The licence covers three things: using Skales in your company, how many seats that is, and whether you may pass seats on to clients of your own. Nothing about the app changes when you have one - no feature unlocks and nothing is withheld from you until you do. It is a contract, not a gate.</p>
+      <p>The full text is at <strong>skales.app/licence</strong>, and the page links straight to it.</p>
+
+      <h3>The waiting list, and what it is not</h3>
+      <p>The form on the page is four short steps, and it <strong>saves after the first one</strong>. That is deliberate: your address and whether this is for work or for yourself are all that is really needed, and if you close the window at step three nothing is lost. The two steps after it - how big the team is, and what you actually need - are there so the reply you get is about your situation rather than a brochure.</p>
+      <p>Step one carries two tick boxes and they do different jobs. The first is <strong>required</strong>: it is your agreement that what you type is stored so the enquiry can be answered, and the page links to the privacy notice next to it. The second is the <strong>newsletter</strong>, it is separate, it starts empty, and it is never a condition of anything - leaving it alone still sends the enquiry. Every mail from the letter carries an unsubscribe link.</p>
+      <p>Joining the list is <strong>not a contract and not a payment</strong>. Nothing is charged, nothing starts, and no card is asked for anywhere on the page.</p>
+
+      <h3>What the figures at the top are</h3>
+      <p>The line of numbers under the headline is read live from the public statistics endpoint when the page opens. Every figure is <strong>rounded down</strong> and carries a plus, so none of them is ever an overstatement. If the endpoint cannot be reached the page shows the last measured values instead and says nothing about it - there is no loading state and no empty row, because a page that shows a placeholder where a number belongs is worse than one that is slightly behind.</p>
+
+      <h3>If you do not want the row</h3>
+      <p>The Business entry is an ordinary sidebar row and it can be <strong>unpinned</strong> like any other: right-click it, or use the pin that appears when you reach for the row, and it moves into <strong>More</strong>. It does not come back afterwards. A machine that was set up for private use never gets the row in the column in the first place - the page is still there under More if you go looking.</p>
     </section>
 
     <!-- ===== Chapter: Chat and agents ===== -->
@@ -1366,6 +1391,10 @@ read_when:
       <p><strong>Code with colour.</strong> Fenced code blocks are syntax-coloured and carry a copy button; naming the language after the backticks is what gets the colouring right. <kbd>Ctrl</kbd>+<kbd>A</kbd> inside a block selects that block rather than the whole conversation.</p>
       <p>Skales itself knows all of this now, in every mode rather than only in Code mode, so you can simply ask for a diagram or a page and expect one.</p>
 
+      <h3>A picture a tool handed back</h3>
+      <p>Not everything a tool returns is text. When Skales looks at a web page or at your desktop, what comes back is a <strong>picture</strong>, and it is shown to you as one and carried as one &mdash; into the conversation, into an export of it, and to your paired phone &mdash; instead of being described to you in words that are one step further from what was actually there.</p>
+      <p>Skales also keeps track of <em>where each picture came from</em>: a screenshot the browser took, a capture of your screen, an image a model generated, a photo you attached yourself. So when it refers back to one later, it can tell you which it means, and a picture it took itself is never presented as something you provided.</p>
+
       <h3>A file it made</h3>
       <p>When Skales writes a file for you — a spreadsheet, a document, a PDF, a note, a downloaded file, an edit to a file you already had — the file arrives as a <strong>card under the answer</strong> rather than as a path buried in a sentence. The card carries the filename, with the full path on hover, and a second line with the type and the size. Under it are <strong>Download</strong> (for files inside the Skales data folder) and <strong>Open Folder</strong>.</p>
       <p>A <strong>PDF opens inside Skales</strong>. The card carries a <strong>View</strong> button, and a link to a PDF in an answer opens the same way: the document is shown in the app's own panel with the scrolling, zoom, search and print you know from any reader, drawn by the Skales window itself. There is one panel, so opening a second PDF replaces the first rather than piling up windows; Escape, the X in the title row or a click beside the panel closes it. Download and Open Folder stay in that title row, so the file can still be taken into another reader. A PDF lying in a project folder is shown the same way in the Code window's preview pane.</p>
@@ -1445,6 +1474,10 @@ read_when:
       <h3>Dispatch a team</h3>
       <p>Ask for ten landing pages or five competitor write-ups and Skales fans the work out to parallel background agents, one per item. Each runs on its own in the Tasks tab, and as they finish their results, including any images and files, report straight back into the chat thread. Use it when you want several independent deliverables at once, not for a single answer.</p>
 
+      <h3>The list it is working to</h3>
+      <p>A long piece of work shows its <strong>plan</strong> while it runs: the steps as Skales sees them, which one is being worked on, and what is already done. It is not decoration &mdash; it is the list the run actually follows, so watching it is watching the work.</p>
+      <p>A big job can carry more than one such list at a time, each with its own name, so a run that is preparing a release and testing it at the same time shows two honest lists instead of one muddled one. A list with steps still open keeps the run open: Skales will not call something finished while its own plan still says otherwise.</p>
+
       <h3>Seeing what runs</h3>
       <p>Active and background goals show in the chat header and in History, each with its status, so a long autonomous run is never a black box. Open one to follow its steps, or jump back into any thread where a goal is still in flight.</p>
 
@@ -1469,6 +1502,11 @@ read_when:
 
       <h3>Dynamic Templates</h3>
       <p>Describe what you need and Skales generates appropriate structure and content. No template library required.</p>
+
+      <h3>Reading a document you already have</h3>
+      <p>The other direction. Point Skales at a PDF, a Word file or a spreadsheet and it reads it <strong>with its shape intact</strong>, not as one long wall of text: the headings a Word document is built from, its tables as tables, its footnotes and the comments people left in the margin; a spreadsheet&rsquo;s named ranges and the formulas behind the numbers rather than only the numbers; and, in a PDF, whichever pages you ask for &mdash; &ldquo;just pages 40 to 55 of the manual&rdquo; is a real request.</p>
+      <p>A long document is never cut in silence. Every read ends by saying how much of the file it actually returned and where to carry on, so &ldquo;summarise this 400-page report&rdquo; is answered by working through it rather than by summarising the first few pages and calling that the report.</p>
+      <p>A scanned PDF &mdash; pictures of pages, with no text layer &mdash; is named as one instead of coming back empty.</p>
     </section>
 
     <section id="http-request">
@@ -1781,6 +1819,10 @@ read_when:
         </tbody>
       </table>
 
+      <h3>Picking a stopped run back up</h3>
+      <p>A team run is often minutes of work across several agents, and until now closing Skales in the middle of one threw all of it away. It does not any more. A run interrupted by a quit, a crash or a stop comes back on the Organization screen with what it already finished still marked as finished, and a <strong>Resume</strong> on it. Resuming re-enters at the first task that never got done, so the work an earlier attempt already proved is not repeated &mdash; which also means you are not paying for it twice.</p>
+      <p>Tasks that do not depend on each other still run side by side when it picks back up, exactly as they did the first time.</p>
+
       <h3>Canvas Office</h3>
       <p>A real-time animated canvas visualization of your organization. Agents are rendered as interactive nodes on a 2D canvas with smooth animations, connection lines between team members, and status indicators. The canvas auto-scales to fit your org structure and uses requestAnimationFrame for 60fps rendering.</p>
 
@@ -1923,6 +1965,10 @@ read_when:
         <div class="card"><div class="card-title">Local Folder</div><div class="card-desc">Select a folder on your machine containing a SKILL.md file.</div></div>
         <div class="card"><div class="card-title">Paste Content</div><div class="card-desc">Copy-paste SKILL.md content directly into the import dialog.</div></div>
       </div>
+
+      <h3>The files a skill brings with it</h3>
+      <p>A skill is rarely only its instructions. It can carry reference documents, checklists, templates and small scripts in its folder, and Skales <strong>opens them when it needs them</strong> rather than loading everything into every conversation. That is what keeps a large, detailed skill cheap: the instructions say what exists, and the rest is read at the moment it matters.</p>
+      <p>Each skill folder also carries a fingerprint taken over everything in it &mdash; the instructions, the references, the scripts, the assets. It means the same skill is recognisable as the same skill on your computer and on your paired phone, and a copy that has been changed along the way is recognisable as changed.</p>
 
       <h3>Where Skills Work</h3>
       <p>Imported skills are loaded into <strong>all</strong> Skales contexts: Chat, Skales Code, the browser agent, and Lio AI. The skill instructions are injected into the system prompt when the skill is enabled.</p>
@@ -2393,7 +2439,10 @@ read_when:
       <p>A finished film can be shared straight to <a href="#discover" style="color:var(--accent)">Discover</a> from the export sheet.</p>
 
       <h3>Nothing you made is gone</h3>
-      <p>Every turn seals a version of the whole project, so you can go back to any of them &mdash; and the rollback is itself sealed first, which is what keeps going back reversible. Projects can be archived (reversible, keeps everything) or deleted (the folder moves to a trash folder next to your projects).</p>
+      <p>Every turn seals a version of the whole project, so you can go back to any of them &mdash; and the rollback is itself sealed first, which is what keeps going back reversible.</p>
+      <p><strong>Nothing falls off the end of the list.</strong> The version history, opened from the toolbar over the preview, keeps the most recent dozen on the shelf and marks everything older as <em>Archived</em>. An archived version is not a tombstone: it keeps its number and its files, and it can still be opened, restored, downloaded as a ZIP, or branched off into a project of its own. The thirteenth turn no longer costs you the first.</p>
+      <p>Whole projects work the same way. Taking one out of the grid archives it and keeps everything; the archive filter on the grid brings it back. Deleting is the separate, deliberate one (the folder moves to a trash folder next to your projects).</p>
+      <p><strong>What you get out is what you asked for, or it says so.</strong> When an export cannot be exactly the thing you named &mdash; slides that had no editable text to keep, a film with transparency that has to leave as WebM &mdash; the difference is a sentence you see, not a quieter file. And when nothing could be produced, you are told that, rather than handed a still picture where a film was asked for.</p>
       <h3>Brand Kit and style packs</h3>
       <p>Your Brand Kit &mdash; logo, colours, fonts, tone &mdash; applies to a Flow project, and a style pack can be pinned next to it. Your brief always wins on content.</p>
       <h3>Handing it to Code</h3>
@@ -2613,6 +2662,14 @@ read_when:
 
       <h3>TTS (Text-to-Speech)</h3>
       <p>Supported providers: <strong>Default</strong>, <strong>Local</strong> (your operating system&rsquo;s own voices), <strong>OpenAI</strong>, <strong>ElevenLabs</strong> and <strong>Azure</strong>. Voice and speed are configurable in Settings → Voice. (Groq is used for speech-to-text, not for speech.)</p>
+
+      <h3>A live channel, where your provider has one</h3>
+      <p>Normally Skales listens, then thinks, then speaks &mdash; three steps, each waiting for the one before it. Some providers offer something better: a <strong>real live audio channel</strong>, where your voice and the answer travel at the same time. Where that exists, Skales can use it instead.</p>
+      <p>Turn it on under <strong>Settings &rsaquo; Voice</strong>, in the row about interrupting: <em>off</em>, <em>barge-in</em> (speak over an answer and the turn comes back to you mid-word, on any provider) and <em>realtime</em>. On the live channel it is the same Skales &mdash; the same conversation, the same tools, the same approval cards before anything is done &mdash; and speaking over it stops the <em>work</em> behind the voice, not just the talking.</p>
+      <p>It is offered only when it can actually be opened: the provider has such a channel at all, there is a key for it, and a model that carries it is known. When one of those is missing the setting stays unselectable and says which one, rather than letting you pick a mode that would do nothing.</p>
+
+      <h3>Who is speaking, and how it has been going</h3>
+      <p>Above the voice list is a line naming who will <em>actually</em> speak, which is not always the tile you highlighted &mdash; a voice on your own machine set as the main one goes first on purpose. Once anything has been spoken, a second small line appears underneath with how the voice has behaved this session: which engine and language spoke last, how long it typically takes until the first sound, over how many attempts, and how many never came back at all. It is about the speaking and nothing else, and it starts fresh each time you open Skales.</p>
 
       <h3>Your Mac&rsquo;s voices, on your phone</h3>
       <p>Your Mac already has dozens of voices installed, the premium ones included, and they cost nothing and never leave your own devices. The paired Skales app (2.5.6 and newer) can use them: pick <strong>Voices from your Mac</strong> under Voice in the app, choose one from the list your computer reports, and this machine speaks for the phone over the pairing connection. It is offered only while this computer is awake and reachable in Remote mode; if it goes away mid-sentence the phone falls back to its own voice rather than going quiet. The same is available locally at <code>/api/tts/say</code> (GET lists the voices, POST returns audio). A computer that is not a Mac says so instead of reporting an empty voice list.</p>
@@ -2843,6 +2900,12 @@ read_when:
         </tbody>
       </table>
 
+      <h3>Asking for one in a chat</h3>
+      <p>You do not have to build a job on the Schedule page. Say what you want in a conversation &mdash; <em>&ldquo;every time an invoice lands in this folder, file it and tell me&rdquo;</em> &mdash; and the whole job is made in one go: what fires it, what it then does, which folder it works in, which agent runs it, where the answer should go, and whether it may get on with it without asking. A watched folder or mailbox starts watching straight away rather than at the next restart, and the job can be fired once as a test so you can see what it does before you leave it alone with it.</p>
+
+      <h3>&ldquo;Don&rsquo;t ask me first&rdquo; is all it means</h3>
+      <p>A job can be told not to stop and ask before it starts. That is the whole of it, and it is worth being precise about, because it is easy to read as more. Such a run is <strong>still listed</strong> on the Schedule page and on the Cockpit board, it can still be stopped, every approval inside it still applies &mdash; anything dangerous still asks you, mid-run, by name &mdash; and its result still reaches your notifications and any channel you switched on. A job that says &ldquo;remind me&rdquo; still reminds you. It is not an invisible run and it is not a run without rules. The only genuinely silent runs are Skales tidying up after itself.</p>
+
       <h3>Autonomous</h3>
       <p>One switch, one name. <em>Autonomous</em> in Settings under Goals lets Skales act on its own inside a time window: run its jobs, work on goals, and pick an interrupted run back up after a restart. When it is off, jobs still run on their clock but nothing is resumed on its own.</p>
     </section>
@@ -2862,6 +2925,8 @@ read_when:
       <h2><span class="icon">🚀</span> Playbooks</h2>
       <p>A <strong>playbook</strong> is a browser run recorded once and replayed on demand. Press <em>Record</em>, do the task in the browser yourself — click, type, scroll, upload — and every step is written down as you go.</p>
       <p>Steps can be edited afterwards, and a step that holds something secret is marked as such so it is asked for rather than stored. A playbook can carry <strong>variables</strong> (<code>{{name}}</code>): running it then asks for the values first and fills them in. Runs can be put on a schedule, and a recorded playbook can be promoted into a <em>Workflow</em> so an agent can trigger it.</p>
+      <h3>A step the unattended replay cannot do</h3>
+      <p>A playbook running on a schedule replays in the background, without the browser window in front of you &mdash; and a few kinds of recorded step only make sense with that window there. When one of those turns up, it is <strong>named and skipped</strong> and the rest of the flow carries on, and such a run never reports itself as finished: it tells you which steps were left out and that the Browser view can replay them properly. A step that failed to open a page at all is the one failure that stops the run, because everything written after it was written for a page that never appeared.</p>
       <p><strong>Playbooks has no entry in the menu in this build.</strong> A recorded playbook still runs: an agent can be asked for one by name in the chat, and a playbook on a schedule fires the same as any other job. The <strong>Playbooks</strong> add-on still switches that, your recordings are untouched, and the page answers at <code>/playbooks</code> for anybody who goes to it. What is gone is the door, and with it the way to record a <em>new</em> one from the menu.</p>
     </section>
 
@@ -2876,7 +2941,7 @@ read_when:
       <h2><span class="icon">🖥️</span> Computer Use</h2>
       <p>Skales can control your desktop. Screenshots, mouse clicks, keyboard input, and scrolling.</p>
 
-      <h3>Available Actions</h3>
+      <h3>Looking at the screen</h3>
       <div class="card-grid">
         <div class="card"><div class="card-title">Screenshot</div><div class="card-desc">Capture your screen. Appears inline in chat.</div></div>
         <div class="card"><div class="card-title">Click</div><div class="card-desc">Click at specific coordinates on your screen.</div></div>
@@ -2884,7 +2949,22 @@ read_when:
         <div class="card"><div class="card-title">Scroll</div><div class="card-desc">Scroll up or down in the active window.</div></div>
       </div>
 
-      <div class="warn"><strong>⚠️ Safety Mode</strong> — In Safe Mode, every Computer Use action requires your approval before execution.</div>
+      <h3>Reading the screen</h3>
+      <p>Skales does not only look at a picture of your desktop. It can ask the operating system what is actually on it &mdash; which buttons, fields and menus exist, what each one is called and what kind of control it is &mdash; and then act on a name instead of a coordinate. That is the difference between &ldquo;click at 840, 412&rdquo; and &ldquo;click <em>Send</em>&rdquo;, and it is why a window that moved does not derail the job.</p>
+      <div class="card-grid">
+        <div class="card"><div class="card-title">Read the screen</div><div class="card-desc">List the controls in front of you with their names and kinds, instead of guessing from pixels.</div></div>
+        <div class="card"><div class="card-title">List windows</div><div class="card-desc">See which applications and windows are open right now.</div></div>
+        <div class="card"><div class="card-title">Focus a window</div><div class="card-desc">Bring a named app or window to the front before working in it.</div></div>
+        <div class="card"><div class="card-title">Open an app</div><div class="card-desc">Launch an application by name.</div></div>
+        <div class="card"><div class="card-title">Check afterwards</div><div class="card-desc">Confirm that what was supposed to happen really did &mdash; before reporting it as done.</div></div>
+      </div>
+
+      <h3>When a click is refused</h3>
+      <p>Every screenshot carries which display it came from and a number saying how current it is, and a click refers back to that. If a window moved, a monitor changed or the picture went stale between looking and clicking, the click is <strong>refused with the reason</strong> rather than landing somewhere else on your screen. A refusal here is the feature working.</p>
+
+      <div class="warn"><strong>⚠️ On a Mac you must allow it once</strong> &mdash; reading and clicking controls by name needs the <strong>Accessibility</strong> permission, which macOS grants in its own System Settings under Privacy &amp; Security, not inside Skales. Without it, screenshots still work, everything else says exactly which permission is missing instead of quietly doing nothing.</div>
+
+      <div class="warn"><strong>⚠️ Safety Mode</strong> &mdash; In Safe Mode, every Computer Use action requires your approval before execution. A click on a control whose name says it deletes, buys, cancels or pays asks first by that name, whatever mode you are in.</div>
     </section>
 
     <section id="download-file">
@@ -3192,7 +3272,11 @@ read_when:
       <h3>A model id you typed yourself</h3>
       <p>A model name you type into a provider card is sent as you typed it. Skales says a model is gone only when the provider says so; anything else is named for what it actually was, with a pointer at the setting that caused it. That matters because the most common cause is not a retired model at all but the wrong address, which is exactly what the <a href="#providers">GigaChat endpoint field</a> exists for.</p>
 
-      <div class="tip"><strong>Per-mode overrides:</strong> a strong model for code while your chat stays on your default is <strong>Settings &rsaquo; Chat &amp; Code &rsaquo; Code model</strong>. Lio builds with its own saved configuration rather than with your chat default, and its "use default" option shows you the provider and model it means.</div>
+      <div class="tip"><strong>Per-mode overrides:</strong> a strong model for code while your chat stays on your default is <strong>Settings &rsaquo; Chat &amp; Code &rsaquo; Code model</strong>. Lio builds with its own saved configuration rather than with your chat default, and its "use default" option shows you the provider and model it means &ndash; that configuration is Lio's alone and decides nothing outside the code builder.</div>
+
+      <h3>Which model designs</h3>
+      <p>Skales Studio and Skales Visuals write a real page &ndash; a poster, an infographic, an animation, a 3D scene &ndash; so a language model designs it, and you can say which one. The row named <strong>studio</strong> under <strong>Settings &rsaquo; AI Providers &rsaquo; Per-Mode Model Overrides</strong> is that choice. Leave it on "use active model" and Studio follows your active provider, or your local model when you set Skales Local as your main one. This is the same model behind the prompt enhancer, the captions, the storyboard and the scene animator, and behind a visual made in the chat with <code>/image</code> or <code>/video</code>.</p>
+      <p>A design that comes back empty says why rather than saying nothing: a model that spends its whole output budget thinking is asked again with a bigger budget, then once more with the thinking switched off, and if it still writes nothing you are told that is what happened and which kind of model gets past it.</p>
     </section>
 
     <section id="llm-profiles">
@@ -3502,6 +3586,10 @@ read_when:
         <li><strong>Remove and block</strong> unpairs it and refuses it when it asks again. Blocked devices are listed separately, and <strong>Allow again</strong> lifts it.</li>
       </ul>
       <p>Under those, <strong>Recent pairing attempts</strong> is the log: which device asked, and what happened to it, including the ones you refused, the ones nobody answered in time, and a blocked device that kept asking.</p>
+
+      <h3>Working a coding session from the phone</h3>
+      <p>A paired phone is not only a viewer of a Skales Code session running on your computer &mdash; it is a <strong>seat at it</strong>. From the phone you can follow the run step by step as it happens, change the session's working mode, its model and how hard it thinks, read the list of changes and open one file's changes piece by piece, keep or revert single pieces, stage and unstage, preview and make the commit, undo a change that was recorded, save a file you edited, type an answer into something on the computer that stopped to ask a question, and see and stop the helper agents it started.</p>
+      <p>All of it runs through exactly the same machinery and the same approval cards as the panel on the computer, so nothing is possible from the phone that is not possible in front of the screen &mdash; and a file you saved from the phone is refused if it changed on the computer since you opened it, rather than quietly overwriting the newer copy. An older version of the app simply does not offer any of this and keeps working the way it always did.</p>
 
       <h3>Fetching a plugin from this computer</h3>
       <p>A paired phone can see the <a href="#plugins" style="color:var(--accent)">plugins</a> installed on the computer it is paired with, read what each one asks for before anything is copied, and take one over to the phone. Only the paired computer answers that, and only its own plugin folder is ever read. It is the shorter road than exporting a file and carrying it across, and it does not need a backup.</p>
@@ -4366,7 +4454,7 @@ read_when:
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.9.27</span> &middot; © 2024-2026 Mario Simic &middot; BSL 1.1</span>
+      <span>Skales v<span data-skales-version>12.9.30</span> &middot; © 2024-2026 Mario Simic &middot; Proprietary licence</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 

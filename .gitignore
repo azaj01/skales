@@ -190,5 +190,19 @@ temp/
 # Skills
 skills-lock.json
 
-# Skales Pocket firmware lives outside git (Mario, 06.09.2026)
+# Firmware and hardware work are not part of this distribution channel
 pocket/
+
+# ──────────────────────────────────────────────
+#  NOT PART OF THIS REPOSITORY
+#  The application is proprietary and is distributed as a signed
+#  build from skales.app. The v7 snapshot that used to sit here was
+#  removed with 12.9.30; these paths stay out so it cannot return
+#  by way of an `add -A` in a working copy.
+# ──────────────────────────────────────────────
+apps/
+electron/
+scripts/
+package.json
+package-lock.json
+electron-builder.yml

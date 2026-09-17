@@ -1,110 +1,63 @@
-Business Source License 1.1
-License text copyright (c) 2017 MariaDB Corporation Ab, All Rights Reserved.
-"Business Source License" is a trademark of MariaDB Corporation Ab.
------------------------------------------------------------------------------
-Parameters
+Skales End User Licence Agreement
 
-Licensor:             Mario Simic
-Licensed Work:        Skales
-                      The Licensed Work is (c) 2026 Mario Simic.
-Additional Use Grant: You may copy, modify, create derivative works,
-                      redistribute, and make non-production use of the
-                      Licensed Work for personal use, learning, and
-                      non-commercial internal testing.
+Version 1.2, 14 September 2026
+The version you accept governs the Software supplied under it. The full text is shown before acceptance, can be saved, and is published with all earlier versions at https://skales.app/licence. For business customers the English text governs. If you are a consumer, the full text in the language you selected at acceptance forms part of the agreement, and any discrepancy with the English text is resolved in your favour.
+Licensor: Skales ("Skales", "we"). Name, address, and contact details are in section 12.
+Software: Skales Desktop, Skales Mobile, Skales Code, Skales Relay client components and every update we provide (the "Software")
 
-                      You may NOT use the Licensed Work to provide a
-                      commercial SaaS (Software-as-a-Service), managed
-                      hosting, or any competing commercial product to
-                      third parties without prior written consent from
-                      the Licensor.
-Change Date:          2030-04-19
-Change License:       Apache License, Version 2.0
------------------------------------------------------------------------------
-IN PLAIN TERMS:
+1. What this is
+The Software is proprietary. It is licensed, not sold. It is not open source and it is not source-available. No source code is provided or promised under this agreement.
 
-  Free for personal use, learning, and non-commercial experimentation.
-  You may NOT host it as a SaaS, sell it, or build a competing product
-  without written permission from the author (Mario Simic).
+2. What you may do
+2.1 Personal and educational use. If you are a private individual, a student, a teacher, or an educational institution, you may install and use the Software free of charge on devices you control. Educational use includes teaching, learning, and academic research by students and teachers and within non-commercial educational institutions, including public schools and universities. Payment of salaries to teaching staff does not by itself make such use commercial. This permission takes precedence over section 2.3.
+2.2 Evaluation. Any organisation may install the Software to evaluate it for thirty (30) days, starting with the organisation's first use for evaluation, once per organisation. The evaluation never converts into a paid licence by itself.
+2.3 Commercial use. Any other use by or for a company, a business, or a public body, or in exchange for money or other consideration, requires a written commercial licence from Skales. Contact: request@skales.app.
 
-  On April 19, 2030, this version becomes Apache 2.0 licensed.
-  Future versions (v10.0.4 and later) are released under their own BSL
-  terms with their own Change Dates.
------------------------------------------------------------------------------
-Terms
+3. What you may not do
+3.0 Your statutory rights. The restrictions in this section do not limit rights you cannot waive under applicable law. These include making a necessary backup copy; observing, studying, or testing the Software during authorised use; reproduction and adaptation necessary for its intended use, including error correction; and decompilation necessary to achieve interoperability of an independently created program, subject to the statutory conditions. They also do not restrict transfers protected by applicable exhaustion rules or rights granted under third-party component licences (section 6). Activities otherwise restricted by this section may be authorised in a separate written agreement with Skales.
+3.1 You may not offer the Software, or any service built on it, to third parties as a hosted, managed, or software-as-a-service offering.
+3.2 You may not rebrand, white-label, resell, sublicense, rent, lease, or redistribute the Software, in whole or in part, except as section 3.0 permits.
+3.3 You may not reverse engineer, decompile, disassemble, or extract the Software, or otherwise attempt to derive its source code, models, prompts, or internal structure, except as section 3.0 permits.
+3.4 You may not remove, hide, or alter any licence, trademark, attribution, or origin marking in the Software or its packages. Platform functions that an app store is required to permit, such as icon theming or family sharing, are not affected.
+3.5 You may not copy or incorporate Skales' protected code, texts, prompts, tool definitions, or assets into another product without our written permission. This does not prohibit independent development that uses unprotected ideas, functionality, or interfaces, and it does not restrict the rights in section 3.0. Skales claims no ownership of your inputs or of the outputs you create with the Software.
+3.6 You must install and run the Software as published. You may not modify the Software, remove or bypass its integrity, attestation, licence, or authentication mechanisms, or distribute or run a modified copy, except for adaptations section 3.0 permits.
+3.7 You may not operate the Software commercially as a component, backend, agent engine, or library of another product or service, and you may not connect a third-party client to its relay or online services or collect its output in bulk, including for training models. Using the Software's own tools and interfaces on your own devices, including starting it from scripts, development environments, or assistive tools, remains free.
+3.8 You may install official, unmodified packages through distribution channels authorised by Skales, including direct downloads where we offer them. You may not distribute re-signed or modified packages, bundle the Software, broker access to it, or submit it to any app store or distribution channel without our written permission. Managed distribution within an organisation requires a commercial licence.
+3.9 You may not present yourself as a partner, reseller, certified provider, co-developer, or spokesperson of Skales or Mario Simic, falsely claim that Skales is part of, based on, or endorses another product, or use the name, likeness, or statements of Mario Simic in advertising. Factual statements that your setup runs, installs, or interoperates with Skales, editorial reporting, quotations permitted by law, and factual product comparisons remain unaffected.
 
-The Licensor hereby grants you the right to copy, modify, create
-derivative works, redistribute, and make non-production use of the
-Licensed Work.
+4. Your data and your keys
+The Software runs on your own devices. Provider keys, conversations, files, and memory stay on your devices unless you connect a service yourself. When you use optional online services, the Software exchanges the data those services need, such as licence and update checks, relay messages and their delivery metadata, and reports you choose to send. Skales IQ, Skales Relay, and other optional online services have their own terms, shown before you enable them. Information about personal data processed by Skales, including purposes, legal bases, recipients, retention periods, and your rights, is available in our Privacy Notice at https://skales.app/privacy, before acceptance and within the Software. Accepting this agreement is not consent to optional personal-data processing.
 
-The Licensor may make an Additional Use Grant, above, permitting
-limited production use.
+5. Trademarks
+"Skales", the Skales logo, and the names of Skales products are trademarks of Mario Simic. This agreement grants no trademark rights. The trademark guidelines are included with the Software as TRADEMARK.md and published at https://skales.app/licence.
 
-Effective on the Change Date, or the fourth anniversary of the first
-publicly available distribution of a specific version of the Licensed
-Work under this License, whichever comes first, the Licensor hereby
-grants you rights under the terms of the Change License, and the rights
-granted in the paragraph above terminate.
+6. Third-party components
+The Software contains open-source components under their own licences, listed in THIRD-PARTY-NOTICES.md, which is included with the Software and published at https://skales.app/licence. Those licences govern those components and grant you the rights they state; they do not extend to the Software as a whole.
 
-If your use of the Licensed Work does not comply with the requirements
-currently in effect as described in this License, you must purchase a
-commercial license from the Licensor, its affiliated entities, or
-authorized resellers, or you must refrain from using the Licensed Work.
+7. Updates, term, and termination
+7.1 We provide updates required by applicable law, including security updates for the period the law requires. Additional features or upgrades are included only where expressly agreed. Consumers are informed of updates within the Software.
+7.2 The licence continues unless terminated in accordance with this section. We may terminate it by notice identifying a material breach. If the breach can be remedied, we allow a reasonable period of at least fourteen (14) days to remedy it before termination takes effect. Immediate termination is permitted only where the circumstances justify termination for cause without a remedy period. You may terminate at any time by deleting the Software.
+7.3 After termination you must stop using and delete the proprietary Software. You need not delete your own data or independently licensed third-party components. Termination does not remove accrued claims, your right to retrieve your data, or rights you already hold under an earlier version of this agreement for the Software supplied under it.
+7.4 This agreement does not authorise public identification of users or publication of alleged breaches. Statutory rights to enforce claims and to make lawful disclosures remain unaffected.
+7.5 Sections 3.4, 3.5, 5, 6, 8, and 9 continue to apply to copies you obtained under this agreement after termination.
 
-All copies of the original and modified Licensed Work, and derivative
-works of the Licensed Work, are subject to this License. This License
-applies separately for each version of the Licensed Work and the Change
-Date may vary for each version of the Licensed Work released by
-Licensor.
+8. Warranty and liability
+8.1 If you are a consumer, statutory liability and your statutory rights concerning the supply and conformity of the Software apply without contractual limitation. These include applicable rights to remedies for defects and to necessary updates. We do not provide any additional voluntary guarantee.
+8.2 Nothing in this agreement excludes or limits liability for death or personal injury, for intentional misconduct or gross negligence, or any liability that cannot lawfully be excluded, including applicable product liability.
+8.3 For business customers, the Software is provided "as is", and liability for slight negligence, indirect or consequential damages, loss of data, and loss of profit is excluded to the extent permitted by law. Different liability provisions may be agreed in the commercial licence.
 
-You must conspicuously display this License on each original or modified
-copy of the Licensed Work. If you receive the Licensed Work in original
-or modified form from a third party, the terms and conditions set forth
-in this License apply to your use of that work.
+9. Governing law
+Austrian law applies. If you are a consumer, this choice does not deprive you of the protection of mandatory provisions of the law of your habitual residence that would apply without this choice. Consumers retain all statutory rights concerning jurisdiction. For business customers, the courts having subject-matter jurisdiction in Vienna, Austria, have exclusive jurisdiction.
 
-Any use of the Licensed Work in violation of this License will
-automatically terminate your rights under this License for the current
-and all other versions of the Licensed Work.
+10. Entire agreement
+This agreement, together with the documents it names, is the complete licence for the Software supplied under it. Individually agreed terms and a separate commercial licence prevail over conflicting provisions of this agreement. Publishing revised terms does not by itself amend an existing agreement; a new version applies only to the Software you accept it for. Refusing revised terms does not terminate rights already granted under an earlier version for the Software supplied under it. If any provision is invalid, the remaining provisions remain in force.
 
-This License does not grant you any right in any trademark or logo of
-Licensor or its affiliates (provided that you may use a trademark or
-logo of Licensor as expressly required by this License).
+11. App store copies
+11.1 If you obtained the Software through an app store, the store's applicable distribution terms also apply, and prevail in case of conflict. Nothing in sections 2 or 3 prohibits use or platform functionality that the store requires us to permit. This grants no hosting, white-label, or other commercial rights beyond section 2.
+11.2 Apple. For copies obtained from the Apple App Store: this agreement is between you and Skales only, not Apple; Apple is not responsible for the Software or its content. The licence is limited to use on Apple-branded devices that you own or control, as permitted by the Usage Rules in the Apple Media Services Terms and Conditions, including use by other accounts associated with you through Family Sharing or volume purchasing. Skales alone is responsible for maintenance and support; Apple has no obligation to furnish support. To the extent a warranty applies and the Software fails to conform to it, you may notify Apple, and Apple will refund the purchase price, if any; Apple has no other warranty obligation, and any other claim, loss, liability, damage, cost, or expense attributable to a failure to conform is Skales' responsibility. Skales, not Apple, is responsible for addressing any claim relating to the Software or your possession or use of it, including product liability claims, claims that the Software fails to conform to a legal or regulatory requirement, and consumer protection or similar claims. If a third party claims that the Software infringes its intellectual property rights, Skales, not Apple, is responsible for the investigation, defence, settlement, and discharge of that claim. You represent that you are not located in a country subject to a U.S. Government embargo or designated as a "terrorist supporting" country, and that you are not on any U.S. Government list of prohibited or restricted parties. You must comply with applicable third-party terms when using the Software. Apple and its subsidiaries are third-party beneficiaries of this agreement and may enforce it against you.
+11.3 Google. For copies obtained from Google Play, the Google Play Terms of Service and the Developer Distribution Agreement rights granted to you, including family sharing and device features Google Play requires, are not restricted by this agreement.
 
-TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSED WORK IS PROVIDED
-ON AN "AS IS" BASIS. LICENSOR HEREBY DISCLAIMS ALL WARRANTIES AND
-CONDITIONS, EXPRESS OR IMPLIED, INCLUDING (WITHOUT LIMITATION)
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
-NON-INFRINGEMENT, AND TITLE.
+12. Licensor and contact
+Licensor and contact for questions, complaints, and claims: Mario Simic, trading as Skales, Vienna, Austria; email request@skales.app.
 
-MariaDB hereby grants you permission to use this License's text to
-license your works, and to refer to it using the trademark "Business
-Source License", as long as you comply with the Covenants of Licensor
-below.
------------------------------------------------------------------------------
-Covenants of Licensor
-
-In consideration of the right to use this License's text and the
-"Business Source License" name and trademark, Licensor covenants to
-MariaDB, and to all other recipients of the Licensed Work to be provided
-by Licensor:
-
-1. To specify as the Change License the GPL Version 2.0 or any later
-   version, or a license that is compatible with GPL Version 2.0 or a
-   later version, where "compatible" means that software provided under
-   the Change License can be included in a program with software provided
-   under GPL Version 2.0 or a later version. Licensor may specify
-   additional Change Licenses without limitation.
-
-2. To either: (a) specify an additional grant of rights to use that does
-   not impose any additional restriction on the right granted in this
-   License, as the Additional Use Grant; or (b) insert the text
-   "None".
-
-3. To specify a Change Date.
-
-4. Not to modify this License in any other way.
------------------------------------------------------------------------------
-Notice
-
-The Business Source License (this document, or the "License") is not an
-Open Source license. However, the Licensed Work will eventually be made
-available under an Open Source License, as stated in this License.
+Copyright (c) 2026 Mario Simic. All rights reserved.

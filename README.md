@@ -8,8 +8,8 @@ The private AI that lives on your computer and does real work, not just chat.
   <img width="960" height="580" alt="Dashboard" src="https://github.com/user-attachments/assets/bba3411e-85eb-44e8-ab58-be2a5a88a650" />
 </p>
  <p>
-    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.9.27-10b981?style=flat-square" alt="Version 12.9.27" /></a>
-    <a href="https://skales.app"><img src="https://img.shields.io/badge/license-BSL_1.1-10b981?style=flat-square" alt="License" /></a>
+    <a href="https://github.com/skalesapp/skales/releases/latest"><img src="https://img.shields.io/badge/version-12.9.30-10b981?style=flat-square" alt="Version 12.9.30" /></a>
+    <a href="https://skales.app/licence"><img src="https://img.shields.io/badge/licence-proprietary-10b981?style=flat-square" alt="Licence" /></a>
     <a href="https://skales.app"><img src="https://img.shields.io/badge/Windows_+_macOS_+_Linux_+_Android_+_iOS-10b981?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
     <a href="https://github.com/skalesapp/skales/stargazers"><img src="https://img.shields.io/github/stars/skalesapp/skales?style=flat-square&color=10b981" alt="Stars" /></a>
   </p>
@@ -43,11 +43,22 @@ An AI agent that runs on your own computer, with access to your files, browser, 
 **[⬇ Download](https://skales.app)** · **[📖 Docs](https://docs.skales.app)** · **[🎬 Demo](https://www.youtube.com/watch?v=k83NlptVmfc)** · **[📝 Changelog](./CHANGELOG.md)** · **[💬 Community](https://github.com/skalesapp/skales/discussions)**
 
 > **About this repository.** This is where Skales is *distributed*: releases,
-> the changelog, install guides and the issue tracker. Skales itself is closed
-> source under BSL 1.1, and the product is the signed application you download
-> from [skales.app](https://skales.app). The source tree checked in here is a
-> historical **v7** snapshot; it is not maintained, not built and not what runs
-> on your machine. Reporting a security issue? Please read
+> the changelog, install guides and the issue tracker. Skales is proprietary
+> software, and the product is the signed application you download from
+> [skales.app](https://skales.app).
+>
+> A **v7 source snapshot** stood in this repository until 12.9.30 and was
+> removed with that release. Its last code commit was 26 July 2026 and it had
+> long stopped describing the product: 138 TypeScript files against 984 in the
+> tree that is built, 70 API routes against 225. It drew four security reports
+> about code the shipped application does not contain.
+>
+> From 12.9.30 onward Skales is supplied under the Skales End User Licence
+> Agreement. Releases up to and including 12.9.27 were supplied under the
+> Business Source Licence 1.1, and a copy supplied under it keeps what that
+> licence granted.
+>
+> Reporting a security issue? Please read
 > [SECURITY.md](https://github.com/skalesapp/skales/blob/main/SECURITY.md) first. It says what is in scope, and it will save
 > you a lot of time.
 
@@ -397,7 +408,9 @@ No vendor lock-in. Bring your own key, or run locally for free.
 
 ## 📜 License
 
-**BSL 1.1**: Free for personal, educational, and non-commercial use. Commercial SaaS or competing products require written permission. Converts to Apache 2.0 on 2030-04-19. See [LICENSE](./LICENSE) for full terms.
+Skales is **proprietary software**: free of charge for private and educational use, commercial use by written licence. Hosting it for other people, rebranding it, reselling it and reverse engineering it are outside the licence. See [LICENSE](./LICENSE) for the full terms, or the published copy of every version at [skales.app/licence](https://skales.app/licence).
+
+Releases up to and including 12.9.27 were supplied under the Business Source Licence 1.1, and a copy supplied under it keeps what that licence granted.
 
 WordPress Plugin: **MIT**, [github.com/skalesapp/wordpress](https://github.com/skalesapp/wordpress)
 
