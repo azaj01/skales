@@ -43,20 +43,15 @@ An AI agent that runs on your own computer, with access to your files, browser, 
 **[⬇ Download](https://skales.app)** · **[📖 Docs](https://docs.skales.app)** · **[🎬 Demo](https://www.youtube.com/watch?v=k83NlptVmfc)** · **[📝 Changelog](./CHANGELOG.md)** · **[💬 Community](https://github.com/skalesapp/skales/discussions)**
 
 > **About this repository.** This is where Skales is *distributed*: releases,
-> the changelog, install guides and the issue tracker. Skales is proprietary
-> software, and the product is the signed application you download from
-> [skales.app](https://skales.app).
+> the changelog, install guides and the issue tracker. Skales itself is
+> proprietary and stays proprietary, and the product is the signed application
+> you download from [skales.app](https://skales.app).
 >
-> A **v7 source snapshot** stood in this repository until 12.9.30 and was
-> removed with that release. Its last code commit was 26 July 2026 and it had
-> long stopped describing the product: 138 TypeScript files against 984 in the
-> tree that is built, 70 API routes against 225. It drew four security reports
-> about code the shipped application does not contain.
->
-> From 12.9.30 onward Skales is supplied under the Skales End User Licence
-> Agreement. Releases up to and including 12.9.27 were supplied under the
-> Business Source Licence 1.1, and a copy supplied under it keeps what that
-> licence granted.
+> A **v7 source snapshot** stood here until 12.9.30 and was removed with that
+> release. Its last code commit was 26 July 2026 and it had long stopped
+> describing the product: 138 TypeScript files against 984 in the tree that is
+> built, 70 API routes against 225. It drew four security reports about code the
+> shipped application does not contain.
 >
 > Reporting a security issue? Please read
 > [SECURITY.md](https://github.com/skalesapp/skales/blob/main/SECURITY.md) first. It says what is in scope, and it will save
@@ -408,9 +403,17 @@ No vendor lock-in. Bring your own key, or run locally for free.
 
 ## 📜 License
 
-Skales is **proprietary software**: free of charge for private and educational use, commercial use by written licence. Hosting it for other people, rebranding it, reselling it and reverse engineering it are outside the licence. See [LICENSE](./LICENSE) for the full terms, or the published copy of every version at [skales.app/licence](https://skales.app/licence).
+**Skales End User Licence Agreement**: proprietary software, licensed and not
+sold. Free for private and educational use, thirty days of evaluation for an
+organisation; company use, hosting, white-labelling and redistribution need a
+written commercial licence. Skales is not open source and will not become open
+source. See [LICENSE](./LICENSE) for the full terms, [TRADEMARK.md](./TRADEMARK.md)
+for the brand half and [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md) for the
+short reading. Every version is published at
+[skales.app/licence](https://skales.app/licence).
 
-Releases up to and including 12.9.27 were supplied under the Business Source Licence 1.1, and a copy supplied under it keeps what that licence granted.
+Releases up to and including 12.9.27 were supplied under the Business Source
+Licence 1.1, and a copy supplied under it keeps what that licence granted.
 
 WordPress Plugin: **MIT**, [github.com/skalesapp/wordpress](https://github.com/skalesapp/wordpress)
 
