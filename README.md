@@ -380,35 +380,6 @@ No vendor lock-in. Bring your own key, or run locally for free.
 12 languages: EN, DE, ES, FR, RU, PT, KO, ZH, JA, VI, HR, TR.
 
 **Maintainer:** Mario Simic (solo founder, Vienna, Austria).
-
-**Contributors:**
-
-<p align="left">
-  <a href="https://github.com/jazzroutine"><img src="https://github.com/jazzroutine.png" width="56" height="56" alt="jazzroutine" style="border-radius:50%" /></a>
-  <a href="https://github.com/xITmasterx"><img src="https://github.com/xITmasterx.png" width="56" height="56" alt="xITmasterx" style="border-radius:50%" /></a>
-  <a href="https://github.com/btafoya"><img src="https://github.com/btafoya.png" width="56" height="56" alt="btafoya" style="border-radius:50%" /></a>
-  <a href="https://github.com/bmp-jaller"><img src="https://github.com/bmp-jaller.png" width="56" height="56" alt="bmp-jaller" style="border-radius:50%" /></a>
-  <a href="https://github.com/henk717"><img src="https://github.com/henk717.png" width="56" height="56" alt="henk717" style="border-radius:50%" /></a>
-  <a href="https://github.com/SohaibKhaliq"><img src="https://github.com/SohaibKhaliq.png" width="56" height="56" alt="SohaibKhaliq" style="border-radius:50%" /></a>
-  <a href="https://github.com/VladB-evs"><img src="https://github.com/VladB-evs.png" width="56" height="56" alt="VladB-evs" style="border-radius:50%" /></a>
-  <a href="https://github.com/v33-kind"><img src="https://github.com/v33-kind.png" width="56" height="56" alt="v33-kind" style="border-radius:50%" /></a>
-  <a href="https://github.com/sidharth-vijayan"><img src="https://github.com/sidharth-vijayan.png" width="56" height="56" alt="sidharth-vijayan" style="border-radius:50%" /></a>
-  <a href="https://github.com/saagnik23"><img src="https://github.com/saagnik23.png" width="56" height="56" alt="saagnik23" style="border-radius:50%" /></a>
-  <a href="https://github.com/Drizzt-IT"><img src="https://github.com/Drizzt-IT.png" width="56" height="56" alt="Drizzt-IT" style="border-radius:50%" /></a>
-  <a href="https://github.com/Kombowz"><img src="https://github.com/Kombowz.png" width="56" height="56" alt="Kombowz" style="border-radius:50%" /></a>
-  <a href="https://github.com/anthonytrance"><img src="https://github.com/anthonytrance.png" width="56" height="56" alt="anthonytrance" style="border-radius:50%" /></a>
-  <a href="https://github.com/karelrokk-droid"><img src="https://github.com/karelrokk-droid.png" width="56" height="56" alt="karelrokk-droid" style="border-radius:50%" /></a>
-  <a href="https://github.com/mclaudiopt"><img src="https://github.com/mclaudiopt.png" width="56" height="56" alt="mclaudiopt" style="border-radius:50%" /></a>
-  <a href="https://github.com/1Hackoon"><img src="https://github.com/1Hackoon.png" width="56" height="56" alt="1Hackoon" style="border-radius:50%" /></a>
-  <a href="https://github.com/tbaumann"><img src="https://github.com/tbaumann.png" width="56" height="56" alt="tbaumann" style="border-radius:50%" /></a>
-  <a href="https://github.com/Derrick-xn"><img src="https://github.com/Derrick-xn.png" width="56" height="56" alt="Derrick-xn" style="border-radius:50%" /></a>
-  <a href="https://github.com/jarbcs1-prog"><img src="https://github.com/jarbcs1-prog.png" width="56" height="56" alt="jarbcs1-prog" style="border-radius:50%" /></a>
-  <a href="https://github.com/LLen"><img src="https://github.com/LLen.png" width="56" height="56" alt="LLen" style="border-radius:50%" /></a>
-  <a href="https://github.com/sebastiondev"><img src="https://github.com/sebastiondev.png" width="56" height="56" alt="sebastiondev" style="border-radius:50%" /></a>
-  <a href="https://github.com/WindWardMist"><img src="https://github.com/WindWardMist.png" width="56" height="56" alt="WindWardMist" style="border-radius:50%" /></a>
-  <a href="https://github.com/Shtirlyts"><img src="https://github.com/Shtirlyts.png" width="56" height="56" alt="Shtirlyts" style="border-radius:50%" /></a>
-</p>
-
 [Discussions](https://github.com/skalesapp/skales/discussions) · [Bug Reports](https://github.com/skalesapp/skales/issues)
 
 ---
