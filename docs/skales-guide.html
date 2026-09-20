@@ -704,7 +704,7 @@
       <div class="logo-mark">S</div>
       <div>
         <div class="logo-text">Skales</div>
-        <div class="logo-version">v<span data-skales-version>12.9.30</span> User Guide</div>
+        <div class="logo-version">v<span data-skales-version>12.9.31</span> User Guide</div>
       </div>
     </a>
 
@@ -887,7 +887,7 @@
 
     <!-- Hero: the front page only -->
     <div class="hero">
-      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.30</span></div>
+      <div class="hero-badge">📖 Official Documentation &middot; v<span data-skales-version>12.9.31</span></div>
       <h1>Skales <span>User Guide</span></h1>
       <p>Your personal AI operating system. Set a goal, automate, create, all running locally on your machine.</p>
     </div>
@@ -2176,6 +2176,9 @@
       <h3>The assist model</h3>
       <p>Leave it on <strong>Follow the chat</strong> and the small jobs run on whatever model the conversation runs on. Point it at a provider and a model - a cheap cloud model, or a local one - and every light pass goes there instead, while your chat stays where it is. The model field only applies once a provider is set.</p>
 
+      <h3>Decisions</h3>
+      <p>Some of what Skales does between your messages is not writing at all, it is deciding: which of a handful of steps fits, whether a step still matters, whether the next click is one you would want to be asked about. Those closed questions can go to a decision model, which answers yes-or-no and which-one questions in a fraction of a second and never writes a word. <strong>Decisions</strong> sits under the assist model on the same card. It is <strong>Off</strong> by default, and off keeps everything exactly as it is today. Choose <strong>TypeSafe key</strong> and paste a key of your own, or <strong>via OpenRouter</strong> to use the OpenRouter key you already have for chat; the model list carries the decision models that exist. A decision model never sees a picture, so anything that needs a screenshot still goes to the model you chose. What leaves the machine when it is on: the names of the elements on a page, your instruction and the tool steps of the conversation, nothing else. An incognito conversation and Privacy Mode never ask it.</p>
+
       <h3>Say something while the model is still thinking</h3>
       <p>A big model can sit silent for several seconds before it writes anything. With this on, one short line appears in the status slot saying what Skales is about to do. It is written by your assist model, it is never stored in the conversation, and it is never sent back to a model on a later turn - it lives only in the window you are looking at. On by default. Switching it off gives you the ordinary indicator and nothing else changes.</p>
       <p>Who writes it follows the boundary your conversation already crosses, and never widens it:</p>
@@ -2870,6 +2873,9 @@
       <p><strong>The Browser surface has no entry in the menu in this build.</strong> The tools above are untouched and are where the feature actually lives now; the page still answers at <code>/browser</code> for anybody who goes to it, and the Code window keeps its own browser panel behind the globe in its title bar.</p>
 
       <p><strong>A browser closes with the run that opened it</strong>, however that run ended, and one left sitting untouched closes itself after the session length set under <strong>Settings &rarr; Browser Control</strong>. Nothing is lost: cookies and logins live in the browser profile, so the next page opens still signed in. Quitting Skales sweeps up any browser an earlier crash left behind.</p>
+
+      <h3>Several steps in one go</h3>
+      <p>With a decision model switched on under <strong>Settings &gt; Chat &amp; Code &gt; Assist &gt; Decisions</strong>, the agent gains <code>browser_act</code>: it names a goal on the page that is already open, and Skales takes the steps towards it one after another, each decided in a fraction of a second instead of a full round of thinking. It stops and hands the page back when it is unsure, when it is going in circles, when the goal is reached, and before anything that buys, pays, sends, publishes, deletes or signs in, so the approvals you know still apply. It never invents text: a search term or a form entry comes from your request or from the model, never from the decision model. Without a decision model the tool does not exist and browsing works exactly as before.</p>
 
       <h3>Sign in to sites</h3>
       <p>When a task needs you logged in (X, Reddit, a webshop), Skales opens a visible browser window so you can sign in by hand. Your login is saved to the Skales browser profile and reused by later browsing. Skales never sees your password. Open a login window any time from Settings → Browser Control ("Log in to a website"), or turn on "Show browser window" there to watch Skales work. When it reads a page, Skales now uses a compact text map of the page instead of a Vision screenshot for each step, which is faster and cheaper; screenshots are still used for image-heavy pages.</p>
@@ -4408,7 +4414,7 @@
     </section>
 
     <footer>
-      <span>Skales v<span data-skales-version>12.9.30</span> &middot; © 2024-2026 Mario Simic &middot; Proprietary licence</span>
+      <span>Skales v<span data-skales-version>12.9.31</span> &middot; © 2024-2026 Mario Simic &middot; Proprietary licence</span>
       <a href="https://skales.app">skales.app</a>
     </footer>
 
